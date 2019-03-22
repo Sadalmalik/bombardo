@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bombardo", "Bombardo\Bombardo.csproj", "{7D09ABCA-9482-40F8-9304-7BAA23126DD8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoApp", "BombardoApp\BombardoApp.csproj", "{775492ED-CBDE-4A2B-BF86-24A7C2752455}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D09ABCA-9482-40F8-9304-7BAA23126DD8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7D09ABCA-9482-40F8-9304-7BAA23126DD8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7D09ABCA-9482-40F8-9304-7BAA23126DD8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7D09ABCA-9482-40F8-9304-7BAA23126DD8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{775492ED-CBDE-4A2B-BF86-24A7C2752455}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{775492ED-CBDE-4A2B-BF86-24A7C2752455}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{775492ED-CBDE-4A2B-BF86-24A7C2752455}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{775492ED-CBDE-4A2B-BF86-24A7C2752455}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {73B0C717-A821-454B-A7DB-0F1C682C66B5}
+	EndGlobalSection
+EndGlobal
