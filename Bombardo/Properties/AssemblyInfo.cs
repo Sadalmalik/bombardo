@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("Bombardo")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Bombardo language interpreter core")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("Bombardo")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
+[assembly: AssemblyCopyright("Copyright © Kaleb Sadalmalik 2019")]  //  is it correct with GPL?
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
