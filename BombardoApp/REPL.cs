@@ -1,17 +1,13 @@
-﻿using Bombardo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bombardo
 {
     internal class REPL
     {
         private static bool loop_;
-        private static BombardoCore.BombardoLangClass bombardo_;
+        private static BombardoLangClass bombardo_;
         private static string storage_ = "";
 
         public static void Start()
