@@ -1,0 +1,15 @@
+﻿(require "Class")
+
+(define Event (Class []
+	(define $actions null)
+	(define this.Add (lambda [$action]
+		(set! $actions (cons $action $actions))
+	))
+	(define this.Invoke (lambda $params
+		(each $actions (lambda [$x]
+			(eval (cons $x $params))
+		))
+	))
+))
+
+(define module Event)

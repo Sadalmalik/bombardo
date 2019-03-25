@@ -1,0 +1,39 @@
+﻿
+(define module.animal-ontology `(
+	(setf (get animal covering) skin)
+	(setf (get bird covering) feathers)
+	(setf (get bird travel) flies)
+	(setf (get bird isa) animal)
+	(setf (get fish isa) animal)
+	(setf (get fish travel) swim)
+	(setf (get ostrich isa) bird)
+	(setf (get ostrich travel) walk)
+	(setf (get penguin isa) bird)
+	(setf (get penguin travel) walk)
+	(setf (get penguin color) brown)
+	(setf (get opus isa) penguin)
+	(setf (get canary isa) bird)
+	(setf (get canary color) yellow)
+	(setf (get canary sound) sing)
+	(setf (get tweety isa) canary)
+	(setf (get tweety color) white)
+	(setf (get robin isa) bird)
+	(setf (get robin sound) sings)
+))
+
+(define messages `(
+
+	(raw нечто похожее, только дом одноэтажный, деревья полигональные и черные)
+	(
+		(image $ref)
+		(group:tree (polygonal) (black))
+		(house (similar $ref) (floors 1))
+	)
+
+	(raw в доме сундук, там ружье)
+	(
+		(chest (inside house))
+		(shotgun (inside #there))
+	)
+
+))

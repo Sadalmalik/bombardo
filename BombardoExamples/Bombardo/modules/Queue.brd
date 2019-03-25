@@ -1,0 +1,122 @@
+﻿(require "Class")
+
+(define Queue (Class ()
+	(define $head null)
+	(define $tail null)
+
+	(define this.Empty? (lambda []
+		(null? $head)
+	))
+
+	(define this.GetAll (lambda []
+		$head
+	))
+
+	(define this.Push (lambda [$item]
+		(define $node (cons $item))
+		(if [null? $head]
+			[set! $head (set! $tail $node)]
+			[set! $tail (set-cdr! $tail $node)])
+	))
+
+	(define this.Pop (lambda []
+		(if [null? $head]
+			null
+			[block
+				(define $result (car $head))
+				(set! $head (cdr $head))
+				$result])
+	))
+
+	(define this.Clear (lambda []
+		(set! $head null)
+		(set! $tail null)
+	))
+))
+
+
+
+(define	QueMake (lambda [] (cons)))
+
+(define	QuePush (lambda [$queue $item]
+	(if [null? (car $queue)]
+		[set-car! $queue (set-cdr! $queue (cons $item))]
+		[set-cdr! $queue (set-cdr! (cdr $queue) (cons $item))]
+	)
+))
+
+(define	QuePop (lambda [$queue]
+	(define $pop (car $queue))
+	(set-car! $queue (if [null? $pop] null [cdr $pop]))
+	(if [null? $pop] null [car $pop])
+))
+
+(define QuePeek (lambda [$queue]
+	(define $pop (car $queue))
+	(if [null? $pop] null [car $pop])
+))
+
+(define QueGetList (lambda [$queue]
+	(car $queue)
+))
+
+(define QueSetList (lambda [$queue $list]
+	(set-car! $queue $list)
+	(set-cdr! $queue (last $list))
+))
+
+(define QueClear (lambda [$queue]
+	(set-car! $queue null)
+	(set-cdr! $queue null)
+))
+
+(define Tests (lambda []
+	(print "")
+	(print "")
+	(print "")
+	(print "Test object queue")
+	(define queue (Queue))
+
+	(queue.Push `a)
+	(queue.Push `b)
+	(queue.Push `c)
+	(queue.Push `x)
+
+	(print (queue.Pop) " -> " `a)
+	(print (queue.Pop) " -> " `b)
+	(print (queue.Pop) " -> " `c)
+	(print (queue.Pop) " -> " `x)
+	(print (queue.Pop) " -> " null)
+	
+	(print "")
+	(print "")
+	(print "")
+	(print "Test struct queue")
+
+	(define $que (QueMake))
+	
+	(QuePush $que `a)
+	(QuePush $que `b)
+	(QuePush $que `c)
+	(QuePush $que `x)
+	
+	(print (QuePop $que) " -> " `a)
+	(print (QuePop $que) " -> " `b)
+	(print (QuePop $que) " -> " `c)
+	(print (QuePop $que) " -> " `x)
+	(print (QuePop $que) " -> " null)
+
+	(print "")
+	(print "DONE!")
+))
+
+(export Queue)
+(export Tests)
+
+(export QueMake)
+(export QuePush)
+(export QuePop)
+(export QuePeek)
+(export QueGetList)
+(export QueSetList)
+(export QueClear)

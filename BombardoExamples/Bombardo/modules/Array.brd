@@ -1,0 +1,24 @@
+﻿"Array.brd"
+(require "LangPrimitives" import-all)
+
+(defFunct [ArrayMake]
+	(cons 0)
+)
+
+(defFunct [ArrayAdd $array $item]
+	(set-car! $array (+ (car $array) 1))
+	(set-cdr! $array (cons $item (cdr $array)))
+)
+
+(defFunct [ArrayCount $array]
+	(car $array)
+)
+
+(defFunct [ArrayContent $array]
+	(cdr $array)
+)
+
+(export ArrayMake)
+(export ArrayAdd)
+(export ArrayCount)
+(export ArrayContent)

@@ -1,0 +1,74 @@
+﻿(require "LangPrimitives" import-all)
+(require "Class")
+
+(define Heap (Class ()
+	(define :content (table))
+
+	(define GetConcept (lambda ($concept)
+		(table-get :content $concept)
+	))
+	
+	(define CreateConcept (lambda ($concept)
+		(define $item (GetConcept $concept))
+		(if (null? $item)
+			(block
+				(set! $item (cons $concept))
+				(table-set :content (list $concept $item))
+			))
+		$item
+	))
+	
+	(define AddProperty (lambda ($concept $property)
+		(define $item (CreateConcept  $concept))
+		(set-cdr! $item (cons $property (cdr $item)))
+		$item
+	))
+	
+	(define this.GetContent (lambda () :content))
+	(define this.GetConcept GetConcept)
+	(define this.CreateConcept CreateConcept)
+	(define this.AddProperty AddProperty)
+	(define this.Each (lambda (callback)
+		(table-each :content callback)
+	))
+))
+
+(define Tests (lambda []
+	(print "")
+	(print "")
+	(print "")
+	(print "Test semantic net:")
+	(define testHeap (Heap))
+
+	(print "Translate semantic to heap")
+
+	(require "TestContent.brd" as content)
+
+	(map
+		content.animal-ontology
+		(lambda [x]
+			(define a (car (cdr (cdr (car (cdr x))))) )
+			(define b (car (cdr (car (cdr x)))) )
+			(define c (car (cdr (cdr x))) )
+			(testHeap.AddProperty b (cons a c))
+		)
+	)
+
+	(testHeap.AddProperty `mammal `(isa animal))
+	(testHeap.AddProperty `sloth `(isa mammal))
+	(testHeap.AddProperty `dog `(isa mammal))
+	(testHeap.AddProperty `cat `(isa mammal))
+
+	(print "Result:")
+	(print "")
+
+	(testHeap.Each (lambda (key value)
+		(print "  " key " : " value)
+	))
+
+	(print "")
+	(print "DONE!")
+))
+
+(export Heap)
+(export Tests)

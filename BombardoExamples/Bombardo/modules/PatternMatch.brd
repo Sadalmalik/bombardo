@@ -1,0 +1,283 @@
+﻿"PatternMatch.brd"
+(require "LangPrimitives" import-all)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(defFunct	[variable? sym]
+	(if [symbol? sym]
+		(str-ends-with (symbol-name sym) "?")
+		false))
+
+(defFunct	[ExtendFrame $frame $key $value]
+	[cons (cons $key $value) (if [empty? $frame] null $frame)]
+)
+
+(defFunct	[LookUpFrame $frame $key]
+	(if [null? $frame]
+		null
+		(if [null? (car $frame)]
+			(if [null? (cdr $frame)]
+				null
+				[LookUpFrame (cdr $frame) $key]
+			)
+			(if	[eq? $key (car (car $frame))]
+				[cdr (car $frame)]
+				[LookUpFrame (cdr $frame) $key]
+			)
+		)
+	)
+)
+
+(defFunct	[TryExtendFrame $frame $key $value]
+	(define $found (LookUpFrame $frame $key))
+	(if [null? $found]
+		[ExtendFrame $frame $key $value]
+		[Match $found $value $frame]))
+
+(defFunct	[Match $pat $val $frame]
+	(cond	[(eq? $frame `fail) `fail]
+			[(and (pair? $pat) (pair? $val))
+				(Match (car $pat) (car $val)
+					(Match (cdr $pat) (cdr $val)
+						$frame))]
+			[(variable? $pat) (TryExtendFrame $frame $pat $val)]
+			[true (if [eq? $pat $val] $frame `fail)]))
+
+(defFunct (depends? $expression $var $frame)
+	(defFunct [walkTree $exp]
+		(cond	[(pair? $exp)
+					(or (walkTree (car $exp))
+						(walkTree (cdr $exp)))]
+				[(variable? $exp)
+					(if (eq? $var $exp)
+						true
+						(walkTree (LookUpFrame $frame $exp)))]
+				[true false]))
+	(walkTree $expression))
+
+(defFunct	[TryExtendFramePossible $frame $var $val]
+	(define $found (LookUpFrame $frame $var))
+	(cond	[(not (null? $found))
+				(Unify $found $val $frame)]
+			[(variable? $val)
+				(define $other (LookUpFrame $frame $val))
+				(if [null? $other]
+					(ExtendFrame $frame $var $val)
+					(Unify $var $other $frame))]
+			[(depends? $val $var $frame) `fail]
+			[true (ExtendFrame $frame $var $val)]))
+
+(define print nope)
+(defFunct	[Unify $pat1 $pat2 $frame $noVar]
+	(print "UNIFY " $pat1 " " $pat2 " --" $frame " " $noVar)
+	(cond	[(eq? $frame `fail) `fail]
+			[(and (pair? $pat1) (pair? $pat2))
+				(Unify (car $pat1) (car $pat2)
+					(Unify (cdr $pat1) (cdr $pat2)
+						$frame $noVar)
+							$noVar)]
+			[(variable? $pat1)
+				(print "  --(variable? $pat1) ? " $pat1)
+				(if (null? $noVar) (TryExtendFramePossible $frame $pat1 $pat2) null)
+			]
+			[(variable? $pat2)
+				(print "  --(variable? $pat2) ? "$pat2)
+				(if (null? $noVar) (TryExtendFramePossible $frame $pat2 $pat1) null)
+			]
+			[true
+				(print "  --true")
+				(if [eq? $pat1 $pat2] $frame `fail)
+			]))
+
+(defFunct	[Instantiate $pat $frame]
+	(cond	[(pair? $pat)
+				(cons	(Instantiate (car $pat) $frame)
+						(Instantiate (cdr $pat) $frame))]
+			[(variable? $pat)
+				(Instantiate (LookUpFrame $frame $pat) $frame)]
+			[true $pat]))
+
+(define RenameCounter 0)
+
+(defFunct [RenameVariable $var $id]
+	[symbol-make (str-concat $var $id "?")])
+
+(defFunct [RenameVariables $expression $id]
+	(if [null? $id] (set! $id [inc! RenameCounter]))
+	(cond	[(pair? $expression)
+				(cons	(RenameVariables (car $expression) $id)
+						(RenameVariables (cdr $expression) $id))]
+			[(variable? $expression)
+				(RenameVariable $expression $id)]
+			[true $expression]))
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(defFunct (Tests)
+	(require "UnitTests" as Unit)
+	(define unit1 (Unit "Context Frame"))
+
+	(define stuff null)
+	(set! stuff (ExtendFrame stuff `a 1))
+	(set! stuff (ExtendFrame stuff `b 2))
+	(set! stuff (ExtendFrame stuff `c 3))
+	
+	[unit1.Test
+		(LookUpFrame stuff `a)
+		1]
+		
+	[unit1.Test
+		(LookUpFrame stuff `b)
+		2]
+
+	[unit1.Test
+		(LookUpFrame stuff `c)
+		3]
+
+	[unit1.Test
+		(LookUpFrame stuff `d)
+		null]
+		
+	[unit1.Test
+		(TryExtendFrame stuff `a 1)
+		( (c . 3) (b . 2) (a . 1) )]
+
+	[unit1.Test
+		(TryExtendFrame stuff `a 2)
+		fail]
+
+	[unit1.Test
+		(TryExtendFrame stuff `d 4)
+		( (d . 4) (c . 3) (b . 2) (a . 1) )]
+
+	(unit1.Complete)
+
+
+	(define unit2 (Unit "Pattern matching"))
+
+	[unit2.Test
+		(Match `constant `constant)
+		null]
+
+	[unit2.Test
+		(Match `question? `result)
+		((question? . result))]
+		
+	[unit2.Test
+		(Match `(constant expression) `(constant expression))
+		null]
+		
+	[unit2.Test
+		(Match `(extra expression what? (test where?)) `(extra expression ultra (test inside)))
+		( (what? . ultra) (where? . inside) )]
+		
+	[unit2.Test
+		(Match `(unconsistent what?) `(wrong pattern))
+		fail]
+
+	[unit2.Test
+		(Match `(+ 45 77) `(+ 45 77))
+		null]
+		
+	[unit2.Test
+		(Match `(+ 45 77) `(- 45 77))
+		fail]
+		
+	[unit2.Test
+		(Match `(+ 45 77) `(+ 45 99))
+		fail]
+		
+	[unit2.Test
+		(Match `(x? a y?) `(u a z))
+		( (x? . u) (y? . z) )]
+
+	[unit2.Test
+		(Match `(x? a x?) `(u a z))
+		fail]
+		
+	[unit2.Test
+		(Match `(x? a (r x?)) `(u a (r u)))
+		( (x? . u) )]
+
+	[unit2.Test
+		(Match `(x? a (r x?)) `(u a (r z)))
+		fail]
+		
+	(unit2.Complete)
+
+
+	
+	(define unit3 (Unit "Pattern Unify"))
+	
+	[unit3.Test
+		(Unify `(check x?) `(check this))
+		( (x? . this) )]
+
+	[unit3.Test
+		(Unify `(y? delta) `(omega delta))
+		( (y? . omega) )]
+		
+	[unit3.Test
+		(Unify `(x? second) `(first y?))
+		( (x? . first) (y? . second))]
+		
+	[unit3.Test
+		(Unify `(x? x?) `(y? y?))
+		( (y? . y?) (x? . y?) )]
+		
+	[unit3.Test
+		(Unify `(x? y?) `(meta (u? v?)) )
+		( (x? . meta) (y? . (u? v?) ) )]
+
+	[unit3.Test
+		(Unify `(meta (u? v?)) `(x? y?) )
+		( (x? . meta) (y? . (u? v?) ) )]
+
+	[unit3.Test
+		(Unify `(same x? x?) `(same A A) `())
+		( ( x? . A ) )]
+		
+	[unit3.Test
+		(Unify `(same x? x?) `(same A B) `())
+		fail]
+
+	[unit3.Test
+		(Unify `(same x? x?) `(same A? B?) `( ( A? . who? ) ( B? . VAL ) ))
+		fail]
+
+
+	(unit3.Complete)
+)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(export variable?)
+
+(export ExtendFrame)
+(export LookUpFrame)
+(export TryExtendFrame)
+(export Match)
+(export depends?)
+(export TryExtendFramePossible)
+(export Unify)
+(export Instantiate)
+(export RenameVariables)
+
+(export Tests)

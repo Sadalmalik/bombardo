@@ -1,0 +1,74 @@
+﻿"DList.brd"
+(require "LangPrimitives" import-all)
+(require "Queue" import-all)
+
+
+
+(defFunct [DListMake]
+	(cons null (QueMake))
+)
+
+(defFunct [DListAdd $dlist $item]
+	[set-car! $dlist (cons $item (car $dlist))]
+	[QuePush (cdr $dlist) $item]
+)
+
+(defFunct [DListFront $dlist]
+	(car $dlist)
+)
+
+(defFunct [DListBack $dlist]
+	(QueGetList (cdr $dlist))
+)
+
+(defFunct [DListClear $dlist]
+	(set-car! $dlist null)
+	(QueClear (cdr $dlist))
+)
+
+
+
+(defFunct [Tests]
+	(print "")
+	(print "")
+	(print "")
+	(print "Test Double List")
+
+	(define dlist (DListMake))
+	
+	(print "front: " (DListFront dlist))
+	(print "back: " (DListBack dlist))
+	(print "")
+
+	(DListAdd dlist `a)
+	(DListAdd dlist `b)
+	(DListAdd dlist `c)
+	
+	(print "front: " (DListFront dlist))
+	(print "back: " (DListBack dlist))
+	(print "")
+	
+	(DListAdd dlist `d)
+	(DListAdd dlist `e)
+	(DListAdd dlist `f)
+	
+	(print "front: " (DListFront dlist))
+	(print "back: " (DListBack dlist))
+	(print "")
+
+	(DListClear dlist)
+	
+	(print "front: " (DListFront dlist))
+	(print "back: " (DListBack dlist))
+
+	(print "")
+	(print "DONE!")
+)
+
+(export DListMake)
+(export DListAdd)
+(export DListFront)
+(export DListBack)
+(export DListClear)
+
+(export Tests)

@@ -1,0 +1,164 @@
+﻿"mind.brd"
+(require "LangPrimitives" import-all)
+(require "Class")
+
+(require "Queue" as Queue)
+(Queue.Tests)
+
+(nope require "DelayedStreams.brd" as Delayed)
+(nope Delayed.Tests)
+
+(nope require "Semantic.brd" as Semantic)
+(nope Semantic.Tests)
+
+(nope require "Combinatoric.brd" as Combinatoric)
+(nope Combinatoric.Tests)
+
+(nope require "PatternMatch.brd" as Pattern)
+(nope Pattern.Tests)
+
+(require "Iterators.brd" as Iterators)
+(Iterators.Tests)
+
+(require "DList.brd" as DList)
+(DList.Tests)
+
+(require "DeMorganTransform.brd" as DeMorgan)
+(DeMorgan.Tests)
+
+
+
+(print "")
+(print "")
+(print "")
+(print "Test product")
+
+(require "PatternMatch.brd" as Pattern)
+(require "PRDKT.brd" import-all)
+
+(define myProduction (Production "myMind01.txt"))
+
+(myProduction.Clear)
+(myProduction.AddFacts `(
+	[	(sister Ann Elen)		]
+	[	(sister Diana Ann)		]
+	[	(sister Diana Tom)		]
+	[	(sister Liza Edward)	]
+))
+(myProduction.AddRules `(
+	[	(same X? X?)	]
+	[	( sister A? B? )
+		( and (not (same A? B?)) (sister B? A?) )	]
+
+	[	(append null Y? Y?)	]
+	[	(append (U? . V?) Y? (U? . Z?))
+		(append V? Y? Z?)	]
+
+	[	(first list? el?)
+		(append (el?) any? list?)	]
+))
+
+(myProduction.Save)
+
+(defFunct [TestQuery $query]
+	(print "\nSearch query: " $query)
+	(define $it (myProduction.Find $query))
+	(Iterators.Iterate
+		[Iterators.RangeIterator 0 50]
+		[lambda [$item]
+			(define $frame ($it))
+			(if [not (null? $frame)]
+				(print "[" $item "] : " (Pattern.Instantiate $query $frame) " --- frame: " $frame)
+			)
+		])
+)
+
+(TestQuery `(same Diana Ann))
+(TestQuery `(same Tina Tina))
+(TestQuery `(same A? B?))
+(TestQuery `(not (same Diana Ann)))
+(TestQuery `(not (sister Liza Ann)))
+(TestQuery `(sister who? Ann))
+(nope TestQuery `(sister Diana whom?))
+(nope TestQuery `(sister who? Edward))
+(nope TestQuery `(sister who? whom?))
+(TestQuery `(append X? Y? (a b c d)) )
+(TestQuery `(first (a b c d) X?) )
+
+(print "")
+(print "")
+(print "")
+(print "DONE!")
+
+(Iterators.Iterate (Iterators.RangeIterator 0 30) (lambda [] [print ""]))
+
+
+
+(myProduction.AddFacts `(
+	[	(constant 0)	]
+	[	(constant 1)	]
+	[	(constant 2)	]
+	[	(constant 3)	]
+	[	(constant 4)	]
+	[	(constant 5)	]
+))
+(myProduction.AddRules `(
+	[	(expression X?)			(constant X?)	]
+	[	(expression (U? V?))
+		(and	(constant U?)
+				(constant V?))	]
+))
+
+
+
+(define queueueue (CreateThreadSafeQueue))
+
+(define $window
+	(CreateDialogueWindow "One window"
+		(lambda [$window $text]
+			[DialogueWindowWrite $window (str-concat "\nEntered: " $text)]
+			[ThreadSafeEnqueue queueueue $text]
+		)
+		(lambda [$window]
+			[print "Close window " $window]
+		)
+	)
+)
+
+(define $subIt (myProduction.Find `(expression E?)))
+
+(defFunct	[TestSubFrame]
+	(define $frame ($subIt))
+	(if [not (null? $frame)]
+		(print " : " (Pattern.Instantiate `(expression E?) $frame) " --- frame: " $frame)
+	)
+	(if [not (null? $frame)]
+		(DialogueWindowWrite $window (str-concat "\nCalculated shit: " (Pattern.Instantiate `(expression E?) $frame) " --- frame: " $frame))
+	)
+)
+
+(TestSubFrame)
+(TestSubFrame)
+(TestSubFrame)
+
+
+(interval-set 250 (lambda []
+	(TestSubFrame)
+
+	(while [> (ThreadSafeCount queueueue) 0]
+		(define $message (ThreadSafeDequeue queueueue))
+
+		(define $parsed (parse $message))
+		
+		(if [not (null? $parsed)]
+			(if [pair? (car $parsed)]
+				(print "Parsed: " (car $parsed))
+			)
+		)
+		
+		(DialogueWindowWrite $window (str-concat "\n" $message))
+	)
+))
+
+
+

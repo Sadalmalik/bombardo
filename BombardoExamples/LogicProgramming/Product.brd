@@ -1,0 +1,99 @@
+﻿"Product.brd"
+(require "LangPrimitives" import-all)
+(require "Array" import-all)
+(require "DList" import-all)
+(require "Class")
+(require "PatternMatch" import variable?)
+
+(nope using signatures - просто напоминалка себе
+	[BuildAllPaths $struct $path]
+	[GetByPath $struct $path]
+	
+	[ArrayMake]
+	[ArrayAdd $array $item]
+	[ArrayCount $array]
+	[ArrayContent $array]
+	
+	[DListMake]
+	[DListAdd $dlist $item]
+	[DListFront $dlist]
+	[DListBack $dlist]
+	[DListClear $dlist]
+)
+
+(define DBIndex (Class [$path]
+	(define :table (table))
+	(define :maxFitness 0)
+	(define :path $path)
+	
+	(deFunct [this.GetFitness]	:maxFitness)
+	(deFunct [this.GetPath]		:path)
+
+	(deFunct [this.AddItem $index $item]
+		(define $array (table-get :table $index))
+		(if [null? $array]
+			(block
+				(set! $array (ArrayMake))
+				(table-set :table (list $index $array))
+			))
+		(ArrayAdd $array $item)
+		(set! :maxFitness (max :maxFitness (ArrayCount $array)))
+	)
+
+	(defFunct [this.GetList $index]
+		(define $array (table-get :table $index))
+		(if [null? $array]
+			null
+			(ArrayContent $array)
+		)
+	)
+))
+
+
+	[DListMake]
+	[DListAdd $dlist $item]
+	[DListFront $dlist]
+	[DListBack $dlist]
+	[DListClear $dlist]
+
+(define FactData car)
+(define FactMeta (lambda [$fact]
+	(car (cdr $fact))
+))
+
+(define DBTable (Class []
+	(define :table (DListMake))
+	(define :index (table))
+	(define :no-index (DBIndex))
+	
+	(defFunct [GetOrCreateIndex $path]
+		(define $key (to-string $path))
+		(define $index (table-get :index))
+
+	)
+
+	(defFunct [this.AddFact $fact]
+		(DListAdd :table $fact)
+		(define $data (FactData $fact))
+		(define $paths (BuildAllPaths $data))
+		(set! $paths (filter $paths
+			(lambda [$path]
+				(not (variable? (GetByPath $data)))
+			)
+		))
+	)
+
+	(defFunct [this.GetFasctsByIndex $path $index]
+		
+	)
+	
+	(defFunct [this.Load $filepath]
+	)
+
+	(defFunct [this.Save $filepath]
+	)
+))
+
+
+
+

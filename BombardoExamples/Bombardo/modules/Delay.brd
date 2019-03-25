@@ -1,0 +1,10 @@
+﻿(define delay (macros [expression]
+	(list `lambda `() expression)
+))
+
+(define force (macros [delayed]
+	(list delayed)
+))
+
+(export delay)
+(export force)

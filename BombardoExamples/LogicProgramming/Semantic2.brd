@@ -1,0 +1,124 @@
+﻿
+(print "")
+(print "")
+(print "")
+(print "Test questioning:")
+
+(require "PatternMatch" as Pattern)
+(define variable? Pattern.variable?)
+
+(define devolution? (lambda [relation]
+	(or (eq? relation `isa) (eq? relation `ako))
+))
+
+"
+свойство может быть единичным и множественным
+(isa number)
+(isa (number even primary))
+но пока поддержим только единичное
+"
+
+(defFunct	[IsMatch $pat $val $frame]
+	(neq? `fail (Pattern.Match $pat $val $frame)))
+
+(define FilterProperties (lambda [$properties $expression]
+	"Сохраняем в флаги что элементы запроса являются переменными"
+	[define $typeFlag (variable? (car $expression))]
+	[define $valueFlag (variable? (car (cdr $expression)))]
+	(if [and $typeFlag $valueFlag]
+		$properties
+		[map $properties (lambda [$item]
+			(if [IsMatch $expression $item]
+				$item
+				null)
+		) true]
+	)
+))
+
+(print "Test FilterProperties:")
+(define TestFilterProperties (lambda [$properties $expression $result]
+	(print "")
+	(print " -! " $properties)
+	(print " -q " $expression)
+	(print " -> " (FilterProperties $properties $expression))
+	(print " -- " $result)
+))
+
+(TestFilterProperties `((have car) (have cat) (love July)) `(have what?) `((have car) (have cat)) )
+(TestFilterProperties `((have car) (have cat) (love July)) `(love who?) `((love July)) )
+(TestFilterProperties `((have car) (have cat) (love July)) `(why? where?) `((have car) (have cat) (love July)) )
+(TestFilterProperties `((have car) (have cat) (love July) (its stpid)) `(its stpid) `((its stpid)) )
+(print "")
+
+(define LookUpSimple (lambda [$heap $request]
+	"
+	Сначала самый упрощённый вариант - вопрос на входе всегда простой факт, содержащий один вопрос
+	(объект (свойство значение) (свойство значение))
+	"
+	(define $match null)
+	(define $name (car $request))
+	(define $props (cdr $request))
+
+	(define Handler (lambda [$item]
+		(FilterProperties (cdr $item) )
+	))
+
+	(if [variable? $name]
+		[$heap.Each Handler]
+		[Handler ($heap.GetConcept $name)])
+
+	""
+))
+
+(define LookUp (lambda [heap request]
+	"
+	вопрос представляет собой одно или несколько неполных утверждений,
+	часть атомов которых заменены на переменные с вопросом: variable?
+
+	задача - найти такое утверждение или утрверждения,
+	которые будут соответствовать ВСЕМ вопросным утверждениям одновременно.
+
+	в целом это очень похоже на паттер матчинг, но не то же самое - у объекта может быть много свойств, они могут быть транзитивны по разным направлениям
+	"
+	
+	null
+
+))
+
+"	Юнит-тест
+	Плоская семантическая сеть:"
+[define FlatSemantic
+	`[
+	(Mark (have hat) (love July) (driving car))
+	(Den (have hat) (love July) (driving bike))
+	(Stan (have sombrero) (driving bus))
+	(July (likes Mark) (likes Stan))
+	]
+]
+"	Правильные ответы на вопросы по этой сети в форме списка элментов [ вопрос . ответ ]"
+[define FlatSemanticTest
+	`[
+		[	[ (who? (love July)) ]
+		.	[ (Mark (love July)) (Den (love July)) ]	]
+
+		[	[ (who? (love July)) (July (likes who?)) ]
+		.	[ (Mark (love July)) ]	]
+
+		[	[ (Mark (have what?)) ]
+		.	[ (Mark (have hat)) ]	]
+
+		[	[ (Mark (what? car)) ]
+		.	[ (Mark (driving car)) ]	]
+	]
+]
+
+"	Объёмная (с категориями) сеть:"
+
+(print "DONE!")
+
+
+
+
+
+
+

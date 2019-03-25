@@ -1,0 +1,53 @@
+﻿(require "LangPrimitives" import-all)
+(require "Delay" import-all)
+
+(defMacro [sCons $car $cdr]	[list cons $car (list delay $cdr)])
+(defFunct [sCar stream]		(if [or (null? stream) (empty? stream)] null [car stream]))
+(defFunct [sCdr stream]		(if [or (null? stream) (empty? stream)] null [force (cdr stream)]))
+
+(define emptyStream `())
+(define emptyStream? empty?)
+
+(defFunct [xRange low high]
+	(if [> low high]
+		emptyStream
+		(sCons
+			low
+			(xRange (+ low 1) high)
+		)
+	)
+)
+
+(defFunct [Tests]
+	(print "")
+	(print "")
+	(print "")
+	(print "Test delayed streams:")
+	
+	(print "---------- ---------- ----------")
+	(define delayTest (delay (+ 15 35)))
+	(print "delayTest " delayTest)
+	(print "unwrap " (delayTest))
+	(print "force delayTest " (force delayTest))
+	(print "---------- ---------- ----------")
+
+	(define check 0)
+	(define xrange (xRange 20 35))
+	(while [< check 25]
+		(print "Stream value[" check "] " (sCar xrange))
+		(set! xrange (sCdr xrange))
+		(set! check (+ check 1))
+	)
+	
+	(print "")
+	(print "DONE!")
+)
+
+(export sCons)
+(export sCar)
+(export sCdr)
+
+(export emptyStream)
+(export emptyStream?)
+
+(export Tests)

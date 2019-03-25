@@ -1,0 +1,91 @@
+﻿"DeMorganTransform.brd"
+(require "LangPrimitives" import-all)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(defFunct	[MapDMW $list]
+	(map $list (lambda [$item] [DMWaterfall $item]))
+)
+
+(defFunct	[MapInvDMW $list]
+	(map $list (lambda [$item] [DMWaterfall (list `not $item)]))
+)
+
+(defFunct	[DMWaterfall $expression]
+	(if	[pair? $expression]
+		[block
+			(define $head (car $expression))
+			(define $args (cdr $expression))
+			(if	[null? $args]
+				$expression
+				[cond	[(eq? $head `not)
+							(define $exp [car $args])
+							(if	[pair? $exp]
+								[block
+									(define $op (car $exp))
+									(cond	[(eq? $op `and)
+												(cons `or (MapInvDMW (cdr $exp)))
+											]
+											[(eq? $op `or)
+												(cons `and (MapInvDMW (cdr $exp)))
+											]
+											[(eq? $op `not)
+												(car (cdr $exp))
+											]
+											[true $expression]
+									)
+								]
+								$expression
+							)
+					
+						]
+						[(eq? $head `and)	(cons `and [MapDMW $args])]
+						[(eq? $head `or)	(cons `or [MapDMW $args])]
+						[true $expression]
+				]
+			)
+		]
+		$expression
+	)
+)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(defFunct	[Tests]
+	(require "UnitTests" as Unit)
+	(define unit (Unit "DeMorgan transformation"))
+	
+	[unit.Test	(DMWaterfall `(something))							(something)							]
+	[unit.Test	(DMWaterfall `(and a b))							(and a b)							]
+	[unit.Test	(DMWaterfall `(not a))								(not a)								]
+	[unit.Test	(DMWaterfall `(not (not a)))						a									]
+	[unit.Test	(DMWaterfall `(not (and a b)))						(or (not a) (not b))				]
+	[unit.Test	(DMWaterfall `(not (or a b)))						(and (not a) (not b))				]
+	[unit.Test	(DMWaterfall `(and a (not b)))						(and a (not b))						]
+	[unit.Test	(DMWaterfall `(and a (not (and b c))))				(and a (or (not b) (not c)))		]
+	[unit.Test	(DMWaterfall `(not (or (not a) (and b (not c)))))	(and a (or (not b) c))				]
+	[unit.Test	(DMWaterfall `[not (or (and a b c) (and d e f) (and g h i))])
+				(and (or (not a) (not b) (not c)) (or (not d) (not e) (not f)) (or (not g) (not h) (not i)))				]
+
+	(unit.Complete)
+)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(export DMWaterfall)
+(export Tests)

@@ -1,0 +1,260 @@
+﻿"PRDKT.brd"
+(require "LangPrimitives" import-all)
+(require "Class")
+(require "Queue" import-all)
+(require "Iterators" import-all)
+(require "PatternMatch" as Pattern)
+(require "DeMorganTransform" import-all)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+"
+База данных хранит два типа значений: утверждения и правила
+
+Утверждение
+assert: ((mode) (expression))
+mode - дополнительная структура с флагами. Например простое отрицание или уровень истинности для нечёткой логики [0 .. 1]
+expression - собственно значение
+
+Правило
+rule: ((expression) (condition))
+expression - значение с переменными полями
+condition - логическое выражение для исполнения правила
+
+Так же база данных имеет генерируемые индексы по любым возможным путям внутри выражений.
+В отличае от учебника я не хочу добавлять в обычные индексы переменные.
+Или можно добавить, но не давать оценку индекса по переменным
+
+Вопросы:
+(find:	(father who? Jhon))
+(find:	(and (father who? Adam) (father who? Eve)))
+
+Утверждения
+(fact:	(father Kyle Jhon)			)
+(fact:	not (father Jhon Kyle)		)
+(fact:	(not (father Jhon Kyle))	)
+(fact:	(father Jhon Kyle)	false	)
+Как лучше делать отрицание?
+
+Правила (продукции)
+(rule:	(grandfather x? y?)
+		[and (father x? u?) (father u? y?)])
+
+Исполнение делаем на базе итераторов.
+Потому как отложенные очереди из SCIP будут вызывать постоянные алокации памяти.
+Вообще мой интерпретатор на каждый вызов функции порождает аллокации.
+И я пока не совсем представляю, как с этим бороться, потому что это кадр, без которого ничто не будет работать.
+
+Далее. Нужно понять, как работать с состоянием 'не знаю'
+пока просто буду возвращать null или `undefined
+
+а лучше сначала `undefined а затем уже null, что бы иметь возможность указать наличие незнания
+
+"
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+"Зачем каждый раз создавать новый пустой итератор если можно закэшировать один и тот же?!"
+(define TheEmptyIterator [EmptyIterator])
+
+(defFunct [MakeUnknownIterator] [ListIterator `(Unknown)])
+
+(define Production (Class [$filename]
+	
+	(define #facts (QueMake))
+	(define #rules (QueMake))
+	
+	(defFunct	[AddFact $fact]		[QuePush #facts $fact]	)
+	(defFunct	[AddRule $rule]		[QuePush #rules $rule]	)
+
+	(defFunct	[GetFactIterator]	[ListIterator (QueGetList #facts)]	)
+	(defFunct	[GetRuleIterator]	[ListIterator (QueGetList #rules)]	)
+	
+	(defFunct	[FindBASE $mode $request $frame $stack]
+		(nope print "FindBASE request " $request "\n\t--- frame : " $frame "\n\t--- stack: " $stack)
+		(RecursiveIterator
+
+			(MapIterator (GetFactIterator) (lambda [$item]
+				(define $meta (cadr $item))
+				(define $flag [if (null? $meta) true (car $meta)])
+				(if [eq? $mode $flag]
+					[block
+						(define $found (Pattern.Match $request (car $item) $frame))
+						(if [eq? $found `fail] TheEmptyIterator $found)
+					]
+					TheEmptyIterator
+				)
+
+			))
+
+			(MapIterator (GetRuleIterator) (lambda [$item]
+				(set! $item (Pattern.RenameVariables $item))
+				(define $head (car $item))
+				(define $body (cadr $item))
+				(define $meta (caddr $item))
+				(define $unify (Pattern.Unify $request $head $frame))
+				(cond	[(null? $meta) "Правило амбивалентно (применяется и для положительного и для отрицательного запросов)"
+							(if $mode
+								(if [eq? $unify `fail]
+									TheEmptyIterator
+									(if [null? $body "запрос RULE"]
+										$unify
+										(Find $body $unify true $stack)
+									)
+								)
+								(if [eq? `fail (Pattern.Unify $head $request null true)]
+									TheEmptyIterator
+									(if [eq? $unify `fail]
+										$frame
+										(if [null? $body "запрос (not RULE)"]
+											$frame
+											(if (null? [(Find $body $unify true $stack)])
+												$frame
+												TheEmptyIterator)
+										)
+									)
+								)
+
+							)
+						]
+						[(eq? $mode (car $meta))
+							"Положительный/отрицательный запрос совпадает с флагом правила"
+							(if [eq? $unify `fail]
+								TheEmptyIterator
+								(if [null? $body]
+									$unify
+									(Find $body $unify true $stack)
+								)
+							)
+						]
+						[true TheEmptyIterator]
+				)
+			))
+		)
+	)
+
+	(defFunct	[FindAND $requests $frame $stack]
+		(if [null? $requests]
+			$frame
+			[RecursiveIterator
+				(MapIterator
+					(Find (car $requests) $frame false $stack)
+					(lambda [$item]
+						(if	[eq? $item `fail]
+							TheEmptyIterator
+							[FindAND (cdr $requests) $item $stack]
+						)
+					)
+				)
+			]
+		)
+	) 
+
+	(defFunct	[FindOR $requests $frame $stack]
+		(apply InterleaveIterator
+			(map $requests (lambda [$request]
+				(Find $request $frame false $stack)
+			))
+		)
+	)
+
+	(defFunct	[CompareRequests $q1 $q2]
+		(cond	[(and (pair? $q1) (pair? $q2))
+					(and	(CompareRequests (car $q1) (car $q2))
+							(CompareRequests (cdr $q1) (cdr $q2)))]
+				[(and (Pattern.variable? $q1) (Pattern.variable? $q2)) true]
+				[true (eq? $q1 $q2)])
+	)
+
+	(defFunct	[Contains $list $query]
+		(cond	[(null? $list) false]
+				[(CompareRequests (car $list) $query) true]
+				[true (Contains (cdr $list) $query)])
+	)
+
+	(defFunct	[Find $request $frame $transform $stack]
+		(if [eq? $transform true]
+			[set! $request (DMWaterfall $request)])
+		
+		(nope print "Handle request " $request "\n\t--- frame : " $frame "\n\t--- stack: " $stack)
+
+		"Прверяем конкретизированный запрос. Если он есть в очереди - возвращаем пустой итератор, иначе обрабатываем."
+		(define $inst (Pattern.Instantiate $request $frame))
+		
+		(if [Contains $stack $inst]
+			TheEmptyIterator
+			[block
+				(set! $stack (cons $inst $stack))
+				(define $op (car $request))
+				(cond	[(eq? $op `and)
+							(FindAND (cdr $request) $frame $stack)]
+						[(eq? $op `or)
+							(FindOR (cdr $request) $frame $stack)]
+						[(eq? $op `not)
+							(FindBASE false (cadr $request) $frame $stack)]
+						[true
+							(FindBASE true $request $frame $stack)]
+				)
+			]
+		)
+	)
+
+	(defFunct	[Clear]
+		(QueClear #facts)
+		(QueClear #rules)
+	)
+
+	(defFunct	[Load $file]
+		(define $raw (load $file))
+		(if [not (null? $raw)]
+			[block
+				(QueSetList #facts (car $raw))
+				(QueSetList #rules (cadr $raw))
+			]
+		)
+	)
+	
+	(defFunct	[Save $file]
+		(if [null? $file]
+			[set! $file $filename])
+		(save $file [list
+			(QueGetList #facts)
+			(QueGetList #rules)
+		])
+	)
+	
+	"Initialize class"
+	(Load $filename)
+	(print "Production initialized")
+	
+	"Public methods"
+	(define this.AddFact AddFact)
+	(define this.AddRule AddRule)
+	(define this.AddFacts (lambda [$facts] [each $facts AddFact]))
+	(define this.AddRules (lambda [$rules] [each $rules AddRule]))
+	(defFunct [this.Find $request $frame] [Find $request (if [null? $frame] empty $frame)])
+	(define this.Clear Clear)
+	(define this.Load Load)
+	(define this.Save Save)
+))
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(export Production)
+

@@ -23,10 +23,10 @@ namespace Bombardo
             Console.WriteLine();
 
             loop_ = true;
-            bombardo_ = new BombardoLangClass();
+            bombardo_ = new BombardoLangClass(false);
 
             //  Add to basic context
-            Context system = bombardo_.Global.parent;
+            Context system = bombardo_.Global;
             BombardoLangClass.SetProcedure(system, "about", ShowAbout, 0);
             BombardoLangClass.SetProcedure(system, "exit", Exit, 0);
             BombardoLangClass.SetProcedure(system, "e", Exit, 0);
@@ -34,7 +34,8 @@ namespace Bombardo
             BombardoLangClass.SetProcedure(system, "h", Halp, 0);
             BombardoLangClass.SetProcedure(system, "load", LoadEval, 1);
             BombardoLangClass.SetProcedure(system, "l", LoadEval, 1);
-            
+            bombardo_.WrapContext();
+
             Console.CancelKeyPress += ResetConsole;
 
             while (loop_)
@@ -118,14 +119,14 @@ namespace Bombardo
             Console.WriteLine("System context (readonly):");
             foreach (var pair in prev)
             {
-                Console.WriteLine(string.Format("  {0} {1}", pair.Key, pair.Value.value.ToString()));
+                Console.WriteLine(string.Format("  {0,-32} {1}", pair.Key, pair.Value?.value?.ToString()));
             }
             Console.WriteLine();
 
             Console.WriteLine("Work context:");
             foreach (var pair in curr)
             {
-                Console.WriteLine(string.Format("  {0} {1}", pair.Key, pair.Value.value.ToString()));
+                Console.WriteLine(string.Format("  {0,-32} {1}", pair.Key, pair.Value?.value?.ToString()));
             }
             Console.WriteLine();
 

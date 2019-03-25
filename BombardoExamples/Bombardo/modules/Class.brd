@@ -1,0 +1,9 @@
+﻿(define Class (macros $sexp
+	(define $args (car $sexp))
+	(define $body (cdr $sexp))
+	(set! $body (cons `(define this (table)) $body))
+	(set-cdr! (last $body) `(this))
+	(cons `lambda (cons $args $body))
+))
+
+(define module Class)

@@ -1,0 +1,97 @@
+﻿(require "LangPrimitives" import-all)
+
+(defFunct [each-combination $lists $callbak $values]
+	(define $list (car $lists))
+	(define $rest (cdr $lists))
+	(if [null? $rest]
+		(each $list (lambda [$item]
+			(apply $callbak [cons $item $values])
+		))
+		(each $list (lambda [$item]
+			(each-combination $rest $callbak [cons $item $values])
+		))
+	)
+)
+
+(defFunct [distinct? array]
+	(define isDistinct true)
+	(define head (car array))
+	(if [not (null? (cdr array))]
+		(block
+			(each (cdr array)
+				(lambda [item]
+					(if [eq? head item]
+						[set! isDistinct false]
+				))
+			)
+			(if isDistinct
+				(if [not (distinct? (cdr array))]
+					[set! isDistinct false]
+				))
+		)
+	)
+	isDistinct
+)
+
+(defFunct [pairing left right]
+	(if [not (and (null? left) (null? right))]
+		[cons
+			(cons (car left) (car right))
+			(pairing (cdr left) (cdr right))]
+		null)
+)
+
+(defFunct [Tests]
+	(print "")
+	(print "")
+	(print "")
+	(print "Test Combinatoric:")
+	
+	(print "")
+	(print "Test each-combination ((1 2 3) (a b c) (| || |||))")
+	(each-combination
+		`((1 2 3) (a b c) (| || |||))
+		(lambda $args (print (reverse $args)))
+	)
+	(print "")
+	
+	(print "Test floors:")
+	(define floors `(1 2 3 4 5))
+	(define persons `(smith miller fletcher cooper baker))
+	(define named (lambda [smith miller fletcher cooper baker]
+		(list	(list `baker baker)
+				(list `cooper cooper)
+				(list `fletcher fletcher)
+				(list `miller miller)
+				(list `smith smith))
+	))
+
+	(define timeStart (get-time))
+	(each-combination
+		(list floors floors floors floors floors)
+		(lambda [smith miller fletcher cooper baker]
+			(if [and
+					(distinct? (list smith miller fletcher cooper baker))
+					(!= baker 5)
+					(!= cooper 1)
+					(!= fletcher 5)
+					(!= fletcher 1)
+					(> miller cooper)
+					(!= 1 (abs (- smith fletcher)))
+					(!= 1 (abs (- cooper fletcher)))
+				]
+				(print "solution: " (named smith miller fletcher cooper baker))
+			)
+		)
+	)
+	(define timeEnd (get-time))
+	(print "Time used: " (- timeEnd timeStart))
+
+	(print "")
+	(print "DONE!")
+)
+
+(export each-combination)
+(export distinct?)
+(export pairing)
+(export Tests)

@@ -1,0 +1,122 @@
+﻿"LangPrimitives.brd"
+"Определения различного синтаксического сахара"
+
+
+
+(nope ------------------------------------------------------------)
+
+(define defFunct (macros $sexp
+	[define $head (car $sexp)]
+	[define $name (car $head)]
+	[define $args (cdr $head)]
+	[define $body (cdr $sexp)]
+	[set! $args (if (null? $args) empty $args)]
+	(list `define $name
+		(cons `lambda (cons $args $body))
+	)
+))
+(export defFunct)
+
+
+
+(nope ------------------------------------------------------------)
+
+(define defMacro (macros $sexp
+	[define $head (car $sexp)]
+	[define $name (car $head)]
+	[define $args (cdr $head)]
+	[define $body (cdr $sexp)]
+	[set! $args (if (null? $args) empty $args)]
+	(list `define $name
+		(cons `macros (cons $args $body))
+	)
+))
+(export defMacro)
+
+
+
+(nope ------------------------------------------------------------)
+
+"	Для тех, кому необходим этот стрёмный синтаксис
+	(let [(a 15)
+		  (b 'theta')
+		  (c omega)]
+		(expressions)
+	)
+	преобразуется в:
+	((lambda []
+		(define a 15)
+		(define b 'theta')
+		(define c omega)
+		(expressions)
+	))"
+
+(defMacro [let . $exp]
+	(define $body
+		(map (car $exp) (lambda [$item]
+			(cons `define $item)
+		)))
+	(set-cdr! (last $body) (cdr $exp))
+	(cons (cons `lambda (cons `[] $body)) null)
+)
+
+(export let)
+
+
+
+(nope ------------------------------------------------------------)
+
+"Кое-какие математические удобства"
+
+(defMacro [inc! variable]
+	(list `set! variable (list `+ variable 1))
+)
+
+(defMacro [dec! variable]
+	(list `set! variable (list `- variable 1))
+)
+
+(defMacro [sqr! variable]
+	(list `set! variable (list `* variable variable))
+)
+(defMacro [sqrt! variable]
+	(list `set! variable (list `sqrt variable))
+)
+
+(export inc!)
+(export dec!)
+
+
+
+(nope ------------------------------------------------------------)
+
+(defFunct	[BuildAllPaths $struct $path]
+	(cond	[(null? $struct) null]
+			[(pair? $struct)
+				(append
+					(BuildAllPaths (car $struct) (append $path (cons `car)) )
+					(BuildAllPaths (cdr $struct) (append $path (cons `cdr)) ))]
+			[true (cons $path)]
+	)
+)
+
+(defFunct	[GetByPath $struct $path]
+	(if		[null? $path]
+			$struct
+			(GetByPath (eval (list (car $path) `$struct)) (cdr $path))
+	)
+)
+
+(export BuildAllPaths)
+(export GetByPath)
+
+
+
+(nope ------------------------------------------------------------)
+
+(defFunct	[Contains $list $exp]
+	(if [null? $list] false
+		[if (eq? $exp (car $list)) true
+			(Contains (cdr $list) $exp)]))
+
+(export Contains)

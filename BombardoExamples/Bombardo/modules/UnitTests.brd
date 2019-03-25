@@ -1,0 +1,45 @@
+﻿(require "LangPrimitives" import-all)
+(require "Class")
+(require "Delay" import-all)
+
+(define $globalFailCount 0)
+
+(define Unit (Class [$name]
+	(define $count 0)
+	(define $success 0)
+	(defFunct [this.TestUnsafe $expression $call $result]
+		(inc! $count)
+		(define $r (force $call))
+		(print " -- " $expression)
+		(print " -> " $result)
+		(print " -! " $r)
+		(if [eq? $r $result]
+			[block
+				(inc! $success)
+				(print "    successed")
+			]
+			[block
+				(inc! $globalFailCount)
+				(print "    failed")
+			])
+		(print "")
+	)
+	(defMacro [this.Test $expression $result]
+		(list this.TestUnsafe (list `quote $expression) (list delay $expression) (list `quote $result))
+	)
+	(defFunct [this.Complete]
+		[print "Unit Tests '" $name "' complete"]
+		[print "    tests: " $count]
+		[print "    success: " $success]
+		(if [< $count $success]
+			[print "    failed: " (- $count $success) " !!!"])
+		(print "")
+	)
+	(print "")
+	(print "")
+	(print "")
+	(print "Begin Unit Tests: " $name)
+	(print "")
+))
+
+(define module Unit)

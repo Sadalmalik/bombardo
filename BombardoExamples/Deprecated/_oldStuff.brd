@@ -1,0 +1,114 @@
+﻿
+(print "")
+(print "")
+(print "")
+(print "Test database stuff:")
+(print "")
+
+(require "PatternMatch.brd" as Pattern)
+
+(require "Iterators.brd" import-all)
+
+(define DataBase (Class []
+	(define $data null)
+	(defFunct [this.Add $item]
+		(set! $data (cons $item $data))
+	)
+
+	(defFunct [this.Each $callback]
+		(each $data $callback)
+	)
+
+	(defFunct [this.SimpleQuery $query]
+		(define $result (map $data
+			(lambda [$item]
+				(define $found (Pattern.Match $query $item))
+				(if [eq? $found `fail]
+					null
+					(Pattern.Instantiate $query $found)
+				)
+			) true)
+		)
+		$result
+	)
+	(defFunct [this.GetIterator]
+		(ListIterator $data)
+	)
+))
+
+(define base1 (DataBase))
+
+(base1.Add `(father Dan Vivi))
+(base1.Add `(father Gregory Dan))
+(base1.Add `(father Irvin Gregory))
+(base1.Add `(father Irvin Samanta))
+(base1.Add `(father Lui Rita))
+
+(base1.Each print)
+
+(print "")
+(print "(father Irvin who?)")
+	(print " -> " (base1.SimpleQuery `(father Irvin who?))
+)
+
+(print "")
+(Iterate (base1.GetIterator) print)
+
+(defFunct [SimpleQuery $query $frames]
+	(define $found null)
+	(define $dbIter (base1.GetIterator))
+	(MapIterator $dbIter (lambda [$item]
+		(set! $found (Pattern.Match $query $item $frames))
+		(if [eq? $found `fail] null $found)
+	))
+)
+
+(print "")
+(print "Test iterative query")
+(Iterate
+	(SimpleQuery `(father Irvin who?))
+	(lambda [$frame]
+		(print "it: " (Pattern.Instantiate `(father Irvin who?) $frame))
+	)
+)
+
+
+(print "")
+(print "DONE!")
+
+
+(print "")
+(print "")
+(print "")
+(print "Test struct paths")
+
+(define $pathsIndexes null)
+(defFunct [AddPathIndex $path]
+	(define $check true)
+	(each $pathsIndexes (lambda [$item]
+		(if (eq? $item $path) (set! $check false))
+	))
+	(if $check
+		(set! $pathsIndexes (cons $path $pathsIndexes))
+		(print "Skip path duplicate: " $path)
+	)
+)
+
+
+(defFunct	[TEST $struct]
+	(define $paths (BuildAllPaths $struct))
+	(print $struct " -> " $paths)
+	(each $paths (lambda [$path]
+		(print "    get " $path " -> " (GetByPath $struct $path))
+		(AddPathIndex $path)
+	))
+)
+
+(TEST `(a b c))
+(TEST `((a b) (x y)))
+(TEST `(((a r) b) . u))
+
+(print "")
+(print "Paths:")
+(each $pathsIndexes print)
+

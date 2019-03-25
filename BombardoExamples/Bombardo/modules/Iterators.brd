@@ -1,0 +1,234 @@
+﻿"Iterators.brd"
+(require "LangPrimitives" import-all)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(defFunct [Iterate $iter $callback]
+	(define $temp null)
+	(until	[null? (set! $temp ($iter))]
+			[$callback $temp]))
+
+(defFunct [EmptyIterator]
+	(lambda [] null)
+)
+
+(defFunct [RangeIterator $min $max]
+	(dec! $min)
+	(lambda [] (if [< $min $max] (inc! $min) null))
+)
+
+(defFunct [ListIterator $list]
+	(define $curr null)
+	(lambda []
+		(if [null? $list]
+			null
+			[block
+				(set! $curr (car $list))
+				(set! $list (cdr $list))
+				$curr]
+		)
+	)
+)
+
+(defFunct [FilterIterator $iter $pred]
+	(define $temp null)
+	(define $cond false)
+	(lambda []
+		(set! $temp ($iter))
+		(set! $cond (if [null? $temp] false ($pred $temp)))
+
+		(while [and (not $cond) (not (null? $temp))]
+			(set! $temp ($iter))
+			(set! $cond (if [null? $temp] false ($pred $temp)))
+		)
+		$temp
+	)
+)
+
+(defFunct [MapIterator $iter $proc]
+	(define $temp null)
+	(define $item null)
+	(lambda []
+		(set! $temp ($iter))
+		(set! $item (if [null? $temp] null ($proc $temp)))
+
+		(while [and (null? $item) (not (null? $temp))]
+			(set! $temp ($iter))
+			(set! $item (if [null? $temp] null ($proc $temp)))
+		)
+		$item
+	)
+)
+
+(define SequenceIterator (lambda $its
+	(define $temp null)
+	(define $it null)
+	(defFunct	[Internal]
+		(cond	[(and (null? $it) (null? $its))	null]
+				[(null? $it)	(set! $it (car $its))
+								(set! $its (cdr $its))
+								(Internal)]
+				[true
+					(set! $temp ($it))
+					(if [null? $temp]
+						(Internal
+							"Самый грязный костыль из возможных:
+							присваивание значения переменной в вызове функции при вычислении аргументов,
+							которые самой функции не нужны"
+							(set! $it null))
+						$temp
+					)
+				]
+		)
+	)
+	Internal
+))
+
+(define InterleaveIterator (lambda $iterators
+	(define $temp null)
+	(define $it null)
+	(lambda []
+		(set! $temp null)
+		(if [null? $it] (set! $it $iterators))
+		(while [and (null? $temp) (not (null? $it))]
+			(set! $temp [(car $it)])
+			(set! $it (cdr $it))
+		)
+		$temp
+	)
+))
+
+(nope define RecursiveIterator (lambda $iterators
+	(define $temp null)
+	(defFunct [Internal]
+		(if	[null? $iterators]
+			null
+			[if [null? (set! $temp [(car $iterators)])]
+				[Internal (set! $iterators (cdr $iterators))]
+				[if (proc? $temp)
+					(Internal (set! $iterators (cons $temp $iterators)))
+					$temp]]
+		))
+	Internal
+))
+
+(define RecursiveIterator (lambda $iterators
+	(define $temp null)
+	(defFunct	[Internal]
+		(cond	[(null? $iterators) null]
+				[(null? (set! $temp [(car $iterators)]) )
+					(set! $iterators (cdr $iterators))
+					(Internal)]
+				[(proc? $temp)
+					(set! $iterators (cons $temp $iterators))
+					(Internal)]
+				[true $temp]
+		))
+	Internal
+))
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+(defFunct [Tests]
+	(print "")
+	(print "")
+	(print "")
+	(print "Iterators tests:")
+	
+	(defFunct [even? $n]
+		(== 0 (% $n 2))
+	)
+
+	(defFunct [prime? $n]
+		(set! $n (int: $n))
+		(define $i (- $n 1))
+		(define $r true)
+		(while (> $i 1)
+			(if [== 0 (% $n $i)]
+				(block
+					(set! $r false)
+					(set! $i 0)
+				)
+			)
+			(dec! $i)
+		)
+		$r
+	)
+
+	(print "iterate a-n")
+	(Iterate (ListIterator `(a b c d e f g h i j k l m n)) print)
+
+	(print "iterate 0-9")
+	(Iterate (RangeIterator 0 9) print)
+
+	(print "iterate 15-25")
+	(Iterate (RangeIterator 15 25) print)
+	
+	(print "Iterate sequence 0-20 and 20000-20015:")
+	(Iterate (SequenceIterator (RangeIterator 0 20) (RangeIterator 20000 20015)) print)
+
+	(print "Iterate interleave 0-20 and 20000-20015:")
+	(Iterate (InterleaveIterator (RangeIterator 0 20) (RangeIterator 20000 20015)) print)
+	
+	(print "Iterate interleave a-f, A-I and 0-15")
+	(Iterate
+		(InterleaveIterator
+			(ListIterator `(a b c d e f))
+			(ListIterator `(A B C D E F G H I))
+			(RangeIterator 0 15)
+		)
+	print)
+
+
+	
+	(print "Iterate recursive multyple")
+	(Iterate
+		(RecursiveIterator
+			(MapIterator (RangeIterator  1  3) (lambda [$item]	[RangeIterator (* $item 10) (+ 5 (* $item 10))]	))
+			(RangeIterator 10000 10005)
+			(MapIterator (RangeIterator 21 23) (lambda [$item]	[RangeIterator (* $item 10) (+ 5 (* $item 10))]	))
+		)
+	print)
+
+
+	(print "")
+	(print "DONE!")
+)
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+
+
+
+
+(nope ----------------------------------------------------------------------------------------------------)
+
+"Итерирование"
+(export Iterate)
+
+"Простые итераторы. Всегда можно создать свои"
+(export EmptyIterator)
+(export RangeIterator)
+(export ListIterator)
+
+"Комбинаторы итераторов"
+(export FilterIterator)
+(export MapIterator)
+(export SequenceIterator)
+(export InterleaveIterator)
+(export RecursiveIterator)
+
+"Просто тесты, не юнит"
+(export Tests)
