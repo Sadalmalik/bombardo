@@ -1,22 +1,22 @@
-﻿(define define-html-tag (macros (tag)
+﻿(define defineHtmlTag (macros (tag)
 	(list `define tag
-		(list lambda `x
+		(list `lambda `x
 			(list
 				`str-concat
 				(str-concat "\n<" (symbol-name tag) ">")
-				`(str-replace (str-concat "\n" (eval ( cons `str-concat x )) ) "\n" "\n\t")
+				`(str-replace (str-concat "\n" (eval ( cons `str-concat x )) ) "\n" "\n  ")
 				(str-concat "\n</" (symbol-name tag) ">")
 			)
 		)
 	)
 ))
 
-(define-html-tag html)
-(define-html-tag head)
-(define-html-tag title)
-(define-html-tag meta)
-(define-html-tag body)
-(define-html-tag div)
+(defineHtmlTag html)
+(defineHtmlTag head)
+(defineHtmlTag title)
+(defineHtmlTag meta)
+(defineHtmlTag body)
+(defineHtmlTag div)
 
 (define module.html html)
 (define module.head head)
@@ -25,11 +25,11 @@
 (define module.body body)
 (define module.div div)
 
-(define module.print-example (lambda ()
+(define module.printExample (lambda ()
 	(print
 		(html
 			(head
-				(title "СверхВысшая магия")
+				(title "Сверх-Высшая магия")
 				(meta "just meta 1")
 				(meta "just meta 2")
 			)

@@ -1,0 +1,1 @@
+..\Bombardo\BombardoApp.exe mind.brd

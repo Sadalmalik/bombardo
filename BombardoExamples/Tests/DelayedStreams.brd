@@ -1,4 +1,6 @@
-﻿(require "LangPrimitives" import-all)
+﻿"DelayedStreams.brd"
+
+(require "LangPrimitives" import-all)
 (require "Delay" import-all)
 
 (defMacro [sCons $car $cdr]	[list cons $car (list delay $cdr)])

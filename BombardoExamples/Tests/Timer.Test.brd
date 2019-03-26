@@ -1,11 +1,12 @@
-﻿
+﻿"Timer.Test.brd"
+
 (nope Test raw interval system)
 
-(define `count 50)
-(define `callback (lambda ()
+(define count 50)
+(define callback (lambda ()
 	(if (> count 0)
 		(block
-			(set! `count (- count 1))
+			(set! count (- count 1))
 			(print (cons count "yo!"))
 		)
 		(block
@@ -21,9 +22,9 @@
 
 (nope Create wrap object around interval system)
 
-(define `interval (interval-set 100 callback))
-(define `Timer (lambda (delay loop callback)
-	(define `inner-timer
+(define interval (interval-set 100 callback))
+(define Timer (lambda (delay loop callback)
+	(define inner-timer
 		((if loop interval-set timeout-set)
 			(list `timer delay)
 			callback))
@@ -36,11 +37,11 @@
 	)
 ))
 
-(define `otherCount 10)
-(define `otherCallback (lambda ()
+(define otherCount 10)
+(define otherCallback (lambda ()
 	(if (> otherCount 0)
 		(block
-			(set! `otherCount (- otherCount 1))
+			(set! otherCount (- otherCount 1))
 			(print (cons otherCount "hay!"))
 		)
 		(block
@@ -49,4 +50,5 @@
 		)
 	)
 ))
-(define `otherInterval (Timer 300 true otherCallback))
+
+(define otherInterval (Timer 300 true otherCallback))

@@ -1,0 +1,9 @@
+"Tests.brd"
+
+(require "Combinatoric.brd" as Combinatoric)
+(Combinatoric.Tests)
+
+(require "DelayedStreams.brd" as Delayed)
+(Delayed.Tests)
+
+(require "Timer.Test.brd" as Timers)

@@ -1,0 +1,3 @@
+(require "TagsHTML.brd" as html)
+
+(html.printExample)

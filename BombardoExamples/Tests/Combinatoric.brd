@@ -1,4 +1,6 @@
-﻿(require "LangPrimitives" import-all)
+﻿"Combinatoric.brd"
+
+(require "LangPrimitives" import-all)
 
 (defFunct [each-combination $lists $callbak $values]
 	(define $list (car $lists))
