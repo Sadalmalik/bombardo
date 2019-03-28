@@ -22,17 +22,16 @@ namespace Bombardo.Utils
             return null;
         }
 
-        public static T GetEnum<T>(Atom argument, int idx, string tag) where T : struct, Enum
+        public static T GetEnum<T>(Atom argument, int idx) where T : struct, Enum
         {
             T tenum = default(T);
             if (argument != null)
             {
                 if (argument.type != AtomType.Symbol &&
                     !Enum.TryParse((string)argument.value, out tenum))
-                    throw new BombardoException(string.Format(
-                        "<{0}> {1} argument must be one of symbols: {2}!",
-                        tag, GetNumber(idx),
-                        string.Join(", ", Enum.GetValues(typeof(T)))
+                    throw new ArgumentException(string.Format(
+                        "{1} argument must be one of symbols: {2}!",
+                        GetNumber(idx), string.Join(", ", Enum.GetValues(typeof(T)))
                         ));
             }
 

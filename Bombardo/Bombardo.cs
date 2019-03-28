@@ -39,6 +39,7 @@ namespace Bombardo
         public static void SetupLang(Context context)
         {
             ListContext.Setup(context);
+            ListSugarContext.Setup(context);
             GeneralContext.Setup(context);
             TypePredicatesContextcs.Setup(context);
             ControlContext.Setup(context);

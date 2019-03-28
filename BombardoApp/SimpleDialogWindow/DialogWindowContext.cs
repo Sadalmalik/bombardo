@@ -1,4 +1,5 @@
-﻿using System.Threading;
+﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Bombardo
@@ -30,11 +31,11 @@ namespace Bombardo
         private static DialogWindow GetWindow(Atom win)
         {
             if (win == null || win.type != AtomType.Native)
-                throw new BombardoException("<DialogueWindowClose> First argument must be dialogue window");
+                throw new ArgumentException("First argument must be dialogue window");
 
             DialogWindow window = win?.value as DialogWindow;
             if (window == null)
-                throw new BombardoException("<DialogueWindowClose> First argument must be dialogue window");
+                throw new ArgumentException("First argument must be dialogue window");
 
             return window;
         }
@@ -46,13 +47,13 @@ namespace Bombardo
             Atom closeCallback = args?.next?.next?.atom;
 
             if (title == null || title.type != AtomType.String)
-                throw new BombardoException("<CreateDialogueWindow> First argument must be string");
+                throw new ArgumentException("First argument must be string");
 
             if (sendCallback == null || sendCallback.type != AtomType.Procedure)
-                throw new BombardoException("<CreateDialogueWindow> Second argument must be function");
+                throw new ArgumentException("Second argument must be function");
 
             if (closeCallback != null && closeCallback.type != AtomType.Procedure)
-                throw new BombardoException("<CreateDialogueWindow> Third argument must be function or null");
+                throw new ArgumentException("Third argument must be function or null");
 
             DialogWindow window = new DialogWindow(sendCallback, closeCallback, context);
             window.SetTitle((string)title?.value);

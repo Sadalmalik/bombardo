@@ -33,6 +33,12 @@ namespace Bombardo
             capturedStack_ = intern.StackTrace;
         }
 
+        public BombardoException(string methodName, Exception intern) : base(string.Format("<{0}> {1}", methodName, intern.Message), intern)
+        {
+            stack_ = new List<BombardoStack>();
+            capturedStack_ = intern.StackTrace;
+        }
+
         public void AddSection(Atom sentence, int index)
         {
             stack_.Add(new BombardoStack(sentence, index));

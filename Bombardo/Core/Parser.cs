@@ -154,7 +154,7 @@ namespace Bombardo
                         if(outer && token.value==".")
                             throw new ArgumentException("Token \".\" not allowed here!");
 
-                        if (token.value == Atom.NULL_SYMBOL)
+                        if (token.value == AllNames.NULL_SYMBOL)
                         {
                             atom = null;
                             break;

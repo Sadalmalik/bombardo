@@ -21,8 +21,8 @@ namespace Bombardo
                     Console.WriteLine("Bombardo not implements multyple arguments! Will be executed only one!");
                 manager_ = new BombardoManager();
                 manager_.ExecuteFile(Path.GetFullPath(args[0]), true);
+                Console.ReadLine();
             }
-            Console.ReadLine();
         }
     }
 }

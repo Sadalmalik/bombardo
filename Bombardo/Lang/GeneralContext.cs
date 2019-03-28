@@ -7,22 +7,23 @@ namespace Bombardo
     {
         public static void Setup(Context context)
         {
-            BombardoLangClass.SetProcedure(context, "print", Print, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRINT, Print, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_READ, ReadLine, 0);
 
-            BombardoLangClass.SetProcedure(context, "define", Define, 1, false);
-            BombardoLangClass.SetProcedure(context, "set!", SetFirst, 2, false);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_DEFINE, Define, 1, false);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_SETFIRST, SetFirst, 2, false);
 
-            BombardoLangClass.SetProcedure(context, "to-string", ToString, 1);
-            BombardoLangClass.SetProcedure(context, "from-string", FromString, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TO_STRING, ToString, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_FROM_STRING, FromString, 1);
 
-            BombardoLangClass.SetProcedure(context, "symbol-name", SymbolName, 1);
-            BombardoLangClass.SetProcedure(context, "symbol-make", MakeSymbol, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_SYMBOL_NAME, SymbolName, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_MAKE_SYMBOL, MakeSymbol, 1);
 
-            BombardoLangClass.SetProcedure(context, "get-context", GetContext, 0);
-            BombardoLangClass.SetProcedure(context, "get-context-parent", GetContextParent, 0);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_GET_CONTEXT, GetContext, 0);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_GET_CONTEXT_PARENT, GetContextParent, 0);
 
-            context.Define(Atom.NULL_SYMBOL, null); 
-            context.Define(Atom.EMPTY_SYMBOL, Atom.EMPTY);
+            context.Define(AllNames.NULL_SYMBOL, null); 
+            context.Define(AllNames.EMPTY_SYMBOL, Atom.EMPTY);
         }
 
         public static Atom Print(Atom args, Context context)
@@ -42,6 +43,12 @@ namespace Bombardo
             return null;
         }
 
+        public static Atom ReadLine(Atom args, Context context)
+        {
+            string line = Console.ReadLine();
+            return new Atom(AtomType.String, line);
+        }
+        
         public static Atom Define(Atom args, Context context)
         {
             Atom sym = (Atom)args?.value;
@@ -50,7 +57,7 @@ namespace Bombardo
             val = Evaluator.Evaluate(val, context);
 
             if (sym.type != AtomType.Symbol)
-                throw new BombardoException("<DEFINE> Definition name must be symbol!");
+                throw new ArgumentException("Definition name must be symbol!");
             
             ContextUtils.Define(context, val, (string)sym.value);
 
@@ -65,7 +72,7 @@ namespace Bombardo
             val = Evaluator.Evaluate(val, context);
 
             if (!sym.IsSymbol())
-                throw new BombardoException("<SET!> Variable name must be symbol!");
+                throw new ArgumentException("Variable name must be symbol!");
             
             ContextUtils.Set(context, val, (string)sym.value);
 
@@ -81,7 +88,7 @@ namespace Bombardo
         public static Atom FromString(Atom args, Context context)
         {
             Atom str = (Atom)args.value;
-            if (!str.IsString()) throw new BombardoException("Argument must be string!");
+            if (!str.IsString()) throw new ArgumentException("Argument must be string!");
             List<Atom> atoms = BombardoLangClass.Parse((string)str.value);
             return Atom.List(atoms.ToArray());
         }
@@ -89,14 +96,14 @@ namespace Bombardo
         public static Atom SymbolName(Atom args, Context context)
         {
             Atom symbol = (Atom)args.value;
-            if (!symbol.IsSymbol()) throw new BombardoException("Argument must be symbol!");
+            if (!symbol.IsSymbol()) throw new ArgumentException("Argument must be symbol!");
             return new Atom(AtomType.String, (string)symbol.value);
         }
 
         public static Atom MakeSymbol(Atom args, Context context)
         {
             Atom symbol = (Atom)args.value;
-            if (!symbol.IsString()) throw new BombardoException("Argument must be string!");
+            if (!symbol.IsString()) throw new ArgumentException("Argument must be string!");
             return new Atom(AtomType.Symbol, (string)symbol.value);
         }
 

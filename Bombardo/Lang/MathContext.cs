@@ -8,93 +8,91 @@ namespace Bombardo
         {
             //  Base math
 
-            BombardoLangClass.SetProcedure(context, "+", Sum, 2);
-            BombardoLangClass.SetProcedure(context, "-", Dis, 2);
-            BombardoLangClass.SetProcedure(context, "*", Mul, 2);
-            BombardoLangClass.SetProcedure(context, "/", Div, 2);
-            BombardoLangClass.SetProcedure(context, "%", Mod, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_SUM, Sum, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_DIS, Dis, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_MUL, Mul, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_DIV, Div, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_MOD, Mod, 2);
 
-            BombardoLangClass.SetProcedure(context, "min", Min, 2);
-            BombardoLangClass.SetProcedure(context, "max", Max, 2);
-            BombardoLangClass.SetProcedure(context, "abs", Abs, 1);
-            BombardoLangClass.SetProcedure(context, "sign", Sign, 1);
-            BombardoLangClass.SetProcedure(context, "ceil", Ceil, 1);
-            BombardoLangClass.SetProcedure(context, "floor", Floor, 1);
-            //BombardoLang.SetProcedure(context, "clamp", Clamp, 3);
-            //BombardoLang.SetProcedure(context, "clamp01", Clamp01, 3);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_MIN, Min, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_MAX, Max, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_ABS, Abs, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_SIGN, Sign, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CEIL, Ceil, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_FLOOR, Floor, 1);
 
-            BombardoLangClass.SetProcedure(context, "trunc", Trunc, 1);
-            BombardoLangClass.SetProcedure(context, "sqrt", Sqrt, 1);
-            BombardoLangClass.SetProcedure(context, "pow", Pow, 2);
-            BombardoLangClass.SetProcedure(context, "exp", Exp, 1);
-            BombardoLangClass.SetProcedure(context, "ln", Logn, 1);
-            BombardoLangClass.SetProcedure(context, "log", Log, 2);
-            BombardoLangClass.SetProcedure(context, "log10", Log10, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_TRUNC, Trunc, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_SQRT, Sqrt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_POW, Pow, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_EXP, Exp, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_LOGN, Logn, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_LOG, Log, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_LOG10, Log10, 1);
 
-            BombardoLangClass.SetProcedure(context, "sin", Sin, 1);
-            BombardoLangClass.SetProcedure(context, "cos", Cos, 1);
-            BombardoLangClass.SetProcedure(context, "tan", Tan, 1);
-            BombardoLangClass.SetProcedure(context, "asin", Asin, 1);
-            BombardoLangClass.SetProcedure(context, "acos", Acos, 1);
-            BombardoLangClass.SetProcedure(context, "atan", Atan, 1);
-            BombardoLangClass.SetProcedure(context, "atan2", Atan2, 2);
-            BombardoLangClass.SetProcedure(context, "sinh", Sinh, 1);
-            BombardoLangClass.SetProcedure(context, "cosh", Cosh, 1);
-            BombardoLangClass.SetProcedure(context, "tanh", Tanh, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_SIN, Sin, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_COS, Cos, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_TAN, Tan, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_ASIN, Asin, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_ACOS, Acos, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_ATAN, Atan, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_ATAN2, Atan2, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_SINH, Sinh, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_COSH, Cosh, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_TANH, Tanh, 1);
 
-            context.Define("#PI", new Atom(AtomType.Number, Math.PI));
-            context.Define("#E", new Atom(AtomType.Number, Math.E));
+            context.Define(AllNames.MATH_PI, new Atom(AtomType.Number, Math.PI));
+            context.Define(AllNames.MATH_E, new Atom(AtomType.Number, Math.E));
 
-            BombardoLangClass.SetProcedure(context, "&", And, 2);
-            BombardoLangClass.SetProcedure(context, "|", Or, 2);
-            BombardoLangClass.SetProcedure(context, "^", Xor, 2);
-            BombardoLangClass.SetProcedure(context, "<<", Lsh, 2);
-            BombardoLangClass.SetProcedure(context, ">>", Rsh, 2);
-            
-            BombardoLangClass.SetProcedure(context, "<", Lt, 2);
-            BombardoLangClass.SetProcedure(context, ">", Gt, 2);
-            BombardoLangClass.SetProcedure(context, "<=", Le, 2);
-            BombardoLangClass.SetProcedure(context, ">=", Ge, 2);
-            BombardoLangClass.SetProcedure(context, "!=", Ne, 2);
-            BombardoLangClass.SetProcedure(context, "==", Eq, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_AND, And, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_OR, Or, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_XOR, Xor, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_LSH, Lsh, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_RSH, Rsh, 2);
+
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_LT, Lt, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_GT, Gt, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_LE, Le, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_GE, Ge, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_NE, Ne, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_EQ, Eq, 2);
 
             //  Type predicates
 
-            BombardoLangClass.SetProcedure(context, "byte?", PredUByte, 1);
-            BombardoLangClass.SetProcedure(context, "ubyte?", PredUByte, 1);
-            BombardoLangClass.SetProcedure(context, "sbyte?", PredSByte, 1);
-            BombardoLangClass.SetProcedure(context, "char?", PredChar, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDBYTE, PredSByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDUBYTE, PredUByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDSBYTE, PredSByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDCHAR, PredChar, 1);
 
-            BombardoLangClass.SetProcedure(context, "short?", PredSShort, 1);
-            BombardoLangClass.SetProcedure(context, "ushort?", PredUShort, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDSSHORT, PredSShort, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDUSHORT, PredUShort, 1);
 
-            BombardoLangClass.SetProcedure(context, "int?", PredSInt, 1);
-            BombardoLangClass.SetProcedure(context, "uint?", PredUInt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDSINT, PredSInt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDUINT, PredUInt, 1);
 
-            BombardoLangClass.SetProcedure(context, "long?", PredSLong, 1);
-            BombardoLangClass.SetProcedure(context, "ulong?", PredULong, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDSLONG, PredSLong, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDULONG, PredULong, 1);
 
-            BombardoLangClass.SetProcedure(context, "float?", PredFloat, 1);
-            BombardoLangClass.SetProcedure(context, "double?", PredDouble, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDFLOAT, PredFloat, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_PREDDOUBLE, PredDouble, 1);
 
             //  Type cast
 
-            BombardoLangClass.SetProcedure(context, "byte:", CastUByte, 1);
-            BombardoLangClass.SetProcedure(context, "ubyte:", CastUByte, 1);
-            BombardoLangClass.SetProcedure(context, "sbyte:", CastSByte, 1);
-            BombardoLangClass.SetProcedure(context, "char:", CastChar, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTBYTE, CastSByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTUBYTE, CastUByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSBYTE, CastSByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTCHAR, CastChar, 1);
 
-            BombardoLangClass.SetProcedure(context, "short:", CastSShort, 1);
-            BombardoLangClass.SetProcedure(context, "ushort:", CastUShort, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSSHORT, CastSShort, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTUSHORT, CastUShort, 1);
 
-            BombardoLangClass.SetProcedure(context, "int:", CastSInt, 1);
-            BombardoLangClass.SetProcedure(context, "uint:", CastUInt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSINT, CastSInt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTUINT, CastUInt, 1);
 
-            BombardoLangClass.SetProcedure(context, "long:", CastSLong, 1);
-            BombardoLangClass.SetProcedure(context, "ulong:", CastULong, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSLONG, CastSLong, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTULONG, CastULong, 1);
 
-            BombardoLangClass.SetProcedure(context, "float:", CastFloat, 1);
-            BombardoLangClass.SetProcedure(context, "double:", CastDouble, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTFLOAT, CastFloat, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTDOUBLE, CastDouble, 1);
         }
 
         #region Inner stuff
@@ -110,7 +108,7 @@ namespace Bombardo
         private static void CheckAllNumbers(Atom args)
         {
             if (!AllNumbers(args))
-                throw new BombardoException("<MATH> Not all arguments are numbers!");
+                throw new ArgumentException("Not all arguments are numbers!");
         }
 
         #endregion Inner stuff
@@ -188,7 +186,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Abs(atom.value));
         }
@@ -197,7 +195,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Sign(atom.value));
         }
@@ -206,7 +204,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Ceil(atom.value));
         }
@@ -215,7 +213,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Floor(atom.value));
         }
@@ -224,7 +222,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Trunc(atom.value));
         }
@@ -233,7 +231,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Sqrt(atom.value));
         }
@@ -251,7 +249,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Exp(atom.value));
         }
@@ -260,7 +258,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Logn(atom.value));
         }
@@ -278,7 +276,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Log10(atom.value));
         }
@@ -287,7 +285,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Sin(atom.value));
         }
@@ -296,7 +294,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Cos(atom.value));
         }
@@ -305,7 +303,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Tan(atom.value));
         }
@@ -314,7 +312,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Asin(atom.value));
         }
@@ -323,7 +321,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Acos(atom.value));
         }
@@ -332,7 +330,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Atan(atom.value));
         }
@@ -351,7 +349,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Sinh(atom.value));
         }
@@ -360,7 +358,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Cosh(atom.value));
         }
@@ -369,7 +367,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, UNumber.Tanh(atom.value));
         }
@@ -604,7 +602,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
             
             return new Atom(AtomType.Number, (byte)Convert.ToInt64(atom.value));
         }
@@ -613,7 +611,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, (sbyte)Convert.ToInt64(atom.value));
         }
@@ -622,7 +620,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, (char)Convert.ToChar(atom.value));
         }
@@ -631,7 +629,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, (ushort)Convert.ToInt64(atom.value));
         }
@@ -640,7 +638,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, (short)Convert.ToInt64(atom.value));
         }
@@ -649,7 +647,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, (uint)Convert.ToInt64(atom.value));
         }
@@ -658,7 +656,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, (int)Convert.ToInt64(atom.value));
         }
@@ -667,7 +665,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, Convert.ToUInt64(atom.value));
         }
@@ -676,7 +674,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, Convert.ToInt64(atom.value));
         }
@@ -685,7 +683,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, Convert.ToSingle(atom.value));
         }
@@ -694,7 +692,7 @@ namespace Bombardo
         {
             Atom atom = (Atom)args?.value;
             if (atom.type != AtomType.Number)
-                throw new BombardoException("<MATH> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             return new Atom(AtomType.Number, Convert.ToDouble(atom.value));
         }

@@ -38,7 +38,13 @@ namespace Bombardo
             {
                 throw new InvalidProgramException(string.Format("Function {0} have no executable code!", Name));
             }
-            return Perform(args, context);
+
+            try
+            {
+                return Perform(args, context);
+            }
+            catch (BombardoException exc) { throw exc; }
+            catch (Exception exc) { throw new BombardoException(Name, exc); }
         }
     }
 }

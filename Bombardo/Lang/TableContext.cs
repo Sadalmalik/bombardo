@@ -1,20 +1,22 @@
 ﻿
+using System;
+
 namespace Bombardo
 {
     public class TableContext
     {
         public static void Setup(Context context)
         {
-            BombardoLangClass.SetProcedure(context, "table", CreateDictionary, 0);
-            BombardoLangClass.SetProcedure(context, "table-get", GetFromDictionary, 2);
-            BombardoLangClass.SetProcedure(context, "table-set", SetToDictionary, 2);
-            BombardoLangClass.SetProcedure(context, "table-remove", RemoveFromDictionary, 2);
-            BombardoLangClass.SetProcedure(context, "table-clear", ClearDictionary, 1);
-            BombardoLangClass.SetProcedure(context, "table-import", ImportFromDictionary, 2);
-            BombardoLangClass.SetProcedure(context, "table-import-all", ImportAllFromDictionary, 1);
-            BombardoLangClass.SetProcedure(context, "table-each", IterateDictionary, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_CREATE, TableCreate, 0);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_GET, TableGet, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_SET, TableSet, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TEBLE_REMOVE, TebleRemove, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_CLEAR, TableClear, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_IMPORT, TableImport, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_IMPORT_ALL, TableImportAll, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_EACH, TableEach, 2);
 
-            BombardoLangClass.SetProcedure(context, "table?", PredDictionary, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TABLE_PRED, TablePred, 1);
         }
         
         private static void FillDictionary(Context dict, Atom args)
@@ -40,14 +42,14 @@ namespace Bombardo
             return atom.value as Context;
         }
 
-        public static Atom CreateDictionary(Atom args, Context context)
+        public static Atom TableCreate(Atom args, Context context)
         {
             var dict = new Context();
             FillDictionary(dict, args);
             return new Atom(AtomType.Native, dict);
         }
 
-        public static Atom GetFromDictionary(Atom args, Context context)
+        public static Atom TableGet(Atom args, Context context)
         {
             Atom dic = (Atom)args?.value;
             Atom key = (Atom)args?.next?.value;
@@ -63,7 +65,7 @@ namespace Bombardo
             return value;
         }
 
-        public static Atom SetToDictionary(Atom args, Context context)
+        public static Atom TableSet(Atom args, Context context)
         {
             Atom dic = (Atom)args?.value;
 
@@ -74,7 +76,7 @@ namespace Bombardo
             return null;
         }
 
-        public static Atom RemoveFromDictionary(Atom args, Context context)
+        public static Atom TebleRemove(Atom args, Context context)
         {
             Atom dic = (Atom)args?.value;
             Atom key = (Atom)args?.next?.value;
@@ -89,7 +91,7 @@ namespace Bombardo
             return null;
         }
 
-        public static Atom ClearDictionary(Atom args, Context context)
+        public static Atom TableClear(Atom args, Context context)
         {
             Atom dic = (Atom)args?.value;
 
@@ -100,7 +102,7 @@ namespace Bombardo
             return null;
         }
 
-        public static Atom ImportFromDictionary(Atom args, Context context)
+        public static Atom TableImport(Atom args, Context context)
         {
             Atom dict = (Atom)args?.value;
             Atom names = (Atom)args?.next?.value;
@@ -113,7 +115,7 @@ namespace Bombardo
             return null;
         }
 
-        public static Atom ImportAllFromDictionary(Atom args, Context context)
+        public static Atom TableImportAll(Atom args, Context context)
         {
             Atom dict = (Atom)args?.value;
 
@@ -124,7 +126,7 @@ namespace Bombardo
             return null;
         }
         
-        public static Atom IterateDictionary(Atom args, Context context)
+        public static Atom TableEach(Atom args, Context context)
         {
             Atom dic = (Atom)args?.value;
 
@@ -134,9 +136,9 @@ namespace Bombardo
             Procedure proc = procedure?.value as Procedure;
 
             if (dictionary == null)
-                throw new BombardoException("<TABLE-EACH> First argument must be table!");
+                throw new ArgumentException("First argument must be table!");
             if (proc==null)
-                throw new BombardoException("<TABLE-EACH> Second argument must be procedure!");
+                throw new ArgumentException("Second argument must be procedure!");
 
             foreach(var pair in dictionary)
             {
@@ -147,7 +149,7 @@ namespace Bombardo
             return null;
         }
         
-        public static Atom PredDictionary(Atom args, Context context)
+        public static Atom TablePred(Atom args, Context context)
         {
             Atom atom = (Atom)args?.value;
 

@@ -32,8 +32,6 @@ namespace Bombardo
 
     public class Atom
     {
-        public static readonly string NULL_SYMBOL = "null";
-        public static readonly string EMPTY_SYMBOL = "empty";
         public static readonly string EMPTY_PAIR = "()";
 
         public static readonly Atom EMPTY = new Atom();
@@ -127,7 +125,7 @@ namespace Bombardo
                         Atom value = (Atom)this.value;
                         if (value == null)
                         {
-                            sb.Append(Atom.NULL_SYMBOL);
+                            sb.Append(AllNames.NULL_SYMBOL);
                         }
                         else if (recursive || value.type != AtomType.Pair)
                         {

@@ -54,10 +54,12 @@
     <Compile Include="Core\Parser.cs" />
     <Compile Include="Core\ParserExtensions.cs" />
     <Compile Include="Core\Procedure.cs" />
+    <Compile Include="Lang\AllNames.cs" />
     <Compile Include="Lang\ControlContext.cs" />
     <Compile Include="Lang\FileSystemContext.cs" />
     <Compile Include="Lang\GeneralContext.cs" />
     <Compile Include="Lang\ListContext.cs" />
+    <Compile Include="Lang\ListSugarContext.cs" />
     <Compile Include="Lang\LogicContext.cs" />
     <Compile Include="Lang\MathContext.cs" />
     <Compile Include="Lang\TableContext.cs" />

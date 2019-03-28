@@ -59,7 +59,7 @@ namespace Bombardo
         {
             Atom symbol = args?.atom;
 
-            if (symbol == null) throw new BombardoException("<EXPORT> argument must be symbol!");
+            if (symbol == null) throw new ArgumentException("argument must be symbol!");
 
             string name = (string)symbol.value;
             Atom value = context.Get(name);
@@ -74,9 +74,9 @@ namespace Bombardo
             BombardoModule currentModule = modulesStack_.Peek();
             Atom path = args.atom;
             if (path.type != AtomType.String && path.type != AtomType.Symbol)
-                throw new BombardoException("<REQUIRE> argument must be string or symbol!");
+                throw new ArgumentException("argument must be string or symbol!");
             string file = FSUtils.LookupModuleFile(programPath_, currentModule.currentPath, modulesFolder, (string)path.value);
-            if (file==null) throw new BombardoException("<REQUIRE> file not found!");
+            if (file==null) throw new ArgumentException("file not found!");
 
             //  Lifting exception up to first file
             BombardoModule module = ExecuteFile(file, false);
@@ -87,13 +87,13 @@ namespace Bombardo
             {
                 Atom command = rest.atom;
 
-                if(!command.IsSymbol()) throw new BombardoException(string.Format("<REQUIRE> unexpected symbol '{0}'!", command));
+                if(!command.IsSymbol()) throw new ArgumentException(string.Format("Unexpected symbol '{0}'!", command));
 
                 switch((string)command.value)
                 {
                     case "as":
                         Atom name = rest.next?.atom;
-                        if (name == null || !name.IsSymbol()) throw new BombardoException(string.Format("<REQUIRE> unexpected symbol '{0}'!", name));
+                        if (name == null || !name.IsSymbol()) throw new ArgumentException(string.Format("Unexpected symbol '{0}'!", name));
                         context.Define((string)name.value, result);
                         break;
                     case "import":
@@ -104,7 +104,7 @@ namespace Bombardo
                         ContextUtils.ImportAllSymbols((Context)result.value, context);
                         break;
                     default:
-                        throw new BombardoException(string.Format("<REQUIRE> unexpected symbol '{0}'!", command));
+                        throw new ArgumentException(string.Format("Unexpected symbol '{0}'!", command));
                 }
             }
             else
@@ -122,7 +122,7 @@ namespace Bombardo
             if (modules_.TryGetValue(filePath, out module))
             {
                 if (module.loading)
-                    throw new BombardoException("<REQUIRE> reqursive requirement found!");
+                    throw new ArgumentException("reqursive requirement found!");
                 return module;
             }
 

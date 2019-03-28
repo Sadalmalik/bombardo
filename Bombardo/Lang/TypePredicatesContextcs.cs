@@ -5,15 +5,15 @@ namespace Bombardo
     {
         public static void Setup(Context context)
         {
-            BombardoLangClass.SetProcedure(context, "null?", PredNull, 1);
-            BombardoLangClass.SetProcedure(context, "empty?", PredEmpty, 1);
-            BombardoLangClass.SetProcedure(context, "symbol?", PredSym, 1);
-            BombardoLangClass.SetProcedure(context, "pair?", PredList, 1);
-            BombardoLangClass.SetProcedure(context, "list?", PredList, 1);
-            BombardoLangClass.SetProcedure(context, "string?", PredString, 1);
-            BombardoLangClass.SetProcedure(context, "bool?", PredBool, 1);
-            BombardoLangClass.SetProcedure(context, "number?", PredNumber, 1);
-            BombardoLangClass.SetProcedure(context, "proc?", PredProcedure, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_NULL, PredNull, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_EMPTY, PredEmpty, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_SYM, PredSym, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_PAIR, PredList, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_LIST, PredList, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_STRING, PredString, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_BOOL, PredBool, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_NUMBER, PredNumber, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_PRED_PROCEDURE, PredProcedure, 1);
         }
 
         public static Atom PredNull(Atom args, Context context)

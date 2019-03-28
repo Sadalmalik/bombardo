@@ -26,7 +26,7 @@ namespace Bombardo
             timer = null;
             proc = action.value as Procedure;
             if (proc != null) timer = new Timer(Callback, null, delay, repeat ? delay : System.Threading.Timeout.Infinite);
-            else throw new BombardoException("<TIMER> callback must be procedure!");
+            else throw new ArgumentException("callback must be procedure!");
         }
 
         private void Callback(object state)
@@ -62,18 +62,18 @@ namespace Bombardo
             //
             //  AllTimeouts -> list of timeouts
 
-            BombardoLangClass.SetProcedure(context, "get-time", GetTime, 0);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_GET_TIME, GetTime, 0);
 
-            BombardoLangClass.SetProcedure(context, "interval?", IsInterval, 1);
-            BombardoLangClass.SetProcedure(context, "timeout?", IsTimeout, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_INTERVAL_PRED, IntervalPred, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TIMEOUT_PRED, TimeoutPred, 1);
 
-            BombardoLangClass.SetProcedure(context, "interval-set", SetInterval, 2);
-            BombardoLangClass.SetProcedure(context, "interval-clear", ClearInterval, 1);
-            BombardoLangClass.SetProcedure(context, "interval-tag", GetIntervalTag, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_INTERVAL_SET, IntervalSet, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_INTERVAL_CLEAR, IntervalClear, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_INTERVAL_TAG, IntervalTag, 1);
 
-            BombardoLangClass.SetProcedure(context, "timeout-set", SetTimeout, 2);
-            BombardoLangClass.SetProcedure(context, "timeout-clear", ClearTimeout, 1);
-            BombardoLangClass.SetProcedure(context, "timeout-tag", GetIntervalTag, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TIMEOUT_SET, TimeoutSet, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TIMEOUT_CLEAR, TimeoutClear, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_TIMEOUT_TAG, IntervalTag, 1);
         }
 
         private static Atom GetTime(Atom args, Context context)
@@ -89,7 +89,7 @@ namespace Bombardo
             {
                 tag = null;
                 if (argument.type != AtomType.Number)
-                    throw new BombardoException("<Interval> delay must be number!");
+                    throw new ArgumentException("delay must be number!");
                 delay = Convert.ToInt32(argument.value);
             }
             else if(argument.type == AtomType.Pair)
@@ -98,28 +98,28 @@ namespace Bombardo
                 Atom d = (Atom)argument.next.value;
 
                 if(t.type != AtomType.Symbol && t.type != AtomType.String)
-                    throw new BombardoException("<Interval> tag must be symbol or string!");
+                    throw new ArgumentException("tag must be symbol or string!");
 
                 if (d.type != AtomType.Number)
-                    throw new BombardoException("<Interval> delay must be number!");
+                    throw new ArgumentException("delay must be number!");
 
                 tag = t;
                 delay = Convert.ToInt32(d.value);
             }
-            else throw new BombardoException("<Interval> Argument must be number or (symbol number) or ('string' number)!");
+            else throw new ArgumentException("Argument must be number or (symbol number) or ('string' number)!");
         }
 
-        public static Atom GetIntervalTag(Atom args, Context context)
+        public static Atom IntervalTag(Atom args, Context context)
         {
             Atom argument = (Atom)args.value;
             Interval interval = argument.value as Interval;
-            if (interval == null) throw new BombardoException("<GetTag> Argument must be interval!");
+            if (interval == null) throw new ArgumentException("Argument must be interval!");
             return interval.tag;
         }
 
         #region Predicates
 
-        public static Atom IsInterval(Atom args, Context context)
+        public static Atom IntervalPred(Atom args, Context context)
         {
             Atom argument = (Atom)args.value;
             Interval interval = argument.value as Interval;
@@ -127,7 +127,7 @@ namespace Bombardo
             return interval.repeat ? Atom.TRUE : Atom.FALSE;
         }
 
-        public static Atom IsTimeout(Atom args, Context context)
+        public static Atom TimeoutPred(Atom args, Context context)
         {
             Atom argument = (Atom)args.value;
             Interval interval = argument.value as Interval;
@@ -139,7 +139,7 @@ namespace Bombardo
 
         #region Intervals
 
-        public static Atom SetInterval(Atom args, Context context)
+        public static Atom IntervalSet(Atom args, Context context)
         {
             Atom tag; int delay;
             UnpackArgs((Atom)args.value, out tag, out delay);
@@ -150,14 +150,14 @@ namespace Bombardo
             return new Atom(AtomType.Native, interval);
         }
 
-        public static Atom ClearInterval(Atom args, Context context)
+        public static Atom IntervalClear(Atom args, Context context)
         {
             Atom argument = (Atom)args.value;
             if (argument.type != AtomType.Native)
-                throw new BombardoException("<ClearInterval> Argument must be interval!");
+                throw new ArgumentException("Argument must be interval!");
             Interval interval = argument.value as Interval;
             if (interval==null)
-                throw new BombardoException("<ClearInterval> Argument must be interval!");
+                throw new ArgumentException("Argument must be interval!");
             RemoveInterval(interval);
             return null;
         }
@@ -172,7 +172,7 @@ namespace Bombardo
 
         #region Timeouts
 
-        public static Atom SetTimeout(Atom args, Context context)
+        public static Atom TimeoutSet(Atom args, Context context)
         {
             Atom tag; int delay;
             UnpackArgs((Atom)args.value, out tag, out delay);
@@ -184,14 +184,14 @@ namespace Bombardo
             return new Atom(AtomType.Native, timeout);
         }
 
-        public static Atom ClearTimeout(Atom args, Context context)
+        public static Atom TimeoutClear(Atom args, Context context)
         {
             Atom argument = (Atom)args.value;
             if (argument.type != AtomType.Native)
-                throw new BombardoException("<ClearTimeout> Argument must be interval!");
+                throw new ArgumentException("Argument must be interval!");
             Interval interval = argument.value as Interval;
             if (interval == null)
-                throw new BombardoException("<ClearTimeout> Argument must be interval!");
+                throw new ArgumentException("Argument must be interval!");
             RemoveTimeout(interval);
             return null;
         }

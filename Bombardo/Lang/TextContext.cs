@@ -8,7 +8,7 @@ namespace Bombardo
         public static void Setup(Context context)
         {
             //  num is char
-            //  (str-create string (num num num)) -> num
+            //  (str-create (num num num)) -> num
             //  (str-length string) -> length
             //  (str-get string element) -> num
             //  
@@ -22,20 +22,20 @@ namespace Bombardo
             //
             //  (str-replace string subString newSubString) -> string
 
-            BombardoLangClass.SetProcedure(context, "str-create", Create, 1);
-            BombardoLangClass.SetProcedure(context, "str-length", Length, 1);
-            BombardoLangClass.SetProcedure(context, "str-chars", GetChars, 1);
-            BombardoLangClass.SetProcedure(context, "str-get", GetChar, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_CREATE, Create, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_LENGTH, Length, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_GETCHARS, GetChars, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_GETCHAR, GetChar, 2);
 
-            BombardoLangClass.SetProcedure(context, "str-concat", Concat, 0);
-            BombardoLangClass.SetProcedure(context, "str-substr", Substr, 3);
-            BombardoLangClass.SetProcedure(context, "str-split", Split, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_CONCAT, Concat, 0);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_SUBSTR, Substr, 3);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_SPLIT, Split, 2);
 
-            BombardoLangClass.SetProcedure(context, "str-starts-with", StartsWith, 2);
-            BombardoLangClass.SetProcedure(context, "str-ends-with", EndsWith, 2);
-            BombardoLangClass.SetProcedure(context, "str-contains", Contains, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_STARTSWITH, StartsWith, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_ENDSWITH, EndsWith, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_CONTAINS, Contains, 2);
 
-            BombardoLangClass.SetProcedure(context, "str-replace", Replace, 3);
+            BombardoLangClass.SetProcedure(context, AllNames.TEXT_REPLACE, Replace, 3);
         }
 
         public static Atom Create(Atom args, Context context)
@@ -43,7 +43,7 @@ namespace Bombardo
             Atom list = (Atom)args?.value;
 
             if(!list.IsPair())
-                throw new BombardoException("<STR-CREATE> Argument must be list!");
+                throw new ArgumentException("Argument must be list!");
 
             StringBuilder sb = new StringBuilder();
             for (Atom iter = list; iter != null; iter = iter.next)
@@ -51,7 +51,7 @@ namespace Bombardo
                 Atom ch = list.value as Atom;
 
                 if(ch==null || !ch.IsNumber())
-                    throw new BombardoException("<STR-CREATE> List musr contains only numbers!");
+                    throw new ArgumentException("List musr contains only numbers!");
 
                 sb.Append((char)ch.value);
             }
@@ -64,7 +64,7 @@ namespace Bombardo
             Atom str = (Atom)args?.value;
 
             if (str == null || str.type != AtomType.String)
-                throw new BombardoException("<STR-GET> Argument must be string!");
+                throw new ArgumentException("Argument must be string!");
             
             char[] chars = ((string)str.value).ToCharArray();
 
@@ -86,10 +86,10 @@ namespace Bombardo
             Atom num = (Atom)args?.next?.value;
 
             if (str == null || str.type != AtomType.String)
-                throw new BombardoException("<STR-GET> Argument must be string!");
+                throw new ArgumentException("Argument must be string!");
 
             if (num == null || num.type != AtomType.Number)
-                throw new BombardoException("<STR-GET> Argument must be number!");
+                throw new ArgumentException("Argument must be number!");
 
             int index = Convert.ToInt32(num.value);
 
@@ -101,7 +101,7 @@ namespace Bombardo
             Atom atom = (Atom)args?.value;
 
             if (atom.type != AtomType.String)
-                throw new BombardoException("<STR-LENGTH> Argument must be string!");
+                throw new ArgumentException("Argument must be string!");
 
             return new Atom(AtomType.Number,((string)atom.value).Length);
         }
@@ -131,9 +131,9 @@ namespace Bombardo
             Atom starts = (Atom)args?.next?.value;
             Atom length = (Atom)args?.next?.next?.value;
 
-            if (!strArg.IsString()) throw new BombardoException("<STR-SUBSTR> first argument must be string!");
-            if (!starts.IsNumber()) throw new BombardoException("<STR-SUBSTR> second argument must be string!");
-            if (!length.IsNumber()) throw new BombardoException("<STR-SUBSTR> third argument must be string!");
+            if (!strArg.IsString()) throw new ArgumentException("first argument must be string!");
+            if (!starts.IsNumber()) throw new ArgumentException("second argument must be string!");
+            if (!length.IsNumber()) throw new ArgumentException("third argument must be string!");
             
             string str = strArg.value as string;
 
@@ -145,8 +145,8 @@ namespace Bombardo
             Atom strArg = (Atom)args?.value;
             Atom splits = (Atom)args?.next?.value;
 
-            if (!strArg.IsString()) throw new BombardoException("<STR-SPLIT> first argument must be string!");
-            if (!splits.IsString()) throw new BombardoException("<STR-SPLIT> second argument must be string!");
+            if (!strArg.IsString()) throw new ArgumentException("first argument must be string!");
+            if (!splits.IsString()) throw new ArgumentException("second argument must be string!");
 
             string str = strArg.value as string;
             string spl = splits.value as string;
@@ -169,8 +169,8 @@ namespace Bombardo
             Atom strArg = (Atom)args?.value;
             Atom subArg = (Atom)args?.next?.value;
 
-            if (!strArg.IsString()) throw new BombardoException("<STR-STARTS-WITH> first argument must be string!");
-            if (!subArg.IsString()) throw new BombardoException("<STR-STARTS-WITH> first argument must be string!");
+            if (!strArg.IsString()) throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString()) throw new ArgumentException("first argument must be string!");
 
             string str = strArg.value as string;
             string sub = subArg.value as string;
@@ -183,8 +183,8 @@ namespace Bombardo
             Atom strArg = (Atom)args?.value;
             Atom subArg = (Atom)args?.next?.value;
 
-            if (!strArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> first argument must be string!");
-            if (!subArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> first argument must be string!");
+            if (!strArg.IsString()) throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString()) throw new ArgumentException("first argument must be string!");
 
             string str = strArg.value as string;
             string sub = subArg.value as string;
@@ -197,8 +197,8 @@ namespace Bombardo
             Atom strArg = (Atom)args?.value;
             Atom subArg = (Atom)args?.next?.value;
 
-            if (!strArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> first argument must be string!");
-            if (!subArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> second argument must be string!");
+            if (!strArg.IsString()) throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString()) throw new ArgumentException("second argument must be string!");
 
             string str = strArg.value as string;
             string sub = subArg.value as string;
@@ -212,9 +212,9 @@ namespace Bombardo
             Atom subArg = (Atom)args?.next?.value;
             Atom newArg = (Atom)args?.next?.next?.value;
 
-            if (!strArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> first argument must be string!");
-            if (!subArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> second argument must be string!");
-            if (!newArg.IsString()) throw new BombardoException("<STR-ENDS-WITH> third argument must be string!");
+            if (!strArg.IsString()) throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString()) throw new ArgumentException("second argument must be string!");
+            if (!newArg.IsString()) throw new ArgumentException("third argument must be string!");
 
             string str = strArg.value as string;
             string sub = subArg.value as string;

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Bombardo
 {
@@ -18,7 +19,7 @@ namespace Bombardo
         public Atom Define(string symbol, Atom value = null)
         {
             if (@sealed)
-                throw new BombardoException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
+                throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
             return this[symbol] = value;
         }
 
@@ -26,12 +27,12 @@ namespace Bombardo
         {
             if (ContainsKey(symbol))
             {
-                if (@sealed) throw new BombardoException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
+                if (@sealed) throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
                 return this[symbol] = value;
             }
             else if (parent != null)
                 return parent.Set(symbol, value);
-            throw new BombardoException(string.Format("<SET> Symbol '{0}' not defined in current context!", symbol));
+            throw new ArgumentException(string.Format("Symbol '{0}' not defined in current context!", symbol));
         }
 
         public Atom Get(string symbol, bool noException=false)
@@ -42,7 +43,7 @@ namespace Bombardo
                 return parent.Get(symbol);
             if (noException)
                 return null;
-            throw new BombardoException(string.Format("<GET> Symbol '{0}' not defined in current context!", symbol));
+            throw new ArgumentException(string.Format("Symbol '{0}' not defined in current context!", symbol));
         }
 
         public void SetArgs(Atom args, Atom values)
@@ -64,7 +65,7 @@ namespace Bombardo
                 Atom key = (Atom)keys.value;
                 if (key != null)
                 {
-                    if (!key.IsSymbol()) throw new BombardoException(string.Format("Argument name '{0}' must be symbol!", key.ToString()));
+                    if (!key.IsSymbol()) throw new ArgumentException(string.Format("Argument name '{0}' must be symbol!", key.ToString()));
                     
                     Atom value = (Atom)values?.value;
 

@@ -51,7 +51,7 @@ namespace Bombardo
                         foreach (var node in nodes)
                         {
                             Atom result = Evaluator.Evaluate(node, bombardo_.Global);
-                            Console.WriteLine(result != null ? result.ToString() : Atom.NULL_SYMBOL);
+                            Console.WriteLine(result != null ? result.ToString() : AllNames.NULL_SYMBOL);
                         }
                     }
                 }

@@ -1,17 +1,19 @@
-﻿namespace Bombardo
+﻿using System;
+
+namespace Bombardo
 {
     internal class LogicContext
     {
         public static void Setup(Context context)
         {
-            BombardoLangClass.SetProcedure(context, "eq?", Eq, 2);
-            BombardoLangClass.SetProcedure(context, "neq?", Neq, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_EQ, Eq, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_NEQ, Neq, 2);
 
-            BombardoLangClass.SetProcedure(context, "and", And, 2);
-            BombardoLangClass.SetProcedure(context, "or", Or, 2);
-            BombardoLangClass.SetProcedure(context, "xor", Xor, 2);
-            BombardoLangClass.SetProcedure(context, "imp", Imp, 2);
-            BombardoLangClass.SetProcedure(context, "not", Not, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_AND, And, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_OR, Or, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_XOR, Xor, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_IMP, Imp, 2);
+            BombardoLangClass.SetProcedure(context, AllNames.LOGIC_NOT, Not, 1);
         }
 
         #region Equation
@@ -49,7 +51,7 @@
         private static void CheckAllBooleand(Atom args)
         {
             if (!AllBooleand(args))
-                throw new BombardoException("Not all arguments are booleans!");
+                throw new ArgumentException("Not all arguments are booleans!");
         }
 
         public static Atom And(Atom args, Context context)
@@ -92,7 +94,7 @@
         {
             CheckAllBooleand(args);
             if (args.next != null)
-                throw new BombardoException("<NOT> Too many arguments!");
+                throw new ArgumentException("Too many arguments!");
             return new Atom(AtomType.Bool, !(bool)((Atom)args.value).value);
         }
 
