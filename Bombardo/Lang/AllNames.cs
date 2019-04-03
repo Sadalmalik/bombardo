@@ -87,14 +87,14 @@
         public static readonly string LISP_DEFINE = "define";
         public static readonly string LISP_SETFIRST = "set!";
 
-        public static readonly string LISP_TO_STRING = "to-string";
-        public static readonly string LISP_FROM_STRING = "from-string";
+        public static readonly string LISP_TO_STRING = "toString";
+        public static readonly string LISP_FROM_STRING = "fromString";
 
-        public static readonly string LISP_SYMBOL_NAME = "symbol-name";
-        public static readonly string LISP_MAKE_SYMBOL = "symbol-make";
+        public static readonly string LISP_SYMBOL_NAME = "symbolName";
+        public static readonly string LISP_MAKE_SYMBOL = "symbolMake";
 
-        public static readonly string LISP_GET_CONTEXT = "get-context";
-        public static readonly string LISP_GET_CONTEXT_PARENT = "get-context-parent";
+        public static readonly string LISP_GET_CONTEXT = "getContext";
+        public static readonly string LISP_GET_CONTEXT_PARENT = "getContextParent";
 
         #endregion
 
@@ -218,13 +218,13 @@
         #region Table|Context names
 
         public static readonly string LISP_TABLE_CREATE = "table";
-        public static readonly string LISP_TABLE_GET = "table-get";
-        public static readonly string LISP_TABLE_SET = "table-set";
-        public static readonly string LISP_TEBLE_REMOVE = "table-remove";
-        public static readonly string LISP_TABLE_CLEAR = "table-clear";
-        public static readonly string LISP_TABLE_IMPORT = "table-import";
-        public static readonly string LISP_TABLE_IMPORT_ALL = "table-import-all";
-        public static readonly string LISP_TABLE_EACH = "table-each";
+        public static readonly string LISP_TABLE_GET = "tableGet";
+        public static readonly string LISP_TABLE_SET = "tableSet";
+        public static readonly string LISP_TEBLE_REMOVE = "tableRemove";
+        public static readonly string LISP_TABLE_CLEAR = "tableClear";
+        public static readonly string LISP_TABLE_IMPORT = "tableImport";
+        public static readonly string LISP_TABLE_IMPORT_ALL = "tableImportAll";
+        public static readonly string LISP_TABLE_EACH = "tableEach";
 
         public static readonly string LISP_TABLE_PRED = "table?";
 
@@ -232,20 +232,20 @@
 
         #region Text symbols
 
-        public static readonly string TEXT_CREATE = "str-create";
-        public static readonly string TEXT_LENGTH = "str-length";
-        public static readonly string TEXT_GETCHARS = "str-chars";
-        public static readonly string TEXT_GETCHAR = "str-get";
+        public static readonly string TEXT_CREATE = "strCreate";
+        public static readonly string TEXT_LENGTH = "strLength";
+        public static readonly string TEXT_GETCHARS = "strChars";
+        public static readonly string TEXT_GETCHAR = "strGet";
 
-        public static readonly string TEXT_CONCAT = "str-concat";
-        public static readonly string TEXT_SUBSTR = "str-substr";
-        public static readonly string TEXT_SPLIT = "str-split";
+        public static readonly string TEXT_CONCAT = "strConcat";
+        public static readonly string TEXT_SUBSTR = "strSubstr";
+        public static readonly string TEXT_SPLIT = "strSplit";
 
-        public static readonly string TEXT_STARTSWITH = "str-starts-with";
-        public static readonly string TEXT_ENDSWITH = "str-ends-with";
-        public static readonly string TEXT_CONTAINS = "str-contains";
+        public static readonly string TEXT_STARTSWITH = "strStartsWith";
+        public static readonly string TEXT_ENDSWITH = "strEndsWith";
+        public static readonly string TEXT_CONTAINS = "strContains";
 
-        public static readonly string TEXT_REPLACE = "str-replace";
+        public static readonly string TEXT_REPLACE = "strReplace";
 
         #endregion
 
@@ -270,25 +270,37 @@
         public static readonly string FS_WRITE_LINES = "fsWriteLines";
         public static readonly string FS_APPEND_TEXT = "fsAppendText";
         public static readonly string FS_APPEND_LINES = "fsAppendLines";
+        
+        public static readonly string FS_FILE_PRED = "fsIsFile?";
+        public static readonly string FS_DIR_PRED = "fsIsDirectory?";
+        public static readonly string FS_DIR_EMPTY_PRED = "fsDirectoryIsEmpty?";
 
-        public static readonly string FS_GET_FILES = "fsGetFiles";
+        public static readonly string FS_READ_DIRECTORY = "fsReadDirectory";
+        public static readonly string FS_CREATE_DIRECTORY = "fsCreateDirectory";
+        public static readonly string FS_REMOVE_DIRECTORY = "fsRemoveDirectory";
+
+        public static readonly string FS_PATH_COMBINE = "fsPathCombine";
+        public static readonly string FS_PATH_GET_FULL = "fsPathGetFull";
+        public static readonly string FS_PATH_GET_EXTENSION = "fsPathGetExtension";
+        public static readonly string FS_PATH_GET_FILE_NAME = "fsPathGetFileName";
+        public static readonly string FS_PATH_GET_DIR_NAME = "fsPathGetDirectoryName";
 
         #endregion
 
         #region Time System
 
-        public static readonly string LISP_GET_TIME = "get-time";
+        public static readonly string LISP_GET_TIME = "getTime";
 
         public static readonly string LISP_INTERVAL_PRED = "interval?";
         public static readonly string LISP_TIMEOUT_PRED = "timeout?";
 
-        public static readonly string LISP_INTERVAL_SET = "interval-set";
-        public static readonly string LISP_INTERVAL_CLEAR = "interval-clear";
-        public static readonly string LISP_INTERVAL_TAG = "interval-tag";
+        public static readonly string LISP_INTERVAL_SET = "intervalSet";
+        public static readonly string LISP_INTERVAL_CLEAR = "intervalClear";
+        public static readonly string LISP_INTERVAL_TAG = "intervalTag";
 
-        public static readonly string LISP_TIMEOUT_SET = "timeout-set";
-        public static readonly string LISP_TIMEOUT_CLEAR = "timeout-clear";
-        public static readonly string LISP_TIMEOUT_TAG = "timeout-tag";
+        public static readonly string LISP_TIMEOUT_SET = "timeoutSet";
+        public static readonly string LISP_TIMEOUT_CLEAR = "timeoutClear";
+        public static readonly string LISP_TIMEOUT_TAG = "timeoutTag";
 
         #endregion
 

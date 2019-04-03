@@ -1,7 +1,7 @@
 ﻿"DelayedStreams.brd"
 
-(require "LangPrimitives" import-all)
-(require "Delay" import-all)
+(require "BaseLang" importAll)
+(require "Delay" importAll)
 
 (defMacro [sCons $car $cdr]	[list cons $car (list delay $cdr)])
 (defFunct [sCar stream]		(if [or (null? stream) (empty? stream)] null [car stream]))

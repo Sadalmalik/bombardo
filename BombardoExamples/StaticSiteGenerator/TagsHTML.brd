@@ -2,10 +2,10 @@
 	(list `define tag
 		(list `lambda `x
 			(list
-				`str-concat
-				(str-concat "\n<" (symbol-name tag) ">")
-				`(str-replace (str-concat "\n" (eval ( cons `str-concat x )) ) "\n" "\n  ")
-				(str-concat "\n</" (symbol-name tag) ">")
+				`strConcat
+				(strConcat "\n<" (symbolName tag) ">")
+				`(strReplace (strConcat "\n" (eval ( cons `strConcat x )) ) "\n" "\n  ")
+				(strConcat "\n</" (symbolName tag) ">")
 			)
 		)
 	)

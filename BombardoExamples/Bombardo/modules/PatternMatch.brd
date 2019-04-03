@@ -1,5 +1,5 @@
 ﻿"PatternMatch.brd"
-(require "LangPrimitives" import-all)
+(require "BaseLang" importAll)
 
 (nope ----------------------------------------------------------------------------------------------------)
 
@@ -11,7 +11,7 @@
 
 (defFunct	[variable? sym]
 	(if [symbol? sym]
-		(str-ends-with (symbol-name sym) "?")
+		(strEndsWith (symbolName sym) "?")
 		false))
 
 (defFunct	[ExtendFrame $frame $key $value]
@@ -106,7 +106,7 @@
 (define RenameCounter 0)
 
 (defFunct [RenameVariable $var $id]
-	[symbol-make (str-concat $var $id "?")])
+	[symbolMake (strConcat $var $id "?")])
 
 (defFunct [RenameVariables $expression $id]
 	(if [null? $id] (set! $id [inc! RenameCounter]))

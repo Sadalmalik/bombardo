@@ -1,5 +1,5 @@
 ﻿"Array.brd"
-(require "LangPrimitives" import-all)
+(require "BaseLang" importAll)
 
 (defFunct [ArrayMake]
 	(cons 0)

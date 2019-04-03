@@ -1,6 +1,6 @@
 ﻿"Combinatoric.brd"
 
-(require "LangPrimitives" import-all)
+(require "BaseLang" importAll)
 
 (defFunct [each-combination $lists $callbak $values]
 	(define $list (car $lists))
@@ -68,7 +68,7 @@
 				(list `smith smith))
 	))
 
-	(define timeStart (get-time))
+	(define timeStart (getTime))
 	(each-combination
 		(list floors floors floors floors floors)
 		(lambda [smith miller fletcher cooper baker]
@@ -86,7 +86,7 @@
 			)
 		)
 	)
-	(define timeEnd (get-time))
+	(define timeEnd (getTime))
 	(print "Time used: " (- timeEnd timeStart))
 
 	(print "")

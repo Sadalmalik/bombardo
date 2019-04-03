@@ -1,6 +1,6 @@
 ﻿"DList.brd"
-(require "LangPrimitives" import-all)
-(require "Queue" import-all)
+(require "BaseLang" importAll)
+(require "Queue" importAll)
 
 
 

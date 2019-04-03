@@ -1,5 +1,5 @@
 ﻿"mind.brd"
-(require "LangPrimitives" import-all)
+(require "BaseLang" importAll)
 (require "Class")
 
 (require "Queue" as Queue)
@@ -34,7 +34,7 @@
 (print "Test product")
 
 (require "PatternMatch.brd" as Pattern)
-(require "PRDKT.brd" import-all)
+(require "PRDKT.brd" importAll)
 
 (define myProduction (Production "myMind01.txt"))
 
@@ -111,13 +111,13 @@
 
 
 
-(define queueueue (CreateThreadSafeQueue))
+(define queueueue (concurentQueueCreate))
 
 (define $window
 	(CreateDialogueWindow "One window"
 		(lambda [$window $text]
-			[DialogueWindowWrite $window (str-concat "\nEntered: " $text)]
-			[ThreadSafeEnqueue queueueue $text]
+			[DialogueWindowWrite $window (strConcat "\nEntered: " $text)]
+			[concurentQueueEnqueue queueueue $text]
 		)
 		(lambda [$window]
 			[print "Close window " $window]
@@ -133,7 +133,7 @@
 		(print " : " (Pattern.Instantiate `(expression E?) $frame) " --- frame: " $frame)
 	)
 	(if [not (null? $frame)]
-		(DialogueWindowWrite $window (str-concat "\nCalculated shit: " (Pattern.Instantiate `(expression E?) $frame) " --- frame: " $frame))
+		(DialogueWindowWrite $window (strConcat "\nCalculated shit: " (Pattern.Instantiate `(expression E?) $frame) " --- frame: " $frame))
 	)
 )
 
@@ -142,11 +142,11 @@
 (TestSubFrame)
 
 
-(interval-set 250 (lambda []
+(intervalSet 250 (lambda []
 	(TestSubFrame)
 
-	(while [> (ThreadSafeCount queueueue) 0]
-		(define $message (ThreadSafeDequeue queueueue))
+	(while [> (concurentQueueCount queueueue) 0]
+		(define $message (concurentQueueDequeue queueueue))
 
 		(define $parsed (parse $message))
 		
@@ -156,7 +156,7 @@
 			)
 		)
 		
-		(DialogueWindowWrite $window (str-concat "\n" $message))
+		(DialogueWindowWrite $window (strConcat "\n" $message))
 	)
 ))
 

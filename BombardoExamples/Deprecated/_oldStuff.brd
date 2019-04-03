@@ -7,7 +7,7 @@
 
 (require "PatternMatch.brd" as Pattern)
 
-(require "Iterators.brd" import-all)
+(require "Iterators.brd" importAll)
 
 (define DataBase (Class []
 	(define $data null)

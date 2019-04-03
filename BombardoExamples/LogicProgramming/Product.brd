@@ -1,7 +1,7 @@
 ﻿"Product.brd"
-(require "LangPrimitives" import-all)
-(require "Array" import-all)
-(require "DList" import-all)
+(require "BaseLang" importAll)
+(require "Array" importAll)
+(require "DList" importAll)
 (require "Class")
 (require "PatternMatch" import variable?)
 

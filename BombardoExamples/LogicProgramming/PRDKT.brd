@@ -1,10 +1,10 @@
 ﻿"PRDKT.brd"
-(require "LangPrimitives" import-all)
+(require "BaseLang" importAll)
 (require "Class")
-(require "Queue" import-all)
-(require "Iterators" import-all)
+(require "Queue" importAll)
+(require "Iterators" importAll)
 (require "PatternMatch" as Pattern)
-(require "DeMorganTransform" import-all)
+(require "DeMorganTransform" importAll)
 
 (nope ----------------------------------------------------------------------------------------------------)
 

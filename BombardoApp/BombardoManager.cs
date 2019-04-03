@@ -17,6 +17,7 @@ namespace Bombardo
             currentPath = Path.GetDirectoryName(Path.GetFullPath(path));
             moduleContext = new Context(rootContext);
             moduleContext.Define("module", new Atom(AtomType.Native, new Context()));
+            moduleContext.Define("#path", new Atom(AtomType.String, currentPath));
         }
 
         public Atom GetModuleResult()
@@ -100,7 +101,7 @@ namespace Bombardo
                         string[] nameList = CommonUtils.ListToStringArray(rest.next, "REQUIRE");
                         ContextUtils.ImportSymbols((Context)result.value, context, nameList);
                         break;
-                    case "import-all":
+                    case "importAll":
                         ContextUtils.ImportAllSymbols((Context)result.value, context);
                         break;
                     default:

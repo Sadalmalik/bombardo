@@ -1,5 +1,5 @@
 ﻿"DeMorganTransform.brd"
-(require "LangPrimitives" import-all)
+(require "BaseLang" importAll)
 
 (nope ----------------------------------------------------------------------------------------------------)
 

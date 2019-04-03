@@ -27,6 +27,7 @@ namespace Bombardo
 
             //  Add to basic context
             Context system = bombardo_.Global;
+            system.Define("#path", new Atom(AtomType.String, System.AppDomain.CurrentDomain.BaseDirectory));
             BombardoLangClass.SetProcedure(system, "about", ShowAbout, 0);
             BombardoLangClass.SetProcedure(system, "exit", Exit, 0);
             BombardoLangClass.SetProcedure(system, "e", Exit, 0);

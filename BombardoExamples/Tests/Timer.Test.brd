@@ -10,7 +10,7 @@
 			(print (cons count "yo!"))
 		)
 		(block
-			(interval-clear interval)
+			(intervalClear interval)
 			(print "interval complete!")
 		)
 	))
@@ -22,16 +22,16 @@
 
 (nope Create wrap object around interval system)
 
-(define interval (interval-set 100 callback))
+(define interval (intervalSet 100 callback))
 (define Timer (lambda (delay loop callback)
 	(define inner-timer
-		((if loop interval-set timeout-set)
+		((if loop intervalSet timeoutSet)
 			(list `timer delay)
 			callback))
 	(lambda (x)
 		(cond
-			((eq? x `tag) ((if loop interval-tag timeout-tag) inner-timer))
-			((eq? x `stop) ((if loop interval-clear timeout-clear) inner-timer))
+			((eq? x `tag) ((if loop intervalTag timeoutTag) inner-timer))
+			((eq? x `stop) ((if loop intervalClear timeoutClear) inner-timer))
 			(true (error `Timer "Unknown command for timer!"))
 		)
 	)

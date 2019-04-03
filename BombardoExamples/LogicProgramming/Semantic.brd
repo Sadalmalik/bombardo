@@ -1,4 +1,4 @@
-﻿(require "LangPrimitives" import-all)
+﻿(require "BaseLang" importAll)
 (require "Class")
 
 (define Heap (Class ()

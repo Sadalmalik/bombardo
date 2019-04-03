@@ -1,6 +1,6 @@
-﻿(require "LangPrimitives" import-all)
+﻿(require "BaseLang" importAll)
 (require "Class")
-(require "Delay" import-all)
+(require "Delay" importAll)
 
 (define $globalFailCount 0)
 

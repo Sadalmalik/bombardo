@@ -48,9 +48,34 @@ namespace Bombardo
             BombardoLangClass.SetProcedure(context, AllNames.FS_APPEND_TEXT, AppendText, 2);
             BombardoLangClass.SetProcedure(context, AllNames.FS_APPEND_LINES, AppendLines, 2);
 
-            //  (fsGetFiles "directoryPath") -> ( "file1" "file2" "file3" ... )
+            //  (fsFile? "path") -> true | false
+            //  (fsDirectory? "path") -> true | false
 
-            BombardoLangClass.SetProcedure(context, AllNames.FS_GET_FILES, GetFiles, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_FILE_PRED, FilePredicate, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_DIR_PRED, DirectoryPredicate, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_DIR_EMPTY_PRED, DirectoryEmptyPredicate, 1);
+
+            
+
+            //  (fsReadDirectory "directoryPath") -> ( "file1" "file2" "file3" ... )
+            //  (fsCreateDirectory "directoryPath") -> null
+            //  (fsRemoveDirectory "directoryPath") -> null
+
+            BombardoLangClass.SetProcedure(context, AllNames.FS_READ_DIRECTORY, ReadDirectory, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_CREATE_DIRECTORY, CreateDirectory, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_REMOVE_DIRECTORY, RemoveDirectory, 1);
+
+            //  (fsPathCombine "path1" "path2" "path3") -> "path1/path2/path3"
+            //  (fsPathGetFull "directoryPath.ext") -> "extended/directoryPath.ext"
+            //  (fsPathGetExtension "directoryPath/file.ext") -> "ext"
+            //  (fsPathGetFileName "directoryPath/file.ext") -> "file.ext"
+            //  (fsPathGetDirectoryName "directoryPath/file.ext") -> "directoryPath"
+
+            BombardoLangClass.SetProcedure(context, AllNames.FS_PATH_COMBINE, PathCombile, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_PATH_GET_FULL, PathGetFull, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_PATH_GET_EXTENSION, PathGetExtension, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_PATH_GET_FILE_NAME, PathGetFileName, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.FS_PATH_GET_DIR_NAME, PathGetDirectoryName, 1);
         }
 
         private static Atom Load(Atom args, Context context)
@@ -326,7 +351,47 @@ namespace Bombardo
             return null;
         }
 
-        private static Atom GetFiles(Atom args, Context context)
+        private static Atom FilePredicate(Atom args, Context context)
+        {
+            Atom path = (Atom)args?.value;
+            if (path == null || !path.IsString())
+                throw new ArgumentException("Path must be string!");
+            string file = (string)path.value;
+
+            if(!File.Exists(file)) return Atom.FALSE;
+
+            FileAttributes attr = File.GetAttributes(file);
+            return attr.HasFlag(FileAttributes.Directory) ? Atom.FALSE : Atom.TRUE;
+        }
+
+        private static Atom DirectoryPredicate(Atom args, Context context)
+        {
+            Atom path = (Atom)args?.value;
+            if (path == null || !path.IsString())
+                throw new ArgumentException("Path must be string!");
+            string file = (string)path.value;
+
+            if (!File.Exists(file)) return Atom.FALSE;
+
+            FileAttributes attr = File.GetAttributes(file);
+            return attr.HasFlag(FileAttributes.Directory) ? Atom.TRUE : Atom.FALSE;
+        }
+
+        private static Atom DirectoryEmptyPredicate(Atom args, Context context)
+        {
+            Atom path = (Atom)args?.value;
+            if (path == null || !path.IsString())
+                throw new ArgumentException("Path must be string!");
+            string directoryPath = (string)path.value;
+
+            string[] dirs = Directory.GetDirectories(directoryPath);
+            string[] files = Directory.GetFiles(directoryPath);
+            bool empty = dirs.Length == 0 && files.Length == 0;
+            
+            return empty ? Atom.TRUE : Atom.FALSE;
+        }
+        
+        private static Atom ReadDirectory(Atom args, Context context)
         {
             Atom path = args?.atom;
             if (path == null || !path.IsString())
@@ -337,15 +402,104 @@ namespace Bombardo
             SearchOption option = ArgUtils.GetEnum<SearchOption>(
                  mode, 3);
 
+            string[] dirs = null;
+            if (pattern == null) dirs = Directory.GetDirectories(directory);
+            else dirs = Directory.GetDirectories(directory, (string)pattern.value, option);
+
             string[] files = null;
             if (pattern == null) files = Directory.GetFiles(directory);
             else files = Directory.GetFiles(directory, (string)pattern.value, option);
+            
+            Atom[] elements = new Atom[dirs.Length + files.Length];
+            int i=0, count1 = dirs.Length, count2 = dirs.Length + files.Length;
+            for (; i < count1; i++) elements[i] = new Atom(AtomType.String, dirs[i]);
+            for (; i < count2; i++) elements[i] = new Atom(AtomType.String, files[i]);
+            
+            return Atom.List(elements);
+        }
 
-            Atom[] atoms = new Atom[files.Length];
-            for (int i = 0; i < files.Length; i++)
-                atoms[i] = new Atom(AtomType.String, files[i]);
+        private static Atom CreateDirectory(Atom args, Context context)
+        {
+            Atom path = (Atom)args?.value;
+            if (path == null || !path.IsString())
+                throw new ArgumentException("Path must be string!");
+            string directoryPath = (string)path.value;
 
-            return Atom.List(atoms);
+            Directory.CreateDirectory(directoryPath);
+
+            return null;
+        }
+
+        private static Atom RemoveDirectory(Atom args, Context context)
+        {
+            Atom path = (Atom)args?.value;
+            if (path == null || !path.IsString())
+                throw new ArgumentException("Path must be string!");
+            string directoryPath = (string)path.value;
+
+            string[] dirs = Directory.GetDirectories(directoryPath);
+            string[] files = Directory.GetFiles(directoryPath);
+            bool empty = dirs.Length == 0 && files.Length == 0;
+
+            if(empty) Directory.Delete(directoryPath);
+
+            return empty ? Atom.TRUE : Atom.FALSE;
+        }
+
+        private static Atom PathCombile(Atom args, Context context)
+        {
+            int i = 0;
+            string[] parts = new string[args.ListLength()];
+
+            for(Atom iter= args; iter!=null; iter= iter.next)
+            {
+                if (!iter.atom.IsString())
+                    throw new ArgumentException("All arguments must be strings!");
+                parts[i] = (string)iter.atom?.value;
+                i++;
+            }
+
+            return new Atom(AtomType.String, Path.Combine(parts));
+        }
+
+        private static Atom PathGetFull(Atom args, Context context)
+        {
+            Atom path = args?.atom;
+
+            if (!path.IsString())
+                throw new ArgumentException("Path must be string!");
+
+            return new Atom(AtomType.String, Path.GetFullPath((string)path.value));
+        }
+
+        private static Atom PathGetExtension(Atom args, Context context)
+        {
+            Atom path = args?.atom;
+
+            if (!path.IsString())
+                throw new ArgumentException("Path must be string!");
+
+            return new Atom(AtomType.String, Path.GetExtension((string)path.value));
+        }
+
+        private static Atom PathGetFileName(Atom args, Context context)
+        {
+            Atom path = args?.atom;
+
+            if (!path.IsString())
+                throw new ArgumentException("Path must be string!");
+
+            return new Atom(AtomType.String, Path.GetFileName((string)path.value));
+        }
+
+        private static Atom PathGetDirectoryName(Atom args, Context context)
+        {
+            Atom path = args?.atom;
+
+            if (!path.IsString())
+                throw new ArgumentException("Path must be string!");
+
+            return new Atom(AtomType.String, Path.GetDirectoryName((string)path.value));
         }
     }
 }
