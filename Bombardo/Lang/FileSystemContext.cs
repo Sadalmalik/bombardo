@@ -242,7 +242,7 @@ namespace Bombardo
                 throw new ArgumentException("Path must be string!");
             string file = (string)path.value;
 
-            string text = File.ReadAllText(file);
+            string text = File.ReadAllText(file, System.Text.Encoding.UTF8);
 
             return new Atom(AtomType.String, text);
         }
@@ -254,7 +254,7 @@ namespace Bombardo
                 throw new ArgumentException("Path must be string!");
             string file = (string)path.value;
 
-            string[]lines = File.ReadAllLines(file);
+            string[]lines = File.ReadAllLines(file, System.Text.Encoding.UTF8);
 
             Atom[]atoms = new Atom[lines.Length];
             for (int i = 0; i < lines.Length; i++)
@@ -276,7 +276,7 @@ namespace Bombardo
                 throw new ArgumentException("Second argument must be string!");
             string data = (string)text.value;
 
-            File.WriteAllText(file, data);
+            File.WriteAllText(file, data, System.Text.Encoding.UTF8);
 
             return null;
         }
@@ -302,7 +302,7 @@ namespace Bombardo
                 lines.Add((string)line.value);
             }
             
-            File.WriteAllLines(file, lines);
+            File.WriteAllLines(file, lines, System.Text.Encoding.UTF8);
 
             return null;
         }
@@ -320,7 +320,7 @@ namespace Bombardo
                 throw new ArgumentException("Second argument must be string!");
             string data = (string)text.value;
 
-            File.AppendAllText(file, data);
+            File.AppendAllText(file, data, System.Text.Encoding.UTF8);
 
             return null;
         }
@@ -346,7 +346,7 @@ namespace Bombardo
                 lines.Add((string)line.value);
             }
 
-            File.AppendAllLines(file, lines);
+            File.AppendAllLines(file, lines, System.Text.Encoding.UTF8);
 
             return null;
         }
