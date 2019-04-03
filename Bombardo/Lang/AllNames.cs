@@ -21,6 +21,7 @@
         public static readonly string LISP_EACH = "each";
         public static readonly string LISP_MAP = "map";
         public static readonly string LISP_FILTER = "filter";
+        public static readonly string LISP_CONTAINS = "contains?";
 
         public static readonly string LISP_CAAR = "caar";
         public static readonly string LISP_CADR = "cadr";

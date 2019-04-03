@@ -22,6 +22,8 @@ namespace Bombardo
             BombardoLangClass.SetProcedure(context, AllNames.LISP_EACH, Each, 2, true);
             BombardoLangClass.SetProcedure(context, AllNames.LISP_MAP, Map, 2, true);
             BombardoLangClass.SetProcedure(context, AllNames.LISP_FILTER, Filter, 2, true);
+            
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_CONTAINS, Contains, 2, true);
         }
 
         public static Atom Cons(Atom args, Context context)
@@ -260,6 +262,27 @@ namespace Bombardo
             }
 
             return head;
+        }
+        
+        public static Atom Contains(Atom args, Context context)
+        {
+            Atom list = args?.atom;
+            Atom value = args?.next?.atom;
+
+            if (list == null || !list.IsPair())
+                throw new ArgumentException("First argument must be list!");
+
+            bool contains = false;
+            for (Atom iter = list; iter != null; iter = iter.next)
+            {
+                if (Atom.Compare(value, iter.atom))
+                {
+                    contains = true;
+                    break;
+                }
+            }
+
+            return contains ? Atom.TRUE : Atom.FALSE;
         }
     }
 }

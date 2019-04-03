@@ -1,9 +1,10 @@
 ﻿"BaseLang.brd"
-"Определения различного синтаксического сахара"
+;	Определения различного синтаксического сахара
 
 
 
-(nope ------------------------------------------------------------)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;	Просто синтаксический сахар для краткости записи
 
 (define defFunct (macros $sexp
 	[define $head (car $sexp)]
@@ -15,11 +16,6 @@
 		(cons `lambda (cons $args $body))
 	)
 ))
-(export defFunct)
-
-
-
-(nope ------------------------------------------------------------)
 
 (define defMacro (macros $sexp
 	[define $head (car $sexp)]
@@ -31,25 +27,30 @@
 		(cons `macros (cons $args $body))
 	)
 ))
+
+(export defFunct)
 (export defMacro)
 
 
 
-(nope ------------------------------------------------------------)
-
-"	Для тех, кому необходим этот стрёмный синтаксис
-	(let [(a 15)
-		  (b 'theta')
-		  (c omega)]
-		(expressions)
-	)
-	преобразуется в:
-	((lambda []
-		(define a 15)
-		(define b 'theta')
-		(define c omega)
-		(expressions)
-	))"
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;	Для тех, кому необходим этот стрёмный синтаксис
+;	(let [(a 15)
+;		  (b 'theta')
+;		  (c omega)]
+;		(expression1)
+;		(expression2)
+;		(expression3)
+;	)
+;	преобразуется в:
+;	((lambda []
+;		(define a 15)
+;		(define b 'theta')
+;		(define c omega)
+;		(expression1)
+;		(expression2)
+;		(expression3)
+;	))
 
 (defMacro [let . $exp]
 	(define $body
@@ -64,32 +65,39 @@
 
 
 
-(nope ------------------------------------------------------------)
-
-"Кое-какие математические удобства"
-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;	Кое-какие математические удобства
+;	Прединкремент ++i
 (defMacro [inc! variable]
 	(list `set! variable (list `+ variable 1))
 )
 
+;	Преддекремент --i
 (defMacro [dec! variable]
 	(list `set! variable (list `- variable 1))
 )
 
+;	Предквадрат
 (defMacro [sqr! variable]
 	(list `set! variable (list `* variable variable))
 )
+
+;	Предквадратный корень
 (defMacro [sqrt! variable]
 	(list `set! variable (list `sqrt variable))
 )
 
 (export inc!)
 (export dec!)
+(export sqr!)
+(export sqrt!)
 
 
 
-(nope ------------------------------------------------------------)
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;	Оперирование путями внутри списковой структуры данных
 
+;	Возвращает список всех существующих в данной структуре путей вида (car cdr cdr)
 (defFunct	[BuildAllPaths $struct $path]
 	(cond	[(null? $struct) null]
 			[(pair? $struct)
@@ -100,6 +108,7 @@
 	)
 )
 
+;	Получает из структуры значение по указанному пути
 (defFunct	[GetByPath $struct $path]
 	(if		[null? $path]
 			$struct
@@ -112,11 +121,4 @@
 
 
 
-(nope ------------------------------------------------------------)
 
-(defFunct	[Contains $list $exp]
-	(if [null? $list] false
-		[if (eq? $exp (car $list)) true
-			(Contains (cdr $list) $exp)]))
-
-(export Contains)

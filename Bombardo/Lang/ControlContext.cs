@@ -45,7 +45,7 @@ namespace Bombardo
             //  (apply function [arguments]) -> result of (function [arguments])
             BombardoLangClass.SetProcedure(context, AllNames.LISP_APPLY,        Apply, 1, true);
 
-            BombardoLangClass.SetProcedure(context, AllNames.LISP_ERROR, Error, 1, true);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_ERROR,        Error, 1, true);
         }
 
         public static Atom Nope(Atom args, Context context)

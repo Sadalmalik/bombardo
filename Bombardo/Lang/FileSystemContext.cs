@@ -411,9 +411,8 @@ namespace Bombardo
             else files = Directory.GetFiles(directory, (string)pattern.value, option);
             
             Atom[] elements = new Atom[dirs.Length + files.Length];
-            int i=0, count1 = dirs.Length, count2 = dirs.Length + files.Length;
-            for (; i < count1; i++) elements[i] = new Atom(AtomType.String, dirs[i]);
-            for (; i < count2; i++) elements[i] = new Atom(AtomType.String, files[i]);
+            for (int i = 0; i < dirs.Length; i++) elements[i] = new Atom(AtomType.String, dirs[i]);
+            for (int i = 0; i < files.Length; i++) elements[i + dirs.Length] = new Atom(AtomType.String, files[i]);
             
             return Atom.List(elements);
         }
@@ -458,7 +457,7 @@ namespace Bombardo
                 parts[i] = (string)iter.atom?.value;
                 i++;
             }
-
+            
             return new Atom(AtomType.String, Path.Combine(parts));
         }
 
