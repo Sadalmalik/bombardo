@@ -1,4 +1,4 @@
-(Вернуться к оглавлению)[https://github.com/Sadalmalik/bombardo#оглавление]
+(Вернуться к оглавлению)[/Sadalmalik/bombardo#оглавление]
 
 # Структура языка
 
@@ -78,8 +78,6 @@
 ```
 (lambda (arguments) body )
 (syntax (true false) (arguments) body )
-
-
 
 (macros (arguments) body )
 (syntax (false true) (arguments) body )
