@@ -7,7 +7,6 @@ namespace Bombardo
     internal class REPL
     {
         private static bool loop_;
-        private static BombardoLangClass bombardo_;
         private static string storage_ = "";
 
         public static void Start()
@@ -23,10 +22,10 @@ namespace Bombardo
             Console.WriteLine();
 
             loop_ = true;
-            bombardo_ = new BombardoLangClass(false);
+            BombardoLangClass.Init(false);
 
             //  Add to basic context
-            Context system = bombardo_.Global;
+            Context system = BombardoLangClass.Global;
             system.Define("#path", new Atom(AtomType.String, System.AppDomain.CurrentDomain.BaseDirectory));
             BombardoLangClass.SetProcedure(system, "about", ShowAbout, 0);
             BombardoLangClass.SetProcedure(system, "exit", Exit, 0);
@@ -35,7 +34,7 @@ namespace Bombardo
             BombardoLangClass.SetProcedure(system, "h", Halp, 0);
             BombardoLangClass.SetProcedure(system, "load", LoadEval, 1);
             BombardoLangClass.SetProcedure(system, "l", LoadEval, 1);
-            bombardo_.WrapContext();
+            BombardoLangClass.WrapContext();
 
             Console.CancelKeyPress += ResetConsole;
 
@@ -51,7 +50,7 @@ namespace Bombardo
                         storage_ = "";
                         foreach (var node in nodes)
                         {
-                            Atom result = Evaluator.Evaluate(node, bombardo_.Global);
+                            Atom result = Evaluator.Evaluate(node, BombardoLangClass.Global);
                             Console.WriteLine(result != null ? result.ToString() : AllNames.NULL_SYMBOL);
                         }
                     }
@@ -113,7 +112,7 @@ namespace Bombardo
 
         private static Atom Halp(Atom args, Context context)
         {
-            Context curr = (Context)bombardo_.Global;
+            Context curr = (Context)BombardoLangClass.Global;
             Context prev = (Context)curr.parent;
 
             Console.WriteLine("All available stuff:");
@@ -164,7 +163,7 @@ namespace Bombardo
             {
                 try
                 {
-                    Evaluator.Evaluate(node, bombardo_.Global);
+                    Evaluator.Evaluate(node, BombardoLangClass.Global);
                 }
                 catch (Exception exc)
                 {

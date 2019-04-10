@@ -1,0 +1,2 @@
+( ( ( sister Ann Elen ) ) ( ( sister Diana Ann ) ) ( ( sister Diana Tom ) ) ( ( sister Liza Edward ) ) )
+( ( ( same X? X? ) ) ( ( sister A? B? ) ( and ( not ( same A? B? ) ) ( sister B? A? ) ) ) ( ( append null Y? Y? ) ) ( ( append ( U? . V? ) Y? ( U? . Z? ) ) ( append V? Y? Z? ) ) ( ( first list? el? ) ( append ( el? ) any? list? ) ) )

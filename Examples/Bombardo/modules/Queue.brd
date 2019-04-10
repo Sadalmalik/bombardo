@@ -111,7 +111,6 @@
 ))
 
 (export Queue)
-(export Tests)
 
 (export QueMake)
 (export QuePush)
@@ -120,3 +119,5 @@
 (export QueGetList)
 (export QueSetList)
 (export QueClear)
+
+(export Tests)

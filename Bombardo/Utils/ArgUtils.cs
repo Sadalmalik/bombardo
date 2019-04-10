@@ -22,9 +22,8 @@ namespace Bombardo.Utils
             return null;
         }
 
-        public static T GetEnum<T>(Atom argument, int idx) where T : struct, Enum
+        public static T GetEnum<T>(Atom argument, int idx, T tenum = default(T)) where T : struct, Enum
         {
-            T tenum = default(T);
             if (argument != null)
             {
                 if (argument.type != AtomType.Symbol &&

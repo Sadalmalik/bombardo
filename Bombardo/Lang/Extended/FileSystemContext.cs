@@ -140,9 +140,9 @@ namespace Bombardo
                 throw new ArgumentException("Path must be string!");
             string file = (string)path.value;
             
-            FileAccess access = ArgUtils.GetEnum<FileAccess>(args?.next?.atom, 1);
-            FileMode mode = ArgUtils.GetEnum<FileMode>(args?.next?.next?.atom, 2);
-
+            FileAccess access = ArgUtils.GetEnum<FileAccess>(args?.next?.atom, 1, FileAccess.Read);
+            FileMode mode = ArgUtils.GetEnum<FileMode>(args?.next?.next?.atom, 2, FileMode.Open);
+            
             if (access == FileAccess.Read)
             {
                 StreamReader reader = new StreamReader(File.Open(file, mode, access));

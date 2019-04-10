@@ -1,0 +1,86 @@
+"nim.brd"
+(require "BaseLang" importAll)
+
+(print "Nim game here!")
+(print "	enter (start) for new round")
+(print "	enter (x a) for make turn")
+(print "		x - is number of pile")
+(print "		a - is amount for removing")
+(print "")
+
+(define $loop true)
+(define $mode `intro)
+(define $game `(15 15 15))
+
+(defFunct	[decElement! $list $index $amount]
+	(cond	[(eq? $index 1)	(set-car! $list			(max 0 (- (car $list) $amount)))]
+			[(eq? $index 2)	(set-car! (cdr $list)	(max 0 (- (cadr $list) $amount)))]
+			[(eq? $index 3)	(set-car! (cddr $list)	(max 0 (- (caddr $list) $amount)))]
+	)
+)
+
+
+(defFunct	[Loop]
+	(while $loop
+		(print "Game: " $game)
+		(define $input [car (parse (read))])
+
+		(if [eq? `start (car $input)]
+			[set! $game `(15 15 15)]
+			[block
+				(define $index (car $input))
+				(define $amount (cadr $input))
+
+				(decElement! $game $index $amount)
+			]
+		)
+	)
+)
+
+;	Все три кучи больше нуля
+(defFunct	[IsRegular $field]
+	(and	[< 0 (car $field)]
+			[< 0 (cadr $field)]
+			[< 0 (caddr $field)])
+)
+
+;	Одна из куч равна нулю
+(defFunct	[IsRegular $field]
+	(or		[== 0 (car $field)]
+			[== 0 (cadr $field)]
+			[== 0 (caddr $field)])
+)
+
+;	Одна из куч   
+
+
+(define $i 120)
+(define $a 500000)
+(define $p 1.01)
+
+(while [< 0 $i]
+	(dec! $i)
+	(set! $a (* $a $p))
+	(print "min: " $i " dolg: " $a)
+)
+
+(print "final dolg: " $a)
+
+
+
+
+(each `(
+	CONTRIBUTING
+	README
+	LICENSE
+	COPYING
+	CODE_OF_CONDUCT
+	CONTRIBUTING
+	ISSUE_TEMPLATE
+	PULL_REQUEST_TEMPLATE)
+	(lambda [$x]
+		(define $name ( strConcat (symbolName $x) ".md"))
+
+		(fsWriteText $name $name)
+	)
+)

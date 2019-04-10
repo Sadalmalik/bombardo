@@ -5,10 +5,10 @@ namespace Bombardo
 {
     public class BombardoLangClass
     {
-        private Context system_ = null;
-        public Context Global { get; private set; }
+        private static Context system_ = null;
+        public static Context Global { get; private set; }
 
-        public BombardoLangClass(bool wrapped=true)
+        public static void Init(bool wrapped=true)
         {
             if(wrapped)
             {
@@ -26,7 +26,7 @@ namespace Bombardo
             }
         }
 
-        public void WrapContext()
+        public static void WrapContext()
         {
             if(system_==null)
             {
@@ -34,6 +34,11 @@ namespace Bombardo
                 system_.@sealed = true;
                 Global = new Context(system_);
             }
+        }
+
+        public static void ExecuteFile(string filePath, bool catchExceptions = true)
+        {
+            ModuleSystemContext.ExecuteFile(filePath, catchExceptions);
         }
 
         public static void SetupLang(Context context)
@@ -45,10 +50,12 @@ namespace Bombardo
             ControlContext.Setup(context);
             LogicContext.Setup(context);
             MathContext.Setup(context);
-            TextContext.Setup(context);
             TableContext.Setup(context);
-            TimersContext.Setup(context);
+
+            TextContext.Setup(context);
+            ModuleSystemContext.Setup(context);
             FileSystemContext.Setup(context);
+            TimersContext.Setup(context);
             ThreadContext.Setup(context);
         }
 

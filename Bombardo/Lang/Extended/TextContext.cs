@@ -48,7 +48,7 @@ namespace Bombardo
             StringBuilder sb = new StringBuilder();
             for (Atom iter = list; iter != null; iter = iter.next)
             {
-                Atom ch = list.value as Atom;
+                Atom ch = iter.value as Atom;
 
                 if(ch==null || !ch.IsNumber())
                     throw new ArgumentException("List musr contains only numbers!");

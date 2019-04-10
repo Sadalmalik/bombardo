@@ -231,6 +231,22 @@
 
         #endregion
 
+        #region Module System
+
+        public static readonly string MODULES_FOLDER = "modules";
+
+        public static readonly string MODULE = "module";
+        public static readonly string MODULE_PATH = "#path";
+
+        public static readonly string MODULE_REQUIRE = "require";
+        public const           string MODULE_REQUIRE_AS = "as";
+        public const           string MODULE_REQUIRE_IMPORT = "import";
+        public const           string MODULE_REQUIRE_IMPORT_ALL = "importAll";
+
+        public static readonly string MODULE_EXPORT = "export";
+
+        #endregion
+
         #region Text symbols
 
         public static readonly string TEXT_CREATE = "strCreate";
