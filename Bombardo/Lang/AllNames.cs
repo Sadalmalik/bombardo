@@ -117,6 +117,7 @@
 
         public static readonly string LOGIC_EQ = "eq?";
         public static readonly string LOGIC_NEQ = "neq?";
+
         public static readonly string LOGIC_AND = "and";
         public static readonly string LOGIC_OR = "or";
         public static readonly string LOGIC_XOR = "xor";
