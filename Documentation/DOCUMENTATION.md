@@ -165,6 +165,7 @@
 * Результат: новое значение
 ```scheme
 (set! $variable 25)     ;  Меняем значение переменной из предыдущего примера
+(print $variable)       ;  Выведет на экран значение 25
 ```
 
 #### set-car!
@@ -173,9 +174,9 @@
 * Результат: атом, который был присвоен
 ```scheme
 (define $pair `(A . B))
-;	$pair -> (A . B)
+;       $pair -> (A . B)
 (set-car! $pair `X) -> X
-;	$pair -> (X . B)
+;       $pair -> (X . B)
 ```
 
 #### set-cdr!
@@ -184,9 +185,9 @@
 * Результат: атом, который был присвоен
 ```scheme
 (define $pair `(A . B))
-;	$pair -> (A . B)
+;       $pair -> (A . B)
 (set-cdr! $pair `X) -> X
-;	$pair -> (A . X)
+;       $pair -> (A . X)
 ```
 
 ---
