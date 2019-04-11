@@ -114,6 +114,7 @@ namespace Bombardo
                     return Evaluator.EvaluateEach(block, context);
                 }
             }
+
             return null;
         }
 
