@@ -163,7 +163,7 @@
 * Аргументы: что угодно
 * Результат: null
 ```lisp
-(nope ftgutmdngjk mas64ejxrujnxtf ub d7tjk dstyj xfytvcf vubcxtumn cvjhh cg) -> null
+(nope Всё что угодно! Исключение - закрывающая скобка. 1 15 "lalala" ------!!!!!) -> null
 ```
 
 #### quote
