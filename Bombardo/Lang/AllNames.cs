@@ -148,7 +148,7 @@
         public static readonly string MATH_EXP = "exp";
         public static readonly string MATH_LOGN = "ln";
         public static readonly string MATH_LOG = "log";
-        public static readonly string MATH_LOG10 = "log10";
+        public static readonly string MATH_LOG10 = "ld";
 
         public static readonly string MATH_SIN = "sin";
         public static readonly string MATH_COS = "cos";
