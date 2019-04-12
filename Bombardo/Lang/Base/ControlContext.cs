@@ -43,9 +43,9 @@ namespace Bombardo
             BombardoLangClass.SetProcedure(context, AllNames.LISP_MACROEXPAND, MacroExpand, 1, false);
 
             //  (apply function [arguments]) -> result of (function [arguments])
-            BombardoLangClass.SetProcedure(context, AllNames.LISP_APPLY,        Apply, 1, true);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_APPLY,    Apply, 1, true);
 
-            BombardoLangClass.SetProcedure(context, AllNames.LISP_ERROR,        Error, 1, true);
+            BombardoLangClass.SetProcedure(context, AllNames.LISP_ERROR,    Error, 1, true);
         }
 
         public static Atom Nope(Atom args, Context context)
@@ -231,10 +231,8 @@ namespace Bombardo
         {
             Atom func = args.atom;
             Atom rest = Atom.CloneList(args.next.atom);
-
-            if (func == null) throw new ArgumentException("First argument must be procedure!");
-
-            Procedure proc = func.value as Procedure;
+            
+            Procedure proc = func?.value as Procedure;
             if (proc == null) throw new ArgumentException("First argument must be procedure!");
 
             Atom result = proc.Apply(rest, context);
