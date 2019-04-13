@@ -698,7 +698,7 @@ A|B|imp
 #### tableSet
 Функция **tableSet** добавляет в таблицу новые значения.  
 Синтаксис такой же как при создании таблицы - списки из двух элементов (ключ значение).
-* Аргументы: таблица, [(key1 value1) [(key2 value2) ...]]
+* Аргументы: таблица [, (key1 value1) [(key2 value2) ...]]
 * Результат: null
 ```scheme
 (tableSet $myTable `(key2 "OXYGEN"))
@@ -751,18 +751,14 @@ A|B|imp
 ```scheme
 (tableEach $myTable
     (lambda [key value]
-            [print key]
-            [print value]
-    ))
+            [print key ": " value]
+    )
+)
 ;  С учётом всех предыдущих примеров вывод будет такой:
-;   extra
-;   some value
-;   key1
-;   A
-;   key2
-;   B
-;   key3
-;   C
+;   extra: some value
+;   key1: A
+;   key2: B
+;   key3: C
 ```
 
 ---
