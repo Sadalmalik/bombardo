@@ -11,7 +11,6 @@ __Bombardo__ - это мой домашний проект, выросший и�
 
 ### Оглавление
 
-* [Обзор языка](Documentation/ABOUT.md)
-* [Структура языка](Documentation/LANG.STRUCTURE.md)
+* [Обзор языка](Documentation/LANG.OVERVIEW.md)
 * [Документация](Documentation/DOCUMENTATION.md)
 
