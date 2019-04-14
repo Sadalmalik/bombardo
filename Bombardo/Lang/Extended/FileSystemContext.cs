@@ -230,7 +230,32 @@ namespace Bombardo
 
             if (value==null) throw new ArgumentException("Second argument can't be null!");
 
-            writer.Write(value?.value);
+            switch(value.type)
+            {
+                case AtomType.Number:
+                    var type = UNumber.NumberType(value?.value);
+                    switch (type)
+                    {
+                        case UNumber.UINT_8: writer.Write(Convert.ToByte(value.value)); break;
+                        case UNumber.SINT_8: writer.Write(Convert.ToSByte(value.value)); break;
+                        case UNumber.UINT16: writer.Write(Convert.ToUInt16(value.value)); break;
+                        case UNumber.SINT16: writer.Write(Convert.ToInt16(value.value)); break;
+                        case UNumber._CHAR_: writer.Write(Convert.ToChar(value.value)); break;
+                        case UNumber.UINT32: writer.Write(Convert.ToUInt32(value.value)); break;
+                        case UNumber.SINT32: writer.Write(Convert.ToInt32(value.value)); break;
+                        case UNumber.UINT64: writer.Write(Convert.ToUInt64(value.value)); break;
+                        case UNumber.SINT64: writer.Write(Convert.ToInt64(value.value)); break;
+                        case UNumber.FLO32: writer.Write(Convert.ToSingle(value.value)); break;
+                        case UNumber.FLO64: writer.Write(Convert.ToDouble(value.value)); break;
+                        default:
+                            writer.Write(value?.value);
+                            break;
+                    }
+                    break;
+                default:
+                    writer.Write(value?.value);
+                    break;
+            }
 
             return null;
         }

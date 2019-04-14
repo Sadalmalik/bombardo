@@ -774,10 +774,11 @@ A|B|imp
 ### Модули
 [к оглавлению](#оглавление)
 
-Подробное описание модульной системы можно найти [здесь](LANG.OVERVIEW.md#модульная-система).
-В каждом модуле объявлены две переменные
-**module** - таблица экспортируемых атомов модуля
-**#path** - путь к текущему модулю
+Подробное описание модульной системы можно найти [здесь](LANG.OVERVIEW.md#модульная-система).  
+
+В каждом модуле объявлены две переменные:
+* **module** - таблица экспортируемых атомов модуля
+* **#path** - путь к текущему модулю
 
 #### require
 Функция **require** исполняет (при первом обращении) файл модуля и возвращает экспортированные из него символы.
@@ -788,13 +789,12 @@ A|B|imp
 Поддерживается 4 варианта синтаксиса
 ```scheme
 (require "ModuleName")
-
 (require "ModuleName" as NewName)
-
 (require "ModuleName" import name1 name2 name3 ...)
-
 (require "ModuleName" importAll)
 ```
+
+
 
 #### export
 Функция **export** экспортирует заданный символ из модуля
@@ -914,214 +914,231 @@ A|B|imp
 ### Файловая система
 [к оглавлению](#оглавление)
 
-#### load
-Функция **load**
-* Аргументы: 
-* Результат: 
-```scheme
-
-```
+Работа с файлами пока реализована по минимуму и является чистой обёрткой к соответствующим C# функциям.
 
 #### save
-Функция **save**
-* Аргументы: 
-* Результат: 
+Функция **save** сохраняет список в файл, если файл существует - перезаписывает его.  
+**null** записывается как пустая строка
+* Аргументы: список чего угодно
+* Результат: null
 ```scheme
-
+(save "some_name.brd" `(a b null d))
+;  Создаст файл и запишет в него
+;   a
+;   b
+;  
+;   d
 ```
 
-#### fsExists
-Функция **fsExists**
-* Аргументы: 
-* Результат: 
+#### load
+Функция **load** загружает файл, парсит его и возвращает списковую структуру
+* Аргументы: путь к файлу (строка)
+* Результат: список всех атомов из файла
 ```scheme
-
+(load "some_name.brd")  ;  ( a b d )
 ```
+
+#### fsExists?
+Функция **fsExists?** проверяет существует ли файл по указанному пути
+* Аргументы: путь к файлу (строка)
+* Результат: true|false
 
 #### fsOpen
-Функция **fsOpen**
-* Аргументы: 
-* Результат: 
+Функция **fsOpen** открывает файл для чтения или записи.
+* Аргументы:
+  - путь (строка)
+  - направление взаимодействия: Read|Write
+  - режим: Open|Create|OpenOrCreate|Append
+* Результат: поток чтения/записи (нативный объект)
 ```scheme
-
+(define $file (fsOpen "some_name.brd" Read Open))
 ```
 
 #### fsFlush
-Функция **fsFlush**
-* Аргументы: 
-* Результат: 
-```scheme
-
-```
+Функция **fsFlush** сохранение изменений на диск. Только для запили.
+* Аргументы: поток записи
+* Результат: null
 
 #### fsClose
-Функция **fsClose**
-* Аргументы: 
-* Результат: 
-```scheme
-
-```
+Функция **fsClose** закрыть файловый поток.
+* Аргументы: поток чтения/записи
+* Результат: null
 
 #### fsRead
-Функция **fsRead**
-* Аргументы: 
-* Результат: 
+Функция **fsRead** читает следующий символ из входящего потока файла.
+* Аргументы: поток чтения
+* Результат: char
 ```scheme
-
+(fsRead $file)
 ```
 
 #### fsReadline
-Функция **fsReadline**
-* Аргументы: 
-* Результат: 
+Функция **fsReadline** читает следующую строку из потока файла.
+* Аргументы: поток чтения
+* Результат: строка
 ```scheme
-
+(fsReadline $file)
 ```
 
 #### fsWrite
-Функция **fsWrite**
-* Аргументы: 
-* Результат: 
+Функция **fsWrite** записывает атомы в файл. Числовые атомы записываются в бинарном представлении - byte как байт, int как 4 байта и так далее.  
+Все остальные атомы записываются в виде строки.
+* Аргументы: поток записи, атом
+* Результат: null
 ```scheme
-
+;  что бы записывать посимвольно - придётся задавать руками записываемый тип.
+(fsWrite $file (char: 0x20))
 ```
 
 #### fsReadText
-Функция **fsReadText**
-* Аргументы: 
-* Результат: 
+Функция **fsReadText** читает весь файл как текст, возвращает в виде одной строки
+* Аргументы: путь к файлу (строка)
+* Результат: содержимое (строка)
 ```scheme
-
+(fsReadText "filename.txt")
 ```
 
 #### fsReadLines
-Функция **fsReadLines**
+Функция **fsReadLines** читает файл построчно, возвращает список строк
 * Аргументы: 
 * Результат: 
 ```scheme
-
+(fsReadLines "filename.txt")
 ```
 
 #### fsWriteText
-Функция **fsWriteText**
-* Аргументы: 
-* Результат: 
+Функция **fsWriteText** записывает заданную строку в файл.  
+Если файл уже есть - перезаписывает его.  
+Если файла нет - создаёт.
+* Аргументы: путь к файлу (строка), строка
+* Результат: null
 ```scheme
-
+(fsWriteText "filename.txt" "some text")
 ```
 
 #### fsWriteLines
-Функция **fsWriteLines**
-* Аргументы: 
-* Результат: 
+Функция **fsWriteLines** записывает в файл список строк.  
+Если файл уже есть - перезаписывает его.  
+Если файла нет - создаёт.
+* Аргументы: путь к файлу (строка), список строк
+* Результат: null
 ```scheme
-
+(fsWriteLines "filename.txt" `("line-1" "line-2" "line-3"))
 ```
 
 #### fsAppendText
-Функция **fsAppendText**
-* Аргументы: 
-* Результат: 
+Функция **fsAppendText** дописывает заданную строку в конец файла.  
+Если файл уже есть - перезаписывает его.  
+Если файла нет - создаёт.
+* Аргументы: путь к файлу (строка), строка
+* Результат: null
 ```scheme
-
+(fsAppendText "filename.txt" "some text")
 ```
 
 #### fsAppendLines
-Функция **fsAppendLines**
-* Аргументы: 
-* Результат: 
+Функция **fsAppendLines** дописывает к файлу список строк.  
+Если файл уже есть - перезаписывает его.  
+Если файла нет - создаёт.
+* Аргументы: путь к файлу (строка), список строк
+* Результат: null
 ```scheme
-
+(fsAppendLines "filename.txt" `("line-1" "line-2" "line-3"))
 ```
-
-        
+     
 #### fsIsFile?
-Функция **fsIsFile?**
-* Аргументы: 
-* Результат: 
+Функция **fsIsFile?** проверяет, указывает ли путь на файл.
+* Аргументы: путь
+* Результат: true|false
 ```scheme
-
+(fsIsFile? "someFile.txt") ;  true если файл существует
 ```
 
 #### fsIsDirectory?
-Функция **fsIsDirectory?**
-* Аргументы: 
-* Результат: 
+Функция **fsIsDirectory?** проверяет, указывает ли путь на директорию.
+* Аргументы: путь
+* Результат: true|false
 ```scheme
-
+(fsIsFile? "dir/someDirectory/") ;  true
 ```
 
 #### fsDirectoryIsEmpty?
-Функция **fsDirectoryIsEmpty?**
-* Аргументы: 
-* Результат: 
+Функция **fsDirectoryIsEmpty?** проверяет, пустая ли директория.
+* Аргументы: путь
+* Результат: true|false
 ```scheme
-
+(fsDirectoryIsEmpty? "RandomEmptyDirectory") ;  true
 ```
 
 
 #### fsReadDirectory
-Функция **fsReadDirectory**
-* Аргументы: 
-* Результат: 
+Функция **fsReadDirectory** читает список всех вложенных в данную директорию файлов
+* Аргументы: путь
+* Результат: список путей
 ```scheme
-
+(fsReadDirectory "RandomNonEmptyDirectory")
+;  ( "RandomNonEmptyDirectory/subdirectory/" "RandomNonEmptyDirectory/File-1" "RandomNonEmptyDirectory/File-2" "RandomNonEmptyDirectory/File-3" )
 ```
 
 #### fsCreateDirectory
-Функция **fsCreateDirectory**
-* Аргументы: 
-* Результат: 
+Функция **fsCreateDirectory** создаёт директорию
+* Аргументы: путь
+* Результат: null
 ```scheme
-
+(fsCreateDirectory "NewRandomEmptyDirectory")
 ```
 
 #### fsRemoveDirectory
-Функция **fsRemoveDirectory**
-* Аргументы: 
-* Результат: 
+Функция **fsRemoveDirectory** удаляет указанную директорию.  Если она не пуста - прерывает исполнение ошибкой.
+* Аргументы: путь
+* Результат: null
 ```scheme
-
+(fsRemoveDirectory "NewRandomEmptyDirectory")
 ```
 
 #### fsPathCombine
-Функция **fsPathCombine**
-* Аргументы: 
-* Результат: 
+Функция **fsPathCombine** соединяет несколько путей в один.
+* Аргументы: путь, [путь ...]
+* Результат: путь
 ```scheme
-
+(fsPathCombine #path "modules" "subModule/index.brd")
+;  "путь-к-текущему-модулю/modules/subModule/index.brd"
 ```
 
 #### fsPathGetFull
-Функция **fsPathGetFull**
-* Аргументы: 
-* Результат: 
+Функция **fsPathGetFull** достраивает путь до полного пути
+* Аргументы: путь
+* Результат: путь
 ```scheme
-
+(fsPathGetFull "mySubFolder/file.txt")
+;  "путь-к-текущему-модулю/mySubFolder/file.txt"
 ```
 
 #### fsPathGetExtension
-Функция **fsPathGetExtension**
-* Аргументы: 
-* Результат: 
+Функция **fsPathGetExtension** возвращает расширение файла из пути
+* Аргументы: путь (строка)
+* Результат: расширение (строка)
 ```scheme
-
+(fsPathGetExtension "mySubFolder/Test.txt") ;  ".txt"
+(fsPathGetExtension "mySubFolder/Root.brd") ;  ".brd"
 ```
 
 #### fsPathGetFileName
-Функция **fsPathGetFileName**
-* Аргументы: 
-* Результат: 
+Функция **fsPathGetFileName** возвращает имя файла (с расширением) из пути
+* Аргументы: путь (строка)
+* Результат: имя файла (строка)
 ```scheme
-
+(fsPathGetExtension "mySubFolder/Test.txt") ;  "Test.txt"
+(fsPathGetExtension "mySubFolder/Root.brd") ;  "Root.brd"
 ```
 
 #### fsPathGetDirectoryName
-Функция **fsPathGetDirectoryName**
-* Аргументы: 
-* Результат: 
+Функция **fsPathGetDirectoryName** возвращает папку без файла из пути
+* Аргументы: путь (строка)
+* Результат: путь до папки
 ```scheme
-
+(fsPathGetExtension "mySubFolder/Test.txt") ;  "mySubFolder"
+(fsPathGetExtension "mySubFolder/Root.brd") ;  "mySubFolder"
 ```
 
 ---

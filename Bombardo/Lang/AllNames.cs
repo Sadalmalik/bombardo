@@ -272,7 +272,7 @@
         public static readonly string FS_LOAD = "load";
         public static readonly string FS_SAVE = "save";
 
-        public static readonly string FS_EXISTS = "fsExists";
+        public static readonly string FS_EXISTS = "fsExists?";
 
         public static readonly string FS_OPEN = "fsOpen";
         public static readonly string FS_FLUSH = "fsFlush";
