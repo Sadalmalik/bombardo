@@ -18,11 +18,10 @@
 ### Как запустить
 [к оглавлению](#оглавление)
 
-Проект собран в Visual Studio 2017
-Для начала откройте Bombardo.sln в Studio и соберите проект.
-Назначьте автозагружаемым проектом BombardoApp и можно запускать.
-Вы увидите консоль в режиме REPL
-
+Проект собран в Visual Studio 2017  
+Для начала откройте Bombardo.sln в Studio и соберите проект.  
+Назначьте автозагружаемым проектом BombardoApp и можно запускать.  
+Вы увидите консоль в режиме REPL:
 ![Console](https://github.com/Sadalmalik/bombardo/blob/master/Documentation/Console.png?raw=true)
 
 Введите:
