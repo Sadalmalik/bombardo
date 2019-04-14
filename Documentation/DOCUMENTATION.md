@@ -773,28 +773,35 @@ A|B|imp
 [к оглавлению](#оглавление)
 
 Подробное описание модульной системы можно найти [здесь](LANG.OVERVIEW.md#модульная-система).
-
+В каждом модуле объявлены две переменные
 **module** - таблица экспортируемых атомов модуля
 **#path** - путь к текущему модулю
 
 #### require
-Функция **require**
-* Аргументы: 
-* Результат: 
+Функция **require** исполняет (при первом обращении) файл модуля и возвращает экспортированные из него символы.
+* Аргументы:
+  - имя модуля
+  - синтаксические конструкции
+* Результат: таблица|атом  
+Поддерживается 4 варианта синтаксиса
 ```scheme
+(require "ModuleName")
 
+(require "ModuleName" as NewName)
+
+(require "ModuleName" import name1 name2 name3 ...)
+
+(require "ModuleName" importAll)
 ```
 
-as
-import
-importAll
-
 #### export
-Функция **export**
-* Аргументы: 
-* Результат: 
+Функция **export** экспортирует заданный символ из модуля
+* Аргументы: символ
+* Результат: null
 ```scheme
-
+(export something)
+;  По сути эквивалентно выражению
+(define module.something something)
 ```
 
 ---
@@ -803,94 +810,101 @@ importAll
 [к оглавлению](#оглавление)
 
 #### strCreate
-Функция **strCreate**
-* Аргументы: 
-* Результат: 
+Функция **strCreate** создаёт новую строку из списка чисел (желательно **char**)
+* Аргументы: список, каждый элемент должен быть числом
+* Результат: строка
 ```scheme
-
+(strCreate `( 0x48 0x65 0x6C 0x6C 0x6F 0x2C 0x20 0x57 0x6F 0x72 0x6C 0x64 0x21 ) )
+;  Hello, World!
 ```
 
 #### strLength
-Функция **strLength**
-* Аргументы: 
-* Результат: 
+Функция **strLength** возвращает длинну строки
+* Аргументы: строка
+* Результат: число
 ```scheme
-
+(strLength "tenSymbols")    ;  10
 ```
 
 #### strChars
-Функция **strChars**
-* Аргументы: 
-* Результат: 
+Функция **strChars** возвращает список чисел из строки (типа **char**)
+* Аргументы: строка
+* Результат: список чисел
 ```scheme
-
+(strChars "Hello, World!")  ;  ( 0x48 0x65 0x6C 0x6C 0x6F 0x2C 0x20 0x57 0x6F 0x72 0x6C 0x64 0x21 )
+;  Однако
+(print (strChars "Hello, World!"))
+;  Выведет ( H e l l o ,   W o r l d ! )
+;  Потому что print выводит char как символ, а не число
 ```
 
 #### strGet
-Функция **strGet**
-* Аргументы: 
-* Результат: 
+Функция **strGet** берёт из строки конкретный символ
+* Аргументы: строка, индекс
+* Результат: число
 ```scheme
-
+(strGet "Hello, World!" 6)  ;  0x20
 ```
 
-
 #### strConcat
-Функция **strConcat**
-* Аргументы: 
-* Результат: 
+Функция **strConcat** объединяет множество строк в одну. Так же может объединять в строку любые атомы аналогично **print**.
+* Аргументы: что угодно
+* Результат: строка
 ```scheme
-
+(strConcat "Hello" ", " "World!")   ;  "Hello, World!"
 ```
 
 #### strSubstr
-Функция **strSubstr**
-* Аргументы: 
-* Результат: 
+Функция **strSubstr** берёт подстроку данной строки начиная с заданного индекса
+* Аргументы: строка, начало, длинна
+* Результат: строка
 ```scheme
-
+(strSubstr "Hello, World!" 7 5) ;  "World"
 ```
 
 #### strSplit
-Функция **strSplit**
-* Аргументы: 
-* Результат: 
+Функция **strSplit** разделяет строку на несколько подстрок используя заданную строку как разделитель
+* Аргументы: строка, разделитель (строка)
+* Результат: список строк
 ```scheme
-
+(strSplit "Hello, Paris, London, Moscow, Bangkok" ", ")
+;  ( "Hello" "Paris" "London" "Moscow" "Bangkok" )
 ```
 
-
-#### strStartsWith
-Функция **strStartsWith**
-* Аргументы: 
-* Результат: 
+#### strStartsWith?
+Функция **strStartsWith?** проверяет, начинается ли данная строка с заданной подстроки
+* Аргументы: строка, префикс (строка)
+* Результат: true|false
 ```scheme
-
+(strStartsWith? "Hello, World!" "Hello")    ;  true
+(strStartsWith? "Bonjur, World!" "Hello")   ;  false
 ```
 
-#### strEndsWith
-Функция **strEndsWith**
-* Аргументы: 
-* Результат: 
+#### strEndsWith?
+Функция **strEndsWith?** проверяет, заканчивается ли данная строка с заданной подстроки
+* Аргументы: строка, постфикс (строка)
+* Результат: true|false
 ```scheme
-
+(strEndsWith? "Hello, World!" "World!")     ;  true
+(strEndsWith? "Hello, Bangkok!" "World!")   ;  false
 ```
 
 #### strContains
-Функция **strContains**
-* Аргументы: 
-* Результат: 
+Функция **strContains** проверяет, содержит ли данная строка заданную подстроку
+* Аргументы: строка, подстрока (строка)
+* Результат: true|false
 ```scheme
-
+(strContains "Hello, Paris, London, Moscow, Bangkok" "London")  ;  true
+(strContains "Hello, Paris, London, Moscow, Bangkok" "Mexico")  ;  false
 ```
 
-
 #### strReplace
-Функция **strReplace**
-* Аргументы: 
-* Результат: 
+Функция **strReplace** заменяет в строке одну подстроку на другую
+* Аргументы: строка, исходная подстрока, новая подстрока
+* Результат: строка
 ```scheme
-
+(strReplace "Hello, Paris, London, Moscow, Bangkok" "London" "Mexico")
+;  "Hello, Paris, Mexico, Moscow, Bangkok"
 ```
 
 ---

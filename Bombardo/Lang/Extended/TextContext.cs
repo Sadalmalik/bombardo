@@ -53,7 +53,7 @@ namespace Bombardo
                 if(ch==null || !ch.IsNumber())
                     throw new ArgumentException("List musr contains only numbers!");
 
-                sb.Append((char)ch.value);
+                sb.Append(Convert.ToChar(ch.value));
             }
 
             return new Atom(sb);
@@ -74,8 +74,7 @@ namespace Bombardo
                 if (tail == null)
                     tail = list = new Atom();
                 else tail = tail.next = new Atom();
-                tail.type = AtomType.Number;
-                tail.value = chars[i];
+                tail.value = new Atom(AtomType.Number, chars[i]);
             }
             return list;
         }

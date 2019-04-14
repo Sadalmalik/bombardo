@@ -259,9 +259,9 @@
         public static readonly string TEXT_SUBSTR = "strSubstr";
         public static readonly string TEXT_SPLIT = "strSplit";
 
-        public static readonly string TEXT_STARTSWITH = "strStartsWith";
-        public static readonly string TEXT_ENDSWITH = "strEndsWith";
-        public static readonly string TEXT_CONTAINS = "strContains";
+        public static readonly string TEXT_STARTSWITH = "strStartsWith?";
+        public static readonly string TEXT_ENDSWITH = "strEndsWith?";
+        public static readonly string TEXT_CONTAINS = "strContains?";
 
         public static readonly string TEXT_REPLACE = "strReplace";
 
