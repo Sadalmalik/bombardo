@@ -1076,7 +1076,12 @@ A|B|imp
 * Результат: список путей
 ```scheme
 (fsReadDirectory "RandomNonEmptyDirectory")
-;  ( "RandomNonEmptyDirectory/subdirectory/" "RandomNonEmptyDirectory/File-1" "RandomNonEmptyDirectory/File-2" "RandomNonEmptyDirectory/File-3" )
+;  (
+;    "RandomNonEmptyDirectory/subdirectory/"
+;    "RandomNonEmptyDirectory/File-1"
+;    "RandomNonEmptyDirectory/File-2"
+;    "RandomNonEmptyDirectory/File-3"
+;  )
 ```
 
 #### fsCreateDirectory
