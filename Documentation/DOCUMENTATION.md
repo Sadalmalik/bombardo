@@ -774,17 +774,461 @@ A|B|imp
 
 Подробное описание модульной системы можно найти [здесь](LANG.OVERVIEW.md#модульная-система).
 
+**module** - таблица экспортируемых атомов модуля
+**#path** - путь к текущему модулю
+
+#### require
+Функция **require**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+as
+import
+importAll
+
+#### export
+Функция **export**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+---
+
 ### Строки и текст
 [к оглавлению](#оглавление)
+
+#### strCreate
+Функция **strCreate**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strLength
+Функция **strLength**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strChars
+Функция **strChars**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strGet
+Функция **strGet**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+
+#### strConcat
+Функция **strConcat**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strSubstr
+Функция **strSubstr**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strSplit
+Функция **strSplit**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+
+#### strStartsWith
+Функция **strStartsWith**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strEndsWith
+Функция **strEndsWith**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### strContains
+Функция **strContains**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+
+#### strReplace
+Функция **strReplace**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+---
 
 ### Файловая система
 [к оглавлению](#оглавление)
 
+#### load
+Функция **load**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### save
+Функция **save**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsExists
+Функция **fsExists**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsOpen
+Функция **fsOpen**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsFlush
+Функция **fsFlush**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsClose
+Функция **fsClose**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsRead
+Функция **fsRead**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsReadline
+Функция **fsReadline**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsWrite
+Функция **fsWrite**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsReadText
+Функция **fsReadText**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsReadLines
+Функция **fsReadLines**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsWriteText
+Функция **fsWriteText**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsWriteLines
+Функция **fsWriteLines**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsAppendText
+Функция **fsAppendText**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsAppendLines
+Функция **fsAppendLines**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+        
+#### fsIsFile?
+Функция **fsIsFile?**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsIsDirectory?
+Функция **fsIsDirectory?**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsDirectoryIsEmpty?
+Функция **fsDirectoryIsEmpty?**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+
+#### fsReadDirectory
+Функция **fsReadDirectory**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsCreateDirectory
+Функция **fsCreateDirectory**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsRemoveDirectory
+Функция **fsRemoveDirectory**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsPathCombine
+Функция **fsPathCombine**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsPathGetFull
+Функция **fsPathGetFull**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsPathGetExtension
+Функция **fsPathGetExtension**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsPathGetFileName
+Функция **fsPathGetFileName**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### fsPathGetDirectoryName
+Функция **fsPathGetDirectoryName**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+---
+
 ### Таймеры
 [к оглавлению](#оглавление)
 
+#### getTime
+Функция **getTime**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### interval?
+Функция **interval?**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### timeout?
+Функция **timeout?**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### intervalSet
+Функция **intervalSet**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### intervalClear
+Функция **intervalClear**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### intervalTag
+Функция **intervalTag**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### timeoutSet
+Функция **timeoutSet**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### timeoutClear
+Функция **timeoutClear**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### timeoutTag
+Функция **timeoutTag**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+---
+
 ### Многопоточность
 [к оглавлению](#оглавление)
+
+#### concurentQueue?
+Функция **concurentQueue?**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### concurentQueueCreate
+Функция **concurentQueueCreate**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### concurentQueueEnqueue
+Функция **concurentQueueEnqueue**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### concurentQueueDequeue
+Функция **concurentQueueDequeue**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
+
+#### concurentQueueCount
+Функция **concurentQueueCount**
+* Аргументы: 
+* Результат: 
+```scheme
+
+```
 
 
 
