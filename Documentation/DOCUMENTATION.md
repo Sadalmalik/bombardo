@@ -1149,7 +1149,7 @@ A|B|imp
 
 #### getTime
 Функция **getTime** возвращает текущее время в миллисекундах.  
-Реализация (double)DateTime.Now.Ticks / (double)TimeSpan.TicksPerSecond
+Реализация в коде: (double)DateTime.Now.Ticks / (double)TimeSpan.TicksPerSecond
 * Аргументы: нет
 * Результат: число
 
