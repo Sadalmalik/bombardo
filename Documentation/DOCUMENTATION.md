@@ -15,9 +15,6 @@
 * [Таблицы](#таблицы)
 * [Модули](#модули)
 * [Строки и текст](#строки-и-текст)
-
----
-
 * [Файловая система](#файловая-система)
 * [Таймеры](#таймеры)
 * [Многопоточность](#многопоточность)
@@ -1146,76 +1143,77 @@ A|B|imp
 ### Таймеры
 [к оглавлению](#оглавление)
 
-#### getTime
-Функция **getTime**
-* Аргументы: 
-* Результат: 
-```scheme
+Таймеры и интервалы так же реализованы похожими на node.js
+Интервалы вызывают функцию через заданный равный промежуток времени.
+Таймеры вызывают функцию один раз, по прошествии заданного промежутка времени.
 
-```
+#### getTime
+Функция **getTime** возвращает текущее время в миллисекундах.  
+Реализация (double)DateTime.Now.Ticks / (double)TimeSpan.TicksPerSecond
+* Аргументы: нет
+* Результат: число
 
 #### interval?
-Функция **interval?**
-* Аргументы: 
-* Результат: 
-```scheme
-
-```
+Функция **interval?** проверяет является ли объект интервалом
+* Аргументы: нативный объект
+* Результат: true|false
 
 #### timeout?
-Функция **timeout?**
-* Аргументы: 
-* Результат: 
-```scheme
-
-```
+Функция **timeout?** проверяет является ли объект таймером
+* Аргументы: нативный объект
+* Результат: true|false
 
 #### intervalSet
-Функция **intervalSet**
-* Аргументы: 
-* Результат: 
+Функция **intervalSet** создаёт интервал. Имеет специальный вариативный синтаксис, позволяющий присвоить интервалу тег.  
+Возможно теги будут вырезаны как бессмысленные.
+* Аргументы: время | (тэг время), функция
+* Результат: интервал (нативный объект)
 ```scheme
+(define $int1 [intervalSet 1500 (lambda () (print "yo!"))])
 
+(define $int2 [intervalSet `(tag 1500) (lambda () (print "yo!"))])
 ```
 
 #### intervalClear
-Функция **intervalClear**
-* Аргументы: 
-* Результат: 
+Функция **intervalClear** удаляет интервал.
+* Аргументы: интервал (нативный объект)
+* Результат: null
 ```scheme
-
+(intervalClear $int1)
 ```
 
 #### intervalTag
-Функция **intervalTag**
-* Аргументы: 
-* Результат: 
+Функция **intervalTag** возвращает тег интервала
+* Аргументы: интервал (нативный объект)
+* Результат: атом
 ```scheme
-
+(intervalTag $int2) ;  tag
 ```
 
 #### timeoutSet
-Функция **timeoutSet**
-* Аргументы: 
-* Результат: 
+Функция **timeoutSet** создаёт интервал. Имеет специальный вариативный синтаксис, позволяющий присвоить интервалу тег.  
+* Аргументы: время | (тэг время), функция
+* Результат: таймер (нативный объект)
 ```scheme
+(define $tout1 [timeoutSet 1500 (lambda () (print "hay!"))])
 
+(define $tout2 [timeoutSet `(goose 1500) (lambda () (print "hay!"))])
 ```
 
 #### timeoutClear
-Функция **timeoutClear**
-* Аргументы: 
-* Результат: 
+Функция **timeoutClear** удаляет таймер.
+* Аргументы: таймер (нативный объект)
+* Результат: null
 ```scheme
-
+(timeoutClear $tout1)
 ```
 
 #### timeoutTag
-Функция **timeoutTag**
-* Аргументы: 
-* Результат: 
+Функция **timeoutTag** возвращает тег таймера
+* Аргументы: таймер (нативный объект)
+* Результат: атом
 ```scheme
-
+(timeoutTag $tout2) ;  goose
 ```
 
 ---
@@ -1223,44 +1221,57 @@ A|B|imp
 ### Многопоточность
 [к оглавлению](#оглавление)
 
-#### concurentQueue?
-Функция **concurentQueue?**
-* Аргументы: 
-* Результат: 
-```scheme
+Полноценная многопоточность пока не поддерживается.  
+В процессе экспериментов с окнами понадобилась потокобезопасная очередь, поэтому реализовал только её.
 
+#### concurentQueue?
+Функция **concurentQueue?** проверяет что объект является очередью
+* Аргументы: очередь (нативный объект)
+* Результат: true|false
+```scheme
+(concurentQueue? $threadQue)
 ```
 
 #### concurentQueueCreate
-Функция **concurentQueueCreate**
-* Аргументы: 
-* Результат: 
+Функция **concurentQueueCreate** создаёт потокобезопасную очередь.
+* Аргументы: null
+* Результат: очередь (нативный объект)
 ```scheme
-
+(define $threadQue (concurentQueueCreate))
 ```
 
 #### concurentQueueEnqueue
-Функция **concurentQueueEnqueue**
-* Аргументы: 
-* Результат: 
+Функция **concurentQueueEnqueue** добавляет атом в очередь.
+* Аргументы: очередь (нативный объект), атом
+* Результат: null
 ```scheme
-
+(concurentQueueEnqueue $threadQue 15)
+(concurentQueueEnqueue $threadQue "СТОЛ")
+(concurentQueueEnqueue $threadQue false)
 ```
 
 #### concurentQueueDequeue
-Функция **concurentQueueDequeue**
-* Аргументы: 
-* Результат: 
+Функция **concurentQueueDequeue** забирает атом из очереди. Если очередь пуста - возвращает null.
+* Аргументы: очередь (нативный объект)
+* Результат: атом|null
 ```scheme
-
+(concurentQueueDequeue $threadQue)  ;  15
+(concurentQueueDequeue $threadQue)  ;  "СТОЛ"
+(concurentQueueDequeue $threadQue)  ;  false
+(concurentQueueDequeue $threadQue)  ;  null
+(concurentQueueDequeue $threadQue)  ;  null
 ```
 
 #### concurentQueueCount
-Функция **concurentQueueCount**
-* Аргументы: 
-* Результат: 
+Функция **concurentQueueCount** возвращает колличество атомов в очереди.
+* Аргументы: очередь (нативный объект)
+* Результат: число
 ```scheme
+(concurentQueueEnqueue $threadQue `A)
+(concurentQueueEnqueue $threadQue `A)
+(concurentQueueEnqueue $threadQue `AAA!)
 
+(concurentQueueCount $threadQue)    ;  3
 ```
 
 

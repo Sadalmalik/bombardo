@@ -324,11 +324,12 @@
 
         #region Concurrency
 
+        public static readonly string CONCURENCY_QUEUE_PRED = "concurentQueue?";
+
         public static readonly string CONCURENCY_QUEUE_CREATE = "concurentQueueCreate";
         public static readonly string CONCURENCY_QUEUE_ENQUEUE = "concurentQueueEnqueue";
         public static readonly string CONCURENCY_QUEUE_DEQUEUE = "concurentQueueDequeue";
         public static readonly string CONCURENCY_QUEUE_COUNT = "concurentQueueCount";
-        public static readonly string CONCURENCY_QUEUE_PRED = "concurentQueue?";
 
         #endregion
     }
