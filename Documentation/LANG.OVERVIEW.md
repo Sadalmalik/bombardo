@@ -23,7 +23,7 @@
 Назначьте автозагружаемым проектом BombardoApp и можно запускать.
 Вы увидите консоль в режиме REPL
 
-![Console](https://github.com/Sadalmalik/bombardo/tree/master/Documentation/Console.png)
+![Console](https://github.com/Sadalmalik/bombardo/blob/master/Documentation/Console.png?raw=true)
 
 Введите:
 ```scheme
