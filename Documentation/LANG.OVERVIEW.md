@@ -534,19 +534,75 @@ BombardoLangClass.ExecuteFile("path to your file");
 (require "BaseLang" importAll)
 (require "Event")
 
-(defFunct   [MyEventHandler arg]
-            [print arg])
-(define myEvent (Event ))
+(defFunct   [MyEventHandler $arg]
+            [print $arg])
+(define myEvent (Event))
+
+(myEvent.Add [lambda [x] (print "Event handler A : " x)])
+(myEvent.Add [lambda [x] (print "Event handler B : " x)])
+
+(myEvent.Invoke 15)
+;  Event handler A : 15
+;  Event handler B : 15
+
+(myEvent.Invoke `EXTRA)
+;  Event handler A : EXTRA
+;  Event handler B : EXTRA
 ```
 
+### Коллекции
+Хотя таблицы реализованы нативно, все остальные лучше делать на **bombardo**.  
+Первая коллекция - очередь. Её реализации находятся соответственно в **Queue.brd**.
 
+Изначально я реализовал очередь как объект^
+```scheme
+(require "Queue" importAll)
 
+(define queue1 (Queue))
+(queue1.Push 1)
+(queue1.Push 5)
+(queue1.Push 12)
+(queue1.Push 27)
 
+(print (queue1.Pop))    ;  1
+(print (queue1.Pop))    ;  5
+(print (queue1.Pop))    ;  12
+(print (queue1.Pop))    ;  27
+```
+Класс Queue имеет следующие методы:
+* **Empty?** - проверяет что очередь пустая
+* **GetAll** - возвращает список всех элементов
+* **Push** - добавляет элемент в очередь
+* **Pop** - вынимает элемент
+* **Clear** - очищает очередь
+  
+Но прочитав SICP я сделал более функциональную реализацию очереди:
+```scheme
+(require "Queue" importAll)
 
+(define queue2 (QueMake))
 
+(QuePush queue2 2)
+(QuePush queue2 4)
+(QuePush queue2 9)
+(QuePush queue2 23)
 
-
-
+(print (QuePop queue2)) ;  2
+(print (QuePop queue2)) ;  4
+(print (QuePop queue2)) ;  9
+(print (QuePop queue2)) ;  23
+```
+Эта реализация представленна набором меторов, оперирующих с списковой структурой очереди.
+* **QueMake** - Создаёт новую структуру очереди
+* **QuePush** - добавляет элемент в очередь
+* **QuePop** - вынимает элемент из очереди
+* **QuePeek** - даёт первый элемент, не вынимая его из очереди
+* **QueGetList** - возвращает список элементов из очереди
+* **QueSetList** - задаёт очереди новый список элементов
+* **QueClear** - очищает очередь  
+Данная реализация очереди более приближена к языку и его внутреннему устройству, но что лучше использовать - решать вам.
+  
+В последствии мне понадобились потокобезопасные очереди. Поскольку полноценной поддержки многопоточности в языке я пока не делал - то я просто реализовал отдельно очередь в виде C# объекта и предоставил [методы работы с ней](DOCUMENTATION.md#многопоточность).
 
 
 
