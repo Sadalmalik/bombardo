@@ -517,8 +517,6 @@ BombardoLangClass.ExecuteFile("path to your file");
 ))
 ```
 
-Однако следует заметить что конструкции 
-
 Следующая реализованная конструкция - **let**
 ```scheme
 (let [(a 15)
