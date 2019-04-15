@@ -215,9 +215,9 @@ BombardoLangClass.ExecuteFile("path to your file");
 ;  Более сложный пример кода, нахождение длинны списка:
 (defFunct   [Length $list]
     (if     [null? $list]
-	        0   ;  Если аргумент null - 0, иначе прибавляем 1 к длинне хвоста списка:
-	        [+ 1 (Length (cdr $list))]
-	)
+            0   ;  Если аргумент null - 0, иначе прибавляем 1 к длинне хвоста списка:
+            [+ 1 (Length (cdr $list))]
+    )
 )
 
 ```
@@ -251,9 +251,9 @@ BombardoLangClass.ExecuteFile("path to your file");
     (define $var1 ...)  ;  Объявляет переменную во внутреннем контексте
     (define $var2 ...)
     (define $var3 ...)
-	(doSomething ...)   ;
+    (doSomething ...)   ;
     (set! $arg1 ...)    ;  Поскольку аргументы определены в данном контексте - их можно изменять
-	(generate final result)
+    (generate final result)
 ))
 ```
 
@@ -354,7 +354,7 @@ BombardoLangClass.ExecuteFile("path to your file");
 Отдельная возможность - напрямую заменить значение **module** - так сделано в примере с созданием класса
 ```scheme
 (define Class (macros $sexp
-	...
+    ...
 ))
 (define module Class)
 ```
@@ -421,9 +421,9 @@ BombardoLangClass.ExecuteFile("path to your file");
 ```scheme
 (define Point (lambda [x y]
     (define this (table))
-	(define this.x x)
-	(define this.y y)
-	this    ;  просто возвращает объект
+    (define this.x x)
+    (define this.y y)
+    this    ;  просто возвращает объект
 ))
 ```
 Однако каждый раз объявлять this - не удобно. Поэтому можно упаковать объявление в макрос.  
@@ -445,8 +445,8 @@ BombardoLangClass.ExecuteFile("path to your file");
 
 ;  Таким образом теперь можно написать следующее:
 (define Point (Class [x y]
-	(define this.x x)
-	(define this.y y)
+    (define this.x x)
+    (define this.y y)
 ))
 ; Это объявление развернётся в функцию, описанную в начале.
 
