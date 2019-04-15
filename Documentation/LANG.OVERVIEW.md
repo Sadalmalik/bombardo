@@ -505,6 +505,18 @@ BombardoLangClass.ExecuteFile("path to your file");
 (define define (macro ...))
 ```
 
+Что особенно приятно - макрос defFunct оказался полностью совместим с Class:
+```scheme
+(define Chick (Class []
+    (defFunct [this.Say]
+        (print "Chick say Chi!")
+    )
+    (defFunct [this.Scream]
+        (print "Chick say YYYAAAARRRRRRRR!")
+    )
+))
+```
+
 Однако следует заметить что конструкции 
 
 Следующая реализованная конструкция - **let**
