@@ -1,0 +1,1534 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Evaluator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Core/Atom.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Core/BombardoException.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Core/Context.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Core/Function.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Core/StackHandler.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Names.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Notes.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Utils/ContextUtils.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Bombardo/V2/Utils/StructureUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Bombardo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/Bombardo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Bombardo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/Bombardo.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/BombardoUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/BombardoUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Atom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Atom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/BombardoException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/BombardoException.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Closure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Closure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Context.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Evaluator.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Lexer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Lexer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/ParserExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/ParserExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Procedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Core/Procedure.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/AllNames.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/AllNames.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/ControlContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/ControlContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/GeneralContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/GeneralContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/ListContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/ListContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/ListSugarContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/ListSugarContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/MathContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/TableContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/TableContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/TypePredicatesContextcs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Base/TypePredicatesContextcs.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/FileSystemContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/FileSystemContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/LogicContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/LogicContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/ModuleSystemContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/TextContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/TextContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/ThreadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/ThreadContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/TimersContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/TimersContext.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/UNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/UNumber.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/ArgUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Utils/ArgUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/CommonUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Utils/CommonUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/ContextUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Utils/ContextUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Utils/FSUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/StringExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/V1/Utils/StringExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/REPL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/REPL.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/SimpleDialogWindow/DialogWindow.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/SimpleDialogWindow/DialogWindow.designer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/SimpleDialogWindow/DialogWindow.resx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/SimpleDialogWindow/DialogWindowContext.cs" beforeDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-929">
+              <caret line="97" column="24" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+              <folding>
+                <marker date="1590858908105" expanded="true" signature="6:37" ph="..." />
+                <marker date="1590858908105" expanded="true" signature="60:4380" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="86:4378" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="174:217" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="254:284" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="312:349" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="377:447" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="477:509" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="595:4375" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="751:4304" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="774:867" ph="/* Console.WriteLine($&quot;RetValue: {_retValue}&quot;); ... */" />
+                <marker date="1590858908105" expanded="true" signature="961:3925" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="1022:1106" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="1143:1468" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="1213:1305" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="1340:1422" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="1712:1910" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="2107:2305" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="2426:2557" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="2633:2746" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="2875:3192" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="2956:3072" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="3401:3466" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="3671:3883" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="3707:3807" ph="{...}" />
+                <marker date="1590858908105" expanded="true" signature="4041:4143" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/ParserExtensions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+              <folding>
+                <marker date="1590332674211" expanded="false" signature="6:51" ph="..." />
+                <marker date="1590332674211" expanded="true" signature="74:2390" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="126:891" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="229:409" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="491:885" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="549:674" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="723:849" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="996:2388" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="1168:1437" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="1519:2382" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="1576:1738" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="1785:1948" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="1995:2136" ph="{...}" />
+                <marker date="1590332674211" expanded="true" signature="2186:2346" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Lexer.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="646">
+              <caret line="47" column="83" selection-start-line="47" selection-start-column="83" selection-end-line="47" selection-end-column="83" />
+              <folding>
+                <marker date="1590332674142" expanded="false" signature="6:85" ph="..." />
+                <marker date="1590332674142" expanded="true" signature="108:2799" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="137:340" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="364:558" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="470:552" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="586:820" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="698:814" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="844:2797" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="933:1506" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="1560:2218" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="1772:2180" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="1854:1990" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="2011:2166" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="2319:2791" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="2413:2755" ph="{...}" />
+                <marker date="1590332674142" expanded="true" signature="2593:2741" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+              <folding>
+                <marker date="1590858967563" expanded="true" signature="36:2438" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="73:2436" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="107:725" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="796:1017" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="895:996" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="1061:1209" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="1370:1480" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="1540:1785" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="1659:1729" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="1845:2132" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="2006:2076" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="2192:2433" ph="{...}" />
+                <marker date="1590858967563" expanded="true" signature="2307:2377" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Atom.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1054">
+              <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+              <folding>
+                <marker date="1590347218318" expanded="true" signature="6:32" ph="..." />
+                <marker date="1590347218318" expanded="true" signature="55:3979" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="80:711" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="376:708" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="397:704" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="731:3977" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="1111:1152" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="1190:1273" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="1302:1388" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="1434:1509" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="1547:1631" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="1664:1758" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="2220:2371" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="2406:2534" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="2468:2513" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="2606:3902" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="2627:3898" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3112:3162" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3218:3277" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3287:3328" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3352:3595" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3419:3486" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3497:3588" ph="{...}" />
+                <marker date="1590347218318" expanded="true" signature="3939:3974" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/StackHandler.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2244">
+              <caret line="155" column="43" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
+              <folding>
+                <marker date="1590704313831" expanded="true" signature="6:66" ph="..." />
+                <marker date="1590704313831" expanded="true" signature="89:3290" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="116:1411" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="310:373" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="399:472" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="495:562" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="586:655" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="675:736" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="756:817" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="855:921" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="959:1061" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="1092:1408" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="1439:3288" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="1681:1757" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="1805:2105" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="1854:2101" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="2134:2185" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="2220:2351" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="2432:2672" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="2750:2985" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="3007:3285" ph="{...}" />
+                <marker date="1590704313831" expanded="true" signature="3144:3222" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BombardoApp/Program.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+              <folding>
+                <marker date="1590354524316" expanded="false" signature="6:49" ph="..." />
+                <marker date="1590354524316" expanded="true" signature="72:738" ph="{...}" />
+                <marker date="1590354524316" expanded="true" signature="92:736" ph="{...}" />
+                <marker date="1590354524316" expanded="true" signature="145:730" ph="{...}" />
+                <marker date="1590354524316" expanded="true" signature="214:720" ph="/* if (args==null || args.Length==0) ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Function.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="595">
+              <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+              <folding>
+                <marker date="1590354151391" expanded="true" signature="36:1234" ph="{...}" />
+                <marker date="1590354151391" expanded="true" signature="61:1232" ph="{...}" />
+                <marker date="1590354151391" expanded="true" signature="320:467" ph="{...}" />
+                <marker date="1590354151391" expanded="true" signature="592:739" ph="{...}" />
+                <marker date="1590354151391" expanded="true" signature="813:1229" ph="{...}" />
+                <marker date="1590354151391" expanded="true" signature="856:997" ph="{...}" />
+                <marker date="1590354151391" expanded="true" signature="1013:1084" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V2/Utils/StructureUtils.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="476">
+              <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+              <folding>
+                <marker date="1590353538489" expanded="true" signature="21:4686" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="59:4684" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="113:594" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="656:994" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="760:959" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1043:1379" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1127:1369" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1428:1782" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1512:1772" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1859:2117" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1886:1972" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="1980:2092" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="2183:2479" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="2554:2919" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="3000:3434" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="3513:4016" ph="{...}" />
+                <marker date="1590353538489" expanded="true" signature="4109:4681" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/ListContext.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2006">
+              <caret line="128" column="27" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
+              <folding>
+                <marker date="1590332674205" expanded="true" signature="36:9962" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="60:9960" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="116:1383" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="1444:1612" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="1672:1902" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="1962:2191" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="2260:2778" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="2283:2448" ph="/* (define last (lambda [list] ... */" />
+                <marker date="1590332674205" expanded="true" signature="2841:3523" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="2864:2974" ph="/* (define append (lambda [list item] ... */" />
+                <marker date="1590332674205" expanded="true" signature="3590:4243" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="4304:4736" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="4585:4701" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="4804:5173" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="4972:5138" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="5236:5637" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="5700:6099" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="6213:7044" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="6385:6631" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="7105:7508" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="7334:7472" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="7568:8345" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="7857:8309" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="8098:8295" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="8408:9318" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="8697:9282" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="9068:9268" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="9391:9954" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="9709:9889" ph="{...}" />
+                <marker date="1590332674205" expanded="true" signature="9775:9875" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>quote</find>
+      <find>Quoting</find>
+      <find>context</find>
+      <find>=null</find>
+      <find>table&quot;</find>
+      <find>namespace Bombardo</find>
+      <find>ERROR</find>
+      <find>eval-sexp-head</find>
+      <find>eval-sexp-args</find>
+      <find>RemoveFrame</find>
+      <find>OfflineTimer</find>
+      <find>Reverse</find>
+      <find>func</find>
+      <find>-eval-block-</find>
+      <find>-eval-each-</find>
+    </findStrings>
+    <replaceStrings>
+      <replace>namespace Bombardo.V1</replace>
+    </replaceStrings>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/TableContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/ControlContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/ListContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Unity/Agatha/Assets/Plugins/Ink/Example/Scripts/BasicInkExample.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/GeneralContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Extended/FileSystemContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Utils/CommonUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Utils/ArgUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Names.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoApp/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Core/Function.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoApp/REPL.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Core/StackHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Core/Atom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Core/Context.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Utils/StructureUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../Unity/Expand/Assets/Code/ShootA_Animator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Bombardo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/9a/511aa4ce/Console.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Parser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Closure.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Procedure.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Evaluator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Atom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/ParserExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Lexer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Core/Context.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/V1/Lang/AllNames.cs" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Bombardo/Core/Lexer.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core/Parser.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core/Atom.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Utils/ContextUtils.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Lang/Base/TableContext.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core/Evaluator.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core.V2/Atom.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core.V2/Context.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core.V2/StackHandler.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core.V2/Evaluator.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Core.V1/Evaluator.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V1/Lang/Extended/FileSystemContext.cs" />
+        <option value="$PROJECT_DIR$/BombardoApp/REPL.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V1/Utils/ArgUtils.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Names.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Context.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Atom.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Notes.txt" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Utils/StructureUtils.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Function.cs" />
+        <option value="$PROJECT_DIR$/BombardoApp/Program.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Utils/ContextUtils.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/BombardoException.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/StackHandler.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" />
+        <option value="$PROJECT_DIR$/../../Unity/Agression/Assets/Game/Shaders/Force Field.shader" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectConfigurationFiles">
+    <option name="files">
+      <list>
+        <option value="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/vcs.xml" />
+        <option value="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/indexLayout.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="37" />
+    <option name="y" value="77" />
+    <option name="width" value="1773" />
+    <option name="height" value="878" />
+  </component>
+  <component name="ProjectView">
+    <navigator currentView="SolutionExplorer" proportions="" version="1">
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="AssemblyExplorer" />
+      <pane id="FileSystemExplorer" />
+      <pane id="SolutionExplorer">
+        <subPane>
+          <expand>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="V1" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="V1" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Core" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+            <path>
+              <item name="" type="784c90a0:SolutionExplorerRootNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
+              <item name="V2" type="24d0babc:SolutionExplorerModelNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+        <option name="show-all-files" value="false" />
+      </pane>
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Rider.DefaultBreakpoints.AreToggled" value="true" />
+    <property name="Rider.ProjectViewActivator.IsNotFirstRun" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="configurable.group.appearance" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager">
+    <configuration name="BombardoApp" type="DotNetProject" factoryName=".NET Project">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/BombardoApp/bin/Debug/BombardoApp.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/BombardoApp/bin/Debug" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <option name="USE_MONO" value="0" />
+      <option name="RUNTIME_ARGUMENTS" value="" />
+      <option name="PROJECT_PATH" value="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" />
+      <option name="PROJECT_EXE_PATH_TRACKING" value="1" />
+      <option name="PROJECT_ARGUMENTS_TRACKING" value="1" />
+      <option name="PROJECT_WORKING_DIRECTORY_TRACKING" value="1" />
+      <option name="PROJECT_KIND" value="Console" />
+      <option name="PROJECT_TFM" value=".NETFramework,Version=v4.6.1" />
+      <method v="2">
+        <option name="Build" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="" />
+      <created>1587073231046</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587073231046</updated>
+      <workItem from="1587073234768" duration="845000" />
+      <workItem from="1587153820995" duration="616000" />
+      <workItem from="1587310776240" duration="1484000" />
+      <workItem from="1587414571395" duration="599000" />
+      <workItem from="1587421477002" duration="626000" />
+      <workItem from="1587463779612" duration="599000" />
+      <workItem from="1587494627691" duration="2229000" />
+      <workItem from="1587547538590" duration="3733000" />
+      <workItem from="1587565116040" duration="1812000" />
+      <workItem from="1587663714736" duration="603000" />
+      <workItem from="1587673430093" duration="1271000" />
+      <workItem from="1587717140975" duration="1802000" />
+      <workItem from="1587745015994" duration="1487000" />
+      <workItem from="1587823539556" duration="2413000" />
+      <workItem from="1587894221624" duration="7757000" />
+      <workItem from="1588012948813" duration="3325000" />
+      <workItem from="1588064068255" duration="2167000" />
+      <workItem from="1588104811427" duration="4107000" />
+      <workItem from="1588157878144" duration="600000" />
+      <workItem from="1588177085012" duration="3260000" />
+      <workItem from="1588277850738" duration="1201000" />
+      <workItem from="1588324162278" duration="2477000" />
+      <workItem from="1588358355226" duration="2579000" />
+      <workItem from="1588420120565" duration="2638000" />
+      <workItem from="1588506014929" duration="4771000" />
+      <workItem from="1589446471838" duration="6758000" />
+      <workItem from="1589537858218" duration="1961000" />
+      <workItem from="1589548774565" duration="6713000" />
+      <workItem from="1589626868420" duration="2921000" />
+      <workItem from="1589731274397" duration="1800000" />
+      <workItem from="1589829132336" duration="633000" />
+      <workItem from="1589891481855" duration="1940000" />
+      <workItem from="1589922938825" duration="599000" />
+      <workItem from="1589967245268" duration="599000" />
+      <workItem from="1590089316091" duration="3518000" />
+      <workItem from="1590258381015" duration="1198000" />
+      <workItem from="1590320074020" duration="6434000" />
+      <workItem from="1590343639036" duration="599000" />
+      <workItem from="1590345293525" duration="8824000" />
+      <workItem from="1590395566375" duration="1421000" />
+      <workItem from="1590406640667" duration="1855000" />
+      <workItem from="1590412441284" duration="1498000" />
+      <workItem from="1590415438350" duration="2667000" />
+      <workItem from="1590434109880" duration="1740000" />
+      <workItem from="1590694638217" duration="4548000" />
+      <workItem from="1590739980487" duration="4429000" />
+      <workItem from="1590781030875" duration="1198000" />
+      <workItem from="1590858809128" duration="892000" />
+      <workItem from="1591005569941" duration="3034000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="122780000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Favorites" order="0" side_tool="true" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.1098081" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.23560767" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.29104477" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="NuGet" order="7" weight="0.18230277" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="10" />
+      <window_info anchor="bottom" id="Unit Tests" order="11" />
+      <window_info anchor="bottom" id="Terminal" order="12" />
+      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="14" />
+      <window_info anchor="bottom" id="Build" order="15" weight="0.73134327" />
+      <window_info anchor="right" id="Errors In Solution" order="0" />
+      <window_info anchor="right" id="Database" order="1" />
+      <window_info anchor="right" id="Unit Tests Coverage" order="2" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="6" sideWeight="0.49761525" visible="true" weight="0.32995737" />
+      <window_info anchor="right" id="Designer Toolbox" order="7" sideWeight="0.5023847" side_tool="true" weight="0.29637527" />
+    </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" suspend="NONE" type="DotNet Exception Breakpoints">
+          <properties exception="System.Threading.ThreadAbortException" displayValue="System.Threading.ThreadAbortException" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Bombardo/V1/Core/Evaluator.cs</url>
+          <line>367</line>
+          <properties documentPath="$PROJECT_DIR$/Bombardo/Core/Evaluator.cs" initialLine="148" />
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs</url>
+          <line>55</line>
+          <properties documentPath="$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" initialLine="52">
+            <startOffsets>
+              <option value="1548" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1587" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs</url>
+          <line>70</line>
+          <properties documentPath="$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" initialLine="67">
+            <startOffsets>
+              <option value="1853" />
+            </startOffsets>
+            <endOffsets>
+              <option value="1892" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs</url>
+          <line>86</line>
+          <properties documentPath="$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" initialLine="83">
+            <startOffsets>
+              <option value="2200" />
+            </startOffsets>
+            <endOffsets>
+              <option value="2239" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs</url>
+          <line>148</line>
+          <properties documentPath="$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs" initialLine="145">
+            <startOffsets>
+              <option value="3417" />
+            </startOffsets>
+            <endOffsets>
+              <option value="3441" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/../../Unity/Expand/Assets/Code/ShootA_Animator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#78#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Parser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1145">
+          <caret line="113" column="29" selection-start-line="113" selection-start-column="28" selection-end-line="113" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Unity/Expand/Assets/Edge/EdgeDetectNormalsColor.shader">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/TableContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="142">
+          <caret line="46" column="31" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Unity/Agatha/Assets/AgathaGame/Code/Character.cs" />
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/ControlContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3961">
+          <caret line="252" column="46" selection-start-line="252" selection-start-column="46" selection-end-line="252" selection-end-column="46" />
+          <folding>
+            <marker date="1590332674105" expanded="true" signature="36:10763" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="72:10761" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="128:2941" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="151:1028" ph="/* (nope anything) -&gt; null ... */" />
+            <marker date="1590332674105" expanded="true" signature="1981:2273" ph="/* (lambda (...) expression) ... */" />
+            <marker date="1590332674105" expanded="true" signature="3002:3047" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="3110:3206" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="3268:3325" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="3395:3789" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="3578:3731" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="3849:4113" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="4178:4256" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="4317:5175" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="4394:5139" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="4804:4979" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="5022:5125" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="5234:5994" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="5544:5707" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="5746:5834" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="5871:5959" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="6056:6466" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="6347:6430" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="6528:6939" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="6820:6903" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="7002:7484" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="7547:8029" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="8092:8882" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="8952:9365" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="9433:9892" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="9954:10755" ph="{...}" />
+            <marker date="1590332674105" expanded="true" signature="10041:10315" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/GeneralContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="51" column="55" selection-start-line="51" selection-start-column="55" selection-end-line="51" selection-end-column="55" />
+          <folding>
+            <marker date="1590332674095" expanded="false" signature="6:47" ph="..." />
+            <marker date="1590332674095" expanded="true" signature="70:4587" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="106:4585" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="162:1246" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="1308:1844" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="1385:1776" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="1909:2027" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="2098:2491" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="2556:2932" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="2997:3122" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="3189:3462" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="3537:3762" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="3829:4054" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="4121:4174" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="4247:4579" ph="{...}" />
+            <marker date="1590332674095" expanded="true" signature="4365:4499" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Closure.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding>
+            <marker date="1590332674155" expanded="true" signature="21:1030" ph="{...}" />
+            <marker date="1590332674155" expanded="true" signature="60:1028" ph="{...}" />
+            <marker date="1590332674155" expanded="true" signature="243:371" ph="{...}" />
+            <marker date="1590332674155" expanded="true" signature="435:658" ph="{...}" />
+            <marker date="1590332674155" expanded="true" signature="701:1022" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Atom.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="298" column="5" selection-start-line="31" selection-end-line="298" selection-end-column="5" />
+          <folding>
+            <marker date="1590332661636" expanded="false" signature="6:32" ph="..." />
+            <marker date="1590332661636" expanded="true" signature="55:10201" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="83:882" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="437:876" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="473:866" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="905:10199" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1418:1538" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1573:1696" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1748:1860" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1904:2025" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="2064:2195" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="2797:2996" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3037:3245" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3123:3210" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3321:5485" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3357:5475" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4039:4152" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4227:4346" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4375:4476" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4518:5028" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4648:4784" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4817:5002" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="5528:5584" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="5636:5931" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="5989:6353" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="6417:6850" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="6912:7414" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="7490:8061" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="8121:8598" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="8665:9013" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9067:9405" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9171:9370" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9454:9790" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9538:9780" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9839:10193" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9923:10183" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Context.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="652">
+          <caret line="83" column="5" selection-start-line="4" selection-start-column="1" selection-end-line="83" selection-end-column="5" />
+          <folding>
+            <marker date="1590332674170" expanded="false" signature="6:47" ph="..." />
+            <marker date="1590332674170" expanded="true" signature="70:2760" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="124:2758" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="263:403" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="465:672" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="731:1194" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="778:985" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="1258:1597" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="1650:2641" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="1801:2631" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="1852:1971" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="2025:2121" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="2199:2505" ph="{...}" />
+            <marker date="1590332674170" expanded="true" signature="2684:2752" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Evaluator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+          <folding>
+            <marker date="1590333952277" expanded="false" signature="6:88" ph="..." />
+            <marker date="1590333952277" expanded="true" signature="137:2057" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="202:561" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="305:538" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="624:1109" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="756:1088" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1008:1083" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1168:2054" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1231:1324" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1347:2033" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1727:1780" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1815:1870" ph="{...}" />
+            <marker date="1590333952277" expanded="true" signature="1896:1947" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Extended/FileSystemContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="31">
+          <caret line="2" column="23" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="23" />
+          <folding>
+            <marker date="1590333770381" expanded="true" signature="6:89" ph="..." />
+            <marker date="1590333770381" expanded="true" signature="112:20824" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="142:20822" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="198:4210" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="221:352" ph="/* (load &quot;filepath&quot;) -&gt; list ... */" />
+            <marker date="1590333770381" expanded="true" signature="527:1226" ph="/* (fsExists &quot;filepath&quot;) -&gt; true|false ... */" />
+            <marker date="1590333770381" expanded="true" signature="2375:2465" ph="/* (fsFile? &quot;path&quot;) -&gt; true | false ... */" />
+            <marker date="1590333770381" expanded="true" signature="2795:2987" ph="/* (fsReadDirectory &quot;directoryPath&quot;) -&gt; ( &quot;file1&quot; &quot;file2&quot; &quot;file3&quot; ... ) ... */" />
+            <marker date="1590333770381" expanded="true" signature="3307:3688" ph="/* (fsPathCombine &quot;path1&quot; &quot;path2&quot; &quot;path3&quot;) -&gt; &quot;path1/path2/path3&quot; ... */" />
+            <marker date="1590333770381" expanded="true" signature="4272:4760" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="4527:4724" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="4822:5651" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="5345:5526" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="5715:6008" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="6070:7013" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="6548:6738" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="6787:6977" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="7084:7415" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="7478:7910" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="7980:8392" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="8458:8874" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="8937:10984" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="9431:10948" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="9582:10807" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="11058:11410" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="11477:11994" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="12061:12609" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="12677:13582" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="13200:13461" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="13650:14199" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="14268:15162" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="14791:15052" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="15233:15661" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="15737:16166" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="16247:16746" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="16825:17986" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="18059:18377" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="18450:18993" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="19062:19536" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="19218:19446" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="19605:19850" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="19924:20170" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="20243:20488" ph="{...}" />
+            <marker date="1590333770381" expanded="true" signature="20566:20816" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoApp/REPL.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2839">
+          <caret line="167" column="48" selection-start-line="167" selection-start-column="48" selection-end-line="167" selection-end-column="48" />
+          <folding>
+            <marker date="1590333803375" expanded="true" signature="6:64" ph="..." />
+            <marker date="1590333803375" expanded="true" signature="87:6413" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="113:6411" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="235:2232" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="1435:2222" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="1469:2079" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="1674:2061" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="1787:2039" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="2117:2208" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="2304:2573" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="2407:2511" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="2656:2748" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="2817:3422" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="3497:4253" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="4315:4387" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="4449:5188" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="4726:4862" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="4983:5119" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="5254:6405" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="5294:5434" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="5516:5656" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="5749:5889" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="6084:6369" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="6118:6226" ph="{...}" />
+            <marker date="1590333803375" expanded="true" signature="6264:6355" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Utils/ArgUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="33" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="33" />
+          <folding>
+            <marker date="1590333890593" expanded="true" signature="42:1026" ph="{...}" />
+            <marker date="1590333890593" expanded="true" signature="63:1024" ph="{...}" />
+            <marker date="1590333890593" expanded="true" signature="115:426" ph="{...}" />
+            <marker date="1590333890593" expanded="true" signature="147:416" ph="{...}" />
+            <marker date="1590333890593" expanded="true" signature="536:1017" ph="{...}" />
+            <marker date="1590333890593" expanded="true" signature="580:980" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Procedure.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="47" column="9" selection-start-line="5" selection-start-column="5" selection-end-line="47" selection-end-column="9" />
+          <folding>
+            <marker date="1590332674202" expanded="true" signature="36:1578" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="65:1576" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="364:541" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="674:851" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="914:1570" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="1011:1159" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="1192:1333" ph="{...}" />
+            <marker date="1590332674202" expanded="true" signature="1350:1425" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Utils/CommonUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="17" selection-start-line="4" selection-start-column="17" selection-end-line="4" selection-end-column="17" />
+          <folding>
+            <marker date="1590332674192" expanded="true" signature="56:672" ph="{...}" />
+            <marker date="1590332674192" expanded="true" signature="87:670" ph="{...}" />
+            <marker date="1590332674192" expanded="true" signature="166:664" ph="{...}" />
+            <marker date="1590332674192" expanded="true" signature="267:614" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/BombardoException.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="63" selection-end-column="5" />
+          <folding>
+            <marker date="1590332674128" expanded="false" signature="6:66" ph="..." />
+            <marker date="1590332674128" expanded="true" signature="89:1905" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="124:306" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="231:300" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="354:1903" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="509:623" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="706:822" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="964:1080" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="1138:1218" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="1261:1897" ph="{...}" />
+            <marker date="1590332674128" expanded="true" signature="1749:1853" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/AllNames.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="5" selection-start-line="4" selection-start-column="5" selection-end-line="6" selection-end-column="61" />
+          <folding>
+            <marker date="1590332674209" expanded="true" signature="21:14779" ph="{...}" />
+            <marker date="1590332674209" expanded="true" signature="106:14777" ph="{...}" />
+            <marker date="1590332674209" expanded="false" signature="244:2838" ph="Base lisp symbols" />
+            <marker date="1590332674209" expanded="false" signature="2848:4555" ph="Main lisp symbols" />
+            <marker date="1590332674209" expanded="false" signature="4565:5206" ph="Base type predicates" />
+            <marker date="1590332674209" expanded="false" signature="5216:5661" ph="Base logic symbols" />
+            <marker date="1590332674209" expanded="false" signature="5671:9642" ph="Math symbols" />
+            <marker date="1590332674209" expanded="true" signature="9652:10334" ph="Table|Context names" />
+            <marker date="1590332674209" expanded="false" signature="10344:10918" ph="Module System" />
+            <marker date="1590332674209" expanded="false" signature="10928:11705" ph="Text symbols" />
+            <marker date="1590332674209" expanded="false" signature="11715:13585" ph="File System" />
+            <marker date="1590332674209" expanded="false" signature="13595:14285" ph="Time System" />
+            <marker date="1590332674209" expanded="false" signature="14295:14771" ph="Concurrency" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Names.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="61" selection-start-line="5" selection-start-column="61" selection-end-line="5" selection-end-column="61" />
+          <folding>
+            <marker date="1590334529948" expanded="true" signature="21:181" ph="{...}" />
+            <marker date="1590334529948" expanded="true" signature="51:179" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Notes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="36" selection-start-line="3" selection-start-column="36" selection-end-line="3" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Context.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="799">
+          <caret line="48" column="23" selection-start-line="48" selection-start-column="23" selection-end-line="48" selection-end-column="23" />
+          <folding>
+            <marker date="1590334554527" expanded="false" signature="6:47" ph="..." />
+            <marker date="1590334554527" expanded="true" signature="70:2752" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="124:2750" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="263:403" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="465:672" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="731:1194" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="778:985" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="1258:1597" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="1650:2633" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="1799:2623" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="1848:1967" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="2019:2115" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="2193:2497" ph="{...}" />
+            <marker date="1590334554527" expanded="true" signature="2676:2744" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Utils/ContextUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="669">
+          <caret line="147" column="5" lean-forward="true" selection-start-line="2" selection-start-column="1" selection-end-line="147" selection-end-column="5" />
+          <folding>
+            <marker date="1590332674115" expanded="true" signature="22:4849" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="54:4847" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="138:430" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="186:321" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="338:420" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="506:792" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="554:686" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="703:782" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="856:1128" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="904:1029" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="1046:1118" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="1222:2274" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="1274:1651" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="1359:1577" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="1668:2264" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="1908:2189" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="2365:3416" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="2417:2796" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="2502:2725" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="2813:3406" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="3053:3334" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="3495:4237" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="3547:3624" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="3641:4227" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="3881:4162" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="4323:4630" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="4376:4620" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="4703:4841" ph="{...}" />
+            <marker date="1590332674115" expanded="true" signature="4752:4831" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoApp/SimpleDialogWindow/DialogWindow.cs" />
+    <entry file="file://$PROJECT_DIR$/BombardoApp/SimpleDialogWindow/DialogWindow.designer.cs" />
+    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/9a/511aa4ce/Console.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="2097" column="23" selection-start-line="2097" selection-start-column="23" selection-end-line="2097" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Unity/Agatha/Assets/Plugins/Ink/Example/Scripts/BasicInkExample.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/Bombardo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="17" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="17" />
+          <folding>
+            <marker date="1590332674187" expanded="false" signature="6:47" ph="..." />
+            <marker date="1590332674187" expanded="true" signature="70:2331" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="107:2329" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="271:775" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="305:613" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="630:765" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="817:1016" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="857:1006" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="1102:1194" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="1249:1833" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="1997:2165" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="2217:2323" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/BombardoException.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="18" column="9" selection-start-line="18" selection-start-column="9" selection-end-line="18" selection-end-column="9" />
+          <folding>
+            <marker date="1590703894748" expanded="true" signature="6:66" ph="..." />
+            <marker date="1590703894748" expanded="true" signature="89:502" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="138:500" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="209:229" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="312:332" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="474:494" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Utils/ContextUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="30" column="27" selection-start-line="30" selection-start-column="27" selection-end-line="30" selection-end-column="27" />
+          <folding>
+            <marker date="1590354399764" expanded="true" signature="50:3407" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="125:315" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="158:251" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="259:311" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="385:569" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="418:508" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="516:565" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="627:797" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="660:743" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="751:793" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="885:1595" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="922:1188" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="985:1135" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="1196:1591" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="1369:1536" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="1680:2384" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="1717:1980" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="1780:1930" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="1988:2380" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="2161:2328" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="2457:2938" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="2494:2541" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="2549:2934" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="2722:2889" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="3018:3250" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="3056:3246" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="3317:3404" ph="{...}" />
+            <marker date="1590354399764" expanded="true" signature="3351:3400" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/Lexer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="47" column="83" selection-start-line="47" selection-start-column="83" selection-end-line="47" selection-end-column="83" />
+          <folding>
+            <marker date="1590332674142" expanded="false" signature="6:85" ph="..." />
+            <marker date="1590332674142" expanded="true" signature="108:2799" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="137:340" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="364:558" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="470:552" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="586:820" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="698:814" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="844:2797" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="933:1506" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="1560:2218" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="1772:2180" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="1854:1990" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="2011:2166" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="2319:2791" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="2413:2755" ph="{...}" />
+            <marker date="1590332674142" expanded="true" signature="2593:2741" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
+          <folding>
+            <marker date="1590858967563" expanded="true" signature="36:2438" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="73:2436" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="107:725" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="796:1017" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="895:996" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="1061:1209" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="1370:1480" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="1540:1785" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="1659:1729" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="1845:2132" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="2006:2076" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="2192:2433" ph="{...}" />
+            <marker date="1590858967563" expanded="true" signature="2307:2377" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Atom.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1054">
+          <caret line="70" column="8" selection-start-line="70" selection-start-column="8" selection-end-line="70" selection-end-column="8" />
+          <folding>
+            <marker date="1590347218318" expanded="true" signature="6:32" ph="..." />
+            <marker date="1590347218318" expanded="true" signature="55:3979" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="80:711" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="376:708" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="397:704" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="731:3977" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="1111:1152" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="1190:1273" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="1302:1388" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="1434:1509" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="1547:1631" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="1664:1758" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="2220:2371" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="2406:2534" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="2468:2513" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="2606:3902" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="2627:3898" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3112:3162" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3218:3277" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3287:3328" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3352:3595" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3419:3486" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3497:3588" ph="{...}" />
+            <marker date="1590347218318" expanded="true" signature="3939:3974" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/StackHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2244">
+          <caret line="155" column="43" selection-start-line="155" selection-start-column="43" selection-end-line="155" selection-end-column="43" />
+          <folding>
+            <marker date="1590704313831" expanded="true" signature="6:66" ph="..." />
+            <marker date="1590704313831" expanded="true" signature="89:3290" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="116:1411" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="310:373" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="399:472" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="495:562" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="586:655" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="675:736" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="756:817" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="855:921" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="959:1061" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="1092:1408" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="1439:3288" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="1681:1757" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="1805:2105" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="1854:2101" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="2134:2185" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="2220:2351" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="2432:2672" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="2750:2985" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="3007:3285" ph="{...}" />
+            <marker date="1590704313831" expanded="true" signature="3144:3222" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoApp/Program.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="8" column="46" selection-start-line="8" selection-start-column="46" selection-end-line="8" selection-end-column="46" />
+          <folding>
+            <marker date="1590354524316" expanded="false" signature="6:49" ph="..." />
+            <marker date="1590354524316" expanded="true" signature="72:738" ph="{...}" />
+            <marker date="1590354524316" expanded="true" signature="92:736" ph="{...}" />
+            <marker date="1590354524316" expanded="true" signature="145:730" ph="{...}" />
+            <marker date="1590354524316" expanded="true" signature="214:720" ph="/* if (args==null || args.Length==0) ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Function.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="595">
+          <caret line="39" column="8" selection-start-line="39" selection-start-column="8" selection-end-line="39" selection-end-column="8" />
+          <folding>
+            <marker date="1590354151391" expanded="true" signature="36:1234" ph="{...}" />
+            <marker date="1590354151391" expanded="true" signature="61:1232" ph="{...}" />
+            <marker date="1590354151391" expanded="true" signature="320:467" ph="{...}" />
+            <marker date="1590354151391" expanded="true" signature="592:739" ph="{...}" />
+            <marker date="1590354151391" expanded="true" signature="813:1229" ph="{...}" />
+            <marker date="1590354151391" expanded="true" signature="856:997" ph="{...}" />
+            <marker date="1590354151391" expanded="true" signature="1013:1084" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Utils/StructureUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="32" column="27" selection-start-line="32" selection-start-column="27" selection-end-line="32" selection-end-column="27" />
+          <folding>
+            <marker date="1590353538489" expanded="true" signature="21:4686" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="59:4684" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="113:594" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="656:994" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="760:959" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1043:1379" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1127:1369" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1428:1782" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1512:1772" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1859:2117" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1886:1972" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="1980:2092" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="2183:2479" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="2554:2919" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="3000:3434" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="3513:4016" ph="{...}" />
+            <marker date="1590353538489" expanded="true" signature="4109:4681" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Lang/Base/ListContext.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2006">
+          <caret line="128" column="27" selection-start-line="128" selection-start-column="27" selection-end-line="128" selection-end-column="27" />
+          <folding>
+            <marker date="1590332674205" expanded="true" signature="36:9962" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="60:9960" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="116:1383" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="1444:1612" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="1672:1902" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="1962:2191" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="2260:2778" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="2283:2448" ph="/* (define last (lambda [list] ... */" />
+            <marker date="1590332674205" expanded="true" signature="2841:3523" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="2864:2974" ph="/* (define append (lambda [list item] ... */" />
+            <marker date="1590332674205" expanded="true" signature="3590:4243" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="4304:4736" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="4585:4701" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="4804:5173" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="4972:5138" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="5236:5637" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="5700:6099" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="6213:7044" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="6385:6631" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="7105:7508" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="7334:7472" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="7568:8345" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="7857:8309" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="8098:8295" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="8408:9318" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="8697:9282" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="9068:9268" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="9391:9954" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="9709:9889" ph="{...}" />
+            <marker date="1590332674205" expanded="true" signature="9775:9875" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Unity/Agression/Assets/Game/Shaders/Force Field.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="5" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-929">
+          <caret line="97" column="24" selection-start-line="97" selection-start-column="24" selection-end-line="97" selection-end-column="24" />
+          <folding>
+            <marker date="1590858908105" expanded="true" signature="6:37" ph="..." />
+            <marker date="1590858908105" expanded="true" signature="60:4380" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="86:4378" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="174:217" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="254:284" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="312:349" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="377:447" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="477:509" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="595:4375" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="751:4304" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="774:867" ph="/* Console.WriteLine($&quot;RetValue: {_retValue}&quot;); ... */" />
+            <marker date="1590858908105" expanded="true" signature="961:3925" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="1022:1106" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="1143:1468" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="1213:1305" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="1340:1422" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="1712:1910" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="2107:2305" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="2426:2557" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="2633:2746" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="2875:3192" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="2956:3072" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="3401:3466" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="3671:3883" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="3707:3807" ph="{...}" />
+            <marker date="1590858908105" expanded="true" signature="4041:4143" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/V1/Core/ParserExtensions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="21" column="18" lean-forward="true" selection-start-line="21" selection-start-column="18" selection-end-line="21" selection-end-column="18" />
+          <folding>
+            <marker date="1590332674211" expanded="false" signature="6:51" ph="..." />
+            <marker date="1590332674211" expanded="true" signature="74:2390" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="126:891" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="229:409" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="491:885" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="549:674" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="723:849" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="996:2388" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="1168:1437" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="1519:2382" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="1576:1738" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="1785:1948" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="1995:2136" ph="{...}" />
+            <marker date="1590332674211" expanded="true" signature="2186:2346" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+</project>

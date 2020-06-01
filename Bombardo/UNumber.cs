@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Bombardo
+namespace Bombardo.V1
 {
     internal class UNumber
     {

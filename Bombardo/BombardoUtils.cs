@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Bombardo
+namespace Bombardo.V1
 {
     public class BombardoUtils
     {

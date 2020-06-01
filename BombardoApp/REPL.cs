@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Bombardo
+namespace Bombardo.V1
 {
     internal class REPL
     {
@@ -13,13 +13,7 @@ namespace Bombardo
         {
             Console.WriteLine("Basic Bombardo lang");
             Console.WriteLine("07.2018 by Kaleb Sadalmalik");
-            Console.WriteLine();
-            Console.WriteLine("  enter (about) to see details");
-            Console.WriteLine("  enter (exit) or (e) to exit app");
-            Console.WriteLine("  enter (halp) or (h) to see list of everything");
-            Console.WriteLine("  enter (load \"file\") or (l \"file\") to load and evaluate file");
-            Console.WriteLine("  enter (debug-check-all-implementations) for check implementations");
-            Console.WriteLine();
+            ShowWelcome(null, null);
 
             loop_ = true;
             BombardoLangClass.Init(false);
@@ -27,6 +21,8 @@ namespace Bombardo
             //  Add to basic context
             Context system = BombardoLangClass.Global;
             system.Define("#path", new Atom(AtomType.String, System.AppDomain.CurrentDomain.BaseDirectory));
+            BombardoLangClass.SetProcedure(system, "welcome", ShowWelcome, 0);
+            BombardoLangClass.SetProcedure(system, "w", ShowWelcome, 0);
             BombardoLangClass.SetProcedure(system, "about", ShowAbout, 0);
             BombardoLangClass.SetProcedure(system, "exit", Exit, 0);
             BombardoLangClass.SetProcedure(system, "e", Exit, 0);
@@ -80,6 +76,19 @@ namespace Bombardo
             Console.WriteLine("drop stuff");
         }
 
+        private static Atom ShowWelcome(Atom args, Context context)
+        {
+            Console.WriteLine();
+            Console.WriteLine("  enter (welcome) or (w) to see this intro");
+            Console.WriteLine("  enter (about) to see details");
+            Console.WriteLine("  enter (exit) or (e) to exit app");
+            Console.WriteLine("  enter (halp) or (h) to see list of everything");
+            Console.WriteLine("  enter (load \"file\") or (l \"file\") to load and evaluate file");
+            Console.WriteLine("  enter (debug-check-all-implementations) for check implementations");
+            Console.WriteLine();
+            return null;
+        }
+        
         private static Atom ShowAbout(Atom args, Context context)
         {
             Console.WriteLine(@"
@@ -157,7 +166,7 @@ namespace Bombardo
 
             string path = FSUtils.FindFile(name);
             string raw = File.ReadAllText(path);
-            var nodes = Bombardo.BombardoLangClass.Parse(raw);
+            var nodes = BombardoLangClass.Parse(raw);
 
             foreach (var node in nodes)
             {
