@@ -55,6 +55,30 @@
             <e p="StringExtensions.cs" t="Include" />
           </e>
         </e>
+      </e>
+      <e p="Bombardo.sln" t="IncludeFlat" />
+      <e p="BombardoApp" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BombardoApp.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="packages.config" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="REPL.cs" t="Include" />
+      </e>
+      <e p="BombardoV2" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="BombardoV2.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="net461" t="Include">
+              <e p="BombardoV2.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="V2" t="Include">
           <e p="Core" t="Include">
             <e p="Atom.cs" t="Include" />
@@ -65,7 +89,6 @@
             <e p="StackHandler.cs" t="Include" />
           </e>
           <e p="GeneralV2Test.cs" t="Include" />
-          <e p="Lang" t="Include" />
           <e p="Names.cs" t="Include" />
           <e p="Notes.txt" t="Include" />
           <e p="Utils" t="Include">
@@ -73,18 +96,6 @@
             <e p="StructureUtils.cs" t="Include" />
           </e>
         </e>
-      </e>
-      <e p="Bombardo.sln" t="IncludeFlat" />
-      <e p="BombardoApp" t="IncludeRecursive">
-        <e p="App.config" t="Include" />
-        <e p="bin" t="ExcludeRecursive" />
-        <e p="BombardoApp.csproj" t="IncludeRecursive" />
-        <e p="obj" t="ExcludeRecursive" />
-        <e p="Program.cs" t="Include" />
-        <e p="Properties" t="Include">
-          <e p="AssemblyInfo.cs" t="Include" />
-        </e>
-        <e p="REPL.cs" t="Include" />
       </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>

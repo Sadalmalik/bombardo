@@ -35,9 +35,14 @@
     <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="mscorlib" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -53,8 +58,13 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BombardoV2\BombardoV2.csproj">
+      <Project>{a504d5f6-fa0f-4efe-aa13-2440237b285c}</Project>
+      <Name>BombardoV2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Bombardo\Bombardo.csproj">
       <Project>{7d09abca-9482-40f8-9304-7baa23126dd8}</Project>
       <Name>Bombardo</Name>

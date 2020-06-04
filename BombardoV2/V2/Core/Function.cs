@@ -5,6 +5,7 @@ namespace Bombardo.V2
 	public class Function
 	{
         public string Name;
+        public Atom tag;
         public bool EvalArgs;
         public bool EvalResult;
         public Action<Evaluator, StackFrame> Perform;
@@ -12,6 +13,7 @@ namespace Bombardo.V2
         public Function(Action<Evaluator, StackFrame> function, bool evalArgs = true, bool evalResult = false)
         {
             Name = "??";
+            tag = new Atom("built-in");
             Perform = function;
             EvalArgs = evalArgs;
             EvalResult = evalResult;

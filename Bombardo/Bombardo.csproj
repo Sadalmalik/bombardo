@@ -80,26 +80,12 @@
     <Compile Include="V1\Utils\ContextUtils.cs" />
     <Compile Include="V1\Utils\FSUtils.cs" />
     <Compile Include="V1\Utils\StringExtensions.cs" />
-    <Compile Include="V2\Core\Atom.cs" />
-    <Compile Include="V2\Core\BombardoException.cs" />
-    <Compile Include="V2\Core\Context.cs" />
-    <Compile Include="V2\Core\Evaluator.cs" />
-    <Compile Include="V2\Core\Function.cs" />
-    <Compile Include="V2\Core\StackHandler.cs" />
-    <Compile Include="V2\GeneralV2Test.cs" />
-    <Compile Include="V2\Names.cs" />
-    <Compile Include="V2\Utils\ContextUtils.cs" />
-    <Compile Include="V2\Utils\StructureUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="V1" />
-    <Folder Include="V2\Lang" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="V2\Notes.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

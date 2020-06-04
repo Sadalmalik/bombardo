@@ -8,7 +8,7 @@ namespace Bombardo.V1
     {
         public static void Main(string[] args)
         {
-            GeneralV2Test.DoTests();
+            //GeneralV2Test.DoTests();
         
             // if (args==null || args.Length==0)
             // {
