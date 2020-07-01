@@ -15,15 +15,25 @@ namespace Bombardo.V2
             this.@sealed = false;
             self = new Atom(AtomType.Native, this);
         }
+        
+		public Atom DefineFunction(string name,
+			Action<Evaluator, StackFrame> rawFunction,
+			bool evalArgs = true, bool evalResult = false)
+		{
+		    var funct = new Function(name, Atoms.BUILT_IN, rawFunction, evalArgs, evalResult);
+		    var atom = new Atom(AtomType.Function, funct);
+			this.Add(name, atom);
+			return atom;
+		}
 
-        public Atom Define(string symbol, Atom value = null)
+        public Atom Define(string symbol, Atom value)
         {
             if (@sealed)
                 throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
             return this[symbol] = value;
         }
 
-        public Atom Set(string symbol, Atom value = null)
+        public Atom Set(string symbol, Atom value)
         {
             if (ContainsKey(symbol))
             {
@@ -75,6 +85,22 @@ namespace Bombardo.V2
                 if (values != null)
                     values = values.next;
             }
+        }
+        
+        public void ImportSymbols(Context source, params string[] symbols)
+        {
+            if (source==null)
+                return;
+            foreach (var symbol in symbols)
+                Define(symbol, source.Get(symbol));
+        }
+        
+        public void ImportAllSymbols(Context source)
+        {
+            if (source==null)
+                return;
+            foreach (var pair in source)
+                Define(pair.Key, pair.Value);
         }
 
         public override string ToString()

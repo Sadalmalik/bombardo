@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace Bombardo.V2
 {
 	public static class StructureUtils
@@ -30,6 +32,22 @@ namespace Bombardo.V2
             return list;
         }
 
+        public static string[] ListToStringArray(Atom names, string tag)
+        {
+            List<string> nameList = new List<string>();
+
+            while (names != null)
+            {
+                Atom key = names.atom;
+                if (key.type != AtomType.String && key.type != AtomType.Symbol)
+                    throw new BombardoException(string.Format("<{0}> key must be string or symbol!", tag));
+                nameList.Add((string)key.value);
+                names = names.next;
+            }
+
+            return nameList.ToArray();
+        }
+        
         public static Atom CloneList(Atom atom)
         {
             if (atom == null) return null;
@@ -76,7 +94,28 @@ namespace Bombardo.V2
 			return container;
 		}
 		
+		public static Atom Reverse(Atom current)
+        {
+            Atom prev = null;
+            while (current != null)
+            {
+                var next = current.next;
+                current.next = prev;
+                prev = current;
+                current = next;
+            }
+            return prev;
+        }
 		
+        public static (Atom, Atom) Split2(Atom value)
+        {
+            Atom iter = value;
+            Atom a_1, a_2, a_3;
+            (a_1, iter) = ((Atom)iter?.value, iter?.next);
+            (a_2, iter) = ((Atom)iter?.value, iter?.next);
+            return (a_1, a_2);
+        }
+        
         public static (Atom, Atom, Atom) Split3(Atom value)
         {
             Atom iter = value;

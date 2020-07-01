@@ -6,6 +6,7 @@ namespace Bombardo.V2
 	public class Evaluator
 	{
 		private Atom _retValue;
+		private bool _haveReturn;
 		public StackHandler Stack { get; }
 
 		public Evaluator()
@@ -16,17 +17,19 @@ namespace Bombardo.V2
 		public void SetReturn(Atom value)
 		{
 			_retValue = value;
+			_haveReturn = true;
 		}
 
 		public bool HaveReturn()
 		{
-			return _retValue != null;
+			return _haveReturn;
 		}
 
 		public Atom TakeReturn()
 		{
 			var temp = _retValue;
 			_retValue = null;
+			_haveReturn = false;
 			return temp;
 		}
 		
@@ -39,15 +42,16 @@ namespace Bombardo.V2
 		public Atom Evaluate(Atom atom, Context current_context)
 		{
 			_retValue = null;
+			_haveReturn = false;
 			Stack.CreateFrame("-eval-", atom, current_context);
 
 			Console.WriteLine("Start evaluation");
 			while (Stack.stack.Count > 0)
 			{
 				count++;
-				// Console.WriteLine($"RetValue: {_retValue}");
-				// Stack.Dump();
-				// Thread.Sleep(50);
+				Console.WriteLine($"RetValue: {_retValue}");
+				Stack.Dump();
+				Thread.Sleep(50);
 				
 				Function func;
 				StackFrame frame = Stack.TopFrame;
@@ -80,7 +84,7 @@ namespace Bombardo.V2
 						
 					case "-eval-each-":
 						if (HaveReturn())
-							frame.meta = StructureUtils.BuildListContainer(frame.meta, TakeReturn());
+							frame.temp1 = StructureUtils.BuildListContainer(frame.temp1, TakeReturn());
 						if (frame.expression != null)
 						{
 							var subExpression = frame.expression.atom;
@@ -88,13 +92,14 @@ namespace Bombardo.V2
 							Stack.CreateFrame("-eval-", subExpression, frame.context);
 							continue;
 						}
-						SetReturn(frame.meta.atom);
+						SetReturn(frame.temp1.atom);
+						// frame.temp1 = null;
 						CloseFrame();
 						continue;
 						
 					case "-eval-block-":
 						if (HaveReturn())
-							frame.meta = TakeReturn();
+							frame.temp1 = TakeReturn();
 						if (frame.expression != null)
 						{
 							var subExpression = frame.expression.atom;
@@ -102,7 +107,8 @@ namespace Bombardo.V2
 							Stack.CreateFrame("-eval-", subExpression, frame.context);
 							continue;
 						}
-						SetReturn(frame.meta);
+						SetReturn(frame.temp1);
+						// frame.temp1 = null;
 						CloseFrame();
 						continue;
 
@@ -149,23 +155,23 @@ namespace Bombardo.V2
 							func.Apply(this, frame);
 							continue;
 						}
-						frame.state = new Atom("-eval-sexp-result-");
-						frame.meta = TakeReturn();
+						if (func.EvalResult)
+						{
+							frame.state = new Atom("-eval-sexp-result-");
+							frame.temp1 = TakeReturn();
+							continue;
+						}
+						CloseFrame();
 						continue;
 
 					case "-eval-sexp-result-":
-						func = (Function) frame.function.value;
 						if (!HaveReturn())
 						{
-							if (func.EvalResult)
-							{
-								Stack.CreateFrame("-eval-", frame.meta, frame.context);
-								continue;
-							}
-							SetReturn(frame.meta);
-							CloseFrame();
+							Stack.CreateFrame("-eval-", frame.temp1, frame.context);
 							continue;
 						}
+						SetReturn(frame.temp1);
+						frame.temp1 = null;
 						CloseFrame();
 						continue;
 				}

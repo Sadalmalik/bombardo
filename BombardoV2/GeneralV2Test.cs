@@ -1,4 +1,5 @@
 using System;
+using Bombardo.V2.Lang;
 
 namespace Bombardo.V2
 {
@@ -7,48 +8,57 @@ namespace Bombardo.V2
 		public static void DoTests()
 		{
 			Console.WriteLine("DoTests");
-			var expression = StructureUtils.List(new Atom("+"),
-				                    BuildMathExpr("*", 5, 3, 7),
-				                    BuildMathExpr("-", 63, 17, 2, 8, 5)
-					);
-			Console.WriteLine($"Try evaluate {expression}");
+			
 			Evaluator ev = new Evaluator();
-			Console.WriteLine("Evaluator ready");
+			Console.WriteLine(">----------------------------------------------------------<");
+			Eval(ev, "(map `[(a b) (c d) (e f)] car)");
+			Console.WriteLine(">----------------------------------------------------------<");
+			Eval(ev, "(map `[(a b) (c d) (e f)] cdr)");
+			Console.WriteLine(">----------------------------------------------------------<");
+		}
+		
+		public static void Eval(Evaluator ev, string rawExpression)
+		{
+			Console.WriteLine($"Try evaluate {rawExpression}");
+			var expressions = BombardoLangClass.Parse(rawExpression);
 			var time1 = DateTime.Now;
-			Atom result = ev.Evaluate(expression, BuildTestContext());
+			Atom result = ev.Evaluate(expressions[0], BuildTestContext());
 			var time2 = DateTime.Now;
 			var res = (time2-time1).TotalMilliseconds;
 			Console.WriteLine($"Evaluation done in {ev.count} steps\nResult: {result}\nEvaluation time: {res} ms");
 		}
-
-		private static Atom BuildMathExpr(string oper, params float[] args)
-		{
-			var iter = new Atom(new Atom(oper), null);
-			var head = iter;
-			foreach (var arg in args)
-			{
-				iter.next = new Atom(new Atom(AtomType.Number, arg), null);
-				iter      = iter.next;
-			}
-
-			return head;
-		}
-
+		
+		
 		public static Context BuildTestContext()
 		{
 			Context ctx = new Context();
 			AddFunction(ctx, "+", Sum);
 			AddFunction(ctx, "-", Sub);
 			AddFunction(ctx, "*", Mul);
+			AddFunction(ctx, "save/cc", SaveCC);
+			AddFunction(ctx, "call/cc", CallCC);
+			ListMethods.Define(ctx);
 			return ctx;
 		}
+		
+		private static void SaveCC(Evaluator eval, StackFrame frame)
+		{
+			
+			//eval.SetReturn();
+		}
+		private static void CallCC(Evaluator eval, StackFrame frame)
+		{
+			
+			//eval.SetReturn();
+		}
+		
 
 		private static void AddFunction(
 			Context ctx, string name,
 			Action<Evaluator, StackFrame> rawFunction,
 			bool evalArgs = true, bool evalResult = false)
 		{
-			ctx.Add(name, new Atom(AtomType.Function, new Function(name, rawFunction, evalArgs, evalResult)));
+			ctx.Add(name, new Atom(AtomType.Function, new Function(name, Atoms.BUILT_IN, rawFunction, evalArgs, evalResult)));
 		}
 
 		public static void Sum(Evaluator eval, StackFrame frame)
@@ -95,5 +105,7 @@ namespace Bombardo.V2
 
 			eval.SetReturn(new Atom(AtomType.Number, mul));
 		}
+		
+		
 	}
 }

@@ -13,7 +13,9 @@ namespace Bombardo.V2
 		private Atom _context;
 		private Atom _function;
 		private Atom _args;
-		private Atom _meta;
+		private Atom _temp1;
+		private Atom _temp2;
+		private Atom _temp3;
 
 		public Atom state
 		{
@@ -45,10 +47,22 @@ namespace Bombardo.V2
 			set => _args.value = value;
 		}
 
-		public Atom meta
+		public Atom temp1
 		{
-			get => _meta.atom;
-			set => _meta.value = value;
+			get => _temp1.atom;
+			set => _temp1.value = value;
+		}
+		
+		public Atom temp2
+		{
+			get => _temp2.atom;
+			set => _temp2.value = value;
+		}
+		
+		public Atom temp3
+		{
+			get => _temp3.atom;
+			set => _temp3.value = value;
 		}
 
 		public StackFrame(Atom newContent)
@@ -66,7 +80,7 @@ namespace Bombardo.V2
 
 		private void LinkElements()
 		{
-			EnsureLength(6);
+			EnsureLength(8);
 
 			var iter = content;
 			(_state, iter)      = (iter, iter.next);
@@ -74,7 +88,9 @@ namespace Bombardo.V2
 			(_context, iter)    = (iter, iter.next);
 			(_function, iter)   = (iter, iter.next);
 			(_args, iter)       = (iter, iter.next);
-			(_meta, iter)       = (iter, iter.next);
+			(_temp1, iter)       = (iter, iter.next);
+			(_temp2, iter)       = (iter, iter.next);
+			(_temp3, iter)       = (iter, iter.next);
 		}
 	}
 

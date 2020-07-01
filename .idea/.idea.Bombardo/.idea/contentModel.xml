@@ -9,51 +9,49 @@
         <e p="Bombardo.cs" t="Include" />
         <e p="Bombardo.csproj" t="IncludeRecursive" />
         <e p="BombardoUtils.cs" t="Include" />
+        <e p="Core" t="Include">
+          <e p="Atom.cs" t="Include" />
+          <e p="BombardoException.cs" t="Include" />
+          <e p="Closure.cs" t="Include" />
+          <e p="Context.cs" t="Include" />
+          <e p="Evaluator.cs" t="Include" />
+          <e p="Lexer.cs" t="Include" />
+          <e p="Parser.cs" t="Include" />
+          <e p="ParserExtensions.cs" t="Include" />
+          <e p="Procedure.cs" t="Include" />
+        </e>
+        <e p="Lang" t="Include">
+          <e p="AllNames.cs" t="Include" />
+          <e p="Base" t="Include">
+            <e p="ControlContext.cs" t="Include" />
+            <e p="GeneralContext.cs" t="Include" />
+            <e p="ListContext.cs" t="Include" />
+            <e p="ListSugarContext.cs" t="Include" />
+            <e p="MathContext.cs" t="Include" />
+            <e p="TableContext.cs" t="Include" />
+            <e p="TypePredicatesContextcs.cs" t="Include" />
+          </e>
+          <e p="Extended" t="Include">
+            <e p="FileSystemContext.cs" t="Include" />
+            <e p="LogicContext.cs" t="Include" />
+            <e p="ModuleSystemContext.cs" t="Include" />
+            <e p="TextContext.cs" t="Include" />
+            <e p="ThreadContext.cs" t="Include" />
+            <e p="TimersContext.cs" t="Include" />
+          </e>
+        </e>
         <e p="obj" t="ExcludeRecursive" />
         <e p="packages.config" t="Include" />
         <e p="Properties" t="Include">
           <e p="AssemblyInfo.cs" t="Include" />
         </e>
         <e p="UNumber.cs" t="Include" />
-        <e p="V1" t="Include">
-          <e p="Core" t="Include">
-            <e p="Atom.cs" t="Include" />
-            <e p="BombardoException.cs" t="Include" />
-            <e p="Closure.cs" t="Include" />
-            <e p="Context.cs" t="Include" />
-            <e p="Evaluator.cs" t="Include" />
-            <e p="Lexer.cs" t="Include" />
-            <e p="Parser.cs" t="Include" />
-            <e p="ParserExtensions.cs" t="Include" />
-            <e p="Procedure.cs" t="Include" />
-          </e>
-          <e p="Lang" t="Include">
-            <e p="AllNames.cs" t="Include" />
-            <e p="Base" t="Include">
-              <e p="ControlContext.cs" t="Include" />
-              <e p="GeneralContext.cs" t="Include" />
-              <e p="ListContext.cs" t="Include" />
-              <e p="ListSugarContext.cs" t="Include" />
-              <e p="MathContext.cs" t="Include" />
-              <e p="TableContext.cs" t="Include" />
-              <e p="TypePredicatesContextcs.cs" t="Include" />
-            </e>
-            <e p="Extended" t="Include">
-              <e p="FileSystemContext.cs" t="Include" />
-              <e p="LogicContext.cs" t="Include" />
-              <e p="ModuleSystemContext.cs" t="Include" />
-              <e p="TextContext.cs" t="Include" />
-              <e p="ThreadContext.cs" t="Include" />
-              <e p="TimersContext.cs" t="Include" />
-            </e>
-          </e>
-          <e p="Utils" t="Include">
-            <e p="ArgUtils.cs" t="Include" />
-            <e p="CommonUtils.cs" t="Include" />
-            <e p="ContextUtils.cs" t="Include" />
-            <e p="FSUtils.cs" t="Include" />
-            <e p="StringExtensions.cs" t="Include" />
-          </e>
+        <e p="Utils" t="Include">
+          <e p="ArgUtils.cs" t="Include" />
+          <e p="CommonUtils.cs" t="Include" />
+          <e p="ContextUtils.cs" t="Include" />
+          <e p="FSUtils.cs" t="Include" />
+          <e p="StringExtensions.cs" t="Include" />
         </e>
       </e>
       <e p="Bombardo.sln" t="IncludeFlat" />
@@ -71,7 +69,37 @@
       </e>
       <e p="BombardoV2" t="IncludeRecursive">
         <e p="bin" t="ExcludeRecursive" />
+        <e p="Bombardo.cs" t="Include" />
         <e p="BombardoV2.csproj" t="IncludeRecursive" />
+        <e p="Core" t="Include">
+          <e p="Atom.cs" t="Include" />
+          <e p="BombardoException.cs" t="Include" />
+          <e p="Closure.cs" t="Include" />
+          <e p="Context.cs" t="Include" />
+          <e p="Evaluator.cs" t="Include" />
+          <e p="Function.cs" t="Include" />
+          <e p="Lexer.cs" t="Include" />
+          <e p="Parser.cs" t="Include" />
+          <e p="StackHandler.cs" t="Include" />
+        </e>
+        <e p="GeneralV2Test.cs" t="Include" />
+        <e p="Lang" t="Include">
+          <e p="Atoms.cs" t="Include" />
+          <e p="BuiltIn" t="Include">
+            <e p="ControlMethods.cs" t="Include" />
+            <e p="GeneralMethods.cs" t="Include" />
+            <e p="LangModule.cs" t="Include" />
+            <e p="ListMethods.cs" t="Include" />
+            <e p="ListSugarMethods.cs" t="Include" />
+            <e p="MathMethods.cs" t="Include" />
+            <e p="TableMethods.cs" t="Include" />
+            <e p="TypePredicatesMethods.cs" t="Include" />
+          </e>
+          <e p="ModulesSystem.cs" t="Include" />
+          <e p="UNumber.cs" t="Include" />
+        </e>
+        <e p="Names.cs" t="Include" />
+        <e p="Notes.txt" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="net461" t="Include">
@@ -79,22 +107,12 @@
             </e>
           </e>
         </e>
-        <e p="V2" t="Include">
-          <e p="Core" t="Include">
-            <e p="Atom.cs" t="Include" />
-            <e p="BombardoException.cs" t="Include" />
-            <e p="Context.cs" t="Include" />
-            <e p="Evaluator.cs" t="Include" />
-            <e p="Function.cs" t="Include" />
-            <e p="StackHandler.cs" t="Include" />
-          </e>
-          <e p="GeneralV2Test.cs" t="Include" />
-          <e p="Names.cs" t="Include" />
-          <e p="Notes.txt" t="Include" />
-          <e p="Utils" t="Include">
-            <e p="ContextUtils.cs" t="Include" />
-            <e p="StructureUtils.cs" t="Include" />
-          </e>
+        <e p="Utils" t="Include">
+          <e p="BufferedStream.cs" t="Include" />
+          <e p="ContextUtils.cs" t="Include" />
+          <e p="FSUtils.cs" t="Include" />
+          <e p="StringExtensions.cs" t="Include" />
+          <e p="StructureUtils.cs" t="Include" />
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />

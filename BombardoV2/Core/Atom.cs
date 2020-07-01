@@ -34,54 +34,46 @@ namespace Bombardo.V2
 	{
 		public static readonly string EMPTY_PAIR = "()";
 
-		public static readonly Atom EMPTY = new Atom();
-		public static readonly Atom TRUE = new Atom(AtomType.Bool, true);
-		public static readonly Atom FALSE = new Atom(AtomType.Bool, false);
-		public static readonly Atom QUOTE = new Atom(AtomType.Symbol, "quote");
-
 		public int type;
 		public object value;
 
-		public Atom atom
-		{
-			get { return value as Atom; }
-		}
+		public Atom atom => value as Atom;
 
 		public Atom next;
 
 		public Atom()
 		{
-			this.type  = AtomType.Pair;
-			this.value = null;
-			this.next  = null;
+			type  = AtomType.Pair;
+			value = null;
+			next  = null;
 		}
 
-		public Atom(string value)
+		public Atom(string Value)
 		{
-			this.type  = AtomType.Symbol;
-			this.value = value;
-			this.next  = null;
+			type  = AtomType.Symbol;
+			value = Value;
+			next  = null;
 		}
 
-		public Atom(int type, object value = null)
+		public Atom(int Type, object Value = null)
 		{
-			this.type  = type;
-			this.value = value;
-			this.next  = null;
+			type  = Type;
+			value = Value;
+			next  = null;
 		}
 
-		public Atom(Atom value, Atom next)
+		public Atom(Atom Value, Atom Next)
 		{
-			this.type  = AtomType.Pair;
-			this.value = value;
-			this.next  = next;
+			type  = AtomType.Pair;
+			value = Value;
+			next  = Next;
 		}
 
 		public Atom(StringBuilder sb)
 		{
-			this.type  = AtomType.String;
-			this.value = sb.ToString();
-			this.next  = null;
+			type  = AtomType.String;
+			value = sb.ToString();
+			next  = null;
 		}
 
 		public bool IsEmpty => type == AtomType.Pair && value == null && next == null;
@@ -92,7 +84,7 @@ namespace Bombardo.V2
 		public bool IsNumber => type == AtomType.Number;
 		public bool IsFunction => type == AtomType.Function;
 		public bool IsNative => type == AtomType.Native;
-
+		
 		public int ListLength()
 		{
 			if (type != AtomType.Pair) return -1;
