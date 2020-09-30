@@ -11,7 +11,7 @@ namespace Bombardo.V2
 			ctx.DefineFunction(Names.LISP_TABLE_CREATE, TableCreate);
 			ctx.DefineFunction(Names.LISP_TABLE_GET, TableGet);
 			ctx.DefineFunction(Names.LISP_TABLE_SET, TableSet);
-			ctx.DefineFunction(Names.LISP_TEBLE_REMOVE, TableRemove);
+			ctx.DefineFunction(Names.LISP_TABLE_REMOVE, TableRemove);
 			ctx.DefineFunction(Names.LISP_TABLE_CLEAR, TableClear);
 			ctx.DefineFunction(Names.LISP_TABLE_IMPORT, TableImport);
 			ctx.DefineFunction(Names.LISP_TABLE_IMPORT_ALL, TableImportAll);

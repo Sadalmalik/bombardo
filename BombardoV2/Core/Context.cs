@@ -32,6 +32,17 @@ namespace Bombardo.V2
                 throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
             return this[symbol] = value;
         }
+        
+        public Atom Undefine(string symbol)
+        {
+            if (@sealed)
+                throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
+                
+            if (Remove(symbol))
+                return Atoms.TRUE;
+            
+            return Atoms.FALSE;
+        }
 
         public Atom Set(string symbol, Atom value)
         {

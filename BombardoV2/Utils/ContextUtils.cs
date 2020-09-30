@@ -7,11 +7,24 @@ namespace Bombardo.V2
 			if (symbol.Contains("."))
 			{
 				string[] path = symbol.Split('.');
-				return Define(context, value, path, 0);
+				return Define(context, value, path);
 			}
 			else
 			{
 				return context.Define(symbol, value);
+			}
+		}
+		
+		public static Atom Undefine(Context context, string symbol)
+		{
+			if (symbol.Contains("."))
+			{
+				string[] path = symbol.Split('.');
+				return Undefine(context, path);
+			}
+			else
+			{
+				return context.Undefine(symbol);
 			}
 		}
 
@@ -41,7 +54,7 @@ namespace Bombardo.V2
 			}
 		}
 
-		public static Atom Define(Context context, Atom value, string[] path, int index = 0)
+		private static Atom Define(Context context, Atom value, string[] path, int index = 0)
 		{
 			if (index == path.Length - 1)
 			{
@@ -54,26 +67,47 @@ namespace Bombardo.V2
 
 				return context.Define(path[index], value);
 			}
-			else
-			{
-				Atom    dict = context.Get(path[index]);
-				Context next = null;
-				if (dict == null ||
-				    !dict.IsNative ||
-				    (next = dict.value as Context) == null)
-				{
-					throw new BombardoException(
-						string.Format(
-								"Atom '{0}' in '{1}' is not table!",
-								path[index], string.Join(".", path)
-							));
-				}
 
-				return Define(next, value, path, index + 1);
+			Atom    dict = context.Get(path[index]);
+			Context next = null;
+			if (dict == null ||
+			    !dict.IsNative ||
+			    (next = dict.value as Context) == null)
+			{
+				throw new BombardoException(
+					string.Format(
+							"Atom '{0}' in '{1}' is not table!",
+							path[index], string.Join(".", path)
+						));
 			}
+
+			return Define(next, value, path, index + 1);
 		}
 
-		public static Atom Set(Context context, Atom value, string[] path, int index = 0)
+		private static Atom Undefine(Context context, string[] path, int index = 0)
+		{
+			if (index == path.Length - 1)
+			{
+				return context.Undefine(path[index]);
+			}
+
+			Atom    dict = context.Get(path[index]);
+			Context next = null;
+			if (dict == null ||
+			    !dict.IsNative ||
+			    (next = dict.value as Context) == null)
+			{
+				throw new BombardoException(
+					string.Format(
+							"Atom '{0}' in '{1}' is not table!",
+							path[index], string.Join(".", path)
+						));
+			}
+
+			return Undefine(next, path, index + 1);
+		}
+
+		private static Atom Set(Context context, Atom value, string[] path, int index = 0)
 		{
 			if (index == path.Length - 1)
 			{
@@ -105,7 +139,7 @@ namespace Bombardo.V2
 			}
 		}
 
-		public static Atom Get(Context context, string[] path, int index = 0)
+		private static Atom Get(Context context, string[] path, int index = 0)
 		{
 			if (index == path.Length - 1)
 			{

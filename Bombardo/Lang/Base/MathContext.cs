@@ -77,22 +77,22 @@ namespace Bombardo.V1
 
             //  Type cast
 
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTBYTE, CastSByte, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTUBYTE, CastUByte, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSBYTE, CastSByte, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTCHAR, CastChar, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_BYTE, CastSByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_UBYTE, CastUByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_SBYTE, CastSByte, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_CHAR, CastChar, 1);
 
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSSHORT, CastSShort, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTUSHORT, CastUShort, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_SSHORT, CastSShort, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_USHORT, CastUShort, 1);
 
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSINT, CastSInt, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTUINT, CastUInt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_SINT, CastSInt, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_UINT, CastUInt, 1);
 
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTSLONG, CastSLong, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTULONG, CastULong, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_SLONG, CastSLong, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_ULONG, CastULong, 1);
 
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTFLOAT, CastFloat, 1);
-            BombardoLangClass.SetProcedure(context, AllNames.MATH_CASTDOUBLE, CastDouble, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_FLOAT, CastFloat, 1);
+            BombardoLangClass.SetProcedure(context, AllNames.MATH_CAST_DOUBLE, CastDouble, 1);
         }
 
         #region Inner stuff

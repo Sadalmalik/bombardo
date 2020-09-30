@@ -86,9 +86,9 @@
         <e p="Lang" t="Include">
           <e p="Atoms.cs" t="Include" />
           <e p="BuiltIn" t="Include">
+            <e p="ConsoleMethods.cs" t="Include" />
+            <e p="ContextMethods.cs" t="Include" />
             <e p="ControlMethods.cs" t="Include" />
-            <e p="GeneralMethods.cs" t="Include" />
-            <e p="LangModule.cs" t="Include" />
             <e p="ListMethods.cs" t="Include" />
             <e p="ListSugarMethods.cs" t="Include" />
             <e p="MathMethods.cs" t="Include" />

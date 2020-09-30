@@ -58,41 +58,41 @@ namespace Bombardo.V2
 
             //  Type predicates
 
-            ctx.DefineFunction(Names.MATH_PREDBYTE, PredSByte);
-            ctx.DefineFunction(Names.MATH_PREDUBYTE, PredUByte);
-            ctx.DefineFunction(Names.MATH_PREDSBYTE, PredSByte);
-            ctx.DefineFunction(Names.MATH_PREDCHAR, PredChar);
+            ctx.DefineFunction(Names.MATH_PRED_BYTE, PredSByte);
+            ctx.DefineFunction(Names.MATH_PRED_UBYTE, PredUByte);
+            ctx.DefineFunction(Names.MATH_PRED_SBYTE, PredSByte);
+            ctx.DefineFunction(Names.MATH_PRED_CHAR, PredChar);
 
-            ctx.DefineFunction(Names.MATH_PREDSSHORT, PredSShort);
-            ctx.DefineFunction(Names.MATH_PREDUSHORT, PredUShort);
+            ctx.DefineFunction(Names.MATH_PRED_SSHORT, PredSShort);
+            ctx.DefineFunction(Names.MATH_PRED_USHORT, PredUShort);
 
-            ctx.DefineFunction(Names.MATH_PREDSINT, PredSInt);
-            ctx.DefineFunction(Names.MATH_PREDUINT, PredUInt);
+            ctx.DefineFunction(Names.MATH_PRED_SINT, PredSInt);
+            ctx.DefineFunction(Names.MATH_PRED_UINT, PredUInt);
 
-            ctx.DefineFunction(Names.MATH_PREDSLONG, PredSLong);
-            ctx.DefineFunction(Names.MATH_PREDULONG, PredULong);
+            ctx.DefineFunction(Names.MATH_PRED_SLONG, PredSLong);
+            ctx.DefineFunction(Names.MATH_PRED_ULONG, PredULong);
 
-            ctx.DefineFunction(Names.MATH_PREDFLOAT, PredFloat);
-            ctx.DefineFunction(Names.MATH_PREDDOUBLE, PredDouble);
+            ctx.DefineFunction(Names.MATH_PRED_FLOAT, PredFloat);
+            ctx.DefineFunction(Names.MATH_PRED_DOUBLE, PredDouble);
 
             //  Type cast
 
-            ctx.DefineFunction(Names.MATH_CASTBYTE, CastSByte);
-            ctx.DefineFunction(Names.MATH_CASTUBYTE, CastUByte);
-            ctx.DefineFunction(Names.MATH_CASTSBYTE, CastSByte);
-            ctx.DefineFunction(Names.MATH_CASTCHAR, CastChar);
+            ctx.DefineFunction(Names.MATH_CAST__BYTE, CastSByte);
+            ctx.DefineFunction(Names.MATH_CAST_UBYTE, CastUByte);
+            ctx.DefineFunction(Names.MATH_CAST_SBYTE, CastSByte);
+            ctx.DefineFunction(Names.MATH_CAST_CHAR, CastChar);
 
-            ctx.DefineFunction(Names.MATH_CASTSSHORT, CastSShort);
-            ctx.DefineFunction(Names.MATH_CASTUSHORT, CastUShort);
+            ctx.DefineFunction(Names.MATH_CAST_SSHORT, CastSShort);
+            ctx.DefineFunction(Names.MATH_CAST_USHORT, CastUShort);
 
-            ctx.DefineFunction(Names.MATH_CASTSINT, CastSInt);
-            ctx.DefineFunction(Names.MATH_CASTUINT, CastUInt);
+            ctx.DefineFunction(Names.MATH_CAST_SINT, CastSInt);
+            ctx.DefineFunction(Names.MATH_CAST_UINT, CastUInt);
 
-            ctx.DefineFunction(Names.MATH_CASTSLONG, CastSLong);
-            ctx.DefineFunction(Names.MATH_CASTULONG, CastULong);
+            ctx.DefineFunction(Names.MATH_CAST_SLONG, CastSLong);
+            ctx.DefineFunction(Names.MATH_CAST_ULONG, CastULong);
 
-            ctx.DefineFunction(Names.MATH_CASTFLOAT, CastFloat);
-            ctx.DefineFunction(Names.MATH_CASTDOUBLE, CastDouble);
+            ctx.DefineFunction(Names.MATH_CAST_FLOAT, CastFloat);
+            ctx.DefineFunction(Names.MATH_CAST_DOUBLE, CastDouble);
 		}
 		
 		

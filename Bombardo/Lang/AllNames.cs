@@ -198,22 +198,22 @@
 
         //  Type cast
 
-        public static readonly string MATH_CASTBYTE = "byte:";
-        public static readonly string MATH_CASTUBYTE = "ubyte:";
-        public static readonly string MATH_CASTSBYTE = "sbyte:";
-        public static readonly string MATH_CASTCHAR = "char:";
+        public static readonly string MATH_CAST_BYTE = "byte:";
+        public static readonly string MATH_CAST_UBYTE = "ubyte:";
+        public static readonly string MATH_CAST_SBYTE = "sbyte:";
+        public static readonly string MATH_CAST_CHAR = "char:";
 
-        public static readonly string MATH_CASTSSHORT = "short:";
-        public static readonly string MATH_CASTUSHORT = "ushort:";
+        public static readonly string MATH_CAST_SSHORT = "short:";
+        public static readonly string MATH_CAST_USHORT = "ushort:";
 
-        public static readonly string MATH_CASTSINT = "int:";
-        public static readonly string MATH_CASTUINT = "uint:";
+        public static readonly string MATH_CAST_SINT = "int:";
+        public static readonly string MATH_CAST_UINT = "uint:";
 
-        public static readonly string MATH_CASTSLONG = "long:";
-        public static readonly string MATH_CASTULONG = "ulong:";
+        public static readonly string MATH_CAST_SLONG = "long:";
+        public static readonly string MATH_CAST_ULONG = "ulong:";
 
-        public static readonly string MATH_CASTFLOAT = "float:";
-        public static readonly string MATH_CASTDOUBLE = "double:";
+        public static readonly string MATH_CAST_FLOAT = "float:";
+        public static readonly string MATH_CAST_DOUBLE = "double:";
 
         #endregion
 
