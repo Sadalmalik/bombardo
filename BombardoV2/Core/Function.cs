@@ -23,7 +23,7 @@ namespace Bombardo.V2
 		                bool evalResult = false)
 		{
 			Name       = name;
-			tag        = new Atom("built-in");
+			this.tag   = tag;
 			Perform    = function;
 			EvalArgs   = evalArgs;
 			EvalResult = evalResult;

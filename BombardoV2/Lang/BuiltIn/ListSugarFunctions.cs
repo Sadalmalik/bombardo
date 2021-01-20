@@ -1,6 +1,6 @@
 namespace Bombardo.V2
 {
-	public static class ListSugarMethods
+	public static class ListSugarFunctions
 	{
 		public static void Define(Context ctx)
 		{

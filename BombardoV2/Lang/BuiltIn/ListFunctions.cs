@@ -2,7 +2,7 @@ using System;
 
 namespace Bombardo.V2
 {
-	public static class ListMethods
+	public static class ListFunctions
 	{
 		public static void Define(Context ctx)
 		{

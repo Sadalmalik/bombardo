@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Bombardo.V2
 {
-	public class ContextMethods
+	public class ContextFunctions
 	{
 		public static void Define(Context ctx)
 		{
 			ctx.DefineFunction(Names.LISP_DEFINE, Define, false);
 			ctx.DefineFunction(Names.LISP_UNDEFINE, Undefine, false);
-			ctx.DefineFunction(Names.LISP_SETFIRST, SetFirst, false);
+			ctx.DefineFunction(Names.LISP_SET_FIRST, SetFirst, false);
 
 			ctx.DefineFunction(Names.LISP_TO_STRING, ToString);
 			ctx.DefineFunction(Names.LISP_FROM_STRING, FromString);
@@ -87,8 +87,8 @@ namespace Bombardo.V2
 			var  args = frame.args;
 			Atom str  = (Atom) args.value;
 			if (!str.IsString) throw new ArgumentException("Argument must be string!");
-			List<Atom> atoms = BombardoLangClass.Parse((string) str.value);
-			eval.SetReturn(StructureUtils.List(atoms.ToArray()));
+			Atom list = BombardoLang.Parse((string) str.value);
+			eval.SetReturn(list);
 		}
 
 		private static void SymbolName(Evaluator eval, StackFrame frame)

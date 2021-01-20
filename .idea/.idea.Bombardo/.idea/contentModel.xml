@@ -86,14 +86,15 @@
         <e p="Lang" t="Include">
           <e p="Atoms.cs" t="Include" />
           <e p="BuiltIn" t="Include">
-            <e p="ConsoleMethods.cs" t="Include" />
-            <e p="ContextMethods.cs" t="Include" />
-            <e p="ControlMethods.cs" t="Include" />
-            <e p="ListMethods.cs" t="Include" />
-            <e p="ListSugarMethods.cs" t="Include" />
-            <e p="MathMethods.cs" t="Include" />
-            <e p="TableMethods.cs" t="Include" />
-            <e p="TypePredicatesMethods.cs" t="Include" />
+            <e p="ConsoleFunctions.cs" t="Include" />
+            <e p="ContextFunctions.cs" t="Include" />
+            <e p="ControlFunctions.cs" t="Include" />
+            <e p="DebugFunctions.cs" t="Include" />
+            <e p="ListFunctions.cs" t="Include" />
+            <e p="ListSugarFunctions.cs" t="Include" />
+            <e p="MathFunctions.cs" t="Include" />
+            <e p="TableFunctions.cs" t="Include" />
+            <e p="TypePredicateFunctions.cs" t="Include" />
           </e>
           <e p="ModulesSystem.cs" t="Include" />
           <e p="UNumber.cs" t="Include" />

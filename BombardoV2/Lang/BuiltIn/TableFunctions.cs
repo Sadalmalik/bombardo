@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Bombardo.V2
 {
-	public class TableMethods
+	public class TableFunctions
 	{
 		public static void Define(Context ctx)
 		{

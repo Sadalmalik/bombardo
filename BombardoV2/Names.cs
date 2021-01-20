@@ -1,6 +1,9 @@
+// ReSharper disable InconsistentNaming
+// ReSharper disable ConvertToConstant.Global
+
 namespace Bombardo.V2
 {
-	public partial class Names
+	public static class Names
 	{
 		public static readonly string NULL_SYMBOL = "null";
 		public static readonly string EMPTY_SYMBOL = "empty";
@@ -64,7 +67,7 @@ namespace Bombardo.V2
 
 		public static readonly string LISP_PARSE = "parse";
 		public static readonly string LISP_EVAL = "eval";
-		public static readonly string LISP_EVALEACH = "block";
+		public static readonly string LISP_EVAL_EACH = "block";
 
 		public static readonly string LISP_COND = "cond";
 		public static readonly string LISP_IF = "if";
@@ -77,7 +80,7 @@ namespace Bombardo.V2
 		public static readonly string LISP_SYNTAX = "syntax";
 
 		public static readonly string LISP_APPLY = "apply";
-		public static readonly string LISP_MACROEXPAND = "macro-expand";
+		public static readonly string LISP_MACRO_EXPAND = "macro-expand";
 
 		public static readonly string LISP_ERROR = "error";
 
@@ -87,7 +90,7 @@ namespace Bombardo.V2
 
 		public static readonly string LISP_DEFINE = "define";
 		public static readonly string LISP_UNDEFINE = "undef";
-		public static readonly string LISP_SETFIRST = "set!";
+		public static readonly string LISP_SET_FIRST = "set!";
 
 		public static readonly string LISP_TO_STRING = "toString";
 		public static readonly string LISP_FROM_STRING = "fromString";
@@ -218,6 +221,22 @@ namespace Bombardo.V2
 		public static readonly string LISP_TABLE_EACH = "each";            // "tableEach";
 
 		public static readonly string LISP_TABLE_PRED = "table?";
+
+#endregion
+
+#region Module System
+
+        public static readonly string MODULES_FOLDER = "modules";
+
+        public static readonly string MODULE = "module";
+        public static readonly string MODULE_PATH = "#path";
+
+        public static readonly string MODULE_REQUIRE = "require";
+        public const           string MODULE_REQUIRE_AS = "as";
+        public const           string MODULE_REQUIRE_IMPORT = "import";
+        public const           string MODULE_REQUIRE_IMPORT_ALL = "importAll";
+
+        public static readonly string MODULE_EXPORT = "export";
 
 #endregion
 	}

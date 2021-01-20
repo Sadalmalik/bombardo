@@ -2,7 +2,7 @@ using System;
 
 namespace Bombardo.V2
 {
-	public static class ConsoleMethods
+	public static class ConsoleFunctions
 	{
 		public static void Define(Context ctx)
 		{

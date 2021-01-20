@@ -110,10 +110,19 @@ namespace Bombardo.V2
         public static (Atom, Atom) Split2(Atom value)
         {
             Atom iter = value;
-            Atom a_1, a_2, a_3;
+            Atom a_1, a_2;
             (a_1, iter) = ((Atom)iter?.value, iter?.next);
             (a_2, iter) = ((Atom)iter?.value, iter?.next);
             return (a_1, a_2);
+        }
+        
+        public static (Atom, Atom, Atom) Split2Next(Atom value)
+        {
+            Atom iter = value;
+            Atom a_1, a_2;
+            (a_1, iter) = ((Atom)iter?.value, iter?.next);
+            (a_2, iter) = ((Atom)iter?.value, iter?.next);
+            return (a_1, a_2, iter);
         }
         
         public static (Atom, Atom, Atom) Split3(Atom value)

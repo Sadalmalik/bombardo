@@ -2,7 +2,7 @@ using System;
 
 namespace Bombardo.V2
 {
-	public static class MathMethods
+	public static class MathFunctions
 	{
 		public static void Define(Context ctx)
 		{

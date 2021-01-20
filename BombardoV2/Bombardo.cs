@@ -2,9 +2,9 @@ using System.Collections.Generic;
 
 namespace Bombardo.V2
 {
-	public class BombardoLangClass
+	public class BombardoLang
 	{
-        public static List<Atom> Parse(string raw)
+        public static Atom Parse(string raw)
         {
             var tokens = Lexer.Handle(raw);
             return Parser.Handle(tokens);

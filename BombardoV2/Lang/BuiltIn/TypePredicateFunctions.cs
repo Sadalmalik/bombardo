@@ -2,7 +2,7 @@ using System;
 
 namespace Bombardo.V2
 {
-	public class TypePredicatesMethods
+	public static class TypePredicateFunctions
 	{
 		public static void Define(Context ctx)
 		{

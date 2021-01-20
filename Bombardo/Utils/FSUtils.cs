@@ -4,6 +4,13 @@ namespace Bombardo.V1
 {
 	public class FSUtils
 	{
+		/// <summary>
+		/// Ищет файл в данной папке и во всех родительских папках.<br />
+		/// Если файл найден - возвращает полный путь к нему<br />
+		/// Если не найден - null
+		/// </summary>
+		/// <param name="name">Имя искомого файоа</param>
+		/// <returns>Путь к файлу или null</returns>
 		public static string FindFile(string name)
 		{
 			string file   = null;
@@ -39,10 +46,13 @@ namespace Bombardo.V1
 			return File.Exists(path);
 		}
 
-		public static string LookupModuleFile(string programPath, string currentPath, string modulesFolder,
-		                                      string module)
+		public static string LookupModuleFile(
+			string programPath,
+			string currentPath,
+			string modulesFolder,
+			string module)
 		{
-			string path = null;
+			string path;
 			if (module.EndsWith(".brd"))
 			{
 				if (CheckFile(out path, currentPath, module) ||
@@ -60,7 +70,7 @@ namespace Bombardo.V1
 				    CheckFile(out path, programPath, modulesFolder, moduleFile))
 					return path;
 
-				string index = Path.Combine(module, "/index.brd");
+				string index = Path.Combine(module, "/module.brd");
 				if (CheckFile(out path, currentPath, index) ||
 				    CheckFile(out path, currentPath, modulesFolder, index) ||
 				    CheckFile(out path, programPath, index) ||

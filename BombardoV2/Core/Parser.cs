@@ -6,9 +6,9 @@ namespace Bombardo.V2
 {
     public class Parser
     {
-        public static List<Atom> Handle(List<Token> tokens)
+        public static Atom Handle(List<Token> tokens)
         {
-            List<Atom> nodes = new List<Atom>();
+            Atom list = null;
 
             int offset = 0;
             int length = tokens.Count;
@@ -20,10 +20,10 @@ namespace Bombardo.V2
                     continue;
                 }
                 Atom node = ReadNode(tokens, ref offset, true);
-                nodes.Add(node);
+                list = StructureUtils.BuildListContainer(list, node);
             }
 
-            return nodes;
+            return list?.atom;
         }
 
         public static bool ValidateBrackets(List<Token> tokens)

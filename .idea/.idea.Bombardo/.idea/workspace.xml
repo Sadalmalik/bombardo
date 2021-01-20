@@ -2,22 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleMethods.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextMethods.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/AllNames.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/Lang/AllNames.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Context.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/GeneralV2Test.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/GeneralV2Test.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/GeneralMethods.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/LangModule.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Bombardo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Bombardo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Function.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Function.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BombardoV2/Names.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Names.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Notes.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -42,335 +47,57 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListMethods.cs">
+        <entry file="file://$PROJECT_DIR$/BombardoV2/Names.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6086">
-              <caret line="358" column="33" selection-start-line="358" selection-start-column="33" selection-end-line="358" selection-end-column="33" />
+            <state>
+              <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
               <folding>
-                <marker date="1593631036373" expanded="true" signature="36:9447" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="71:9445" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="115:856" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="921:1064" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="1125:1356" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="1156:1204" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="1417:1667" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="1468:1516" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="1735:2307" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="2369:2844" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="2377:2506" ph="/* (define last (lambda [list] ... */" />
-                <marker date="1593631036373" expanded="true" signature="2554:2602" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="2911:3360" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="2919:3048" ph="/* (define last (lambda [list] ... */" />
-                <marker date="1593631036373" expanded="true" signature="3096:3144" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="3424:4069" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="3432:3524" ph="/* (define append (lambda [list item] ... */" />
-                <marker date="1593631036373" expanded="true" signature="3702:3751" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="3791:3840" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="4131:4564" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="4183:4231" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="4253:4307" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="4454:4534" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="4629:4824" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="4889:5240" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="5304:5661" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="5727:6176" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="6009:6115" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="6064:6110" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="6238:7094" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="6388:7090" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="6565:6971" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="6981:7073" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="7157:8164" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="7319:8160" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="7492:7593" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="7623:8029" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="8039:8143" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="8230:9442" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="8392:9438" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="8565:8761" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="8791:9307" ph="{...}" />
-                <marker date="1593631036373" expanded="true" signature="9317:9421" ph="{...}" />
+                <marker date="1611177206920" expanded="true" signature="0:85" ph="/* ReSharper disable InconsistentNaming ... */" />
+                <marker date="1611177206920" expanded="true" signature="108:9832" ph="{...}" />
+                <marker date="1611177206920" expanded="true" signature="137:9830" ph="{...}" />
+                <marker date="1611177206920" expanded="false" signature="252:2636" ph="Base lisp symbols" />
+                <marker date="1611177206920" expanded="true" signature="2638:4308" ph="Main lisp symbols" />
+                <marker date="1611177206920" expanded="true" signature="4310:4889" ph="Base type predicates" />
+                <marker date="1611177206920" expanded="true" signature="4891:8472" ph="Math symbols" />
+                <marker date="1611177206920" expanded="true" signature="8474:9259" ph="Table|Context names" />
+                <marker date="1611177206920" expanded="true" signature="9261:9827" ph="Module System" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs">
+        <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+            <state relative-caret-position="1911">
+              <caret line="184" column="29" lean-forward="true" selection-start-line="184" selection-start-column="29" selection-end-line="184" selection-end-column="29" />
               <folding>
-                <marker date="1601466903833" expanded="true" signature="6:89" ph="..." />
-                <marker date="1601466903833" expanded="true" signature="117:1534" ph="{...}" />
-                <marker date="1601466903833" expanded="true" signature="140:201" ph="{...}" />
-                <marker date="1601466903833" expanded="true" signature="238:1532" ph="{...}" />
-                <marker date="1601466903833" expanded="true" signature="244:533" ph="/* Загрузка модуля может идти двумя путями: ... */" />
-                <marker date="1601466903833" expanded="true" signature="776:1478" ph="{...}" />
-                <marker date="1601466903833" expanded="true" signature="1094:1250" ph="{...}" />
-                <marker date="1601466903833" expanded="true" signature="1514:1526" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" column="38" selection-start-line="9" selection-start-column="38" selection-end-line="9" selection-end-column="38" />
-              <folding>
-                <marker date="1592428288895" expanded="true" signature="21:643" ph="{...}" />
-                <marker date="1592428288895" expanded="true" signature="50:641" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
-              <folding>
-                <marker date="1601464778660" expanded="true" signature="6:58" ph="..." />
-                <marker date="1601464778660" expanded="true" signature="81:5574" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="110:5572" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="154:696" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="698:4783" ph="Methods" />
-                <marker date="1601464778660" expanded="true" signature="782:928" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="994:1400" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="1466:1650" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="1719:2086" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="2154:2319" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="2388:2761" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="2833:3072" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="3139:4437" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="3533:4433" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="3896:3997" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="4027:4314" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="4324:4416" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="4504:4771" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="4656:4767" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="4785:5569" ph="Internal" />
-                <marker date="1601464778660" expanded="true" signature="4864:5381" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="4926:5377" ph="{...}" />
-                <marker date="1601464778660" expanded="true" signature="5432:5557" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret selection-end-line="3" selection-end-column="24" />
-              <folding>
-                <marker date="1590332674213" expanded="true" signature="6:89" ph="..." />
-                <marker date="1590332674213" expanded="true" signature="112:5791" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="146:859" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="342:739" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="778:853" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="890:5789" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="1165:1951" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="1449:1653" ph="/* (require &quot;myModule.brd&quot;) =&gt; myModule ... */" />
-                <marker date="1590332674213" expanded="true" signature="2015:2381" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="2446:4609" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="3182:4396" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="3409:4382" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="4413:4571" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="4705:5491" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="4810:4986" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="5171:5353" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="5353:5419" ph="{...}" />
-                <marker date="1590332674213" expanded="true" signature="5562:5783" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
-              <folding>
-                <marker date="1593552666499" expanded="true" signature="36:16763" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="74:16761" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="118:2864" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="135:1012" ph="/* (nope anything) -&gt; null ... */" />
-                <marker date="1593552666499" expanded="true" signature="1672:2254" ph="/* (lambda (...) expression ...) ... */" />
-                <marker date="1593552666499" expanded="true" signature="2583:2733" ph="/* ctx.DefineFunction(Names.LISP_MACROEXPAND, MacroExpand, 1, false); ... */" />
-                <marker date="1593552666499" expanded="true" signature="2934:2979" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="3043:3139" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="3202:3246" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="3317:3743" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="3506:3685" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="3813:4162" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="3859:4152" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="4228:4548" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="4274:4538" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="4616:6515" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="4665:6505" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="4876:5337" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="5176:5315" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="5400:5892" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="5608:5779" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="5917:6120" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="6198:6298" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="6323:6464" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="6581:8225" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="6630:8215" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="6921:7310" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="7335:7465" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="8294:9887" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="8343:9877" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="8619:9279" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="8918:9047" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="9076:9257" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="9304:9434" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="9513:9687" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="9712:9848" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="9956:11550" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="10005:11540" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="10281:10942" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="10581:10710" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="10739:10920" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="10967:11097" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="11176:11350" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="11375:11511" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="11620:12225" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="12295:12900" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="12984:13596" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="13666:14810" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="14887:15289" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="15299:15873" ph="/* private static Atom MacroExpand(Atom args, Context context) ... */" />
-                <marker date="1593552666499" expanded="true" signature="15942:16758" ph="{...}" />
-                <marker date="1593552666499" expanded="true" signature="16064:16338" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Names.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="533">
-              <caret line="209" lean-forward="true" selection-start-line="209" selection-end-line="209" />
-              <folding>
-                <marker date="1601464340712" expanded="true" signature="21:9175" ph="{...}" />
-                <marker date="1601464340712" expanded="true" signature="51:9173" ph="{...}" />
-                <marker date="1601464340712" expanded="true" signature="166:2550" ph="Base lisp symbols" />
-                <marker date="1601464340712" expanded="true" signature="2552:4219" ph="Main lisp symbols" />
-                <marker date="1601464340712" expanded="true" signature="4221:4800" ph="Base type predicates" />
-                <marker date="1601464340712" expanded="true" signature="4802:8383" ph="Math symbols" />
-                <marker date="1601464340712" expanded="true" signature="8385:9170" ph="Table|Context names" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="65" column="49" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
-              <folding>
-                <marker date="1601401424950" expanded="true" signature="71:27379" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="115:4046" ph="{...}" />
-                <marker date="1601401424950" expanded="false" signature="4061:4563" ph="Inner stuff" />
-                <marker date="1601401424950" expanded="true" signature="4131:4341" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="4397:4531" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="4573:6600" ph="Math operators" />
-                <marker date="1601401424950" expanded="true" signature="4662:4989" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="5056:5383" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="5450:5777" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="5844:6171" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="6238:6565" ph="{...}" />
-                <marker date="1601401424950" expanded="false" signature="6610:14775" ph="Math functions" />
-                <marker date="1601401424950" expanded="true" signature="6699:7026" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="7093:7420" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="7487:7758" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="7826:8098" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="8166:8438" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="8507:8780" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="8857:9130" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="9198:9470" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="9537:9864" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="9931:10202" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="10270:10542" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="10609:10936" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="11005:11278" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="11353:11624" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="11691:11962" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="12029:12300" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="12376:12648" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="12716:12988" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="13056:13328" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="13397:13726" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="13795:14067" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="14135:14407" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="14475:14747" ph="{...}" />
-                <marker date="1601401424950" expanded="false" signature="14785:16814" ph="Binary operators" />
-                <marker date="1601401424950" expanded="true" signature="14876:15203" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="15269:15595" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="15662:15989" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="16056:16383" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="16450:16777" ph="{...}" />
-                <marker date="1601401424950" expanded="false" signature="16824:19585" ph="Comparsion" />
-                <marker date="1601401424950" expanded="true" signature="16908:17294" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="17360:17746" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="17812:18198" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="18264:18650" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="18716:19102" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="19168:19554" ph="{...}" />
-                <marker date="1601401424950" expanded="false" signature="19595:23431" ph="Types Predicates" />
-                <marker date="1601401424950" expanded="true" signature="19692:19963" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="20036:20307" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="20387:20657" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="20731:21003" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="21077:21349" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="21421:21691" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="21763:22033" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="22106:22377" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="22450:22721" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="22794:23065" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="23139:23411" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="23441:27373" ph="Type Cast" />
-                <marker date="1601401424950" expanded="true" signature="23531:23824" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="23897:24179" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="24251:24531" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="24613:24896" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="24970:25252" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="25324:25605" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="25677:25957" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="26030:26306" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="26379:26654" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="26727:27003" ph="{...}" />
-                <marker date="1601401424950" expanded="true" signature="27077:27353" ph="{...}" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesMethods.cs">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-              <folding>
-                <marker date="1593552596636" expanded="true" signature="36:2365" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="74:2363" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="118:639" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="705:785" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="852:1028" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="1093:1248" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="1314:1467" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="1535:1690" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="1756:1909" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="1977:2132" ph="{...}" />
-                <marker date="1593552596636" expanded="true" signature="2203:2360" ph="{...}" />
+                <marker date="1611180182529" expanded="false" signature="6:37" ph="..." />
+                <marker date="1611180182529" expanded="true" signature="60:4526" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="86:4524" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="202:245" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="282:335" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="363:394" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="422:516" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="546:578" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="664:4521" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="844:4450" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="1045:4050" ph="{...}" />
+                <marker date="1611180182529" expanded="false" signature="1106:1190" ph="{...}" />
+                <marker date="1611180182529" expanded="false" signature="1227:1552" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="1297:1389" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="1424:1506" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="1798:1996" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="2224:2422" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="2573:2704" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="2780:2893" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="3022:3339" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="3103:3219" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="3548:3613" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="3640:3761" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="3855:3952" ph="{...}" />
+                <marker date="1611180182529" expanded="true" signature="4056:4155" ph="/* Ни один из указанных стейтов, значит: ... */" />
+                <marker date="1611180182529" expanded="true" signature="4187:4289" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -380,9 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>meta</find>
-      <find>IParserExtension</find>
-      <find>skipNull</find>
       <find>count</find>
       <find>(bool?)</find>
       <find>return ([^;]*);</find>
@@ -407,9 +131,12 @@
       <find>ListToStringArray</find>
       <find>Apply</find>
       <find>BuildListContainer</find>
-      <find>BombardoLangClass</find>
       <find>modulesStack_</find>
       <find>MATH_CAST(\w)</find>
+      <find>BombardoLangClass</find>
+      <find>BombardoLang</find>
+      <find>ExecuteFile</find>
+      <find>Unpa</find>
     </findStrings>
     <replaceStrings>
       <replace>namespace Bombardo.V1</replace>
@@ -431,93 +158,82 @@
       <replace>ctx.DefineFunction(</replace>
       <replace>private static void $1(Evaluator eval, StackFrame frame)</replace>
       <replace>MATH_CAST_$1</replace>
+      <replace>BombardoLang</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/TableContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ControlContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ListSugarContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ListContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/TypePredicatesContextcs.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/GeneralContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/FileSystemContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ThreadContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/LogicContext.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/CommonUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/StringExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/ArgUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoApp/App.config" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Names.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoApp/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/StringExtensions.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Function.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoApp/REPL.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50FE65A4-93A0-4952-84F1-E3562EFBE38D/b6/b3171bb0/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Atom.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Context.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/6f/2c8d542b/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/9a/511aa4ce/Console.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/UNumber.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/21BBF68D-61D6-4A2A-A5C3-E180E6B6706D/0c/b7f27912/Enumerable.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Closure.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Bombardo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50FE65A4-93A0-4952-84F1-E3562EFBE38D/b6/b3171bb0/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/GeneralV2Test.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Parser.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Bombardo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Names.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoApp/App.config" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoApp/REPL.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoApp/Program.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/BufferedStream.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/UNumber.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/StringExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bombardo/Bombardo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Parser.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Closure.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Procedure.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Evaluator.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Atom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/ArgUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/StringExtensions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/UNumber.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/LogicContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/FileSystemContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ThreadContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Utils/CommonUtils.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ListSugarContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/TableContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Atom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/GeneralContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/UNumber.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ListContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/TypePredicatesContextcs.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ControlContext.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Context.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Parser.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Function.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Closure.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/AllNames.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/6f/2c8d542b/Dictionary`2.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bombardo/Core/ParserExtensions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bombardo/Core/Lexer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Evaluator.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Bombardo/Core/Context.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Bombardo/Lang/AllNames.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/9a/511aa4ce/Console.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Closure.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Atom.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Procedure.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Bombardo/Core/Parser.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Bombardo/V2/Utils/StructureUtils.cs" />
-        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Function.cs" />
-        <option value="$PROJECT_DIR$/Bombardo/V2/Utils/ContextUtils.cs" />
-        <option value="$PROJECT_DIR$/Bombardo/V2/Core/BombardoException.cs" />
-        <option value="$PROJECT_DIR$/Bombardo/V2/Core/StackHandler.cs" />
-        <option value="$PROJECT_DIR$/Bombardo/V2/Core/Evaluator.cs" />
-        <option value="$PROJECT_DIR$/Bombardo/V2/GeneralV2Test.cs" />
-        <option value="$PROJECT_DIR$/../../Unity/Agression/Assets/Game/Shaders/Force Field.shader" />
-        <option value="$PROJECT_DIR$/BombardoV2/Class1.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/V2/Core/Function.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/V2/Notes.txt" />
-        <option value="$PROJECT_DIR$/BombardoV2/V2/Utils/BufferedStream.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/V2/Core/Lexer.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/V2/Core/Parser.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/V2/Bombardo.cs" />
         <option value="$PROJECT_DIR$/BombardoApp/Program.cs" />
@@ -526,25 +242,19 @@
         <option value="$PROJECT_DIR$/BombardoV2/V2/Core/Closure.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/ModulesManager.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Utils/StringExtensions.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/UNumber.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" />
         <option value="$PROJECT_DIR$/Bombardo/Lang/Base/ListContext.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/LangModule.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/IMethodsDefiner.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/Atom.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Core/Function.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/Closure.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesMethods.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarMethods.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListMethods.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" />
         <option value="$PROJECT_DIR$/../../Unity/PuzleQuest/Assets/_PuzzleGame/Code/Click.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/GeneralV2Test.cs" />
         <option value="$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs" />
@@ -553,9 +263,28 @@
         <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/Context.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" />
+        <option value="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Bombardo.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextMethods.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Names.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" />
+        <option value="$PROJECT_DIR$/../../Unity 2020/RedShift/Assets/Code/Shifter.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Names.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Core/Function.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
       </list>
     </option>
   </component>
@@ -568,10 +297,9 @@
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="615" />
-    <option name="y" value="85" />
+    <option name="x" value="3" />
     <option name="width" value="1312" />
-    <option name="height" value="862" />
+    <option name="height" value="1047" />
   </component>
   <component name="ProjectView">
     <navigator currentView="SolutionExplorer" proportions="" version="1">
@@ -579,35 +307,13 @@
     </navigator>
     <panes>
       <pane id="FileSystemExplorer" />
+      <pane id="AssemblyExplorer" />
       <pane id="SolutionExplorer">
         <subPane>
           <expand>
             <path>
               <item name="" type="784c90a0:SolutionExplorerRootNode" />
               <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Lang" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Lang" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="Extended" type="24d0babc:SolutionExplorerModelNode" />
-            </path>
-            <path>
-              <item name="" type="784c90a0:SolutionExplorerRootNode" />
-              <item name="Bombardo" type="24d0babc:SolutionExplorerModelNode" />
-              <item name="BombardoApp" type="24d0babc:SolutionExplorerModelNode" />
             </path>
             <path>
               <item name="" type="784c90a0:SolutionExplorerRootNode" />
@@ -644,7 +350,6 @@
         </subPane>
         <option name="show-all-files" value="false" />
       </pane>
-      <pane id="AssemblyExplorer" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -798,12 +503,24 @@
       <workItem from="1601375385234" duration="1803000" />
       <workItem from="1601397449279" duration="10144000" />
       <workItem from="1601452688561" duration="1633000" />
-      <workItem from="1601455196803" duration="7117000" />
+      <workItem from="1601455196803" duration="15238000" />
+      <workItem from="1601497372396" duration="2555000" />
+      <workItem from="1601549470143" duration="3121000" />
+      <workItem from="1601668448807" duration="600000" />
+      <workItem from="1601803931647" duration="599000" />
+      <workItem from="1601885288614" duration="599000" />
+      <workItem from="1602183125043" duration="599000" />
+      <workItem from="1604262884984" duration="1189000" />
+      <workItem from="1604429331818" duration="1223000" />
+      <workItem from="1608927644481" duration="1403000" />
+      <workItem from="1608930543846" duration="631000" />
+      <workItem from="1608983840721" duration="2156000" />
+      <workItem from="1611175143381" duration="3568000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="282420000" />
+    <option name="totallyTimeSpent" value="308784000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -828,7 +545,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="NuGet" order="7" weight="0.25692964" />
-      <window_info anchor="bottom" id="Performance Profiler" order="8" />
+      <window_info anchor="bottom" id="Performance Profiler" order="8" visible="true" weight="0.2153518" />
       <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="10" />
       <window_info anchor="bottom" id="Unit Tests" order="11" />
@@ -842,37 +559,9 @@
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="6" sideWeight="0.49761525" visible="true" weight="0.19936034" />
+      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="6" sideWeight="0.49761525" visible="true" weight="0.2249467" />
       <window_info anchor="right" id="Designer Toolbox" order="7" sideWeight="0.5023847" side_tool="true" weight="0.29637527" />
     </layout>
-    <layout-to-restore>
-      <window_info id="Favorites" order="0" side_tool="true" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3219616" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.17377399" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.29104477" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="NuGet" order="7" weight="0.25692964" />
-      <window_info anchor="bottom" id="Performance Profiler" order="8" />
-      <window_info anchor="bottom" id="Docker" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="10" />
-      <window_info anchor="bottom" id="Unit Tests" order="11" />
-      <window_info anchor="bottom" id="Terminal" order="12" />
-      <window_info anchor="bottom" id="Event Log" order="13" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="14" />
-      <window_info anchor="bottom" id="Build" order="15" weight="0.3816631" />
-      <window_info anchor="right" id="Errors In Solution" order="0" />
-      <window_info anchor="right" id="Database" order="1" />
-      <window_info anchor="right" id="Unit Tests Coverage" order="2" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="5" weight="0.25" />
-      <window_info active="true" anchor="right" content_ui="combo" id="Project" order="6" sideWeight="0.49761525" visible="true" weight="0.19509594" />
-      <window_info anchor="right" id="Designer Toolbox" order="7" sideWeight="0.5023847" side_tool="true" weight="0.29637527" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -894,229 +583,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Bombardo/Core/Procedure.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-          <folding>
-            <marker date="1590332674202" expanded="true" signature="36:1578" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="65:1576" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="364:541" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="674:851" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="914:1570" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="1011:1159" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="1192:1333" ph="{...}" />
-            <marker date="1590332674202" expanded="true" signature="1350:1425" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4BEC26B5-CBC7-4715-8442-F1499E984732/6f/2c8d542b/Dictionary`2.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="312" column="16" selection-start-line="312" selection-start-column="16" selection-end-line="312" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bombardo/UNumber.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-column="13" />
-          <folding>
-            <marker date="1590332674175" expanded="true" signature="36:37880" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="65:37878" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="1018:1520" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="1567:1628" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="1689:1768" ph="{...}" />
-            <marker date="1590332674175" expanded="false" signature="1778:7565" ph="Math operators" />
-            <marker date="1590332674175" expanded="true" signature="1854:2946" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="1934:2936" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="3000:4092" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="3080:4082" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="4146:5238" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="4226:5228" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="5292:6384" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="5372:6374" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="6438:7530" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="6518:7520" ph="{...}" />
-            <marker date="1590332674175" expanded="false" signature="7575:25005" ph="Math functions" />
-            <marker date="1590332674175" expanded="true" signature="7651:8842" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="7731:8832" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="8896:10087" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="8976:10077" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="10131:11094" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="10205:11084" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="11139:12113" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="11213:12103" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="12158:12838" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="12232:12828" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="12884:13557" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="12958:13547" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="13611:14293" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="13685:14283" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="14338:15311" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="14412:15301" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="15365:15982" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="15445:15972" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="16026:16616" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="16100:16606" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="16670:17287" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="16750:17277" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="17332:17922" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="17406:17912" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="17968:18560" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="18042:18550" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="18612:19202" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="18686:19192" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="19246:19836" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="19320:19826" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="19880:20470" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="19954:20460" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="20523:21114" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="20597:21104" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="21159:21750" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="21233:21740" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="21795:22386" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="21869:22376" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="22442:23061" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="22522:23051" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="23114:23705" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="23188:23695" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="23750:24341" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="23824:24331" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="24386:24977" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="24460:24967" ph="{...}" />
-            <marker date="1590332674175" expanded="false" signature="25015:30881" ph="Binary operators" />
-            <marker date="1590332674175" expanded="true" signature="25093:26197" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="25173:26187" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="26250:27354" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="26330:27344" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="27408:28512" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="27488:28502" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="28566:29678" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="28646:29668" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="29732:30844" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="29812:30834" ph="{...}" />
-            <marker date="1590332674175" expanded="false" signature="30891:37872" ph="Logic operators" />
-            <marker date="1590332674175" expanded="true" signature="30967:32070" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="31047:32060" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="32123:33215" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="32203:33205" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="33268:34360" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="33348:34350" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="34413:35516" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="34493:35506" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="35569:36672" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="35649:36662" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="36733:37836" ph="{...}" />
-            <marker date="1590332674175" expanded="true" signature="36813:37826" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Lexer.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <marker date="1591522779406" expanded="true" signature="6:85" ph="..." />
-            <marker date="1591522779406" expanded="true" signature="108:2799" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="137:340" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="364:558" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="470:552" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="586:820" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="698:814" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="844:2797" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="933:1506" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="1560:2218" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="1772:2180" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="1854:1990" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="2011:2166" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="2319:2791" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="2413:2755" ph="{...}" />
-            <marker date="1591522779406" expanded="true" signature="2593:2741" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Parser.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="788">
-          <caret line="61" column="48" selection-start-line="61" selection-start-column="37" selection-end-line="61" selection-end-column="48" />
-          <folding>
-            <marker date="1592675128468" expanded="true" signature="6:66" ph="..." />
-            <marker date="1592675128468" expanded="true" signature="89:5712" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="115:5710" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="181:665" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="344:628" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="421:517" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="730:1101" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="801:1012" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="1178:1261" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="1361:5704" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="1499:5646" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="2038:2400" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="2812:4359" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="2903:3047" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="3493:4104" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="3565:3855" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="3892:4074" ph="{...}" />
-            <marker date="1592675128468" expanded="true" signature="5159:5287" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ListSugarContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="63" selection-start-line="8" selection-start-column="63" selection-end-line="8" selection-end-column="63" />
-          <folding>
-            <marker date="1590332674150" expanded="true" signature="36:5722" ph="{...}" />
-            <marker date="1590332674150" expanded="true" signature="65:5720" ph="{...}" />
-            <marker date="1590332674150" expanded="true" signature="121:2519" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/IMethodsDefiner.cs" />
-    <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Base/ListContext.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="16" column="37" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
-          <folding>
-            <marker date="1590332674205" expanded="true" signature="36:9962" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="60:9960" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="116:1383" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="1444:1612" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="1672:1902" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="1962:2191" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="2260:2778" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="2283:2448" ph="/* (define last (lambda [list] ... */" />
-            <marker date="1590332674205" expanded="true" signature="2841:3523" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="2864:2974" ph="/* (define append (lambda [list item] ... */" />
-            <marker date="1590332674205" expanded="true" signature="3590:4243" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="4304:4736" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="4585:4701" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="4804:5173" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="4972:5138" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="5236:5637" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="5700:6099" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="6213:7044" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="6385:6631" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="7105:7508" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="7334:7472" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="7568:8345" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="7857:8309" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="8098:8295" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="8408:9318" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="8697:9282" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="9068:9268" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="9391:9954" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="9709:9889" ph="{...}" />
-            <marker date="1590332674205" expanded="true" signature="9775:9875" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
@@ -1177,37 +643,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Closure.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="79" selection-start-line="10" selection-start-column="79" selection-end-line="10" selection-end-column="79" />
-          <folding>
-            <marker date="1593268522061" expanded="true" signature="36:591" ph="{...}" />
-            <marker date="1593268522061" expanded="true" signature="71:589" ph="{...}" />
-            <marker date="1593268522061" expanded="true" signature="235:352" ph="{...}" />
-            <marker date="1593268522061" expanded="true" signature="416:586" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Function.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="15" selection-start-line="15" selection-start-column="12" selection-end-line="15" selection-end-column="15" />
-          <folding>
-            <marker date="1593267730212" expanded="true" signature="36:1154" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="61:1152" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="309:457" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="604:752" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="820:1149" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="848:959" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="967:1008" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="1041:1066" ph="{...}" />
-            <marker date="1593267730212" expanded="true" signature="1091:1145" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Base/TypePredicatesContextcs.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
@@ -1224,38 +659,6 @@
             <marker date="1590332674199" expanded="true" signature="2323:2565" ph="{...}" />
             <marker date="1590332674199" expanded="true" signature="2632:2876" ph="{...}" />
             <marker date="1590332674199" expanded="true" signature="2946:3193" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Atom.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="431">
-          <caret line="78" column="20" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
-          <folding>
-            <marker date="1593260080094" expanded="false" signature="6:32" ph="..." />
-            <marker date="1593260080094" expanded="true" signature="55:3620" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="80:711" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="376:708" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="397:704" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="731:3618" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="904:972" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="1001:1072" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="1118:1178" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="1216:1285" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="1318:1397" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="1861:2012" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2047:2175" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2109:2154" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2247:3543" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2268:3539" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2753:2803" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2859:2918" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2928:2969" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="2993:3236" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="3060:3127" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="3138:3229" ph="{...}" />
-            <marker date="1593260080094" expanded="true" signature="3580:3615" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1307,13 +710,6 @@
             <marker date="1590332674118" expanded="true" signature="4949:5106" ph="{...}" />
             <marker date="1590332674118" expanded="true" signature="5216:5555" ph="{...}" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bombardo/Lang/AllNames.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1292">
-          <caret line="218" selection-start-line="218" selection-end-line="232" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -2014,70 +1410,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-22">
-          <caret line="152" column="26" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
-          <folding>
-            <marker date="1592694910522" expanded="false" signature="6:66" ph="..." />
-            <marker date="1592694910522" expanded="true" signature="89:3603" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="116:1724" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="357:420" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="446:519" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="542:609" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="633:702" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="722:783" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="804:867" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="890:953" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="976:1039" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="1077:1143" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="1181:1283" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="1314:1721" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="1752:3601" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="1994:2070" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="2118:2418" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="2167:2414" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="2447:2498" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="2533:2664" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="2745:2985" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="3063:3298" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="3320:3598" ph="{...}" />
-            <marker date="1592694910522" expanded="true" signature="3457:3535" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="34" column="11" selection-start-line="34" selection-start-column="11" selection-end-line="34" selection-end-column="11" />
-          <folding>
-            <marker date="1593635077109" expanded="true" signature="56:5913" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="94:5911" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="148:629" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="691:1029" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="795:994" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="1103:1594" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="1204:1544" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="1651:1987" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="1735:1977" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2036:2390" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2120:2380" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2467:2725" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2494:2580" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2588:2700" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2771:3052" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="2847:3017" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="3109:3341" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="3410:3706" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="3781:4146" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="4227:4661" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="4740:5243" ph="{...}" />
-            <marker date="1593635077109" expanded="true" signature="5336:5908" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ThreadContext.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2099,52 +1431,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Unity/PuzleQuest/Assets/_PuzzleGame/Code/Click.cs" />
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1785">
-          <caret line="132" column="43" selection-start-line="132" selection-start-column="25" selection-end-line="132" selection-end-column="43" />
-          <folding>
-            <marker date="1592862925917" expanded="false" signature="6:37" ph="..." />
-            <marker date="1592862925917" expanded="true" signature="60:4505" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="86:4503" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="202:245" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="282:335" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="363:394" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="422:516" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="546:578" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="664:4500" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="844:4429" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="1045:4050" ph="{...}" />
-            <marker date="1592862925917" expanded="false" signature="1106:1190" ph="{...}" />
-            <marker date="1592862925917" expanded="false" signature="1227:1552" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="1297:1389" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="1424:1506" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="1798:1996" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="2224:2422" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="2573:2704" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="2780:2893" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="3022:3339" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="3103:3219" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="3548:3613" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="3640:3761" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="3855:3952" ph="{...}" />
-            <marker date="1592862925917" expanded="true" signature="4166:4268" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Bombardo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding>
-            <marker date="1591524967350" expanded="true" signature="56:255" ph="{...}" />
-            <marker date="1591524967350" expanded="true" signature="90:253" ph="{...}" />
-            <marker date="1591524967350" expanded="true" signature="144:250" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BombardoV2/GeneralV2Test.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
@@ -2257,155 +1543,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="27" column="58" selection-start-line="27" selection-start-column="58" selection-end-line="27" selection-end-column="58" />
-          <folding>
-            <marker date="1591815357850" expanded="true" signature="39:3176" ph="{...}" />
-            <marker date="1591815357850" expanded="true" signature="66:3174" ph="{...}" />
-            <marker date="1591815357850" expanded="true" signature="81:178" ph="/* Ищет файл в текущей папке приложения и всех родителях ... */" />
-            <marker date="1591815357850" expanded="true" signature="229:764" ph="{...}" />
-            <marker date="1591815357850" expanded="true" signature="774:1624" ph="/* Механизм упорядоченного поиска для директив ... */" />
-            <marker date="1591815357850" expanded="true" signature="1711:1809" ph="{...}" />
-            <marker date="1591815357850" expanded="true" signature="1933:3168" ph="{...}" />
-            <marker date="1591815357850" expanded="true" signature="2016:2341" ph="{...}" />
-            <marker date="1591815357850" expanded="true" signature="2358:3133" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="41" column="29" selection-start-line="41" selection-start-column="29" selection-end-line="41" selection-end-column="29" />
-          <folding>
-            <marker date="1590332674166" expanded="true" signature="39:2968" ph="{...}" />
-            <marker date="1590332674166" expanded="true" signature="66:2966" ph="{...}" />
-            <marker date="1590332674166" expanded="true" signature="123:658" ph="{...}" />
-            <marker date="1590332674166" expanded="true" signature="668:1416" ph="/* search order for (require &quot;somepath/something&quot;) ... */" />
-            <marker date="1590332674166" expanded="true" signature="1503:1601" ph="{...}" />
-            <marker date="1590332674166" expanded="true" signature="1725:2960" ph="{...}" />
-            <marker date="1590332674166" expanded="true" signature="1808:2133" ph="{...}" />
-            <marker date="1590332674166" expanded="true" signature="2150:2925" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BombardoApp/App.config">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Bombardo/Bombardo.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="40" column="37" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-          <folding>
-            <marker date="1590332674187" expanded="false" signature="6:47" ph="..." />
-            <marker date="1590332674187" expanded="true" signature="70:2331" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="107:2329" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="271:775" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="305:613" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="630:765" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="817:1016" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="857:1006" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="1102:1194" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="1249:1833" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="1997:2165" ph="{...}" />
-            <marker date="1590332674187" expanded="true" signature="2217:2323" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/LangModule.cs" />
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="54" selection-start-line="7" selection-start-column="54" selection-end-line="7" selection-end-column="54" />
-          <folding>
-            <marker date="1593552645695" expanded="true" signature="21:5133" ph="{...}" />
-            <marker date="1593552645695" expanded="true" signature="61:5131" ph="{...}" />
-            <marker date="1593552645695" expanded="true" signature="105:1483" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Context.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="35" column="20" selection-start-line="35" selection-start-column="20" selection-end-line="35" selection-end-column="20" />
-          <folding>
-            <marker date="1601419359870" expanded="false" signature="6:47" ph="..." />
-            <marker date="1601419359870" expanded="true" signature="70:3901" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="124:3899" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="263:403" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="550:741" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="796:1003" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="1056:1351" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="1403:1866" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="1450:1657" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="1930:2269" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="2322:3305" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="2471:3295" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="2520:2639" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="2691:2787" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="2865:3169" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="3389:3559" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="3621:3782" ph="{...}" />
-            <marker date="1601419359870" expanded="true" signature="3825:3893" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="245">
-          <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
-          <folding>
-            <marker date="1601454256035" expanded="true" signature="21:4161" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="50:4159" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="125:312" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="158:248" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="256:308" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="377:554" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="410:495" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="503:550" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="624:808" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="657:747" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="755:804" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="866:1036" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="899:982" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="990:1032" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="1125:1805" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="1162:1428" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="1225:1375" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="1592:1752" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="1884:2345" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="1921:1973" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="2137:2297" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="2431:3135" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="2468:2731" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="2531:2681" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="2739:3131" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="2912:3079" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="3209:3690" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="3246:3293" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="3301:3686" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="3474:3641" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="3770:4002" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="3808:3998" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="4069:4156" ph="{...}" />
-            <marker date="1601454256035" expanded="true" signature="4103:4152" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4607">
-          <caret line="271" selection-start-line="271" selection-end-line="272" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/50FE65A4-93A0-4952-84F1-E3562EFBE38D/b6/b3171bb0/Dictionary`2.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -2461,235 +1602,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="39" selection-start-line="8" selection-start-column="39" selection-end-line="8" selection-end-column="39" />
-          <folding>
-            <marker date="1601402646381" expanded="true" signature="36:870" ph="{...}" />
-            <marker date="1601402646381" expanded="true" signature="74:868" ph="{...}" />
-            <marker date="1601402646381" expanded="true" signature="118:224" ph="{...}" />
-            <marker date="1601402646381" expanded="true" signature="287:702" ph="{...}" />
-            <marker date="1601402646381" expanded="true" signature="375:648" ph="{...}" />
-            <marker date="1601402646381" expanded="true" signature="768:865" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6086">
-          <caret line="358" column="33" selection-start-line="358" selection-start-column="33" selection-end-line="358" selection-end-column="33" />
-          <folding>
-            <marker date="1593631036373" expanded="true" signature="36:9447" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="71:9445" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="115:856" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="921:1064" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="1125:1356" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="1156:1204" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="1417:1667" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="1468:1516" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="1735:2307" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="2369:2844" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="2377:2506" ph="/* (define last (lambda [list] ... */" />
-            <marker date="1593631036373" expanded="true" signature="2554:2602" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="2911:3360" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="2919:3048" ph="/* (define last (lambda [list] ... */" />
-            <marker date="1593631036373" expanded="true" signature="3096:3144" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="3424:4069" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="3432:3524" ph="/* (define append (lambda [list item] ... */" />
-            <marker date="1593631036373" expanded="true" signature="3702:3751" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="3791:3840" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="4131:4564" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="4183:4231" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="4253:4307" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="4454:4534" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="4629:4824" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="4889:5240" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="5304:5661" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="5727:6176" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="6009:6115" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="6064:6110" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="6238:7094" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="6388:7090" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="6565:6971" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="6981:7073" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="7157:8164" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="7319:8160" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="7492:7593" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="7623:8029" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="8039:8143" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="8230:9442" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="8392:9438" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="8565:8761" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="8791:9307" ph="{...}" />
-            <marker date="1593631036373" expanded="true" signature="9317:9421" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="65" column="49" selection-start-line="65" selection-start-column="49" selection-end-line="65" selection-end-column="49" />
-          <folding>
-            <marker date="1601401424950" expanded="true" signature="71:27379" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="115:4046" ph="{...}" />
-            <marker date="1601401424950" expanded="false" signature="4061:4563" ph="Inner stuff" />
-            <marker date="1601401424950" expanded="true" signature="4131:4341" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="4397:4531" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="4573:6600" ph="Math operators" />
-            <marker date="1601401424950" expanded="true" signature="4662:4989" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="5056:5383" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="5450:5777" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="5844:6171" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="6238:6565" ph="{...}" />
-            <marker date="1601401424950" expanded="false" signature="6610:14775" ph="Math functions" />
-            <marker date="1601401424950" expanded="true" signature="6699:7026" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="7093:7420" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="7487:7758" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="7826:8098" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="8166:8438" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="8507:8780" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="8857:9130" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="9198:9470" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="9537:9864" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="9931:10202" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="10270:10542" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="10609:10936" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="11005:11278" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="11353:11624" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="11691:11962" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="12029:12300" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="12376:12648" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="12716:12988" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="13056:13328" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="13397:13726" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="13795:14067" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="14135:14407" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="14475:14747" ph="{...}" />
-            <marker date="1601401424950" expanded="false" signature="14785:16814" ph="Binary operators" />
-            <marker date="1601401424950" expanded="true" signature="14876:15203" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="15269:15595" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="15662:15989" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="16056:16383" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="16450:16777" ph="{...}" />
-            <marker date="1601401424950" expanded="false" signature="16824:19585" ph="Comparsion" />
-            <marker date="1601401424950" expanded="true" signature="16908:17294" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="17360:17746" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="17812:18198" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="18264:18650" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="18716:19102" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="19168:19554" ph="{...}" />
-            <marker date="1601401424950" expanded="false" signature="19595:23431" ph="Types Predicates" />
-            <marker date="1601401424950" expanded="true" signature="19692:19963" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="20036:20307" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="20387:20657" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="20731:21003" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="21077:21349" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="21421:21691" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="21763:22033" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="22106:22377" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="22450:22721" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="22794:23065" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="23139:23411" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="23441:27373" ph="Type Cast" />
-            <marker date="1601401424950" expanded="true" signature="23531:23824" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="23897:24179" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="24251:24531" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="24613:24896" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="24970:25252" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="25324:25605" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="25677:25957" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="26030:26306" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="26379:26654" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="26727:27003" ph="{...}" />
-            <marker date="1601401424950" expanded="true" signature="27077:27353" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
-          <folding>
-            <marker date="1593552596636" expanded="true" signature="36:2365" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="74:2363" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="118:639" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="705:785" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="852:1028" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="1093:1248" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="1314:1467" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="1535:1690" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="1756:1909" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="1977:2132" ph="{...}" />
-            <marker date="1593552596636" expanded="true" signature="2203:2360" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" column="69" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
-          <folding>
-            <marker date="1593552666499" expanded="true" signature="36:16763" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="74:16761" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="118:2864" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="135:1012" ph="/* (nope anything) -&gt; null ... */" />
-            <marker date="1593552666499" expanded="true" signature="1672:2254" ph="/* (lambda (...) expression ...) ... */" />
-            <marker date="1593552666499" expanded="true" signature="2583:2733" ph="/* ctx.DefineFunction(Names.LISP_MACROEXPAND, MacroExpand, 1, false); ... */" />
-            <marker date="1593552666499" expanded="true" signature="2934:2979" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="3043:3139" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="3202:3246" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="3317:3743" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="3506:3685" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="3813:4162" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="3859:4152" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="4228:4548" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="4274:4538" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="4616:6515" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="4665:6505" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="4876:5337" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="5176:5315" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="5400:5892" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="5608:5779" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="5917:6120" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="6198:6298" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="6323:6464" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="6581:8225" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="6630:8215" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="6921:7310" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="7335:7465" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="8294:9887" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="8343:9877" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="8619:9279" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="8918:9047" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="9076:9257" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="9304:9434" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="9513:9687" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="9712:9848" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="9956:11550" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="10005:11540" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="10281:10942" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="10581:10710" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="10739:10920" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="10967:11097" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="11176:11350" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="11375:11511" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="11620:12225" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="12295:12900" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="12984:13596" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="13666:14810" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="14887:15289" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="15299:15873" ph="/* private static Atom MacroExpand(Atom args, Context context) ... */" />
-            <marker date="1593552666499" expanded="true" signature="15942:16758" ph="{...}" />
-            <marker date="1593552666499" expanded="true" signature="16064:16338" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -2701,82 +1613,572 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextMethods.cs">
+    <entry file="file://$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="1" lean-forward="true" selection-start-line="3" selection-start-column="1" selection-end-line="82" selection-end-column="5" />
+          <folding>
+            <marker date="1601467727109" expanded="true" signature="39:2764" ph="{...}" />
+            <marker date="1601467727109" expanded="true" signature="63:2762" ph="{...}" />
+            <marker date="1601467727109" expanded="true" signature="69:355" ph="/// Ищет файл в данной папке и во всех родительских папках.&lt;br /&gt; ... " />
+            <marker date="1601467727109" expanded="true" signature="400:816" ph="{...}" />
+            <marker date="1601467727109" expanded="true" signature="820:1514" ph="/* search order for (require &quot;somepath/something&quot;) ... */" />
+            <marker date="1601467727109" expanded="true" signature="1587:1655" ph="{...}" />
+            <marker date="1601467727109" expanded="true" signature="1786:2759" ph="{...}" />
+            <marker date="1601467727109" expanded="true" signature="1838:2102" ph="{...}" />
+            <marker date="1601467727109" expanded="true" signature="2110:2738" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1394">
+          <caret line="82" column="5" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
+          <folding>
+            <marker date="1601467749271" expanded="true" signature="39:2764" ph="{...}" />
+            <marker date="1601467749271" expanded="true" signature="63:2762" ph="{...}" />
+            <marker date="1601467749271" expanded="true" signature="69:355" ph="/// Ищет файл в данной папке и во всех родительских папках.&lt;br /&gt; ... " />
+            <marker date="1601467749271" expanded="true" signature="400:816" ph="{...}" />
+            <marker date="1601467749271" expanded="true" signature="820:1514" ph="/* search order for (require &quot;somepath/something&quot;) ... */" />
+            <marker date="1601467749271" expanded="true" signature="1587:1655" ph="{...}" />
+            <marker date="1601467749271" expanded="true" signature="1786:2759" ph="{...}" />
+            <marker date="1601467749271" expanded="true" signature="1838:2102" ph="{...}" />
+            <marker date="1601467749271" expanded="true" signature="2110:2738" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Bombardo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding>
+            <marker date="1601473658731" expanded="true" signature="56:244" ph="{...}" />
+            <marker date="1601473658731" expanded="true" signature="85:242" ph="{...}" />
+            <marker date="1601473658731" expanded="true" signature="133:239" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/Core/Parser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-51">
+          <caret line="29" column="33" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+          <folding>
+            <marker date="1590332674159" expanded="false" signature="6:66" ph="..." />
+            <marker date="1590332674159" expanded="true" signature="129:216" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="241:6957" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="342:562" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="631:711" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="772:1276" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="955:1239" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="1032:1128" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="1341:1712" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="1412:1623" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="1789:1872" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="1972:6951" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="2110:6893" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="2648:3010" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="3422:4969" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="3513:3657" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="4103:4714" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="4175:4465" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="4502:4684" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="5772:5900" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="6057:6429" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="6257:6403" ph="{...}" />
+            <marker date="1590332674159" expanded="true" signature="6474:6637" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/Bombardo.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="601">
+          <caret line="70" column="30" lean-forward="true" selection-start-line="70" selection-start-column="30" selection-end-line="70" selection-end-column="30" />
+          <folding>
+            <marker date="1590332674187" expanded="false" signature="6:47" ph="..." />
+            <marker date="1590332674187" expanded="true" signature="70:2331" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="107:2329" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="271:775" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="305:613" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="630:765" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="817:1016" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="857:1006" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="1102:1194" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="1249:1833" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="1997:2165" ph="{...}" />
+            <marker date="1590332674187" expanded="true" signature="2217:2323" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Bombardo/Lang/AllNames.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="233" lean-forward="true" selection-start-line="233" selection-end-line="248" selection-end-column="18" />
+          <folding>
+            <marker date="1601401395091" expanded="true" signature="21:14791" ph="{...}" />
+            <marker date="1601401395091" expanded="true" signature="106:14789" ph="{...}" />
+            <marker date="1601401395091" expanded="false" signature="244:2838" ph="Base lisp symbols" />
+            <marker date="1601401395091" expanded="false" signature="2848:4555" ph="Main lisp symbols" />
+            <marker date="1601401395091" expanded="false" signature="4565:5206" ph="Base type predicates" />
+            <marker date="1601401395091" expanded="false" signature="5216:5661" ph="Base logic symbols" />
+            <marker date="1601401395091" expanded="false" signature="5671:9654" ph="Math symbols" />
+            <marker date="1601401395091" expanded="false" signature="9664:10346" ph="Table|Context names" />
+            <marker date="1601401395091" expanded="true" signature="10356:10930" ph="Module System" />
+            <marker date="1601401395091" expanded="false" signature="10940:11717" ph="Text symbols" />
+            <marker date="1601401395091" expanded="false" signature="11727:13597" ph="File System" />
+            <marker date="1601401395091" expanded="false" signature="13607:14297" ph="Time System" />
+            <marker date="1601401395091" expanded="false" signature="14307:14783" ph="Concurrency" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="9" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="36" selection-end-column="9" />
+          <folding>
+            <marker date="1601482686213" expanded="true" signature="36:9449" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="73:9447" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="117:858" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="923:1066" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="1127:1358" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="1158:1206" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="1419:1669" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="1470:1518" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="1737:2309" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="2371:2846" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="2379:2508" ph="/* (define last (lambda [list] ... */" />
+            <marker date="1601482686213" expanded="true" signature="2556:2604" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="2913:3362" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="2921:3050" ph="/* (define last (lambda [list] ... */" />
+            <marker date="1601482686213" expanded="true" signature="3098:3146" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="3426:4071" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="3434:3526" ph="/* (define append (lambda [list item] ... */" />
+            <marker date="1601482686213" expanded="true" signature="3704:3753" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="3793:3842" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="4133:4566" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="4185:4233" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="4255:4309" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="4456:4536" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="4631:4826" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="4891:5242" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="5306:5663" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="5729:6178" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="6011:6117" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="6066:6112" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="6240:7096" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="6390:7092" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="6567:6973" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="6983:7075" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="7159:8166" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="7321:8162" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="7494:7595" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="7625:8031" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="8041:8145" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="8232:9444" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="8394:9440" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="8567:8763" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="8793:9309" ph="{...}" />
+            <marker date="1601482686213" expanded="true" signature="9319:9423" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
+          <folding>
+            <marker date="1601482686190" expanded="true" signature="21:5135" ph="{...}" />
+            <marker date="1601482686190" expanded="true" signature="63:5133" ph="{...}" />
+            <marker date="1601482686190" expanded="true" signature="107:1485" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <marker date="1601482686203" expanded="true" signature="36:27383" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="73:27381" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="117:4048" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="4063:4565" ph="Inner stuff" />
+            <marker date="1601482686203" expanded="true" signature="4133:4343" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="4399:4533" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="4575:6602" ph="Math operators" />
+            <marker date="1601482686203" expanded="true" signature="4664:4991" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="5058:5385" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="5452:5779" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="5846:6173" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="6240:6567" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="6612:14777" ph="Math functions" />
+            <marker date="1601482686203" expanded="true" signature="6701:7028" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="7095:7422" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="7489:7760" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="7828:8100" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="8168:8440" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="8509:8782" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="8859:9132" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="9200:9472" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="9539:9866" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="9933:10204" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="10272:10544" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="10611:10938" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="11007:11280" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="11355:11626" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="11693:11964" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="12031:12302" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="12378:12650" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="12718:12990" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="13058:13330" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="13399:13728" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="13797:14069" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="14137:14409" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="14477:14749" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="14787:16816" ph="Binary operators" />
+            <marker date="1601482686203" expanded="true" signature="14878:15205" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="15271:15597" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="15664:15991" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="16058:16385" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="16452:16779" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="16826:19587" ph="Comparsion" />
+            <marker date="1601482686203" expanded="true" signature="16910:17296" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="17362:17748" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="17814:18200" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="18266:18652" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="18718:19104" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="19170:19556" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="19597:23433" ph="Types Predicates" />
+            <marker date="1601482686203" expanded="true" signature="19694:19965" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="20038:20309" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="20389:20659" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="20733:21005" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="21079:21351" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="21423:21693" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="21765:22035" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="22108:22379" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="22452:22723" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="22796:23067" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="23141:23413" ph="{...}" />
+            <marker date="1601482686203" expanded="false" signature="23443:27375" ph="Type Cast" />
+            <marker date="1601482686203" expanded="true" signature="23533:23826" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="23899:24181" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="24253:24533" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="24615:24898" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="24972:25254" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="25326:25607" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="25679:25959" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="26032:26308" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="26381:26656" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="26729:27005" ph="{...}" />
+            <marker date="1601482686203" expanded="true" signature="27079:27355" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" selection-start-line="3" selection-end-line="5" selection-end-column="1" />
+          <folding>
+            <marker date="1601482686206" expanded="false" signature="6:58" ph="..." />
+            <marker date="1601482686206" expanded="true" signature="81:5576" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="112:5574" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="156:698" ph="{...}" />
+            <marker date="1601482686206" expanded="false" signature="700:4785" ph="Methods" />
+            <marker date="1601482686206" expanded="true" signature="784:930" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="996:1402" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="1468:1652" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="1721:2088" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="2156:2321" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="2390:2763" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="2835:3074" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="3141:4439" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="3535:4435" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="3898:3999" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="4029:4316" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="4326:4418" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="4506:4773" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="4658:4769" ph="{...}" />
+            <marker date="1601482686206" expanded="false" signature="4787:5571" ph="Internal" />
+            <marker date="1601482686206" expanded="true" signature="4866:5383" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="4928:5379" ph="{...}" />
+            <marker date="1601482686206" expanded="true" signature="5434:5559" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <marker date="1601482684064" expanded="true" signature="67:318" ph="{...}" />
+            <marker date="1601482684064" expanded="true" signature="111:176" ph="{...}" />
+            <marker date="1601482684064" expanded="true" signature="240:315" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="7" column="27" selection-start-line="7" selection-start-column="27" selection-end-line="7" selection-end-column="27" />
+          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding>
-            <marker date="1601454533332" expanded="false" signature="6:47" ph="..." />
-            <marker date="1601454533332" expanded="true" signature="70:3783" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="101:3781" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="145:787" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="851:1315" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="1048:1241" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="1381:1695" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="1762:2221" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="1957:2147" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="2287:2419" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="2487:2759" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="2827:3051" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="3119:3343" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="3411:3453" ph="{...}" />
-            <marker date="1601454533332" expanded="true" signature="3527:3778" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="82:2371" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="126:647" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="713:793" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="860:1036" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="1101:1256" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="1322:1475" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="1543:1698" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="1764:1917" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="1985:2140" ph="{...}" />
+            <marker date="1601482629528" expanded="true" signature="2211:2368" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs">
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Context.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="10" column="47" selection-start-line="10" selection-start-column="47" selection-end-line="10" selection-end-column="47" />
+        <state relative-caret-position="578">
+          <caret line="35" column="42" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="42" />
           <folding>
-            <marker date="1601464778660" expanded="true" signature="6:58" ph="..." />
-            <marker date="1601464778660" expanded="true" signature="81:5574" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="110:5572" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="154:696" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="698:4783" ph="Methods" />
-            <marker date="1601464778660" expanded="true" signature="782:928" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="994:1400" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="1466:1650" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="1719:2086" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="2154:2319" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="2388:2761" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="2833:3072" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="3139:4437" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="3533:4433" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="3896:3997" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="4027:4314" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="4324:4416" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="4504:4771" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="4656:4767" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="4785:5569" ph="Internal" />
-            <marker date="1601464778660" expanded="true" signature="4864:5381" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="4926:5377" ph="{...}" />
-            <marker date="1601464778660" expanded="true" signature="5432:5557" ph="{...}" />
+            <marker date="1601419359870" expanded="false" signature="6:47" ph="..." />
+            <marker date="1601419359870" expanded="true" signature="70:3901" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="124:3899" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="263:403" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="550:741" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="796:1003" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="1056:1351" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="1403:1866" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="1450:1657" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="1930:2269" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="2322:3305" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="2471:3295" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="2520:2639" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="2691:2787" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="2865:3169" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="3389:3559" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="3621:3782" ph="{...}" />
+            <marker date="1601419359870" expanded="true" signature="3825:3893" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Names.cs">
+    <entry file="file://$PROJECT_DIR$/Bombardo/Core/Atom.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="533">
-          <caret line="209" lean-forward="true" selection-start-line="209" selection-end-line="209" />
+        <state relative-caret-position="663">
+          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
           <folding>
-            <marker date="1601464340712" expanded="true" signature="21:9175" ph="{...}" />
-            <marker date="1601464340712" expanded="true" signature="51:9173" ph="{...}" />
-            <marker date="1601464340712" expanded="true" signature="166:2550" ph="Base lisp symbols" />
-            <marker date="1601464340712" expanded="true" signature="2552:4219" ph="Main lisp symbols" />
-            <marker date="1601464340712" expanded="true" signature="4221:4800" ph="Base type predicates" />
-            <marker date="1601464340712" expanded="true" signature="4802:8383" ph="Math symbols" />
-            <marker date="1601464340712" expanded="true" signature="8385:9170" ph="Table|Context names" />
+            <marker date="1590332661636" expanded="false" signature="6:32" ph="..." />
+            <marker date="1590332661636" expanded="true" signature="55:10201" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="83:882" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="437:876" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="473:866" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="905:10199" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1418:1538" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1573:1696" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1748:1860" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="1904:2025" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="2064:2195" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="2797:2996" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3037:3245" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3123:3210" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3321:5485" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="3357:5475" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4039:4152" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4227:4346" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4375:4476" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4518:5028" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4648:4784" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="4817:5002" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="5528:5584" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="5636:5931" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="5989:6353" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="6417:6850" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="6912:7414" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="7490:8061" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="8121:8598" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="8665:9013" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9067:9405" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9171:9370" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9454:9790" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9538:9780" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9839:10193" ph="{...}" />
+            <marker date="1590332661636" expanded="true" signature="9923:10183" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Unity 2020/RedShift/Assets/Code/Shifter.cs" />
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
+          <folding>
+            <marker date="1611177137646" expanded="false" signature="6:47" ph="..." />
+            <marker date="1611177137646" expanded="true" signature="70:3742" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="103:3740" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="147:790" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="854:1318" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1051:1244" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1384:1698" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1765:2224" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1960:2150" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="2290:2422" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="2490:2718" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="2786:3010" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="3078:3302" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="3370:3412" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="3486:3737" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/BufferedStream.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="17" selection-end-line="2" selection-end-column="17" />
+          <folding>
+            <marker date="1591522633364" expanded="true" signature="21:117" ph="{...}" />
+            <marker date="1591522633364" expanded="true" signature="71:115" ph="{...}" />
+            <marker date="1591522633364" expanded="true" signature="100:112" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="535">
+          <caret line="90" column="33" selection-start-line="90" selection-start-column="33" selection-end-line="90" selection-end-column="33" />
+          <folding>
+            <marker date="1601454256035" expanded="true" signature="21:4161" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="50:4159" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="125:312" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="158:248" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="256:308" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="377:554" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="410:495" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="503:550" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="624:808" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="657:747" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="755:804" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="866:1036" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="899:982" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="990:1032" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="1125:1805" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="1162:1428" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="1225:1375" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="1592:1752" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="1884:2345" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="1921:1973" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="2137:2297" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="2431:3135" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="2468:2731" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="2531:2681" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="2739:3131" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="2912:3079" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="3209:3690" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="3246:3293" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="3301:3686" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="3474:3641" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="3770:4002" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="3808:3998" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="4069:4156" ph="{...}" />
+            <marker date="1601454256035" expanded="true" signature="4103:4152" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="114" column="14" selection-start-line="114" selection-start-column="14" selection-end-line="114" selection-end-column="14" />
+          <folding>
+            <marker date="1611176200493" expanded="true" signature="6:89" ph="..." />
+            <marker date="1611176200493" expanded="true" signature="117:4885" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="140:622" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="346:619" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="658:4883" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="664:953" ph="/* Загрузка модуля может идти двумя путями: ... */" />
+            <marker date="1611176200493" expanded="true" signature="1324:1668" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="1713:2522" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="1721:1816" ph="/* Была мысль как-то ещё поделить, но я не придумал как... ... */" />
+            <marker date="1611176200493" expanded="true" signature="1862:2025" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="2032:2186" ph="/* Более того, следующие три набора функций так же можно было бы объединить с lang... ... */" />
+            <marker date="1611176200493" expanded="true" signature="2570:2657" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="2708:2899" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="2782:2876" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="2941:3069" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="3134:3733" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="3594:3604" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="3612:3622" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="3836:4808" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="3864:3981" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="3989:4804" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="4127:4799" ph="{...}" />
+            <marker date="1611176200493" expanded="true" signature="4872:4880" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="484">
+          <caret line="118" column="39" selection-start-line="118" selection-start-column="39" selection-end-line="118" selection-end-column="39" />
+          <folding>
+            <marker date="1601587502308" expanded="true" signature="56:6214" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="94:6212" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="148:629" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="691:1029" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="795:994" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="1103:1594" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="1204:1544" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="1651:1987" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="1735:1977" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2036:2390" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2120:2380" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2467:2725" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2494:2580" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2588:2700" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2771:3052" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="2847:3017" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="3109:3336" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="3409:3642" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="3711:4007" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="4082:4447" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="4528:4962" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="5041:5544" ph="{...}" />
+            <marker date="1601587502308" expanded="true" signature="5637:6209" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1428">
+          <caret line="237" column="34" selection-start-line="237" selection-start-column="26" selection-end-line="237" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret selection-end-line="3" selection-end-column="24" />
+        <state relative-caret-position="807">
+          <caret line="79" column="46" lean-forward="true" selection-start-line="79" selection-start-column="46" selection-end-line="79" selection-end-column="46" />
           <folding>
             <marker date="1590332674213" expanded="true" signature="6:89" ph="..." />
             <marker date="1590332674213" expanded="true" signature="112:5791" ph="{...}" />
@@ -2800,19 +2202,233 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs">
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Names.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+        <state>
+          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
           <folding>
-            <marker date="1601466903833" expanded="true" signature="6:89" ph="..." />
-            <marker date="1601466903833" expanded="true" signature="117:1534" ph="{...}" />
-            <marker date="1601466903833" expanded="true" signature="140:201" ph="{...}" />
-            <marker date="1601466903833" expanded="true" signature="238:1532" ph="{...}" />
-            <marker date="1601466903833" expanded="true" signature="244:533" ph="/* Загрузка модуля может идти двумя путями: ... */" />
-            <marker date="1601466903833" expanded="true" signature="776:1478" ph="{...}" />
-            <marker date="1601466903833" expanded="true" signature="1094:1250" ph="{...}" />
-            <marker date="1601466903833" expanded="true" signature="1514:1526" ph="{...}" />
+            <marker date="1611177206920" expanded="true" signature="0:85" ph="/* ReSharper disable InconsistentNaming ... */" />
+            <marker date="1611177206920" expanded="true" signature="108:9832" ph="{...}" />
+            <marker date="1611177206920" expanded="true" signature="137:9830" ph="{...}" />
+            <marker date="1611177206920" expanded="false" signature="252:2636" ph="Base lisp symbols" />
+            <marker date="1611177206920" expanded="true" signature="2638:4308" ph="Main lisp symbols" />
+            <marker date="1611177206920" expanded="true" signature="4310:4889" ph="Base type predicates" />
+            <marker date="1611177206920" expanded="true" signature="4891:8472" ph="Math symbols" />
+            <marker date="1611177206920" expanded="true" signature="8474:9259" ph="Table|Context names" />
+            <marker date="1611177206920" expanded="true" signature="9261:9827" ph="Module System" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/BombardoException.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding>
+            <marker date="1590703894748" expanded="false" signature="6:66" ph="..." />
+            <marker date="1590703894748" expanded="true" signature="89:502" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="138:500" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="209:229" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="312:332" ph="{...}" />
+            <marker date="1590703894748" expanded="true" signature="474:494" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Atom.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1300">
+          <caret line="78" column="20" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
+          <folding>
+            <marker date="1593260080094" expanded="false" signature="6:32" ph="..." />
+            <marker date="1593260080094" expanded="true" signature="55:3620" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="80:711" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="376:708" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="397:704" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="731:3618" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="904:972" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="1001:1072" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="1118:1178" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="1216:1285" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="1318:1397" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="1861:2012" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2047:2175" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2109:2154" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2247:3543" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2268:3539" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2753:2803" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2859:2918" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2928:2969" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="2993:3236" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="3060:3127" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="3138:3229" ph="{...}" />
+            <marker date="1593260080094" expanded="true" signature="3580:3615" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Closure.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="56" selection-start-line="23" selection-start-column="51" selection-end-line="23" selection-end-column="56" />
+          <folding>
+            <marker date="1593268522061" expanded="true" signature="36:591" ph="{...}" />
+            <marker date="1593268522061" expanded="true" signature="71:589" ph="{...}" />
+            <marker date="1593268522061" expanded="true" signature="235:352" ph="{...}" />
+            <marker date="1593268522061" expanded="true" signature="416:586" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Function.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="36" lean-forward="true" selection-start-line="28" selection-start-column="36" selection-end-line="28" selection-end-column="36" />
+          <folding>
+            <marker date="1611179957365" expanded="true" signature="36:1137" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="61:1135" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="309:457" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="604:735" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="803:1132" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="831:942" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="950:991" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="1024:1049" ph="{...}" />
+            <marker date="1611179957365" expanded="true" signature="1074:1128" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Lexer.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-85">
+          <caret line="39" column="17" selection-start-line="39" selection-start-column="17" selection-end-line="39" selection-end-column="17" />
+          <folding>
+            <marker date="1591522779406" expanded="false" signature="6:85" ph="..." />
+            <marker date="1591522779406" expanded="true" signature="108:2799" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="137:340" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="364:558" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="470:552" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="586:820" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="698:814" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="844:2797" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="933:1506" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="1560:2218" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="1772:2180" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="1854:1990" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="2011:2166" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="2319:2791" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="2413:2755" ph="{...}" />
+            <marker date="1591522779406" expanded="true" signature="2593:2741" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Parser.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1981">
+          <caret line="9" column="9" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding>
+            <marker date="1601473647430" expanded="true" signature="6:66" ph="..." />
+            <marker date="1601473647430" expanded="true" signature="89:5729" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="115:5727" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="175:682" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="319:640" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="396:492" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="747:1118" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="818:1029" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="1195:1278" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="1378:5721" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="1516:5663" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="2055:2417" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="2829:4376" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="2920:3064" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="3510:4121" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="3582:3872" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="3909:4091" ph="{...}" />
+            <marker date="1601473647430" expanded="true" signature="5176:5304" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="152" column="26" selection-start-line="152" selection-start-column="26" selection-end-line="152" selection-end-column="26" />
+          <folding>
+            <marker date="1592694910522" expanded="false" signature="6:66" ph="..." />
+            <marker date="1592694910522" expanded="true" signature="89:3603" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="116:1724" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="357:420" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="446:519" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="542:609" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="633:702" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="722:783" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="804:867" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="890:953" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="976:1039" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="1077:1143" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="1181:1283" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="1314:1721" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="1752:3601" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="1994:2070" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="2118:2418" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="2167:2414" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="2447:2498" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="2533:2664" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="2745:2985" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="3063:3298" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="3320:3598" ph="{...}" />
+            <marker date="1592694910522" expanded="true" signature="3457:3535" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding>
+            <marker date="1601482686194" expanded="true" signature="36:872" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="76:870" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="120:226" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="289:704" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="377:650" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="770:867" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1911">
+          <caret line="184" column="29" lean-forward="true" selection-start-line="184" selection-start-column="29" selection-end-line="184" selection-end-column="29" />
+          <folding>
+            <marker date="1611180182529" expanded="false" signature="6:37" ph="..." />
+            <marker date="1611180182529" expanded="true" signature="60:4526" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="86:4524" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="202:245" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="282:335" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="363:394" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="422:516" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="546:578" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="664:4521" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="844:4450" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="1045:4050" ph="{...}" />
+            <marker date="1611180182529" expanded="false" signature="1106:1190" ph="{...}" />
+            <marker date="1611180182529" expanded="false" signature="1227:1552" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="1297:1389" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="1424:1506" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="1798:1996" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="2224:2422" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="2573:2704" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="2780:2893" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="3022:3339" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="3103:3219" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="3548:3613" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="3640:3761" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="3855:3952" ph="{...}" />
+            <marker date="1611180182529" expanded="true" signature="4056:4155" ph="/* Ни один из указанных стейтов, значит: ... */" />
+            <marker date="1611180182529" expanded="true" signature="4187:4289" ph="{...}" />
           </folding>
         </state>
       </provider>
