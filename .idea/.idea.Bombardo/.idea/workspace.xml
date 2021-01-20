@@ -86,8 +86,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="592">
-              <caret line="273" column="18" lean-forward="true" selection-start-line="273" selection-start-column="18" selection-end-line="273" selection-end-column="18" />
+            <state relative-caret-position="-768">
+              <caret line="198" column="70" lean-forward="true" selection-start-line="198" selection-start-column="70" selection-end-line="198" selection-end-column="70" />
             </state>
           </provider>
         </entry>
@@ -547,12 +547,12 @@
       <workItem from="1608927644481" duration="1403000" />
       <workItem from="1608930543846" duration="631000" />
       <workItem from="1608983840721" duration="2156000" />
-      <workItem from="1611175143381" duration="3752000" />
+      <workItem from="1611175143381" duration="4108000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308968000" />
+    <option name="totallyTimeSpent" value="309324000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2460,8 +2460,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="592">
-          <caret line="273" column="18" lean-forward="true" selection-start-line="273" selection-start-column="18" selection-end-line="273" selection-end-column="18" />
+        <state relative-caret-position="-768">
+          <caret line="198" column="70" lean-forward="true" selection-start-line="198" selection-start-column="70" selection-end-line="198" selection-end-column="70" />
         </state>
       </provider>
     </entry>
