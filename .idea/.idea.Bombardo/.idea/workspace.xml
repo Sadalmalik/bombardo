@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Bombardo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Bombardo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Function.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Function.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlMethods.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicatesMethods.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Names.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Names.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Notes.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -66,7 +46,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1911">
@@ -98,6 +78,58 @@
                 <marker date="1611180182529" expanded="true" signature="3855:3952" ph="{...}" />
                 <marker date="1611180182529" expanded="true" signature="4056:4155" ph="/* Ни один из указанных стейтов, значит: ... */" />
                 <marker date="1611180182529" expanded="true" signature="4187:4289" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="592">
+              <caret line="273" column="18" lean-forward="true" selection-start-line="273" selection-start-column="18" selection-end-line="273" selection-end-column="18" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-43">
+              <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+              <folding>
+                <marker date="1601482686194" expanded="true" signature="36:872" ph="{...}" />
+                <marker date="1601482686194" expanded="true" signature="76:870" ph="{...}" />
+                <marker date="1601482686194" expanded="true" signature="120:226" ph="{...}" />
+                <marker date="1601482686194" expanded="true" signature="289:704" ph="{...}" />
+                <marker date="1601482686194" expanded="true" signature="377:650" ph="{...}" />
+                <marker date="1601482686194" expanded="true" signature="770:867" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="272">
+              <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+              <folding>
+                <marker date="1611177137646" expanded="false" signature="6:47" ph="..." />
+                <marker date="1611177137646" expanded="true" signature="70:3742" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="103:3740" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="147:790" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="854:1318" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="1051:1244" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="1384:1698" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="1765:2224" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="1960:2150" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="2290:2422" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="2490:2718" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="2786:3010" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="3078:3302" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="3370:3412" ph="{...}" />
+                <marker date="1611177137646" expanded="true" signature="3486:3737" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -260,7 +292,6 @@
         <option value="$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleMethods.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/GeneralMethods.cs" />
-        <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/Context.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" />
         <option value="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" />
@@ -285,6 +316,7 @@
         <option value="$PROJECT_DIR$/BombardoV2/Names.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/Function.cs" />
         <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
+        <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
       </list>
     </option>
   </component>
@@ -515,12 +547,12 @@
       <workItem from="1608927644481" duration="1403000" />
       <workItem from="1608930543846" duration="631000" />
       <workItem from="1608983840721" duration="2156000" />
-      <workItem from="1611175143381" duration="3568000" />
+      <workItem from="1611175143381" duration="3752000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="308784000" />
+    <option name="totallyTimeSpent" value="308968000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -2025,30 +2057,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Unity 2020/RedShift/Assets/Code/Shifter.cs" />
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="11" column="42" selection-start-line="11" selection-start-column="42" selection-end-line="11" selection-end-column="42" />
-          <folding>
-            <marker date="1611177137646" expanded="false" signature="6:47" ph="..." />
-            <marker date="1611177137646" expanded="true" signature="70:3742" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="103:3740" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="147:790" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="854:1318" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="1051:1244" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="1384:1698" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="1765:2224" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="1960:2150" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="2290:2422" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="2490:2718" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="2786:3010" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="3078:3302" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="3370:3412" ph="{...}" />
-            <marker date="1611177137646" expanded="true" signature="3486:3737" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BombardoV2/Utils/BufferedStream.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
@@ -2168,13 +2176,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1428">
-          <caret line="237" column="34" selection-start-line="237" selection-start-column="26" selection-end-line="237" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="807">
@@ -2198,24 +2199,6 @@
             <marker date="1590332674213" expanded="true" signature="5171:5353" ph="{...}" />
             <marker date="1590332674213" expanded="true" signature="5353:5419" ph="{...}" />
             <marker date="1590332674213" expanded="true" signature="5562:5783" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Names.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
-          <folding>
-            <marker date="1611177206920" expanded="true" signature="0:85" ph="/* ReSharper disable InconsistentNaming ... */" />
-            <marker date="1611177206920" expanded="true" signature="108:9832" ph="{...}" />
-            <marker date="1611177206920" expanded="true" signature="137:9830" ph="{...}" />
-            <marker date="1611177206920" expanded="false" signature="252:2636" ph="Base lisp symbols" />
-            <marker date="1611177206920" expanded="true" signature="2638:4308" ph="Main lisp symbols" />
-            <marker date="1611177206920" expanded="true" signature="4310:4889" ph="Base type predicates" />
-            <marker date="1611177206920" expanded="true" signature="4891:8472" ph="Math symbols" />
-            <marker date="1611177206920" expanded="true" signature="8474:9259" ph="Table|Context names" />
-            <marker date="1611177206920" expanded="true" signature="9261:9827" ph="Module System" />
           </folding>
         </state>
       </provider>
@@ -2383,21 +2366,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
-          <folding>
-            <marker date="1601482686194" expanded="true" signature="36:872" ph="{...}" />
-            <marker date="1601482686194" expanded="true" signature="76:870" ph="{...}" />
-            <marker date="1601482686194" expanded="true" signature="120:226" ph="{...}" />
-            <marker date="1601482686194" expanded="true" signature="289:704" ph="{...}" />
-            <marker date="1601482686194" expanded="true" signature="377:650" ph="{...}" />
-            <marker date="1601482686194" expanded="true" signature="770:867" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1911">
@@ -2430,6 +2398,70 @@
             <marker date="1611180182529" expanded="true" signature="4056:4155" ph="/* Ни один из указанных стейтов, значит: ... */" />
             <marker date="1611180182529" expanded="true" signature="4187:4289" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-43">
+          <caret line="4" column="31" selection-start-line="4" selection-start-column="31" selection-end-line="4" selection-end-column="31" />
+          <folding>
+            <marker date="1601482686194" expanded="true" signature="36:872" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="76:870" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="120:226" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="289:704" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="377:650" ph="{...}" />
+            <marker date="1601482686194" expanded="true" signature="770:867" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="21" lean-forward="true" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <marker date="1611177137646" expanded="false" signature="6:47" ph="..." />
+            <marker date="1611177137646" expanded="true" signature="70:3742" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="103:3740" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="147:790" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="854:1318" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1051:1244" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1384:1698" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1765:2224" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="1960:2150" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="2290:2422" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="2490:2718" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="2786:3010" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="3078:3302" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="3370:3412" ph="{...}" />
+            <marker date="1611177137646" expanded="true" signature="3486:3737" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Names.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="202" />
+          <folding>
+            <marker date="1611177206920" expanded="true" signature="0:85" ph="/* ReSharper disable InconsistentNaming ... */" />
+            <marker date="1611177206920" expanded="true" signature="108:9832" ph="{...}" />
+            <marker date="1611177206920" expanded="true" signature="137:9830" ph="{...}" />
+            <marker date="1611177206920" expanded="false" signature="252:2636" ph="Base lisp symbols" />
+            <marker date="1611177206920" expanded="true" signature="2638:4308" ph="Main lisp symbols" />
+            <marker date="1611177206920" expanded="true" signature="4310:4889" ph="Base type predicates" />
+            <marker date="1611177206920" expanded="true" signature="4891:8472" ph="Math symbols" />
+            <marker date="1611177206920" expanded="true" signature="8474:9259" ph="Table|Context names" />
+            <marker date="1611177206920" expanded="true" signature="9261:9827" ph="Module System" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/BombardoV2/Notes.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="592">
+          <caret line="273" column="18" lean-forward="true" selection-start-line="273" selection-start-column="18" selection-end-line="273" selection-end-column="18" />
         </state>
       </provider>
     </entry>
