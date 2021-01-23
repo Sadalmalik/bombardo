@@ -226,6 +226,8 @@ namespace Bombardo.V2
 
 #region Module System
 
+        public static readonly string PREPROCESS = "preprocess:";
+        
         public static readonly string MODULES_FOLDER = "modules";
 
         public static readonly string MODULE = "module";

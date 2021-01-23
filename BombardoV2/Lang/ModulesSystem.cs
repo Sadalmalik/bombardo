@@ -77,15 +77,16 @@ namespace Bombardo.V2.Lang
 			_builtInModules.Add("table", TableFunctions.Define);
 		}
 
-		public static Atom LoadFile(string fullPath)
+		public static void Define(Context ctx)
 		{
-			string raw = File.ReadAllText(fullPath);
-			return BombardoLang.Parse(raw);
+			ctx.DefineFunction(Names.MODULE_REQUIRE, Require, false);
+			ctx.DefineFunction(Names.MODULE_EXPORT, Export, false);
 		}
-
+		
 		public static Module GetModule(string fullPath)
 		{
 			Module module;
+			
 			if (!_modules.TryGetValue(fullPath, out module))
 			{
 				module = new Module(fullPath, baseContext);
@@ -94,36 +95,57 @@ namespace Bombardo.V2.Lang
 
 			return module;
 		}
-
-		public static void Define(Context ctx)
+		
+		private static (string, Atom, Atom, Atom) ReadArguments(Atom args)
 		{
-			ctx.DefineFunction(Names.MODULE_REQUIRE, Require, false);
-			ctx.DefineFunction(Names.MODULE_EXPORT, Export, false);
-		}
-
-		private static void Require(Evaluator eval, StackFrame frame)
-		{
-			var args = frame.args;
-
 			var (path, command, rest) = StructureUtils.Split2Next(args);
 
 			if (path.type != AtomType.String && path.type != AtomType.Symbol)
 				throw new ArgumentException("argument must be string or symbol!");
 			string name = (string) path.value;
-
-			var cur    = CurrentModule;
-			//var module = GetModule();
-
-			string file = FSUtils.LookupModuleFile(programPath, cur.currentPath, Names.MODULES_FOLDER, name);
-			if (file == null)
+			
+			return (name, path, command, rest);
+		}
+		
+		private static void Require(Evaluator eval, StackFrame frame)
+		{
+			var context = frame.context.value as Context;
+			var (name, path, command, rest) = ReadArguments(frame.args);
+			
+			if (eval.HaveReturn())
 			{
+				ImportSymbols(context, null, path, command, rest);
+				eval.SetReturn(null);
 			}
 			else
 			{
+				
 			}
 			
-			var contaxt = frame.context.value as Context;
-			ImportSymbols(contaxt, null, path, command, rest);
+				frame.temp1 = eval.TakeReturn();
+			
+			var cur = CurrentModule;
+			string fullPath = FSUtils.LookupModuleFile(programPath, cur.currentPath, Names.MODULES_FOLDER, name);
+			
+			if (fullPath != null)
+			{
+				var module = GetModule(fullPath);
+				if (module!=null)
+				{
+					
+				}
+				
+				var content = File.ReadAllText(fullPath);
+				var atoms = BombardoLang.Parse(content);
+				
+				eval.Stack.CreateFrame("-eval-block-", atoms, )
+			}
+			else
+			{
+				
+			}
+			
+			ImportSymbols(context, null, path, command, rest);
 		}
 
 		private static void ImportSymbols(Context context, Atom result, Atom path, Atom command, Atom rest)

@@ -9,11 +9,11 @@ namespace Bombardo.V2
 		{
 			Console.WriteLine("DoTests");
 			
-			Evaluator ev = new Evaluator();
 			Console.WriteLine(">----------------------------------------------------------<");
-			Eval(ev, "(map `[(a b) (c d) (e f)] car)");
-			Console.WriteLine(">----------------------------------------------------------<");
-			Eval(ev, "(map `[(a b) (c d) (e f)] cdr)");
+			var content = "(require lang)\n(map 1 2 3)\n(print \"test\")";
+			var atom = BombardoLang.Parse(content);
+			Console.WriteLine($"Parse:\n\n{content}\n\n");
+			Console.WriteLine($"Results:\n\n{atom}\n\n");
 			Console.WriteLine(">----------------------------------------------------------<");
 		}
 		
