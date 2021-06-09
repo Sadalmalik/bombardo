@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bombardo", "Bombardo\Bombardo.csproj", "{7D09ABCA-9482-40F8-9304-7BAA23126DD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoV1", "BombardoV1\BombardoV1.csproj", "{7D09ABCA-9482-40F8-9304-7BAA23126DD8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoApp", "BombardoApp\BombardoApp.csproj", "{775492ED-CBDE-4A2B-BF86-24A7C2752455}"
 EndProject

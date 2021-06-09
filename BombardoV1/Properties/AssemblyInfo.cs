@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("Bombardo")]
-[assembly: AssemblyDescription("Bombardo language interpreter core")]
+[assembly: AssemblyTitle("BombardoV1")]
+[assembly: AssemblyDescription("BombardoV1 language interpreter core")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Bombardo")]
+[assembly: AssemblyProduct("BombardoV1")]
 [assembly: AssemblyCopyright("Copyright © Kaleb Sadalmalik 2019")]  //  is it correct with GPL?
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

@@ -47,7 +47,7 @@ namespace Bombardo.V2
             nodes_ = new List<LexerNode>();
             nodes_.Add(new LexerNode(TokenType.Separator, @"[\s\r\n\t]+|;[^\n]*\n")); //  [\s\r\n\t]+ - separators, ;[^\r\n]*\n - commentary
             nodes_.Add(new LexerNode(TokenType.Quoting, @"`"));
-            nodes_.Add(new LexerNode(TokenType.Operator, @"[()[\]]"));
+            nodes_.Add(new LexerNode(TokenType.Operator, @"[\(\)\[\]\{\}]"));
             nodes_.Add(new LexerNode(TokenType.String, @"(?:'(?:[^\\]\\'|[^'])*'|""(?:[^\\]\\""|[^""])*"")"));
             nodes_.Add(new LexerNode(TokenType.Symbol, @"[^""'\s\r\n\t()[\]]+"));
         }

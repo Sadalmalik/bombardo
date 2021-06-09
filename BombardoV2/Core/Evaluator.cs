@@ -7,7 +7,9 @@ namespace Bombardo.V2
 	{
 		private Atom _retValue;
 		private bool _haveReturn;
+		
 		public StackHandler Stack { get; }
+		public string ErrorMessage { get; set; } = null;
 
 		public Evaluator()
 		{
@@ -38,7 +40,6 @@ namespace Bombardo.V2
 			Stack.RemoveFrame();
 		}
 		
-		public int count = 0;
 		public Atom Evaluate(Atom atom, Context current_context)
 		{
 			_retValue = null;
@@ -48,7 +49,13 @@ namespace Bombardo.V2
 			Console.WriteLine("Start evaluation");
 			while (Stack.stack.Count > 0)
 			{
-				count++;
+				if (ErrorMessage != null)
+				{
+					Console.WriteLine($"[ERROR] {ErrorMessage}");
+					ErrorMessage = null;
+					return null;
+				}
+				
 				Console.WriteLine($"RetValue: {_retValue}");
 				Stack.Dump();
 				Thread.Sleep(50);
@@ -186,8 +193,7 @@ namespace Bombardo.V2
 				}
 
 				//	Либо если нет функции - то это ошибка интерпретации
-				Console.WriteLine($"[ERROR] Wrong evaluation state: {frame.state.value}");
-				return null;
+				ErrorMessage = $"Wrong evaluation state: {frame.state.value}";
 			}
 
 			if (HaveReturn())

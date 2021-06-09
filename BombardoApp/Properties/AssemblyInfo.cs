@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
 [assembly: AssemblyTitle("BombardoApp")]
-[assembly: AssemblyDescription("Bombardo language interpreter")]
+[assembly: AssemblyDescription("BombardoV1 language interpreter")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BombardoApp")]

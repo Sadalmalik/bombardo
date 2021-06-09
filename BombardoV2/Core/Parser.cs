@@ -66,20 +66,26 @@ namespace Bombardo.V2
 
                 case TokenType.Operator:
                     {
-                        if (token.value != "(" && token.value != "[")
+                        if (token.value != "(" && token.value != "[" && token.value != "{")
                         {
                             StringBuilder lastTokens = new StringBuilder("Last tokens:\n");
                             for(int i=-20;i<0;i++) lastTokens.AppendFormat(" {0}", tokens[offset+i].value);
-                            throw new ArgumentException("Incorrect ( ) [ ] order!\n"+ lastTokens.ToString());
+                            throw new ArgumentException("Incorrect ( ) [ ] { } order!\n"+ lastTokens.ToString());
                         }
                         offset++;
                         atom.type = AtomType.Pair;
                         Atom node = atom;
                         bool rest = false;
                         bool dotted = false;
-                        string ending = ")";
-                        if(token.value == "[")
-                            ending = "]";
+                        
+                        string ending = null;
+                        switch (token.value)
+                        {
+                            case "(": ending = ")"; break;
+                            case "[": ending = "]"; break;
+                            case "{": ending = "}"; break;
+                        }
+                        
                         while (tokens[offset].value != ending)
                         {
                             if (IsSeparator(tokens, ref offset))

@@ -166,7 +166,7 @@ namespace Bombardo.V2
 			switch (frame.state.value)
 			{
 				case "-eval-sexp-body-":
-					//  (Cond BlockA BlockB)
+					//  (cond BlockA BlockB)
 					(frame.temp1, frame.temp2, frame.temp3) = StructureUtils.Split3(frame.args);
 					frame.state                             = new Atom("-built-in-if-cond-");
 					break;

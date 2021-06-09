@@ -11,7 +11,7 @@ namespace Bombardo.V1
 
         public static void Start()
         {
-            Console.WriteLine("Basic Bombardo lang");
+            Console.WriteLine("Basic BombardoV1 lang");
             Console.WriteLine("07.2018 by Kaleb Sadalmalik");
             ShowWelcome(null, null);
 

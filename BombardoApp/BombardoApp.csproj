@@ -61,13 +61,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BombardoV1\BombardoV1.csproj">
+      <Project>{7d09abca-9482-40f8-9304-7baa23126dd8}</Project>
+      <Name>BombardoV1</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BombardoV2\BombardoV2.csproj">
       <Project>{a504d5f6-fa0f-4efe-aa13-2440237b285c}</Project>
       <Name>BombardoV2</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Bombardo\Bombardo.csproj">
-      <Project>{7d09abca-9482-40f8-9304-7baa23126dd8}</Project>
-      <Name>Bombardo</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
