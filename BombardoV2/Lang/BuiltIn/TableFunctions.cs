@@ -4,6 +4,20 @@ using System.Linq;
 
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_TABLE_CREATE = "create";        // "table";
+		public static readonly string LISP_TABLE_GET = "get";              // "tableGet";
+		public static readonly string LISP_TABLE_SET = "set";              // "tableSet";
+		public static readonly string LISP_TABLE_REMOVE = "rem";           // "tableRemove";
+		public static readonly string LISP_TABLE_CLEAR = "clear";          // "tableClear";
+		public static readonly string LISP_TABLE_IMPORT = "import";        // "tableImport";
+		public static readonly string LISP_TABLE_IMPORT_ALL = "importAll"; // "tableImportAll";
+		public static readonly string LISP_TABLE_EACH = "each";            // "tableEach";
+
+		public static readonly string LISP_TABLE_PRED = "table?";
+	}
+
 	public class TableFunctions
 	{
 		public static void Define(Context ctx)
@@ -139,11 +153,12 @@ namespace Bombardo.V2
 					{
 						frame.temp2 = StructureUtils.BuildListContainer(frame.temp2, eval.TakeReturn());
 					}
+
 					if (frame.temp1 != null)
 					{
 						var pair = frame.temp1.atom;
 						frame.temp1 = frame.temp1.next;
-						var newFrame = eval.Stack.CreateFrame(
+						var newFrame = eval.CreateFrame(
 							"-eval-sexp-args-",
 							new Atom(func, pair),
 							frame.context);
@@ -155,6 +170,7 @@ namespace Bombardo.V2
 						eval.SetReturn(null);
 						frame.state = new Atom("-eval-sexp-body-");
 					}
+
 					break;
 			}
 		}

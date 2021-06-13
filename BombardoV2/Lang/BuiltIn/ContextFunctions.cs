@@ -3,6 +3,22 @@ using System.Collections.Generic;
 
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_DEFINE = "define";
+		public static readonly string LISP_UNDEFINE = "undef";
+		public static readonly string LISP_SET_FIRST = "set!";
+
+		public static readonly string LISP_TO_STRING = "toString";
+		public static readonly string LISP_FROM_STRING = "fromString";
+
+		public static readonly string LISP_SYMBOL_NAME = "symbolName";
+		public static readonly string LISP_MAKE_SYMBOL = "symbolMake";
+
+		public static readonly string LISP_GET_CONTEXT = "getContext";
+		public static readonly string LISP_GET_CONTEXT_PARENT = "getContextParent";
+	}
+
 	public class ContextFunctions
 	{
 		public static void Define(Context ctx)
@@ -40,7 +56,7 @@ namespace Bombardo.V2
 				return;
 			}
 
-			eval.Stack.CreateFrame("-eval-", args.next?.atom, frame.context);
+			eval.CreateFrame("-eval-", args.next?.atom, frame.context);
 		}
 
 		private static void Undefine(Evaluator eval, StackFrame frame)
@@ -72,7 +88,7 @@ namespace Bombardo.V2
 				return;
 			}
 
-			eval.Stack.CreateFrame("-eval-", args.next?.atom, frame.context);
+			eval.CreateFrame("-eval-", args.next?.atom, frame.context);
 		}
 
 		private static void ToString(Evaluator eval, StackFrame frame)

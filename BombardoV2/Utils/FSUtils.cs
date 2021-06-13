@@ -35,10 +35,10 @@ namespace Bombardo.V2
 		//      try find file relative to current path "currentpath/somepath/something.brd"
 		//      try find file relative to program path "programmPath/somepath/something.brd"
 		//  else
-		//      try find file relative to current path "currentpath/somepath/something/index.brd"
-		//      try find file relative to modules path "currentpath/modulesFolder/somepath/something/index.brd"
-		//      try find file relative to program path "programmPath/somepath/something/index.brd"
-		//      try find file relative to modules path "programmPath/modulesFolder/somepath/something/index.brd"
+		//      try find file relative to current path "currentpath/somepath/something/module.brd"
+		//      try find file relative to modules path "currentpath/modulesFolder/somepath/something/module.brd"
+		//      try find file relative to program path "programmPath/somepath/something/module.brd"
+		//      try find file relative to modules path "programmPath/modulesFolder/somepath/something/module.brd"
 
 		private static bool CheckFile(out string path, params string[] paths)
 		{

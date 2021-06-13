@@ -17,53 +17,14 @@ namespace Bombardo.V2
 		private Atom _temp2;
 		private Atom _temp3;
 
-		public Atom state
-		{
-			get => _state.atom;
-			set => _state.value = value;
-		}
-
-		public Atom expression
-		{
-			get => _expression.atom;
-			set => _expression.value = value;
-		}
-
-		public Atom context
-		{
-			get => _context.atom;
-			set => _context.value = value;
-		}
-
-		public Atom function
-		{
-			get => _function.atom;
-			set => _function.value = value;
-		}
-
-		public Atom args
-		{
-			get => _args.atom;
-			set => _args.value = value;
-		}
-
-		public Atom temp1
-		{
-			get => _temp1.atom;
-			set => _temp1.value = value;
-		}
-		
-		public Atom temp2
-		{
-			get => _temp2.atom;
-			set => _temp2.value = value;
-		}
-		
-		public Atom temp3
-		{
-			get => _temp3.atom;
-			set => _temp3.value = value;
-		}
+		public Atom state { get => _state.atom; set => _state.value = value; }
+		public Atom expression { get => _expression.atom; set => _expression.value = value; }
+		public Atom context { get => _context.atom; set => _context.value = value; }
+		public Atom function { get => _function.atom; set => _function.value = value; }
+		public Atom args { get => _args.atom; set => _args.value = value; }
+		public Atom temp1 { get => _temp1.atom; set => _temp1.value = value; }
+		public Atom temp2 { get => _temp2.atom; set => _temp2.value = value; }
+		public Atom temp3 { get => _temp3.atom; set => _temp3.value = value; }
 
 		public StackFrame(Atom newContent)
 		{

@@ -1,5 +1,39 @@
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_CAAR = "caar";
+		public static readonly string LISP_CADR = "cadr";
+		public static readonly string LISP_CDAR = "cdar";
+		public static readonly string LISP_CDDR = "cddr";
+
+		public static readonly string LISP_CAAAR = "caaar";
+		public static readonly string LISP_CAADR = "caadr";
+		public static readonly string LISP_CADAR = "cadar";
+		public static readonly string LISP_CADDR = "caddr";
+		public static readonly string LISP_CDAAR = "cdaar";
+		public static readonly string LISP_CDADR = "cdadr";
+		public static readonly string LISP_CDDAR = "cddar";
+		public static readonly string LISP_CDDDR = "cdddr";
+
+		public static readonly string LISP_CAAAAR = "caaaar";
+		public static readonly string LISP_CAAADR = "caaadr";
+		public static readonly string LISP_CAADAR = "caadar";
+		public static readonly string LISP_CAADDR = "caaddr";
+		public static readonly string LISP_CADAAR = "cadaar";
+		public static readonly string LISP_CADADR = "cadadr";
+		public static readonly string LISP_CADDAR = "caddar";
+		public static readonly string LISP_CADDDR = "cadddr";
+		public static readonly string LISP_CDAAAR = "cdaaar";
+		public static readonly string LISP_CDAADR = "cdaadr";
+		public static readonly string LISP_CDADAR = "cdadar";
+		public static readonly string LISP_CDADDR = "cdaddr";
+		public static readonly string LISP_CDDAAR = "cddaar";
+		public static readonly string LISP_CDDADR = "cddadr";
+		public static readonly string LISP_CDDDAR = "cdddar";
+		public static readonly string LISP_CDDDDR = "cddddr";
+	}
+	
 	public static class ListSugarFunctions
 	{
 		public static void Define(Context ctx)

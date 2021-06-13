@@ -2,6 +2,12 @@ using System;
 
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_PRINT = "print";
+		public static readonly string LISP_READ = "read";
+	}
+
 	public static class ConsoleFunctions
 	{
 		public static void Define(Context ctx)

@@ -9,11 +9,16 @@ namespace Bombardo.V2
 		private bool _haveReturn;
 		
 		public StackHandler Stack { get; }
-		public string ErrorMessage { get; set; } = null;
+		public string ErrorMessage { get; private set; } = null;
 
 		public Evaluator()
 		{
 			Stack = new StackHandler(null);
+		}
+
+		public void SetError(string error)
+		{
+			ErrorMessage = error;
 		}
 
 		public void SetReturn(Atom value)
@@ -33,6 +38,16 @@ namespace Bombardo.V2
 			_retValue = null;
 			_haveReturn = false;
 			return temp;
+		}
+		
+		public StackFrame CreateFrame(string state, Atom expression, Context context)
+		{
+			return Stack.CreateFrame(state, expression, context);
+		}
+		
+		public StackFrame CreateFrame(string state, Atom expression, Atom context)
+		{
+			return Stack.CreateFrame(state, expression, context);
 		}
 		
 		public void CloseFrame()
@@ -193,7 +208,7 @@ namespace Bombardo.V2
 				}
 
 				//	Либо если нет функции - то это ошибка интерпретации
-				ErrorMessage = $"Wrong evaluation state: {frame.state.value}";
+				SetError($"Wrong evaluation state: {frame.state.value}");
 			}
 
 			if (HaveReturn())

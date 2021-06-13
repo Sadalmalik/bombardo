@@ -21,7 +21,7 @@ namespace Bombardo.V2
 		{
 			Context innerContext = new Context(context_);
 			innerContext.SetArgs(args_, frame.args);
-			eval.Stack.CreateFrame("-eval-block-", body_, innerContext.self);
+			eval.CreateFrame("-eval-block-", body_, innerContext.self);
 		}
 	}
 }

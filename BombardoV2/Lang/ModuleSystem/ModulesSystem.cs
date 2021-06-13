@@ -13,10 +13,12 @@ namespace Bombardo.V2.Lang
 		//	В обоих случаях модуль условно выполняется один раз, после чего результат его исполнения,
 		//	сохранённый в module контексте, возвращается при всех следующих запросах
 
+#region Main stuff
+
 		private static Stack<Module> _modulesStack;
 		private static Dictionary<string, Module> _modules;
-		private static Dictionary<string, Module> _modulesBuiltIn;
-		private static Dictionary<string, Action<Context>> _builtInModulesFactories;
+		private static Dictionary<string, Module> _builtInModules;
+		private static Dictionary<string, Action<Context>> _builtInModulesActivators;
 
 		public static string programPath;
 		public static Context baseContext;
@@ -25,15 +27,17 @@ namespace Bombardo.V2.Lang
 
 		public static void Init()
 		{
-			_modulesStack            = new Stack<Module>();
-			_modules                 = new Dictionary<string, Module>();
-			_modulesBuiltIn          = new Dictionary<string, Module>();
-			_builtInModulesFactories = new Dictionary<string, Action<Context>>();
+			_modulesStack   = new Stack<Module>();
+			
+			_modules        = new Dictionary<string, Module>();
+			_builtInModules = new Dictionary<string, Module>();
+
+			_builtInModulesActivators = new Dictionary<string, Action<Context>>();
 
 			programPath = new FileInfo(Assembly.GetEntryAssembly().Location).Directory.ToString();
 
 			SetupBuiltInModules();
-			
+
 			baseContext = new Context();
 			baseContext.DefineFunction(Names.MODULE_REQUIRE, Require, false);
 			baseContext.DefineFunction(Names.MODULE_EXPORT, Export, false);
@@ -43,7 +47,7 @@ namespace Bombardo.V2.Lang
 		{
 			// Была мысль как-то ещё поделить, но я не придумал как...
 			// Все эти функции - основа языка
-			_builtInModulesFactories.Add("lang", context =>
+			_builtInModulesActivators.Add("lang", context =>
 			{
 				ListFunctions.Define(context);
 				ListSugarFunctions.Define(context);
@@ -53,20 +57,34 @@ namespace Bombardo.V2.Lang
 
 			// Более того, следующие три набора функций так же можно было бы объединить с lang...
 			// Но я их всё же вынес, потому как язык может работать и без них
-			_builtInModulesFactories.Add("context", ContextFunctions.Define);
-			_builtInModulesFactories.Add("console", ConsoleFunctions.Define);
-			_builtInModulesFactories.Add("math", MathFunctions.Define);
+			_builtInModulesActivators.Add("context", ContextFunctions.Define);
+			_builtInModulesActivators.Add("console", ConsoleFunctions.Define);
+			_builtInModulesActivators.Add("math", MathFunctions.Define);
 
 			// А вот этот модуль вполне удобно иметь отдельным, потому как тогда имена его функций упрощаются
-			_builtInModulesFactories.Add("table", TableFunctions.Define);
+			_builtInModulesActivators.Add("table", TableFunctions.Define);
 		}
+
+		public static void EvaluateModule(Evaluator eval, Module module)
+		{
+			
+		}
+
+#endregion
+
+
 
 #region Require
 
 		private static void Require(Evaluator eval, StackFrame frame)
 		{
-			var context = frame.context.value as Context;
+			
+			Context context = frame.context.value as Context;
 			var (name, path, command, rest) = ReadArguments(frame.args);
+
+			Module module = null;
+			Module current = CurrentModule;
+			string fullPath = FSUtils.LookupModuleFile(programPath, current.currentPath, Names.MODULES_FOLDER, name);
 
 			if (eval.HaveReturn())
 			{
@@ -76,30 +94,55 @@ namespace Bombardo.V2.Lang
 			}
 			else
 			{
-			}
-
-			frame.temp1 = eval.TakeReturn();
-
-			var    cur      = CurrentModule;
-			string fullPath = FSUtils.LookupModuleFile(programPath, cur.currentPath, Names.MODULES_FOLDER, name);
-
-			if (fullPath != null)
-			{
-				var module = GetModule(fullPath);
-				if (module != null)
+				if (fullPath != null)
 				{
+					// По указанному абсолютному пути есть файл
+					// Значит можно пробовать загрузить модуль
+					if (_modules.TryGetValue(fullPath, out module))
+					{
+						// Модуль уже есть в памяти
+						if (module.loading)
+						{
+							// Циклический импорт
+							eval.SetError($"Module already in loading state: {fullPath}! Check for cyclical require!");
+							return;
+						}
+
+						// Модуль загружен и готов к использованию
+						// Импортим символы
+						ImportSymbols(context, module.Result, path, command, rest);
+						eval.SetReturn(null);
+						eval.CloseFrame();
+					}
+					else
+					{
+						// Модуля нет в памяти
+						var content = File.ReadAllText(fullPath);
+						var atoms   = BombardoLang.Parse(content);
+						
+						module = new Module(fullPath, baseContext);
+						// Простое исполнение, без поддержки семантики препроцессинга
+						eval.CreateFrame("-eval-block-", atoms, module.ModuleContext);
+					}
 				}
-
-				var content = File.ReadAllText(fullPath);
-				var atoms   = BombardoLang.Parse(content);
-
-				//eval.Stack.CreateFrame("-eval-block-", atoms, )
+				else
+				{
+					// Такого файла нет - значит по данному пути МОЖЕТ быть загружен встроенный модуль
+					if (!_modules.TryGetValue(fullPath, out module))
+					{
+						module = GetBuildInModule(name);
+						if (module != null)
+						{
+							// Кэшируем ссылку на модуль
+							_modules.Add(fullPath, module);
+						}
+					}
+					
+					ImportSymbols(context, module.Result, path, command, rest);
+					eval.SetReturn(null);
+					eval.CloseFrame();
+				}
 			}
-			else
-			{
-			}
-
-			ImportSymbols(context, null, path, command, rest);
 		}
 
 		private static (string, Atom, Atom, Atom) ReadArguments(Atom args)
@@ -113,26 +156,13 @@ namespace Bombardo.V2.Lang
 			return (name, path, command, rest);
 		}
 
-		public static Module GetModule(string fullPath)
-		{
-			Module module;
-
-			if (!_modules.TryGetValue(fullPath, out module))
-			{
-				module = new Module(fullPath, baseContext);
-				_modules.Add(fullPath, module);
-			}
-
-			return module;
-		}
-		
 		private static Module GetBuildInModule(string name)
 		{
 			Module module = null;
-			if (!_modulesBuiltIn.TryGetValue(name, out module))
+			if (!_builtInModules.TryGetValue(name, out module))
 			{
 				Action<Context> activator;
-				if (_builtInModulesFactories.TryGetValue(name, out activator) && activator != null)
+				if (_builtInModulesActivators.TryGetValue(name, out activator) && activator != null)
 				{
 					module         = new Module(name, null);
 					module.loading = false;
@@ -177,6 +207,7 @@ namespace Bombardo.V2.Lang
 		}
 
 #endregion
+
 
 
 #region Export

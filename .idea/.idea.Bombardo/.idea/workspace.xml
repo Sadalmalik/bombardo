@@ -2,55 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/Module.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/modules.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo.sln" beforeDir="false" afterPath="$PROJECT_DIR$/Bombardo.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Bombardo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Bombardo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Bombardo.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/BombardoV1.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/BombardoUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/BombardoUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Atom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Atom.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/BombardoException.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/BombardoException.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Closure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Closure.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Context.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Evaluator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Evaluator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Lexer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Lexer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Parser.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/ParserExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/ParserExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Core/Procedure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Core/Procedure.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/AllNames.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/AllNames.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/ControlContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/ControlContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/GeneralContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/GeneralContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/ListContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/ListContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/ListSugarContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/ListSugarContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/MathContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/MathContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/TableContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/TableContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Base/TypePredicatesContextcs.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Base/TypePredicatesContextcs.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/FileSystemContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Extended/FileSystemContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/LogicContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Extended/LogicContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/ModuleSystemContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Extended/ModuleSystemContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/TextContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Extended/TextContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/ThreadContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Extended/ThreadContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Lang/Extended/TimersContext.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Lang/Extended/TimersContext.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Properties/AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/UNumber.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/UNumber.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/ArgUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Utils/ArgUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/CommonUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Utils/CommonUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/ContextUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Utils/ContextUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Utils/FSUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/Utils/StringExtensions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/Utils/StringExtensions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Bombardo/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV1/packages.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoApp/Properties/AssemblyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/Properties/AssemblyInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoApp/REPL.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/REPL.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Closure.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Closure.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Names.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Names.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BombardoV2/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Notes.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -167,6 +135,7 @@
     <setting file="file://$PROJECT_DIR$/BombardoV1/Properties/AssemblyInfo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV1/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62FFEEB7-EC02-4BEA-B61E-5FBF8D44AC5B/4c/6e64323a/Action`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Bombardo.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Utils/ContextUtils.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" root0="FORCE_HIGHLIGHTING" />
@@ -199,18 +168,29 @@
   </component>
   <component name="IdeDocumentHistory">
     <changedPaths>
-      <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoApp/Program.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/Module.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModulesSystem.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/BuiltInModules.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/BuiltInModulesActivator.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/Module.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoApp/Program.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Names.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
+      <option value="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" />
     </changedPaths>
   </component>
   <component name="ProjectConfigurationFiles">
@@ -424,7 +404,11 @@
       <workItem from="1621802279747" duration="596000" />
       <workItem from="1622383334742" duration="676000" />
       <workItem from="1622456757888" duration="595000" />
-      <workItem from="1623232495266" duration="8608000" />
+      <workItem from="1623232495266" duration="12424000" />
+      <workItem from="1623313709451" duration="3923000" />
+      <workItem from="1623496456921" duration="595000" />
+      <workItem from="1623512737323" duration="1189000" />
+      <workItem from="1623584343390" duration="9854000" />
     </task>
     <servers />
   </component>
@@ -486,6 +470,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

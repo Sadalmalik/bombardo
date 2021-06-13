@@ -2,6 +2,25 @@ using System;
 
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_CAR = "car";
+		public static readonly string LISP_CDR = "cdr";
+		public static readonly string LISP_CONS = "cons";
+		public static readonly string LISP_GET = "get";
+		public static readonly string LISP_LAST = "last";
+		public static readonly string LISP_END = "end";
+		public static readonly string LISP_APPEND = "append";
+		public static readonly string LISP_LIST = "list";
+		public static readonly string LISP_REVERSE = "reverse";
+		public static readonly string LISP_SET_CAR = "set-car!";
+		public static readonly string LISP_SET_CDR = "set-cdr!";
+		public static readonly string LISP_EACH = "each";
+		public static readonly string LISP_MAP = "map";
+		public static readonly string LISP_FILTER = "filter";
+		public static readonly string LISP_CONTAINS = "contains?";
+	}
+	
 	public static class ListFunctions
 	{
 		public static void Define(Context ctx)
@@ -276,7 +295,7 @@ namespace Bombardo.V2
 							frame.temp1 = frame.temp1.next;
 						var subExpression = new Atom(frame.temp1.atom, null);
 						frame.temp1 = frame.temp1.next;
-						var newFrame = eval.Stack.CreateFrame(
+						var newFrame = eval.CreateFrame(
 							"-eval-sexp-args-",
 							new Atom(proc, subExpression),
 							frame.context);
@@ -315,7 +334,7 @@ namespace Bombardo.V2
 							frame.temp1 = frame.temp1.next;
 						var subExpression = new Atom(frame.temp1.atom, null);
 						frame.temp1 = frame.temp1.next;
-						var newFrame = eval.Stack.CreateFrame(
+						var newFrame = eval.CreateFrame(
 							"-eval-sexp-args-",
 							new Atom(proc, subExpression),
 							frame.context);
@@ -360,7 +379,7 @@ namespace Bombardo.V2
 						frame.temp1 = frame.temp1.next;
 						subExpression = new Atom(subExpression, null);
 						frame.temp1 = frame.temp1.next;
-						var newFrame = eval.Stack.CreateFrame(
+						var newFrame = eval.CreateFrame(
 							"-eval-sexp-args-",
 							new Atom(proc, subExpression),
 							frame.context);

@@ -2,6 +2,31 @@ using System;
 
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_NOPE = "nope";
+		public static readonly string LISP_QUOTE = "quote";
+
+		public static readonly string LISP_PARSE = "parse";
+		public static readonly string LISP_EVAL = "eval";
+		public static readonly string LISP_EVAL_EACH = "block";
+
+		public static readonly string LISP_COND = "cond";
+		public static readonly string LISP_IF = "if";
+		public static readonly string LISP_WHILE = "while";
+		public static readonly string LISP_UNTIL = "until";
+
+		public static readonly string LISP_LAMBDA = "lambda";
+		public static readonly string LISP_MACROS = "macros";
+		public static readonly string LISP_PREPROCESSOR = "preprocessor";
+		public static readonly string LISP_SYNTAX = "syntax";
+
+		public static readonly string LISP_APPLY = "apply";
+		public static readonly string LISP_MACRO_EXPAND = "macro-expand";
+
+		public static readonly string LISP_ERROR = "error";
+	}
+	
 	public static class ControlFunctions
 	{
 		public static void Define(Context ctx)
@@ -91,7 +116,7 @@ namespace Bombardo.V2
 				Atom    expression = frame.args?.atom;
 				Atom    ctxAtom    = frame.args?.next?.atom;
 				Context ctx        = ctxAtom?.value as Context ?? frame.context.value as Context;
-				eval.Stack.CreateFrame("-eval-", expression, ctx);
+				eval.CreateFrame("-eval-", expression, ctx);
 			}
 		}
 
@@ -102,7 +127,7 @@ namespace Bombardo.V2
 				Atom    expression = frame.args?.atom;
 				Atom    ctxAtom    = frame.args?.next?.atom;
 				Context ctx        = ctxAtom?.value as Context;
-				eval.Stack.CreateFrame("-eval-each-", expression, ctx);
+				eval.CreateFrame("-eval-each-", expression, ctx);
 			}
 		}
 
@@ -137,7 +162,7 @@ namespace Bombardo.V2
 							throw new ArgumentException($"Condition element must be list, but found: {frame.temp2}!");
 						}
 
-						eval.Stack.CreateFrame("-eval-", frame.temp2.atom, frame.context);
+						eval.CreateFrame("-eval-", frame.temp2.atom, frame.context);
 					}
 					else
 					{
@@ -154,7 +179,7 @@ namespace Bombardo.V2
 					}
 					else
 					{
-						eval.Stack.CreateFrame("-eval-block-", frame.temp2.next, frame.context);
+						eval.CreateFrame("-eval-block-", frame.temp2.next, frame.context);
 					}
 
 					break;
@@ -180,7 +205,7 @@ namespace Bombardo.V2
 					}
 					else
 					{
-						eval.Stack.CreateFrame("-eval-", frame.temp1, frame.context);
+						eval.CreateFrame("-eval-", frame.temp1, frame.context);
 					}
 
 					break;
@@ -189,14 +214,14 @@ namespace Bombardo.V2
 					if (frame.temp2 == null)
 						throw new ArgumentException($"If statement must have at least one block of code!");
 					else
-						eval.Stack.CreateFrame("-eval-block-", frame.temp2, frame.context);
+						eval.CreateFrame("-eval-block-", frame.temp2, frame.context);
 					break;
 				case "-built-in-if-else-":
 					frame.state = new Atom("-eval-sexp-body-");
 					if (frame.temp3 == null)
 						eval.SetReturn(null);
 					else
-						eval.Stack.CreateFrame("-eval-block-", frame.temp3, frame.context);
+						eval.CreateFrame("-eval-block-", frame.temp3, frame.context);
 					break;
 			}
 		}
@@ -228,7 +253,7 @@ namespace Bombardo.V2
 					}
 					else
 					{
-						eval.Stack.CreateFrame("-eval-", frame.temp1, frame.context);
+						eval.CreateFrame("-eval-", frame.temp1, frame.context);
 					}
 
 					break;
@@ -240,7 +265,7 @@ namespace Bombardo.V2
 					}
 					else
 					{
-						eval.Stack.CreateFrame("-eval-block-", frame.temp2, frame.context);
+						eval.CreateFrame("-eval-block-", frame.temp2, frame.context);
 					}
 
 					break;
@@ -274,7 +299,7 @@ namespace Bombardo.V2
 					}
 					else
 					{
-						eval.Stack.CreateFrame("-eval-", frame.temp1, frame.context);
+						eval.CreateFrame("-eval-", frame.temp1, frame.context);
 					}
 
 					break;
@@ -286,7 +311,7 @@ namespace Bombardo.V2
 					}
 					else
 					{
-						eval.Stack.CreateFrame("-eval-block-", frame.temp2, frame.context);
+						eval.CreateFrame("-eval-block-", frame.temp2, frame.context);
 					}
 
 					break;
@@ -381,7 +406,7 @@ namespace Bombardo.V2
 			Function proc = func?.value as Function;
 			if (proc == null) throw new ArgumentException("First argument must be procedure!");
 
-			eval.Stack.CreateFrame("-eval-", new Atom(func, rest), frame.context);
+			eval.CreateFrame("-eval-", new Atom(func, rest), frame.context);
 		}
 
 		// private static Atom MacroExpand(Atom args, Context context)

@@ -2,6 +2,19 @@ using System;
 
 namespace Bombardo.V2
 {
+	public static partial class Names
+	{
+		public static readonly string LISP_PRED_NULL = "null?";
+		public static readonly string LISP_PRED_EMPTY = "empty?";
+		public static readonly string LISP_PRED_SYM = "symbol?";
+		public static readonly string LISP_PRED_PAIR = "pair?";
+		public static readonly string LISP_PRED_LIST = "list?";
+		public static readonly string LISP_PRED_STRING = "string?";
+		public static readonly string LISP_PRED_BOOL = "bool?";
+		public static readonly string LISP_PRED_NUMBER = "number?";
+		public static readonly string LISP_PRED_PROCEDURE = "proc?";
+	}
+	
 	public static class TypePredicateFunctions
 	{
 		public static void Define(Context ctx)
