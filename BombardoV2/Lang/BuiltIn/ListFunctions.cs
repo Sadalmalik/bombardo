@@ -52,20 +52,20 @@ namespace Bombardo.V2
 			Atom pair = new Atom();
 			pair.value = frame.args?.value;
 			pair.next  = (Atom) frame.args?.next?.value;
-			eval.SetReturn(pair);
+			eval.Return( pair );
 		}
 
 		private static void Car(Evaluator eval, StackFrame frame)
 		{
 			if (frame.args == null)
 			{
-				eval.SetReturn(null);
+				eval.Return( null );
 				return;
 			}
 
 			Atom list = (Atom) frame.args?.value;
 			if (!list.IsPair) throw new ArgumentException("Argument must be Pair!");
-			eval.SetReturn(list.atom);
+			eval.Return( list.atom );
 		}
 
 		private static void Cdr(Evaluator eval, StackFrame frame)
@@ -73,13 +73,13 @@ namespace Bombardo.V2
 			var args = frame.args;
 			if (args == null)
 			{
-				eval.SetReturn(null);
+				eval.Return( null );
 				return;
 			}
 
 			Atom list = (Atom) args?.value;
 			if (!list.IsPair) throw new ArgumentException("Argument must be Pair!");
-			eval.SetReturn(list.next.atom);
+			eval.Return( list.next.atom );
 		}
 
 		private static void GetElement(Evaluator eval, StackFrame frame)
@@ -100,7 +100,7 @@ namespace Bombardo.V2
 			if (res == null)
 				throw new ArgumentException(string.Format("List too short for argument {0}!", arg0.value));
 
-			eval.SetReturn(res);
+			eval.Return( res );
 		}
 
 		private static void Last(Evaluator eval, StackFrame frame)
@@ -114,7 +114,7 @@ namespace Bombardo.V2
 
 			if (args == null)
 			{
-				eval.SetReturn(null);
+				eval.Return( null );
 				return;
 			}
 
@@ -124,7 +124,7 @@ namespace Bombardo.V2
 				list.IsPair &&
 				list.next != null)
 				list = list.next;
-			eval.SetReturn(list.IsPair ? list.atom : list);
+			eval.Return( list.IsPair ? list.atom : list );
 		}
 		
 		private static void ListEnd(Evaluator eval, StackFrame frame)
@@ -138,7 +138,7 @@ namespace Bombardo.V2
 
 			if (args == null)
 			{
-				eval.SetReturn(null);
+				eval.Return( null );
 				return;
 			}
 
@@ -148,7 +148,7 @@ namespace Bombardo.V2
 				list.IsPair &&
 				list.next != null)
 				list = list.next;
-			eval.SetReturn(list);
+			eval.Return( list );
 		}
 
 		private static void Append(Evaluator eval, StackFrame frame)
@@ -163,13 +163,13 @@ namespace Bombardo.V2
 
 			if (list2 == null || list2.IsEmpty)
 			{
-				eval.SetReturn(list1);
+				eval.Return( list1 );
 				return;
 			}
 
 			if (list1 == null || list1.IsEmpty)
 			{
-				eval.SetReturn(list2);
+				eval.Return( list2 );
 				return;
 			}
 
@@ -182,7 +182,7 @@ namespace Bombardo.V2
 				pair = pair.next;
 			pair.next = list2;
 
-			eval.SetReturn(list1);
+			eval.Return( list1 );
 		}
 
 		private static void List(Evaluator eval, StackFrame frame)
@@ -210,7 +210,7 @@ namespace Bombardo.V2
 				tail.value = iter.value;
 			}
 
-			eval.SetReturn(head);
+			eval.Return( head );
 		}
 
 		private static void Reverse(Evaluator eval, StackFrame frame)
@@ -218,7 +218,7 @@ namespace Bombardo.V2
 			var args         = frame.args;
 			var list         = StructureUtils.CloneList((Atom) args?.value);
 			var reversedList = StructureUtils.Reverse(list);
-			eval.SetReturn(reversedList);
+			eval.Return( reversedList );
 		}
 
 
@@ -235,7 +235,7 @@ namespace Bombardo.V2
 
 			list.value = args.next.value;
 
-			eval.SetReturn(list.atom);
+			eval.Return( list.atom );
 		}
 
 		private static void SetCdr(Evaluator eval, StackFrame frame)
@@ -251,7 +251,7 @@ namespace Bombardo.V2
 
 			list.next = (Atom) args.next.value;
 
-			eval.SetReturn(list.next);
+			eval.Return( list.next );
 		}
 
 		private static void Contains(Evaluator eval, StackFrame frame)
@@ -273,7 +273,7 @@ namespace Bombardo.V2
 				}
 			}
 
-			eval.SetReturn(contains ? Atoms.TRUE : Atoms.FALSE);
+			eval.Return( contains ? Atoms.TRUE : Atoms.FALSE );
 		}
 
 		private static void Each(Evaluator eval, StackFrame frame)

@@ -32,13 +32,13 @@ namespace Bombardo.V2
 			}
 
 			Console.WriteLine();
-			eval.SetReturn(null);
+			eval.Return( null );
 		}
 
 		private static void ReadLine(Evaluator eval, StackFrame frame)
 		{
 			string line = Console.ReadLine();
-			eval.SetReturn(new Atom(AtomType.String, line));
+			eval.Return( new Atom(AtomType.String, line) );
 		}
 	}
 }

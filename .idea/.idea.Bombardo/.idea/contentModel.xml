@@ -90,6 +90,7 @@
             <e p="ContextFunctions.cs" t="Include" />
             <e p="ControlFunctions.cs" t="Include" />
             <e p="DebugFunctions.cs" t="Include" />
+            <e p="FileSystemFunctions.cs" t="Include" />
             <e p="ListFunctions.cs" t="Include" />
             <e p="ListSugarFunctions.cs" t="Include" />
             <e p="MathFunctions.cs" t="Include" />

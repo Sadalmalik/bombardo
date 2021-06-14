@@ -55,6 +55,13 @@ namespace Bombardo.V2
 			Stack.RemoveFrame();
 		}
 		
+		public void Return(Atom value)
+		{
+			_retValue = value;
+			_haveReturn = true;
+			Stack.RemoveFrame();
+		}
+		
 		public Atom Evaluate(Atom atom, Context current_context)
 		{
 			_retValue = null;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace Bombardo.V2
@@ -107,6 +108,28 @@ namespace Bombardo.V2
             return prev;
         }
 		
+        public static void Each(Atom list, Action<Atom> callback)
+        {
+            if (list.type != AtomType.Pair)
+                throw new ArgumentException("Atom must be list!");
+            if (callback == null)
+                throw new ArgumentException("Callback can't be null!");
+            
+            for (var iter = list; iter != null; iter = iter.next)
+                callback(iter.atom);
+        }
+        
+        public static void Each2(Atom list, Action<Atom, Atom> callback)
+        {
+            if (list.type != AtomType.Pair)
+                throw new ArgumentException("Atom must be list!");
+            if (callback == null)
+                throw new ArgumentException("Callback can't be null!");
+                
+			for (Atom iter = list; iter?.next != null; iter = iter.next)
+                callback(iter.atom, iter.next.atom);
+        }
+        
         public static (Atom, Atom) Split2(Atom value)
         {
             Atom iter = value;

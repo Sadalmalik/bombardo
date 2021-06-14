@@ -81,12 +81,12 @@ namespace Bombardo.V2
 
 		private static void Nope(Evaluator eval, StackFrame frame)
 		{
-			eval.SetReturn(null);
+			eval.Return( null );
 		}
 
 		private static void Quote(Evaluator eval, StackFrame frame)
 		{
-			eval.SetReturn(frame.args.atom);
+			eval.Return( frame.args.atom );
 		}
 
 		private static void Parse(Evaluator eval, StackFrame frame)
@@ -100,13 +100,13 @@ namespace Bombardo.V2
 			{
 				var list = BombardoLang.Parse((string) text.value);
 
-				eval.SetReturn(list);
+				eval.Return( list );
 			}
 			catch
 			{
 			}
 
-			eval.SetReturn(null);
+			eval.Return( null );
 		}
 
 		private static void Eval(Evaluator eval, StackFrame frame)
@@ -117,7 +117,10 @@ namespace Bombardo.V2
 				Atom    ctxAtom    = frame.args?.next?.atom;
 				Context ctx        = ctxAtom?.value as Context ?? frame.context.value as Context;
 				eval.CreateFrame("-eval-", expression, ctx);
+				return;
 			}
+			
+			eval.CloseFrame();
 		}
 
 		private static void EvalEach(Evaluator eval, StackFrame frame)
@@ -128,7 +131,10 @@ namespace Bombardo.V2
 				Atom    ctxAtom    = frame.args?.next?.atom;
 				Context ctx        = ctxAtom?.value as Context;
 				eval.CreateFrame("-eval-each-", expression, ctx);
+				return;
 			}
+			
+			eval.CloseFrame();
 		}
 
 		private static void Cond(Evaluator eval, StackFrame frame)
@@ -168,7 +174,7 @@ namespace Bombardo.V2
 					{
 						//  Ни одно из условий не выполнилось
 						frame.state = new Atom("-eval-sexp-body-");
-						eval.SetReturn(Atoms.FALSE);
+						eval.Return( Atoms.FALSE );
 					}
 
 					break;
@@ -219,9 +225,13 @@ namespace Bombardo.V2
 				case "-built-in-if-else-":
 					frame.state = new Atom("-eval-sexp-body-");
 					if (frame.temp3 == null)
-						eval.SetReturn(null);
+					{
+						eval.Return( null );
+					}
 					else
+					{
 						eval.CreateFrame("-eval-block-", frame.temp3, frame.context);
+					}
 					break;
 			}
 		}
@@ -248,7 +258,7 @@ namespace Bombardo.V2
 						else
 						{
 							frame.state = new Atom("-eval-sexp-body-");
-							eval.SetReturn(frame.temp3);
+							eval.Return( frame.temp3 );
 						}
 					}
 					else
@@ -294,7 +304,7 @@ namespace Bombardo.V2
 						else
 						{
 							frame.state = new Atom("-eval-sexp-body-");
-							eval.SetReturn(frame.temp3);
+							eval.Return( frame.temp3 );
 						}
 					}
 					else
@@ -332,7 +342,7 @@ namespace Bombardo.V2
 			closure.EvalArgs   = true;
 			closure.EvalResult = false;
 
-			eval.SetReturn(new Atom(AtomType.Function, closure));
+			eval.Return( new Atom(AtomType.Function, closure) );
 		}
 
 		private static void Macros(Evaluator eval, StackFrame frame)
@@ -349,7 +359,7 @@ namespace Bombardo.V2
 			closure.EvalArgs   = false;
 			closure.EvalResult = true;
 
-			eval.SetReturn(new Atom(AtomType.Function, closure));
+			eval.Return( new Atom(AtomType.Function, closure) );
 		}
 
 		private static void Preprocessor(Evaluator eval, StackFrame frame)
@@ -366,7 +376,7 @@ namespace Bombardo.V2
 			closure.EvalArgs   = false;
 			closure.EvalResult = false;
 
-			eval.SetReturn(new Atom(AtomType.Function, closure));
+			eval.Return( new Atom(AtomType.Function, closure) );
 		}
 
 		private static void Syntax(Evaluator eval, StackFrame frame)
@@ -394,19 +404,24 @@ namespace Bombardo.V2
 			closure.EvalArgs   = (bool) before.value;
 			closure.EvalResult = (bool) after.value;
 
-			eval.SetReturn(new Atom(AtomType.Function, closure));
+			eval.Return( new Atom(AtomType.Function, closure) );
 		}
 
 		private static void Apply(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom func = args.atom;
-			Atom rest = StructureUtils.CloneList(args.next.atom);
+			if (eval.HaveReturn())
+			{
+				var  args = frame.args;
+				Atom func = args.atom;
+				Atom rest = StructureUtils.CloneList(args.next.atom);
 
-			Function proc = func?.value as Function;
-			if (proc == null) throw new ArgumentException("First argument must be procedure!");
+				Function proc = func?.value as Function;
+				if (proc == null) throw new ArgumentException("First argument must be procedure!");
 
-			eval.CreateFrame("-eval-", new Atom(func, rest), frame.context);
+				eval.CreateFrame("-eval-", new Atom(func, rest), frame.context);
+				return;
+			}
+			eval.CloseFrame();
 		}
 
 		// private static Atom MacroExpand(Atom args, Context context)

@@ -768,7 +768,7 @@ namespace Bombardo.V2
 
         #region Logic operators
 
-        public static object Eq(object a, object b)
+        public static bool Eq(object a, object b)
         {
             int type = MaxNumberType(a, b);
             switch (type)
@@ -789,7 +789,7 @@ namespace Bombardo.V2
             }
         }
 
-        public static object Lt(object a, object b)
+        public static bool Lt(object a, object b)
         {
             int type = MaxNumberType(a, b);
             switch (type)
@@ -810,7 +810,7 @@ namespace Bombardo.V2
             }
         }
 
-        public static object Gt(object a, object b)
+        public static bool Gt(object a, object b)
         {
             int type = MaxNumberType(a, b);
             switch (type)
@@ -831,7 +831,7 @@ namespace Bombardo.V2
             }
         }
 
-        public static object Le(object a, object b)
+        public static bool Le(object a, object b)
         {
             int type = MaxNumberType(a, b);
             switch (type)
@@ -852,7 +852,7 @@ namespace Bombardo.V2
             }
         }
 
-        public static object Ge(object a, object b)
+        public static bool Ge(object a, object b)
         {
             int type = MaxNumberType(a, b);
             switch (type)
@@ -873,7 +873,7 @@ namespace Bombardo.V2
             }
         }
         
-        public static object Ne(object a, object b)
+        public static bool Ne(object a, object b)
         {
             int type = MaxNumberType(a, b);
             switch (type)

@@ -40,7 +40,7 @@ namespace Bombardo.V2
 			var args = frame.args;
 			var dict = new Context();
 			FillDictionary(dict, args);
-			eval.SetReturn(new Atom(AtomType.Native, dict));
+			eval.Return(new Atom(AtomType.Native, dict));
 		}
 
 		private static void TableGet(Evaluator eval, StackFrame frame)
@@ -56,7 +56,7 @@ namespace Bombardo.V2
 
 			dictionary.TryGetValue((string) key?.value, out var value);
 
-			eval.SetReturn(value);
+			eval.Return(value);
 		}
 
 		private static void TableSet(Evaluator eval, StackFrame frame)
@@ -68,7 +68,7 @@ namespace Bombardo.V2
 
 			FillDictionary(dictionary, args.next);
 
-			eval.SetReturn(null);
+			eval.Return(null);
 		}
 
 		private static void TableRemove(Evaluator eval, StackFrame frame)
@@ -84,7 +84,7 @@ namespace Bombardo.V2
 
 			dictionary.Remove((string) key.value);
 
-			eval.SetReturn(null);
+			eval.Return(null);
 		}
 
 		private static void TableClear(Evaluator eval, StackFrame frame)
@@ -96,7 +96,7 @@ namespace Bombardo.V2
 
 			dictionary.Clear();
 
-			eval.SetReturn(null);
+			eval.Return(null);
 		}
 
 		private static void TableImport(Evaluator eval, StackFrame frame)
@@ -111,7 +111,7 @@ namespace Bombardo.V2
 			string[] nameList = StructureUtils.ListToStringArray(names, "TABLE");
 			ContextUtils.ImportSymbols(dictionary, ctx, nameList);
 
-			eval.SetReturn(null);
+			eval.Return(null);
 		}
 
 		private static void TableImportAll(Evaluator eval, StackFrame frame)
@@ -124,9 +124,10 @@ namespace Bombardo.V2
 			var ctx = frame.context.value as Context;
 			ContextUtils.ImportAllSymbols(dictionary, ctx);
 
-			eval.SetReturn(null);
+			eval.Return(null);
 		}
 
+		// TODO: Осознать, что тут происходит
 		private static void TableEach(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
@@ -183,7 +184,7 @@ namespace Bombardo.V2
 			else
 			{
 				var table = atom.value as Context;
-				eval.SetReturn(table != null ? Atoms.TRUE : Atoms.FALSE);
+				eval.Return(table != null ? Atoms.TRUE : Atoms.FALSE);
 			}
 		}
 

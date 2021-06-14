@@ -18,7 +18,7 @@ namespace Bombardo.V2
 		{
 			var tag = frame.args?.atom?.value;
 			Console.WriteLine(tag==null ? "<Marker reached>" : $"<Marker reached: {frame.args.atom}>");
-			eval.SetReturn(null);
+			eval.Return( null );
 		}
 	}
 }

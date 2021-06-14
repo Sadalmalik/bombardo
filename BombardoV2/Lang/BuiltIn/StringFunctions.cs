@@ -72,7 +72,7 @@ namespace Bombardo.V2
                 sb.Append(Convert.ToChar(ch.value));
             }
 
-            eval.SetReturn(new Atom(AtomType.String, sb.ToString()));
+            eval.Return(new Atom(AtomType.String, sb.ToString()));
         }
 
         public static void GetChars(Evaluator eval, StackFrame frame)
@@ -93,7 +93,7 @@ namespace Bombardo.V2
                 tail.value = new Atom(AtomType.Number, chars[i]);
             }
             
-            eval.SetReturn(list);
+            eval.Return(list);
         }
 
         public static void GetChar(Evaluator eval, StackFrame frame)
@@ -107,7 +107,7 @@ namespace Bombardo.V2
             int index = Convert.ToInt32(num.value);
             char res = str[index];
             
-            eval.SetReturn(new Atom(AtomType.Number, res));
+            eval.Return(new Atom(AtomType.Number, res));
         }
 
         public static void Length(Evaluator eval, StackFrame frame)
@@ -118,7 +118,7 @@ namespace Bombardo.V2
             string str = atom.value as string;
             int res = str.Length;
 
-            eval.SetReturn(new Atom(AtomType.Number, res));
+            eval.Return(new Atom(AtomType.Number, res));
         }
 
         public static void Concat(Evaluator eval, StackFrame frame)
@@ -137,7 +137,7 @@ namespace Bombardo.V2
                     sb.Append(atom.Stringify(true));
             }
 
-            eval.SetReturn(new Atom(AtomType.String, sb.ToString()));
+            eval.Return(new Atom(AtomType.String, sb.ToString()));
         }
 
         public static void Substr(Evaluator eval, StackFrame frame)
@@ -151,7 +151,7 @@ namespace Bombardo.V2
             string str = strArg.value as string;
             string res = str.Substring((int)starts.value, (int)length.value);
 
-            eval.SetReturn(new Atom(AtomType.String, res));
+            eval.Return(new Atom(AtomType.String, res));
         }
 
         public static void Split(Evaluator eval, StackFrame frame)
@@ -174,7 +174,7 @@ namespace Bombardo.V2
                 tail.value = new Atom(AtomType.String, list[0]);
             }
 
-            eval.SetReturn(head);
+            eval.Return(head);
         }
 
         public static void StartsWith(Evaluator eval, StackFrame frame)
@@ -187,7 +187,7 @@ namespace Bombardo.V2
             string str = strArg.value as string;
             string sub = subArg.value as string;
 
-            eval.SetReturn(str.StartsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
+            eval.Return(str.StartsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
         }
 
         public static void EndsWith(Evaluator eval, StackFrame frame)
@@ -200,7 +200,7 @@ namespace Bombardo.V2
             string str = strArg.value as string;
             string sub = subArg.value as string;
 
-            eval.SetReturn(str.EndsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
+            eval.Return(str.EndsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
         }
 
         public static void Contains(Evaluator eval, StackFrame frame)
@@ -213,7 +213,7 @@ namespace Bombardo.V2
             string str = strArg.value as string;
             string sub = subArg.value as string;
 
-            eval.SetReturn(str.Contains(sub) ? Atoms.TRUE : Atoms.FALSE);
+            eval.Return(str.Contains(sub) ? Atoms.TRUE : Atoms.FALSE);
         }
 
         public static void Replace(Evaluator eval, StackFrame frame)
@@ -229,7 +229,7 @@ namespace Bombardo.V2
             string n_w = newArg.value as string;
             string res = str.Replace(sub, n_w);
 
-            eval.SetReturn(new Atom(AtomType.String, res));
+            eval.Return(new Atom(AtomType.String, res));
         }
 	}
 }

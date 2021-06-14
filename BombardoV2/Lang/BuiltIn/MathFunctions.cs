@@ -217,7 +217,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Sum(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Dis(Evaluator eval, StackFrame frame)
@@ -226,7 +226,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Dis(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Mul(Evaluator eval, StackFrame frame)
@@ -235,7 +235,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Mul(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Div(Evaluator eval, StackFrame frame)
@@ -244,7 +244,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Div(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Mod(Evaluator eval, StackFrame frame)
@@ -253,7 +253,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Mod(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 #endregion Math operators
@@ -266,7 +266,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Min(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Max(Evaluator eval, StackFrame frame)
@@ -275,7 +275,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Max(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Abs(Evaluator eval, StackFrame frame)
@@ -284,7 +284,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Abs(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Abs(atom.value)));
 		}
 
 		private static void Sign(Evaluator eval, StackFrame frame)
@@ -293,7 +293,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Sign(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Sign(atom.value)));
 		}
 
 		private static void Ceil(Evaluator eval, StackFrame frame)
@@ -302,7 +302,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Ceil(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Ceil(atom.value)));
 		}
 
 		private static void Floor(Evaluator eval, StackFrame frame)
@@ -311,7 +311,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Floor(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Floor(atom.value)));
 		}
 
 		private static void Trunc(Evaluator eval, StackFrame frame)
@@ -320,7 +320,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Trunc(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Trunc(atom.value)));
 		}
 
 		private static void Sqrt(Evaluator eval, StackFrame frame)
@@ -329,7 +329,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Sqrt(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Sqrt(atom.value)));
 		}
 
 		private static void Pow(Evaluator eval, StackFrame frame)
@@ -338,7 +338,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Pow(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Exp(Evaluator eval, StackFrame frame)
@@ -347,7 +347,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Exp(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Exp(atom.value)));
 		}
 
 		private static void Logn(Evaluator eval, StackFrame frame)
@@ -356,7 +356,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Logn(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Logn(atom.value)));
 		}
 
 		private static void Log(Evaluator eval, StackFrame frame)
@@ -365,7 +365,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Log(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 		private static void Log10(Evaluator eval, StackFrame frame)
@@ -374,7 +374,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Log10(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Log10(atom.value)));
 		}
 
 		private static void Sin(Evaluator eval, StackFrame frame)
@@ -383,7 +383,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Sin(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Sin(atom.value)));
 		}
 
 		private static void Cos(Evaluator eval, StackFrame frame)
@@ -392,7 +392,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Cos(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Cos(atom.value)));
 		}
 
 		private static void Tan(Evaluator eval, StackFrame frame)
@@ -401,7 +401,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Tan(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Tan(atom.value)));
 		}
 
 		private static void Asin(Evaluator eval, StackFrame frame)
@@ -410,7 +410,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Asin(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Asin(atom.value)));
 		}
 
 		private static void Acos(Evaluator eval, StackFrame frame)
@@ -419,7 +419,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Acos(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Acos(atom.value)));
 		}
 
 		private static void Atan(Evaluator eval, StackFrame frame)
@@ -428,7 +428,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Atan(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Atan(atom.value)));
 		}
 
 		private static void Atan2(Evaluator eval, StackFrame frame)
@@ -437,7 +437,7 @@ namespace Bombardo.V2
 			object res = ((Atom) frame.args?.value)?.value;
 			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
 				res = UNumber.Atan2(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			eval.Return(new Atom(AtomType.Number, res));
 		}
 
 
@@ -447,7 +447,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Sinh(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Sinh(atom.value)));
 		}
 
 		private static void Cosh(Evaluator eval, StackFrame frame)
@@ -456,7 +456,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Cosh(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Cosh(atom.value)));
 		}
 
 		private static void Tanh(Evaluator eval, StackFrame frame)
@@ -465,229 +465,192 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, UNumber.Tanh(atom.value)));
+			eval.Return(new Atom(AtomType.Number, UNumber.Tanh(atom.value)));
 		}
 
 #endregion
 
 #region Binary operators
 
+		private static object BitOperation(Atom list, Func<object, object, object> handle)
+		{
+			object result = list.atom.value;
+			StructureUtils.Each(list.next, atom => { result = handle(result, atom.value); });
+			return result;
+		}
+
 		private static void And(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			object res = ((Atom) frame.args?.value)?.value;
-			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
-				res = UNumber.And(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			object result = BitOperation(frame.args, UNumber.And);
+			eval.Return(new Atom(AtomType.Number, result));
 		}
 
 		private static void Or(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			object res = ((Atom) frame.args?.value)?.value;
-			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
-				res = UNumber.Or(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			object result = BitOperation(frame.args, UNumber.Or);
+			eval.Return(new Atom(AtomType.Number, result));
 		}
 
 		private static void Xor(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			object res = ((Atom) frame.args?.value)?.value;
-			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
-				res = UNumber.Xor(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			object result = BitOperation(frame.args, UNumber.Xor);
+			eval.Return(new Atom(AtomType.Number, result));
 		}
 
 		private static void Lsh(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			object res = ((Atom) frame.args?.value)?.value;
-			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
-				res = UNumber.Lsh(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			object result = BitOperation(frame.args, UNumber.Lsh);
+			eval.Return(new Atom(AtomType.Number, result));
 		}
 
 		private static void Rsh(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			object res = ((Atom) frame.args?.value)?.value;
-			for (Atom iter = frame.args?.next; iter != null; iter = iter.next)
-				res = UNumber.Rsh(res, ((Atom) iter.value).value);
-			eval.SetReturn(new Atom(AtomType.Number, res));
+			object result = BitOperation(frame.args, UNumber.Rsh);
+			eval.Return(new Atom(AtomType.Number, result));
 		}
 
 #endregion Binary operators
 
 #region Comparsion
 
+		private static bool CheckLogic(Atom list, Func<object, object, bool> check)
+		{
+			bool result = true;
+			StructureUtils.Each2(list, (a, b) => { result &= check(a.value, b.value); });
+			return result;
+		}
+
 		private static void Lt(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			for (Atom iter = frame.args; iter != null && iter.next != null; iter = iter.next)
-				if (!(bool) UNumber.Lt(
-					((Atom) iter.value).value,
-					((Atom) iter.next?.value).value))
-					eval.SetReturn(Atoms.FALSE);
-			eval.SetReturn(Atoms.TRUE);
+			bool result = CheckLogic(frame.args, UNumber.Lt);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void Gt(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			for (Atom iter = frame.args; iter != null && iter.next != null; iter = iter.next)
-				if (!(bool) UNumber.Gt(
-					((Atom) iter.value).value,
-					((Atom) iter.next?.value).value))
-					eval.SetReturn(Atoms.FALSE);
-			eval.SetReturn(Atoms.TRUE);
+			bool result = CheckLogic(frame.args, UNumber.Gt);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void Le(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			for (Atom iter = frame.args; iter != null && iter.next != null; iter = iter.next)
-				if (!(bool) UNumber.Le(
-					((Atom) iter.value).value,
-					((Atom) iter.next?.value).value))
-					eval.SetReturn(Atoms.FALSE);
-			eval.SetReturn(Atoms.TRUE);
+			bool result = CheckLogic(frame.args, UNumber.Le);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void Ge(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			for (Atom iter = frame.args; iter != null && iter.next != null; iter = iter.next)
-				if (!(bool) UNumber.Ge(
-					((Atom) iter.value).value,
-					((Atom) iter.next?.value).value))
-					eval.SetReturn(Atoms.FALSE);
-			eval.SetReturn(Atoms.TRUE);
+			bool result = CheckLogic(frame.args, UNumber.Ge);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void Ne(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			for (Atom iter = frame.args; iter != null && iter.next != null; iter = iter.next)
-				if (!(bool) UNumber.Ne(
-					((Atom) iter.value).value,
-					((Atom) iter.next?.value).value))
-					eval.SetReturn(Atoms.FALSE);
-			eval.SetReturn(Atoms.TRUE);
+			bool result = CheckLogic(frame.args, UNumber.Ne);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void Eq(Evaluator eval, StackFrame frame)
 		{
 			CheckAllNumbers(frame.args);
-			for (Atom iter = frame.args; iter != null && iter.next != null; iter = iter.next)
-				if (!(bool) UNumber.Eq(
-					((Atom) iter.value).value,
-					((Atom) iter.next?.value).value))
-					eval.SetReturn(Atoms.FALSE);
-			eval.SetReturn(Atoms.TRUE);
+			bool result = CheckLogic(frame.args, UNumber.Eq);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 #endregion Comparsion
 
 #region Types Predicates
 
+		private static bool CheckNumberType(Atom atom, int type)
+		{
+			return atom.type == AtomType.Number && UNumber.NumberType(atom.value) == type;
+		}
+
 		private static void PredUByte(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.UBYTE)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.UBYTE);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredSByte(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.SBYTE)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.SBYTE);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredChar(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.CHAR)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.CHAR);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredUShort(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.USHORT)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.USHORT);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredSShort(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.SSHORT)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.SSHORT);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredUInt(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.UINT)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.UINT);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredSInt(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.SINT)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.SINT);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredULong(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.ULONG)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.ULONG);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredSLong(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.SLONG)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.SLONG);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredFloat(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.FLOAT)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.FLOAT);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void PredDouble(Evaluator eval, StackFrame frame)
 		{
-			Atom atom = (Atom) frame.args?.value;
-			if (atom.type == AtomType.Number &&
-			    UNumber.NumberType(atom.value) == UNumber.DOUBLE)
-				eval.SetReturn(Atoms.TRUE);
-			eval.SetReturn(Atoms.FALSE);
+			Atom atom   = (Atom) frame.args?.value;
+			bool result = CheckNumberType(atom, UNumber.DOUBLE);
+			eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 #endregion
@@ -700,7 +663,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (byte) Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (byte) Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastSByte(Evaluator eval, StackFrame frame)
@@ -709,7 +672,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (sbyte) Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (sbyte) Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastChar(Evaluator eval, StackFrame frame)
@@ -718,7 +681,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (char) Convert.ToChar(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (char) Convert.ToChar(atom.value)));
 		}
 
 		private static void CastUShort(Evaluator eval, StackFrame frame)
@@ -727,7 +690,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (ushort) Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (ushort) Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastSShort(Evaluator eval, StackFrame frame)
@@ -736,7 +699,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (short) Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (short) Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastUInt(Evaluator eval, StackFrame frame)
@@ -745,7 +708,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (uint) Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (uint) Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastSInt(Evaluator eval, StackFrame frame)
@@ -754,7 +717,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, (int) Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, (int) Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastULong(Evaluator eval, StackFrame frame)
@@ -763,7 +726,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, Convert.ToUInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, Convert.ToUInt64(atom.value)));
 		}
 
 		private static void CastSLong(Evaluator eval, StackFrame frame)
@@ -772,7 +735,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, Convert.ToInt64(atom.value)));
+			eval.Return(new Atom(AtomType.Number, Convert.ToInt64(atom.value)));
 		}
 
 		private static void CastFloat(Evaluator eval, StackFrame frame)
@@ -781,7 +744,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, Convert.ToSingle(atom.value)));
+			eval.Return(new Atom(AtomType.Number, Convert.ToSingle(atom.value)));
 		}
 
 		private static void CastDouble(Evaluator eval, StackFrame frame)
@@ -790,7 +753,7 @@ namespace Bombardo.V2
 			if (atom.type != AtomType.Number)
 				throw new ArgumentException("Argument must be number!");
 
-			eval.SetReturn(new Atom(AtomType.Number, Convert.ToDouble(atom.value)));
+			eval.Return(new Atom(AtomType.Number, Convert.ToDouble(atom.value)));
 		}
 
 #endregion
