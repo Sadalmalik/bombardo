@@ -114,6 +114,7 @@
           </e>
         </e>
         <e p="Utils" t="Include">
+          <e p="ArgUtils.cs" t="Include" />
           <e p="BufferedStream.cs" t="Include" />
           <e p="ContextUtils.cs" t="Include" />
           <e p="FSUtils.cs" t="Include" />
