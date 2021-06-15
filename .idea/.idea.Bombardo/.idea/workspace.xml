@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/BombardoV2/Utils/ArgUtils.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/FileSystemFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/FileSystemFunctions.cs" afterDir="false" />
     </list>
@@ -132,6 +130,7 @@
     <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Parser.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/62FFEEB7-EC02-4BEA-B61E-5FBF8D44AC5B/96/31047ea7/StreamReader.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Closure.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Core/Function.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/BombardoV2/Core/BombardoException.cs" root0="FORCE_HIGHLIGHTING" />
@@ -407,6 +406,7 @@
       <workItem from="1623660147751" duration="5972000" />
       <workItem from="1623697797501" duration="2578000" />
       <workItem from="1623704321586" duration="2239000" />
+      <workItem from="1623744855923" duration="1295000" />
     </task>
     <servers />
   </component>

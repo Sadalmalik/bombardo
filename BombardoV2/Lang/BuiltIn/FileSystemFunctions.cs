@@ -143,6 +143,7 @@ namespace Bombardo.V2
 			ctx.DefineFunction(Names.FS_PRED_EMPTY, DirectoryEmptyPredicate);
 		}
 
+
 #region Legacy?
 
 		private static void Load(Evaluator eval, StackFrame frame)
@@ -333,74 +334,71 @@ namespace Bombardo.V2
 
 #endregion
 
-		private static void Exists(Evaluator eval, StackFrame frame)
-		{
-			Atom path = (Atom) args?.value;
-			if (path == null || !path.IsString())
-				throw new ArgumentException("Path must be string!");
-			string file = (string) path.value;
 
-			return File.Exists(file) ? Atom.TRUE : Atom.FALSE;
-		}
+#region File operations
 
 		private static void Open(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			if (path == null || !path.IsString())
+			var (path, accessType, modeType) = StructureUtils.Split3(frame.args);
+
+			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			string file = (string) path.value;
 
-			FileAccess access = ArgUtils.GetEnum<FileAccess>(args?.next?.atom, 1, FileAccess.Read);
-			FileMode   mode   = ArgUtils.GetEnum<FileMode>(args?.next?.next?.atom, 2, FileMode.Open);
+			FileAccess access = ArgUtils.GetEnum<FileAccess>(accessType, 1, FileAccess.Read);
+			FileMode   mode   = ArgUtils.GetEnum<FileMode>(modeType, 2, FileMode.Open);
 
 			if (access == FileAccess.Read)
 			{
 				StreamReader reader = new StreamReader(File.Open(file, mode, access));
 
-				return new Atom(AtomType.Native, reader);
+				eval.Return(new Atom(AtomType.Native, reader));
+				return;
 			}
-			else if (access == FileAccess.Write)
+
+			if (access == FileAccess.Write)
 			{
 				StreamWriter writer = new StreamWriter(File.Open(file, mode, access));
 
-				return new Atom(AtomType.Native, writer);
+				eval.Return(new Atom(AtomType.Native, writer));
+				return;
 			}
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void Flush(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = args?.atom;
+			Atom stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
 			StreamWriter writer = stream.value as StreamWriter;
-			if (writer != null) writer.Flush();
+			writer?.Flush();
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void Close(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = args?.atom;
+			Atom stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
 			StreamReader reader = stream.value as StreamReader;
-			if (reader != null) reader.Close();
+			reader?.Close();
 
 			StreamWriter writer = stream.value as StreamWriter;
-			if (writer != null) writer.Close();
+			writer?.Close();
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void Read(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = args?.atom;
+			Atom stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
@@ -409,12 +407,12 @@ namespace Bombardo.V2
 			if (reader == null)
 				throw new ArgumentException("Argument must be stream!");
 
-			return new Atom(AtomType.Number, reader.Read());
+			eval.Return(new Atom(AtomType.Number, reader.Read()));
 		}
 
 		private static void ReadLine(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = args?.atom;
+			Atom stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
@@ -423,20 +421,18 @@ namespace Bombardo.V2
 			if (reader == null)
 				throw new ArgumentException("Argument must be stream!");
 
-			return new Atom(AtomType.String, reader.ReadLine());
+			eval.Return(new Atom(AtomType.String, reader.ReadLine()));
 		}
 
 		private static void Write(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = args?.atom;
+			var (stream, value) = StructureUtils.Split2(frame.args);
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
 			StreamWriter writer = stream?.value as StreamWriter;
 			if (writer == null) throw new ArgumentException("Argument must be stream!");
-
-			Atom value = args?.next?.atom;
 
 			if (value == null) throw new ArgumentException("Second argument can't be null!");
 
@@ -480,35 +476,37 @@ namespace Bombardo.V2
 							writer.Write(Convert.ToDouble(value.value));
 							break;
 						default:
-							writer.Write(value?.value);
+							writer.Write(value.value);
 							break;
 					}
 
 					break;
 				default:
-					writer.Write(value?.value);
+					writer.Write(value.value);
 					break;
 			}
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void ReadText(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			if (path == null || !path.IsString())
+			Atom path = frame.args?.atom;
+
+			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			string file = (string) path.value;
 
 			string text = File.ReadAllText(file, System.Text.Encoding.UTF8);
 
-			return new Atom(AtomType.String, text);
+			eval.Return(new Atom(AtomType.String, text));
 		}
 
 		private static void ReadLines(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			if (path == null || !path.IsString())
+			Atom path = frame.args?.atom;
+
+			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			string file = (string) path.value;
 
@@ -518,127 +516,151 @@ namespace Bombardo.V2
 			for (int i = 0; i < lines.Length; i++)
 				atoms[i] = new Atom(AtomType.String, lines[i]);
 
-			return Atom.List(atoms);
+			eval.Return(StructureUtils.List(atoms));
 		}
 
 		private static void WriteText(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			Atom text = args?.next?.atom;
+			var (path, text) = StructureUtils.Split2(frame.args);
 
-			if (path == null || !path.IsString())
+			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
 			string file = (string) path.value;
 
-			if (text == null || !text.IsString())
+			if (text == null || !text.IsString)
 				throw new ArgumentException("Second argument must be string!");
 			string data = (string) text.value;
 
 			File.WriteAllText(file, data, System.Text.Encoding.UTF8);
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void WriteLines(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			Atom list = args?.next?.atom;
+			var (path, list) = StructureUtils.Split2(frame.args);
 
-			if (path == null || !path.IsString())
+			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
 			string file = (string) path.value;
 
-			if (list == null || !list.IsPair())
+			if (list == null || !list.IsPair)
 				throw new ArgumentException("Second argument must be list of strings!");
 
 			List<string> lines = new List<string>();
 			for (Atom iter = list; iter != null; iter = iter.next)
 			{
 				Atom line = iter.atom;
-				if (line == null || !line.IsString())
+				if (line == null || !line.IsString)
 					throw new ArgumentException("Second argument must be list of strings!");
 				lines.Add((string) line.value);
 			}
 
 			File.WriteAllLines(file, lines, System.Text.Encoding.UTF8);
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void AppendText(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			Atom text = args?.next?.atom;
+			var (path, text) = StructureUtils.Split2(frame.args);
 
-			if (path == null || !path.IsString())
+			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
 			string file = (string) path.value;
 
-			if (text == null || !text.IsString())
+			if (text == null || !text.IsString)
 				throw new ArgumentException("Second argument must be string!");
 			string data = (string) text.value;
 
 			File.AppendAllText(file, data, System.Text.Encoding.UTF8);
 
-			return null;
+			eval.Return(null);
 		}
 
 		private static void AppendLines(Evaluator eval, StackFrame frame)
 		{
-			Atom path = args?.atom;
-			Atom list = args?.next?.atom;
+			var (path, list) = StructureUtils.Split2(frame.args);
 
-			if (path == null || !path.IsString())
+			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
 			string file = (string) path.value;
 
-			if (list == null || !list.IsPair())
+			if (list == null || !list.IsPair)
 				throw new ArgumentException("Second argument must be list of strings!");
 
 			List<string> lines = new List<string>();
 			for (Atom iter = list; iter != null; iter = iter.next)
 			{
 				Atom line = iter.atom;
-				if (line == null || !line.IsString())
+				if (line == null || !line.IsString)
 					throw new ArgumentException("Second argument must be list of strings!");
 				lines.Add((string) line.value);
 			}
 
 			File.AppendAllLines(file, lines, System.Text.Encoding.UTF8);
 
-			return null;
+			eval.Return(null);
 		}
+
+#endregion
+
+
+#region Predicates
+
+		private static void Exists(Evaluator eval, StackFrame frame)
+		{
+			Atom path = (Atom) frame.args?.value;
+
+			if (path == null || !path.IsString)
+				throw new ArgumentException("Path must be string!");
+			var file = (string) path.value;
+
+			eval.Return(File.Exists(file) ? Atoms.TRUE : Atoms.FALSE);
+		}
+
 
 		private static void FilePredicate(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) args?.value;
-			if (path == null || !path.IsString())
-				throw new ArgumentException("Path must be string!");
-			string file = (string) path.value;
+			Atom path = (Atom) frame.args?.value;
 
-			if (!File.Exists(file)) return Atom.FALSE;
+			if (path == null || !path.IsString)
+				throw new ArgumentException("Path must be string!");
+			var file = (string) path.value;
+
+			if (!File.Exists(file))
+			{
+				eval.Return(Atoms.FALSE);
+				return;
+			}
 
 			FileAttributes attr = File.GetAttributes(file);
-			return attr.HasFlag(FileAttributes.Directory) ? Atom.FALSE : Atom.TRUE;
+			eval.Return(attr.HasFlag(FileAttributes.Directory) ? Atoms.FALSE : Atoms.TRUE);
 		}
 
 		private static void DirectoryPredicate(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) args?.value;
-			if (path == null || !path.IsString())
+			Atom path = (Atom) frame.args?.value;
+
+			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			string file = (string) path.value;
 
-			if (!File.Exists(file)) return Atom.FALSE;
+			if (!File.Exists(file))
+			{
+				eval.Return(Atoms.FALSE);
+				return;
+			}
 
 			FileAttributes attr = File.GetAttributes(file);
-			return attr.HasFlag(FileAttributes.Directory) ? Atom.TRUE : Atom.FALSE;
+			eval.Return(attr.HasFlag(FileAttributes.Directory) ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void DirectoryEmptyPredicate(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) args?.value;
-			if (path == null || !path.IsString())
+			Atom path = (Atom) frame.args?.value;
+
+			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			string directoryPath = (string) path.value;
 
@@ -646,7 +668,9 @@ namespace Bombardo.V2
 			string[] files = Directory.GetFiles(directoryPath);
 			bool     empty = dirs.Length == 0 && files.Length == 0;
 
-			return empty ? Atom.TRUE : Atom.FALSE;
+			eval.Return(empty ? Atoms.TRUE : Atoms.FALSE);
 		}
+
+#endregion
 	}
 }
