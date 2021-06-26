@@ -96,6 +96,7 @@
             <e p="FileSystemFunctions.cs" t="Include" />
             <e p="ListFunctions.cs" t="Include" />
             <e p="ListSugarFunctions.cs" t="Include" />
+            <e p="LogicFunctions.cs" t="Include" />
             <e p="MathFunctions.cs" t="Include" />
             <e p="StringFunctions.cs" t="Include" />
             <e p="TableFunctions.cs" t="Include" />

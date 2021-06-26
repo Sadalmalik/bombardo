@@ -5,6 +5,7 @@ namespace Bombardo.V2
 	public static partial class Names
 	{
 		public static readonly string LISP_PRED_NULL = "null?";
+		public static readonly string LISP_PRED_NOT_NULL = "not-null?";
 		public static readonly string LISP_PRED_EMPTY = "empty?";
 		public static readonly string LISP_PRED_SYM = "symbol?";
 		public static readonly string LISP_PRED_PAIR = "pair?";
@@ -20,6 +21,7 @@ namespace Bombardo.V2
 		public static void Define(Context ctx)
 		{
 			ctx.DefineFunction(Names.LISP_PRED_NULL, PredNull);
+			ctx.DefineFunction(Names.LISP_PRED_NOT_NULL, PredNotNull);
 			ctx.DefineFunction(Names.LISP_PRED_EMPTY, PredEmpty);
 			ctx.DefineFunction(Names.LISP_PRED_SYM, PredSym);
 			ctx.DefineFunction(Names.LISP_PRED_PAIR, PredList);
@@ -33,6 +35,11 @@ namespace Bombardo.V2
 		private static void PredNull(Evaluator eval, StackFrame frame)
 		{
 			eval.Return(frame.args.value == null ? Atoms.TRUE : Atoms.FALSE);
+		}
+		
+		private static void PredNotNull(Evaluator eval, StackFrame frame)
+		{
+			eval.Return(frame.args.value == null ? Atoms.FALSE : Atoms.TRUE);
 		}
 
 		private static void PredEmpty(Evaluator eval, StackFrame frame)

@@ -72,29 +72,29 @@ namespace Bombardo.V2
 
 			while (offset < raw.Length)
 			{
-				if (TryReadToken(raw, offset, ref type, ref token))
+				if (TryReadToken(raw, ref offset, ref type, ref token))
 				{
 					tokens.Add(new Token(type, token));
-					offset += token.Length;
 				}
 				else
 				{
-					throw new ArgumentException($"Unknown char '{raw[offset]}'! Check lexer setup!");
+					throw new ArgumentException($"Unknown char '{raw[offset]}' at {offset}! Check lexer setup!");
 				}
 			}
 
 			return tokens;
 		}
 
-		private static bool TryReadToken(string source, int offset, ref int type, ref string token)
+		private static bool TryReadToken(string source, ref int offset, ref int type, ref string token)
 		{
 			foreach (var node in _nodes)
 			{
 				Match match = node.reg.Match(source, offset);
 				if (match.Success && match.Index == offset)
 				{
-					token = match.Value;
-					type  = node.type;
+					token  =  match.Value;
+					type   =  node.type;
+					offset += token.Length;
 					if (node.postprocess != null)
 						token = node.postprocess(token);
 					return true;
