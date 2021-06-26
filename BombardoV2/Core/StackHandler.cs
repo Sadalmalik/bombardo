@@ -122,13 +122,13 @@ namespace Bombardo.V2
 			return frame;
 		}
 
-		public void Dump()
+		public void Dump(int limit = Int32.MaxValue)
 		{
 			if (_dump == null)
 				_dump = new StringBuilder();
 			_dump.AppendLine("Stack:");
 			var iter = content;
-			while (iter != null)
+			while (iter != null && limit-->0)
 			{
 				_dump.AppendFormat("  {0}\n", iter.atom);
 				iter = iter.next;

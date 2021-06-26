@@ -50,20 +50,21 @@ namespace Bombardo.V2
 		private static void Cons(Evaluator eval, StackFrame frame)
 		{
 			Atom pair = new Atom();
-			pair.value = frame.args?.value;
-			pair.next  = (Atom) frame.args?.next?.value;
+			pair.value = frame.args?.atom;
+			pair.next  = frame.args?.next?.atom;
 			eval.Return( pair );
 		}
 
 		private static void Car(Evaluator eval, StackFrame frame)
 		{
-			if (frame.args == null)
+			var args = frame.args;
+			if (args == null)
 			{
 				eval.Return( null );
 				return;
 			}
 
-			Atom list = (Atom) frame.args?.value;
+			Atom list = args.atom;
 			if (!list.IsPair) throw new ArgumentException("Argument must be Pair!");
 			eval.Return( list.atom );
 		}
@@ -77,9 +78,9 @@ namespace Bombardo.V2
 				return;
 			}
 
-			Atom list = (Atom) args?.value;
+			Atom list = args.atom;
 			if (!list.IsPair) throw new ArgumentException("Argument must be Pair!");
-			eval.Return( list.next.atom );
+			eval.Return( list.next );
 		}
 
 		private static void GetElement(Evaluator eval, StackFrame frame)
@@ -280,7 +281,7 @@ namespace Bombardo.V2
 		{
 			(var list, var proc, var skip) = StructureUtils.Split3(frame.args);
 			
-			bool skipNull = (bool)skip.value;
+			bool skipNull = (bool?) skip?.value ?? false;
 			
 			switch (frame.state.value)
 			{

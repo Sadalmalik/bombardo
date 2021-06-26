@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Bombardo.V2
 {
-	public class AtomType
+	public static class AtomType
 	{
 		public const int Undefined = -1;
 		public const int Pair = 0;

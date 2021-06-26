@@ -61,7 +61,7 @@ namespace Bombardo.V2
             if (ContainsKey(symbol))
                 return this[symbol];
             if (parent != null)
-                return parent.Get(symbol);
+                return parent.Get(symbol, noException);
             if (noException)
                 return null;
             throw new ArgumentException(string.Format("Symbol '{0}' not defined in current context!", symbol));
@@ -116,7 +116,9 @@ namespace Bombardo.V2
 
         public override string ToString()
         {
-            return "Table:"+base.GetHashCode();
+            return parent != null ?
+                $"{parent}->Table:{base.GetHashCode()}" :
+                $"Table:{base.GetHashCode()}";
         }
     }
 }

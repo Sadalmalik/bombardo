@@ -19,8 +19,12 @@ namespace Bombardo.V2
 		private static void Print(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
+			var first = true;
 			for (Atom iter = args; iter != null; iter = iter.next)
 			{
+				if (!first)
+					Console.Write(" ");
+				first = false;
 				Atom value = iter.value as Atom;
 				if (value == null)
 					Console.Write("null");

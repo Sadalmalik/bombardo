@@ -42,21 +42,27 @@ namespace Bombardo.V2
 
 		private static void Define(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom sym  = (Atom) args?.value;
+			var args = frame.args;
+			var sym  = args?.atom;
+
 			if (sym.type != AtomType.Symbol)
 				throw new ArgumentException("Definition name must be symbol!");
 
 			if (eval.HaveReturn())
 			{
+				var name = (string) sym.value;
 				var result = eval.TakeReturn();
 				var ctx    = frame.context.value as Context;
-				ContextUtils.Define(ctx, result, (string) sym.value);
-				eval.Return( result );
+				if (result?.value is Closure function)
+					function.Name = name;
+				//Console.WriteLine($"DEFINE: '{name}' = '{result}' at {ctx}");
+				ContextUtils.Define(ctx, result, name);
+				eval.Return(result);
 				return;
 			}
 
 			eval.CreateFrame("-eval-", args.next?.atom, frame.context);
+			frame.state = Atoms.INTERNAL_STATE;
 		}
 
 		private static void Undefine(Evaluator eval, StackFrame frame)
@@ -68,7 +74,7 @@ namespace Bombardo.V2
 
 			var ctx    = frame.context.value as Context;
 			var result = ContextUtils.Undefine(ctx, (string) sym.value);
-			eval.Return( result );
+			eval.Return(result);
 		}
 
 
@@ -84,18 +90,19 @@ namespace Bombardo.V2
 				var result = eval.TakeReturn();
 				var ctx    = frame.context.value as Context;
 				ContextUtils.Set(ctx, result, (string) sym.value);
-				eval.Return( result );
+				eval.Return(result);
 				return;
 			}
 
 			eval.CreateFrame("-eval-", args.next?.atom, frame.context);
+			frame.state = Atoms.INTERNAL_STATE;
 		}
 
 		private static void ToString(Evaluator eval, StackFrame frame)
 		{
 			var  args = frame.args;
 			Atom atom = (Atom) args.value;
-			eval.Return( new Atom(AtomType.String, atom.ToString()) );
+			eval.Return(new Atom(AtomType.String, atom.ToString()));
 		}
 
 		private static void FromString(Evaluator eval, StackFrame frame)
@@ -104,7 +111,7 @@ namespace Bombardo.V2
 			Atom str  = (Atom) args.value;
 			if (!str.IsString) throw new ArgumentException("Argument must be string!");
 			Atom list = BombardoLang.Parse((string) str.value);
-			eval.Return( list );
+			eval.Return(list);
 		}
 
 		private static void SymbolName(Evaluator eval, StackFrame frame)
@@ -112,7 +119,7 @@ namespace Bombardo.V2
 			var  args   = frame.args;
 			Atom symbol = (Atom) args.value;
 			if (!symbol.IsSymbol) throw new ArgumentException("Argument must be symbol!");
-			eval.Return( new Atom(AtomType.String, (string) symbol.value) );
+			eval.Return(new Atom(AtomType.String, (string) symbol.value));
 		}
 
 		private static void MakeSymbol(Evaluator eval, StackFrame frame)
@@ -120,12 +127,12 @@ namespace Bombardo.V2
 			var  args   = frame.args;
 			Atom symbol = (Atom) args.value;
 			if (!symbol.IsString) throw new ArgumentException("Argument must be string!");
-			eval.Return( new Atom(AtomType.Symbol, (string) symbol.value) );
+			eval.Return(new Atom(AtomType.Symbol, (string) symbol.value));
 		}
 
 		private static void GetContext(Evaluator eval, StackFrame frame)
 		{
-			eval.Return( frame.context );
+			eval.Return(frame.context);
 		}
 
 		private static void GetContextParent(Evaluator eval, StackFrame frame)
@@ -136,7 +143,7 @@ namespace Bombardo.V2
 			if (ctx != null && ctx.IsNative)
 				if (ctx.value is Context other)
 					context = other;
-			eval.Return( context?.parent?.self );
+			eval.Return(context?.parent?.self);
 		}
 	}
 }

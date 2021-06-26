@@ -2,8 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2b4babf8-07f9-4207-abb7-3b08ca7df3e0" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/BombardoApp/Tests/UniParser.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/BombardoV2/Utils/NumberParser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Bombardo/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/FileSystemFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/FileSystemFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/BombardoApp.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoApp/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoApp/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Bombardo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Bombardo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Atom.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Atom.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Context.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Context.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BombardoV2/Notes.txt" beforeDir="false" afterPath="$PROJECT_DIR$/BombardoV2/Notes.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,29 +181,35 @@
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/BuiltInModules.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/BuiltInModulesActivator.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/Module.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/ModuleSystem/ModulesSystem.cs" />
-      <option value="$PROJECT_DIR$/BombardoApp/Program.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Names.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Utils/FSUtils.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/DebugFunctions.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/UNumber.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Utils/StructureUtils.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListSugarFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TypePredicateFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/StringFunctions.cs" />
-      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Utils/ArgUtils.cs" />
       <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/FileSystemFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Notes.txt" />
+      <option value="$PROJECT_DIR$/BombardoApp/Tests/UniParser.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/Atom.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Bombardo.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/Parser.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Utils/NumberParser.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/TableFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/Lexer.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/Atoms.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/MathFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/Context.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ConsoleFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ContextFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/StackHandler.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Core/Evaluator.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ListFunctions.cs" />
+      <option value="$PROJECT_DIR$/BombardoApp/Program.cs" />
+      <option value="$PROJECT_DIR$/BombardoV2/Lang/BuiltIn/ControlFunctions.cs" />
     </changedPaths>
   </component>
   <component name="ProjectConfigurationFiles">
@@ -406,7 +431,18 @@
       <workItem from="1623660147751" duration="5972000" />
       <workItem from="1623697797501" duration="2578000" />
       <workItem from="1623704321586" duration="2239000" />
-      <workItem from="1623744855923" duration="1295000" />
+      <workItem from="1623744855923" duration="2572000" />
+      <workItem from="1623781072934" duration="1661000" />
+      <workItem from="1623834542419" duration="4636000" />
+      <workItem from="1623950125303" duration="595000" />
+      <workItem from="1623956871998" duration="4154000" />
+      <workItem from="1623963810018" duration="984000" />
+      <workItem from="1624018871701" duration="2040000" />
+      <workItem from="1624183725727" duration="17970000" />
+      <workItem from="1624255266317" duration="7399000" />
+      <workItem from="1624464468814" duration="595000" />
+      <workItem from="1624475007700" duration="2939000" />
+      <workItem from="1624696102749" duration="11262000" />
     </task>
     <servers />
   </component>

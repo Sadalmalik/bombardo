@@ -78,9 +78,9 @@ namespace Bombardo.V2
 					return null;
 				}
 				
-				Console.WriteLine($"RetValue: {_retValue}");
-				Stack.Dump();
-				Thread.Sleep(50);
+				// Console.WriteLine($"RetValue: {_retValue}");
+				// Stack.Dump(1);
+				//Thread.Sleep(50);
 				
 				Function func;
 				StackFrame frame = Stack.TopFrame;
@@ -163,7 +163,7 @@ namespace Bombardo.V2
 						if (!HaveReturn())
 						{
 							func = (Function) frame.function.value;
-							if (func.EvalArgs)
+							if (func.EvalArgs && frame.expression.next != null)
 							{
 								Stack.CreateFrame("-eval-each-", frame.expression.next, frame.context);
 								continue;
@@ -211,6 +211,8 @@ namespace Bombardo.V2
 				{
 					func = (Function) frame.function.value;
 					func.Apply(this, frame);
+					if (HaveReturn())
+						Console.WriteLine($"{frame.function} returns: {_retValue}");
 					continue;
 				}
 

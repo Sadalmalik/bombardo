@@ -101,28 +101,35 @@ namespace Bombardo.V2
 
 		private static void TableImport(Evaluator eval, StackFrame frame)
 		{
-			var  args  = frame.args;
-			Atom dict  = (Atom) args?.value;
-			Atom names = (Atom) args?.next?.value;
+			var (src, dst, names) = StructureUtils.Split3(frame.args);
+			
+			if (names==null && dst.IsPair)
+			{
+				names = dst;
+				dst = frame.context.atom;
+			}
+			
+			var srcCtx = GetDictionary(src);
+			var dstCtx = GetDictionary(dst);
 
-			Context dictionary = GetDictionary(dict);
-
-			var      ctx      = frame.context.value as Context;
 			string[] nameList = StructureUtils.ListToStringArray(names, "TABLE");
-			ContextUtils.ImportSymbols(dictionary, ctx, nameList);
+			
+			ContextUtils.ImportSymbols(srcCtx, dstCtx, nameList);
 
 			eval.Return(null);
 		}
 
 		private static void TableImportAll(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom dict = (Atom) args?.value;
+			var (src, dst) = StructureUtils.Split2(frame.args);
 
-			Context dictionary = GetDictionary(dict);
+			if (dst==null || dst.IsPair)
+				dst = frame.context.atom;
+			
+			var srcCtx = GetDictionary(src);
+			var dstCtx = GetDictionary(dst);
 
-			var ctx = frame.context.value as Context;
-			ContextUtils.ImportAllSymbols(dictionary, ctx);
+			ContextUtils.ImportAllSymbols(srcCtx, dstCtx);
 
 			eval.Return(null);
 		}
