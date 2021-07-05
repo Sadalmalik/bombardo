@@ -32,6 +32,17 @@ namespace Bombardo.V2
             }
             return list;
         }
+        
+        public static Atom[] ToArray(Atom list)
+        {
+            List<Atom> array = new List<Atom>();
+            while (list!=null)
+            {
+                array.Add(list.atom);
+                list = list.next;
+            }
+            return array.ToArray();
+        }
 
         public static string[] ListToStringArray(Atom names, string tag)
         {

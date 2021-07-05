@@ -13,20 +13,17 @@ namespace Bombardo.V2
 		/// <returns>Путь к файлу или null</returns>
 		public static string FindFile(string name)
 		{
-			string file   = null;
-			int    deph   = 0;
-			bool   isRoot = false;
-			do
+			string fileName = Path.GetFileName(name);
+			string filePath = Path.GetDirectoryName(Path.GetFullPath(name));
+			DirectoryInfo dir = new DirectoryInfo(filePath);
+			while (dir != null)
 			{
-				string        path           = Path.GetFullPath("../".Repeat(deph) + ".");
-				DirectoryInfo d              = new DirectoryInfo(path);
-				if (d.Parent == null) isRoot = true;
-				path = Path.Combine(path, name);
-				if (File.Exists(path)) file = path;
-				deph++;
-			} while (file == null && !isRoot);
-
-			return file;
+				string path = Path.Combine(dir.FullName, fileName);
+				if (File.Exists(path))
+					return path;
+				dir = dir.Parent;
+			}
+			return null;
 		}
 
 		//  search order for (require "somepath/something")

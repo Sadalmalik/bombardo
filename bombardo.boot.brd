@@ -1,0 +1,151 @@
+(context.define $CTX$ (context.getContext))
+
+(table.importAll context $CTX$)
+(table.importAll console $CTX$)
+(table.importAll math $CTX$)
+(table.importAll lang $CTX$)
+
+# да, такой изврат, а шо делать если константы пока нигде не определены? :)
+(define Null [nope])
+(define True (eq? lambda lambda))
+(define False (eq? lambda define))
+
+(define RebuildTree (lambda [tree handler]
+	(if [pair? tree]
+		[cons	(RebuildTree (car tree) handler)
+				(RebuildTree (cdr tree) handler)]
+		[if [not-null? tree]
+			(handler tree)]
+	)
+))
+
+(define PreprocessNullHandler (lambda [symbol]
+	(if [eq? symbol (quote null)]
+		Null
+		symbol
+	)
+))
+
+(define PreprocessNull (lambda [expression]
+	(RebuildTree expression PreprocessNullHandler)
+))
+
+(define PreprocessBooleanHandler (lambda [symbol]
+	(cond	[(eq? symbol (quote true)) True]	
+			[(eq? symbol (quote false)) False]
+			[True symbol]
+	)
+))
+
+(define PreprocessBoolean (lambda [expression]
+	(RebuildTree expression PreprocessBooleanHandler)
+))
+
+(define PreprocessNumbersHandler (lambda [symbol]
+	(define number (tryParseNumber symbol))
+	(if [number? number] number symbol)
+))
+
+(define PreprocessNumbers (lambda [expression]
+	(RebuildTree expression PreprocessNumbersHandler)
+))
+
+(define RebuildListTree (lambda [tree nodeHandler]
+	(if [pair? tree]
+		[nodeHandler tree]
+		tree)
+))
+
+(define symQuote (quote `))
+
+(define PreprocessQuoting (lambda [expression]
+	(if [pair? expression]
+		[block
+			(define iter Null)
+			(while [not-null? expression]
+				[define $FIRST (car expression)]
+				[define $SECOND (cdr expression)]
+				(cond	[(and (eq? $FIRST symQuote) (not-null? $SECOND))
+							(set! iter (cons [list (quote quote) (car $SECOND)] iter))
+							(set! expression (cdr $SECOND))]
+						[True
+							(set! iter (cons (PreprocessQuoting $FIRST) iter))
+							(set! expression $SECOND)
+						]
+				)
+			)
+			(reverse iter)
+		]
+		expression
+	)
+))
+
+(define symDot (quote .))
+
+(define PreprocessDottedPair (lambda [expression]
+	(if [pair? expression]
+		[block
+			(if [eq? (car expression) symDot]
+				[error "Wrong dot . expression!"])
+			(define iter Null)
+			(while [not-null? expression]
+				[define $I1 (car expression)]
+				[define $I2 (cadr expression)]
+				[define $I3 (caddr expression)]
+				[define $E4 (cdddr expression)]
+				[define $isDot (eq? $I2 symDot)]
+				(cond	[(and $isDot (null? $E4))
+							(set! iter (cons (PreprocessDottedPair $I1) iter))
+							(set! iter (reverse iter))
+							(set-cdr! (end iter) $I3)
+							(set! expression Null)
+						]
+						[(not $isDot)
+							(set! iter (cons (PreprocessDottedPair $I1) iter))
+							(set! expression (cdr expression))
+							(if (null? expression)
+								(set! iter (reverse iter)))
+						]
+						[True
+							(error "Wrong dot . expression!")
+						]
+				)
+			)
+			iter
+		]
+		expression
+	)
+))
+
+(define PackApply (lambda [functions expression]
+	(define PackApplyHandler (lambda [function]
+		(set! expression (function expression))
+	))
+	(each functions PackApplyHandler)
+	expression
+))
+
+(define result (PackApply
+	(list
+		PreprocessNull
+		PreprocessBoolean
+		PreprocessNumbers
+		PreprocessQuoting
+		PreprocessDottedPair)
+	[quote (block
+		(print (+ 1 2 3 4 (- 7 2)))
+		(print `(a . b))
+	)]
+))
+
+(print "pathToApp: " pathToApp (null? pathToApp))
+(print "basePath: " basePath (null? basePath))
+(print "pathToBoot: " pathToBoot (null? pathToBoot))
+(print "pathToScript: " pathToScript (null? pathToScript))
+(print "pathToWorkDirectory: " pathToWorkDirectory (null? pathToWorkDirectory))
+
+(cons result (eval result))
+
+
+
+

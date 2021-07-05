@@ -113,8 +113,7 @@ namespace Bombardo.V2
 		{
 			if (!eval.HaveReturn())
 			{
-				Atom    expression = frame.args?.atom;
-				Atom    ctxAtom    = frame.args?.next?.atom;
+				var (expression, ctxAtom) = StructureUtils.Split2(frame.args);
 				Context ctx        = ctxAtom?.value as Context ?? frame.context.value as Context;
 				eval.CreateFrame("-eval-", expression, ctx);
 				return;
@@ -127,9 +126,12 @@ namespace Bombardo.V2
 		{
 			if (!eval.HaveReturn())
 			{
-				Atom    expression = frame.args?.atom;
-				Atom    ctxAtom    = frame.args?.next?.atom;
-				Context ctx        = ctxAtom?.value as Context ?? frame.context.value as Context;
+				Atom expression = frame.args;
+				Atom first      = frame.args?.atom;
+				if (first?.value is Context ctx)
+					expression = frame.args?.next;
+				else
+					ctx = frame.context.value as Context;
 				eval.CreateFrame("-eval-block-", expression, ctx);
 				return;
 			}
@@ -181,7 +183,7 @@ namespace Bombardo.V2
 				case "-built-in-cond-body-":
 					if (eval.HaveReturn())
 					{
-						frame.state = new Atom("-eval-sexp-body-");
+						eval.CloseFrame();
 					}
 					else
 					{
@@ -197,50 +199,50 @@ namespace Bombardo.V2
 			switch (frame.state.value)
 			{
 				case "-eval-sexp-body-":
-					{
-						//  (cond BlockA BlockB)
-						(frame.temp1, frame.temp2, frame.temp3) = StructureUtils.Split3(frame.args);
-						frame.state                             = new Atom("-built-in-if-cond-");
-					}
+				{
+					//  (cond BlockA BlockB)
+					(frame.temp1, frame.temp2, frame.temp3) = StructureUtils.Split3(frame.args);
+					frame.state                             = new Atom("-built-in-if-cond-");
+				}
 					break;
 				case "-built-in-if-cond-":
+				{
+					if (eval.HaveReturn())
 					{
-						if (eval.HaveReturn())
-						{
-							var condition = eval.TakeReturn();
-							if (!condition.IsBool)
-								throw new ArgumentException($"Condition must return boolean atom, but found: {condition}!");
-							frame.state = new Atom((bool) condition.value ? "-built-in-if-then-" : "-built-in-if-else-");
-						}
-						else
-						{
-							eval.CreateFrame("-eval-", frame.temp1, frame.context);
-						}
+						var condition = eval.TakeReturn();
+						if (!condition.IsBool)
+							throw new ArgumentException($"Condition must return boolean atom, but found: {condition}!");
+						frame.state = new Atom((bool) condition.value ? "-built-in-if-then-" : "-built-in-if-else-");
 					}
+					else
+					{
+						eval.CreateFrame("-eval-", frame.temp1, frame.context);
+					}
+				}
 					break;
 				case "-built-in-if-then-":
-					{
-						if (frame.temp2 == null)
-							throw new ArgumentException($"If statement must have at least one block of code!");
-						
-						if (eval.HaveReturn())
-						{
-							eval.CloseFrame();
-							break;
-						}
-						
-						eval.CreateFrame("-eval-", frame.temp2, frame.context);
-					}
-					break;
-				case "-built-in-if-else-":
-					frame.state = new Atom("-eval-sexp-body-");
-					
+				{
+					if (frame.temp2 == null)
+						throw new ArgumentException($"If statement must have at least one block of code!");
+
 					if (eval.HaveReturn())
 					{
 						eval.CloseFrame();
 						break;
 					}
-					
+
+					eval.CreateFrame("-eval-", frame.temp2, frame.context);
+				}
+					break;
+				case "-built-in-if-else-":
+					frame.state = new Atom("-eval-sexp-body-");
+
+					if (eval.HaveReturn())
+					{
+						eval.CloseFrame();
+						break;
+					}
+
 					if (frame.temp3 == null)
 					{
 						eval.Return(null);

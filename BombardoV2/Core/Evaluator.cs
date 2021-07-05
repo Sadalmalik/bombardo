@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 
 namespace Bombardo.V2
@@ -62,11 +63,18 @@ namespace Bombardo.V2
 			Stack.RemoveFrame();
 		}
 		
-		public Atom Evaluate(Atom atom, Context current_context)
+		private static string GetType(Atom atom)
+		{
+			if (atom==null) return "<-:->";
+			var strType = AtomType.ToString(atom.type);
+			return $"<{atom.type}:{strType}>";
+		}
+		
+		public Atom Evaluate(Atom atom, Context current_context, string startState = null)
 		{
 			_retValue = null;
 			_haveReturn = false;
-			Stack.CreateFrame("-eval-", atom, current_context);
+			Stack.CreateFrame(startState ?? "-eval-", atom, current_context);
 
 			Console.WriteLine("Start evaluation");
 			while (Stack.stack.Count > 0)
@@ -211,8 +219,6 @@ namespace Bombardo.V2
 				{
 					func = (Function) frame.function.value;
 					func.Apply(this, frame);
-					if (HaveReturn())
-						Console.WriteLine($"{frame.function} returns: {_retValue}");
 					continue;
 				}
 

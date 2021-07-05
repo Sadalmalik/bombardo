@@ -70,35 +70,35 @@ namespace Bombardo.V2
 			ctx.DefineFunction(Names.LISP_CDDDDR, Cddddr);
 		}
 		
-		private static void Caar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom ); }
-		private static void Cadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom ); }
-		private static void Cdar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next ); }
-		private static void Cddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next ); }
+		private static void Caar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom ); }
+		private static void Cadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom ); }
+		private static void Cdar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next ); }
+		private static void Cddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next ); }
 
-		private static void Caaar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom?.atom ); }
-		private static void Caadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom?.atom ); }
-		private static void Cadar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next?.atom ); }
-		private static void Caddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next?.atom ); }
-		private static void Cdaar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom?.next ); }
-		private static void Cdadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom?.next ); }
-		private static void Cddar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next?.next ); }
-		private static void Cdddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next?.next ); }
+		private static void Caaar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom?.atom ); }
+		private static void Caadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom?.atom ); }
+		private static void Cadar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next?.atom ); }
+		private static void Caddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next?.atom ); }
+		private static void Cdaar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom?.next ); }
+		private static void Cdadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom?.next ); }
+		private static void Cddar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next?.next ); }
+		private static void Cdddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next?.next ); }
 
-		private static void Caaaar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom?.atom?.atom ); }
-		private static void Caaadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom?.atom?.atom ); }
-		private static void Caadar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next?.atom?.atom ); }
-		private static void Caaddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next?.atom?.atom ); }
-		private static void Cadaar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom?.next?.atom ); }
-		private static void Cadadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom?.next?.atom ); }
-		private static void Caddar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next?.next?.atom ); }
-		private static void Cadddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next?.next?.atom ); }
-		private static void Cdaaar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom?.atom?.next ); }
-		private static void Cdaadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom?.atom?.next ); }
-		private static void Cdadar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next?.atom?.next ); }
-		private static void Cdaddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next?.atom?.next ); }
-		private static void Cddaar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.atom?.next?.next ); }
-		private static void Cddadr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.atom?.next?.next ); }
-		private static void Cdddar(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.atom?.next?.next?.next ); }
-		private static void Cddddr(Evaluator eval, StackFrame frame) { eval.Return( ((Atom)frame.args?.value)?.next?.next?.next?.next ); }
+		private static void Caaaar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom?.atom?.atom ); }
+		private static void Caaadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom?.atom?.atom ); }
+		private static void Caadar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next?.atom?.atom ); }
+		private static void Caaddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next?.atom?.atom ); }
+		private static void Cadaar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom?.next?.atom ); }
+		private static void Cadadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom?.next?.atom ); }
+		private static void Caddar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next?.next?.atom ); }
+		private static void Cadddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next?.next?.atom ); }
+		private static void Cdaaar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom?.atom?.next ); }
+		private static void Cdaadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom?.atom?.next ); }
+		private static void Cdadar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next?.atom?.next ); }
+		private static void Cdaddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next?.atom?.next ); }
+		private static void Cddaar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.atom?.next?.next ); }
+		private static void Cddadr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.atom?.next?.next ); }
+		private static void Cdddar(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.atom?.next?.next?.next ); }
+		private static void Cddddr(Evaluator eval, StackFrame frame) { eval.Return( frame.args?.atom?.next?.next?.next?.next ); }
 	}
 }

@@ -290,18 +290,23 @@ namespace Bombardo.V2
 					frame.state = new Atom("-built-in-each-");
 					break;
 				case "-built-in-each-":
+					if (eval.HaveReturn())
+						frame.temp2 = StructureUtils.BuildListContainer(frame.temp2, eval.TakeReturn());
 					if (frame.temp1 != null)
 					{
 						while (skipNull && frame.temp1.atom==null)
 							frame.temp1 = frame.temp1.next;
+						
 						var subExpression = new Atom(frame.temp1.atom, null);
-						frame.temp1 = frame.temp1.next;
+						
 						var newFrame = eval.CreateFrame(
-							"-eval-sexp-args-",
-							new Atom(proc, subExpression),
+							"-eval-sexp-body-",
+							StructureUtils.List(proc, frame.temp1.atom),
 							frame.context);
 						newFrame.function = proc;
 						newFrame.args     = subExpression;
+						
+						frame.temp1 = frame.temp1.next;
 					}
 					else
 					{

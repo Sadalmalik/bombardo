@@ -1,174 +1,81 @@
 ﻿using System;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.IO;
 
 namespace Bombardo.V2
 {
 	public static class Program
 	{
-		public static void Main(string[] args)
+		public static void Main(string[] argsArray)
 		{
-			//GeneralV2Test.DoTests();
+			// Мне тут нужны:
+			// Путь до интерпретатора
+			// Путь до ядра (бут-скрипт)
+			// Путь до исполняемого скрипта
+			
+			string pathToApp     = System.Reflection.Assembly.GetEntryAssembly().Location;
+			string basePath = Path.GetDirectoryName(pathToApp);
+			string pathToBoot = Path.Combine(basePath, "bombardo.boot.brd");
+			string pathToScript = null;
+			string pathToWorkDirectory = Directory.GetCurrentDirectory();
 
-			// if (args==null || args.Length==0)
-			// {
-			//     REPL.Start();
-			// }
-			// else
-			// {
-			//     BombardoLangClass.Init(true);
-			//     if (args.Length>1)
-			//         Console.WriteLine("BombardoV1 not implements multyple arguments! Will be executed only one!");
-			//
-			//     BombardoLangClass.ExecuteFile(Path.GetFullPath(args[0]));
-			//
-			//     Console.ReadLine();
-			// }
-
-			int count = 5;
-
-			while (count-- > 0)
+			var args = new Queue<string>(argsArray);
+			while (args.Count>0)
 			{
-				Console.WriteLine($"Count: {count}");
+				var arg = args.Dequeue();
+				if (arg.StartsWith("boot:"))
+				{
+					pathToBoot = Path.GetFullPath(arg.Substring(5));
+					continue;
+				}
+				pathToScript = Path.GetFullPath(arg);
+			}
+			
+			if (args.Count>0)
+				Console.WriteLine($"Too match arguments!\nWill be ignored: {string.Join(" ", args)}");
+			
+			pathToBoot = FSUtils.FindFile(pathToBoot);
+			
+			if (string.IsNullOrEmpty(pathToBoot))
+			{
+				Console.WriteLine($"File not found: {pathToBoot}");
+				return;
+			}
+			
+			var bootScript = File.ReadAllText(pathToBoot);
+			
+			var bootContext = BuildBootContext();
+			bootContext.Define("pathToApp", CreateString(pathToApp));
+			bootContext.Define("basePath", CreateString(basePath));
+			bootContext.Define("pathToBoot", CreateString(pathToBoot));
+			bootContext.Define("pathToScript", CreateString(pathToScript));
+			bootContext.Define("pathToWorkDirectory", CreateString(pathToWorkDirectory));
+			bootContext.@sealed = true;
+			bootContext = new Context(bootContext);
+			
+			var bootProgram = BombardoLang.Parse(bootScript);
+
+			var  eval       = new Evaluator();
+			Atom bootResult = null;
+			try
+			{
+				bootResult = eval.Evaluate(bootProgram, bootContext, "-eval-block-");
+			}
+			catch (Exception exc)
+			{
+				Console.WriteLine(exc);
+				Console.WriteLine();
+				eval.Stack.Dump();
 			}
 
-			TestRun();
+			Console.WriteLine($"{bootResult}");
 		}
-
-		public static string test = $@"
-        lang.block [
-			""test""
-	        (context.define $CTX$ (context.getContext))
-	        
-	        (table.importAll context $CTX$)
-	        (table.importAll console $CTX$)
-	        (table.importAll math $CTX$)
-	        (table.importAll lang $CTX$)
-	        
-	        (define RebuildTree (lambda [tree handler]
-				(if [pair? tree]
-					[cons	(RebuildTree (car tree) handler)
-							(RebuildTree (cdr tree) handler)]
-					(if [not-null? tree]
-						[handler tree]))
-	        ))
-	        
-	        (define Null [nope])
-	        
-	        (define PreprocessNullHandler (lambda [symbol]
-				(if [eq? symbol (quote null)]
-					Null
-					symbol
-				)
-			))
-	        
-	        (define PreprocessNull (lambda [expression]
-				(RebuildTree expression PreprocessNullHandler)
-	        ))
-	        
-	        (define True (eq? lambda lambda)) # да, такой изврат, а шо делать если константы пока нигде не определены? :)
-	        (define False (eq? lambda define))
-	        
-	        (define PreprocessBooleanHandler (lambda [symbol]
-				(cond	[(eq? symbol (quote true)) True]	
-						[(eq? symbol (quote false)) False]
-						[True symbol]
-				)
-			))
-	        
-	        (define PreprocessBoolean (lambda [expression]
-				(RebuildTree expression PreprocessBooleanHandler)
-	        ))
-	        
-	        (define PreprocessNumbersHandler (lambda [symbol]
-				(define number (tryParseNumber symbol))
-				(if [number? number] number symbol)
-			))
-	        
-	        (define PreprocessNumbers (lambda [expression]
-				(RebuildTree expression PreprocessNumbersHandler)
-	        ))
-	        
-	        
-	        (define RebuildListTree (lambda [tree nodeHandler]
-				(if [pair? tree]
-					[nodeHandler tree]
-					tree)
-	        ))
-	        
-	        (define PreprocessQuotingHandler (lambda [node]
-				(if [pair? node]
-					[if	(and (eq? (car node) (quote `))
-							 (pair? (cdr node)))
-						()
-					]
-					[error ""Expect pair here!""])
-			))
-			
-	        (define PreprocessQuoting (lambda [expression]
-				(if [pair? expression]
-					[block (
-						(define iter Null)
-						(while (not-null? expression)
-							(if [and (eq? (car expression) (quote `))
-									 (not-null? (cdr expression))]
-								[block (
-									(set! iter (cons [list (quote quote) (cadr expression)] iter))
-									(set! expression (cddr expression))
-								)]
-								[block (
-									(set! iter (cons (car expression) iter))
-									(set! expression (cdr expression))
-								)]
-							)
-						)
-						(reverse iter)
-					)]
-					expression
-				)
-	        ))
-	        
-	        
-	        (define PreprocessDottedPair (lambda [expression]
-				(if [pair? tree]
-					[block (
-						()
-					)]
-					(if [not-null? tree]
-						[handler tree]))
-	        ))
-	        
-	        (define Identity (lambda [x] x))
-	        
-	        (debug.marker START_TEST__________________________________________________)
-	        
-	        (print (RebuildTree null Identity))
-	        (print (RebuildTree [quote A] Identity))
-	        (print (RebuildTree [quote (A B)] Identity))
-	        (print (RebuildTree [quote (A B C)] Identity))
-	        
-	        (debug.marker END_TEST____________________________________________________)
-	        
-	        (define result (PreprocessNumbers
-				[quote (+ 1 2 3 4)]
-			))
-			
-			(cons result (eval result))
-        ]
-        ";
-
-		public static void TestRun()
+		
+		private static Atom CreateString(string value)
 		{
-			Console.WriteLine($"\n\n{test}\n\n\n");
-			var bootContext = BuildBootContext();
-
-			var bootProgram = BombardoLang.Parse(test);
-
-			var eval       = new Evaluator();
-			var bootResult = eval.Evaluate(bootProgram, bootContext);
-
-			Console.WriteLine($"\nBootProgram: {bootProgram}");
-			Console.WriteLine($"\nBootResult: {bootResult}");
+			if (string.IsNullOrEmpty(value))
+				return null;
+			return new Atom(AtomType.String, value);
 		}
 
 		public static Context BuildBootContext()
@@ -187,9 +94,7 @@ namespace Bombardo.V2
 
 			AddSub(context, "table", TableFunctions.Define);
 
-			context.@sealed = true;
-
-			return new Context(context);
+			return context;
 		}
 
 		private static void DefineLang(Context context)

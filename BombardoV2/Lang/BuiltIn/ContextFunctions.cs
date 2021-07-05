@@ -42,26 +42,25 @@ namespace Bombardo.V2
 
 		private static void Define(Evaluator eval, StackFrame frame)
 		{
-			var args = frame.args;
-			var sym  = args?.atom;
+			var (sym, value, context) = StructureUtils.Split3(frame.args);
 
 			if (sym.type != AtomType.Symbol)
 				throw new ArgumentException("Definition name must be symbol!");
 
 			if (eval.HaveReturn())
 			{
-				var name = (string) sym.value;
-				var result = eval.TakeReturn();
-				var ctx    = frame.context.value as Context;
+				string  name   = (string) sym.value;
+				Atom    result = eval.TakeReturn();
+				Context ctx    = context?.value as Context ?? frame.context.value as Context;
 				if (result?.value is Closure function)
 					function.Name = name;
-				//Console.WriteLine($"DEFINE: '{name}' = '{result}' at {ctx}");
+				//Console.WriteLine($"DEFINE: '{name}' = '{result}' at -internal-state-{ctx}");
 				ContextUtils.Define(ctx, result, name);
 				eval.Return(result);
 				return;
 			}
 
-			eval.CreateFrame("-eval-", args.next?.atom, frame.context);
+			eval.CreateFrame("-eval-", value, frame.context);
 			frame.state = Atoms.INTERNAL_STATE;
 		}
 
