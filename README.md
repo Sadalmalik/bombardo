@@ -10,3 +10,6 @@
 
 * [Обзор языка](Documentation/LANG.OVERVIEW.md)
 * [Документация](Documentation/DOCUMENTATION.md)
+
+
+Я обязательно доделаю...
