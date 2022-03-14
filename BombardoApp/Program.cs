@@ -68,7 +68,7 @@ namespace Bombardo.V2
 				eval.Stack.Dump();
 			}
 
-			Console.WriteLine($"{bootResult}");
+			Console.WriteLine($"Boot result: {bootResult}");
 		}
 		
 		private static Atom CreateString(string value)

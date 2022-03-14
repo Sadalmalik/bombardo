@@ -31,6 +31,11 @@ namespace Bombardo.V2
 			content = newContent ?? new Atom();
 			LinkElements();
 		}
+		
+		public void SetState(string state)
+		{
+			_state.value = new Atom(state);
+		}
 
 		private void EnsureLength(int len)
 		{
