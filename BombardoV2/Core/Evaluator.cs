@@ -130,6 +130,12 @@ namespace Bombardo.V2
 
 		private void State_Eval(StackFrame frame)
 		{
+			if (frame.expression == null)
+			{
+				Return(frame.expression);
+				return;
+			}
+			
 			if (frame.expression.IsPair)
 			{
 				frame.SetState("-eval-sexp-head-");

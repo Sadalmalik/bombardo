@@ -1,4 +1,6 @@
 (context.define $CTX$ (context.getContext))
+(context.define $CTXModule$  (table.create))
+
 
 (table.importAll context $CTX$)
 (table.importAll console $CTX$)
@@ -6,9 +8,11 @@
 (table.importAll lang $CTX$)
 
 # да, такой изврат, а шо делать если константы пока нигде не определены? :)
-(define Null [nope])
-(define True (eq? lambda lambda))
-(define False (eq? lambda define))
+(define valNull [nope])
+(define valTrue (eq? lambda lambda))
+(define valFalse (eq? lambda define))
+(define symQuote (quote `))
+(define symDot (quote .))
 
 (define RebuildTree (lambda [tree handler]
 	(if [pair? tree]
@@ -21,7 +25,7 @@
 
 (define PreprocessNullHandler (lambda [symbol]
 	(if [eq? symbol (quote null)]
-		Null
+		valNull
 		symbol
 	)
 ))
@@ -31,9 +35,9 @@
 ))
 
 (define PreprocessBooleanHandler (lambda [symbol]
-	(cond	[(eq? symbol (quote true)) True]	
-			[(eq? symbol (quote false)) False]
-			[True symbol]
+	(cond	[(eq? symbol (quote true)) valTrue]	
+			[(eq? symbol (quote false)) valFalse]
+			[valTrue symbol]
 	)
 ))
 
@@ -56,19 +60,17 @@
 		tree)
 ))
 
-(define symQuote (quote `))
-
 (define PreprocessQuoting (lambda [expression]
 	(if [pair? expression]
 		[block
-			(define iter Null)
+			(define iter valNull)
 			(while [not-null? expression]
 				[define $FIRST (car expression)]
 				[define $SECOND (cdr expression)]
 				(cond	[(and (eq? $FIRST symQuote) (not-null? $SECOND))
 							(set! iter (cons [list (quote quote) (car $SECOND)] iter))
 							(set! expression (cdr $SECOND))]
-						[True
+						[valTrue
 							(set! iter (cons (PreprocessQuoting $FIRST) iter))
 							(set! expression $SECOND)
 						]
@@ -80,14 +82,12 @@
 	)
 ))
 
-(define symDot (quote .))
-
 (define PreprocessDottedPair (lambda [expression]
 	(if [pair? expression]
 		[block
 			(if [eq? (car expression) symDot]
 				[error "Wrong dot . expression!"])
-			(define iter Null)
+			(define iter valNull)
 			(while [not-null? expression]
 				[define $I1 (car expression)]
 				[define $I2 (cadr expression)]
@@ -98,7 +98,7 @@
 							(set! iter (cons (PreprocessDottedPair $I1) iter))
 							(set! iter (reverse iter))
 							(set-cdr! (end iter) $I3)
-							(set! expression Null)
+							(set! expression valNull)
 						]
 						[(not $isDot)
 							(set! iter (cons (PreprocessDottedPair $I1) iter))
@@ -106,7 +106,7 @@
 							(if (null? expression)
 								(set! iter (reverse iter)))
 						]
-						[True
+						[valTrue
 							(error "Wrong dot . expression!")
 						]
 				)
@@ -125,6 +125,10 @@
 	expression
 ))
 
+
+
+(print "[TEST.START]")
+
 (define result (PackApply
 	(list
 		PreprocessNull
@@ -134,7 +138,8 @@
 		PreprocessDottedPair)
 	[quote (block
 		(print (+ 1 2 3 4 (- 7 2)))
-		(print `(a . b))
+		(print `(a . (b . c)))
+		(print null)
 	)]
 ))
 
@@ -143,9 +148,17 @@
 (print "pathToBoot: " pathToBoot (null? pathToBoot))
 (print "pathToScript: " pathToScript (null? pathToScript))
 (print "pathToWorkDirectory: " pathToWorkDirectory (null? pathToWorkDirectory))
+(print "Result: " (cons result (eval result)))
 
-(cons result (eval result))
+(print "[TEST.END]")
 
 
 
+#(define  LoadModule (lambda  [path]
+#	(define moduleContent (fs.readText path))
+#	(define moduleContent (lang.parse moduleContent))
+#	
+#))
+
+#(fs.readText pathToScript)
 
