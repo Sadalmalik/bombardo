@@ -12,7 +12,14 @@ namespace Bombardo.V2
 	{
 		public static void Define(Context ctx)
 		{
+			// (print "Hello, World") -> null
+			//   Hello, World
+			// (print "This is a" `symbol 23) -> null
+			//   This is a symbol 23
+			// (print `(some lisp structure)) -> null
+			//   (some lisp structure)
 			ctx.DefineFunction(Names.LISP_PRINT, Print);
+			// (read) -> console user input
 			ctx.DefineFunction(Names.LISP_READ, ReadLine);
 		}
 

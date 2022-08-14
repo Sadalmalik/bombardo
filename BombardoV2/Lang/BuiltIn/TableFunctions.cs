@@ -22,6 +22,7 @@ namespace Bombardo.V2
 	{
 		public static void Define(Context ctx)
 		{
+			// 
 			ctx.DefineFunction(Names.LISP_TABLE_CREATE, TableCreate);
 			ctx.DefineFunction(Names.LISP_TABLE_GET, TableGet);
 			ctx.DefineFunction(Names.LISP_TABLE_SET, TableSet);
@@ -199,6 +200,7 @@ namespace Bombardo.V2
 
 #region Internal
 
+		// Как сейчас работает словарь?
 		private static void FillDictionary(Context dict, Atom args)
 		{
 			for (Atom iter = args; iter != null; iter = iter.next)

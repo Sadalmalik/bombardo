@@ -5,20 +5,19 @@ namespace Bombardo.V2
 {
 	public static partial class Names
 	{
-        public static readonly string TEXT_CREATE = "strCreate";
-        public static readonly string TEXT_LENGTH = "strLength";
-        public static readonly string TEXT_GETCHARS = "strChars";
-        public static readonly string TEXT_GETCHAR = "strGet";
+        public static readonly string TEXT_CREATE = "create";
+        public static readonly string TEXT_LENGTH = "len";
+        public static readonly string TEXT_GETCHARS = "chars";
+        public static readonly string TEXT_GETCHAR = "get";
 
-        public static readonly string TEXT_CONCAT = "strConcat";
-        public static readonly string TEXT_SUBSTR = "strSubstr";
-        public static readonly string TEXT_SPLIT = "strSplit";
+        public static readonly string TEXT_CONCAT = "concat";
+        public static readonly string TEXT_SUBSTR = "substr";
+        public static readonly string TEXT_SPLIT = "split";
+        public static readonly string TEXT_REPLACE = "replace";
 
-        public static readonly string TEXT_STARTSWITH = "strStartsWith?";
-        public static readonly string TEXT_ENDSWITH = "strEndsWith?";
-        public static readonly string TEXT_CONTAINS = "strContains?";
-
-        public static readonly string TEXT_REPLACE = "strReplace";
+        public static readonly string TEXT_STARTSWITH = "startsWith?";
+        public static readonly string TEXT_ENDSWITH = "endsWith?";
+        public static readonly string TEXT_CONTAINS = "contains?";
 	}
 	
 	public class StringFunctions
@@ -48,12 +47,11 @@ namespace Bombardo.V2
             ctx.DefineFunction(Names.TEXT_CONCAT, Concat);
             ctx.DefineFunction(Names.TEXT_SUBSTR, Substr);
             ctx.DefineFunction(Names.TEXT_SPLIT, Split);
+            ctx.DefineFunction(Names.TEXT_REPLACE, Replace);
 
             ctx.DefineFunction(Names.TEXT_STARTSWITH, StartsWith);
             ctx.DefineFunction(Names.TEXT_ENDSWITH, EndsWith);
             ctx.DefineFunction(Names.TEXT_CONTAINS, Contains);
-
-            ctx.DefineFunction(Names.TEXT_REPLACE, Replace);
         }
 
         public static void Create(Evaluator eval, StackFrame frame)
@@ -177,6 +175,22 @@ namespace Bombardo.V2
             eval.Return(head);
         }
 
+        public static void Replace(Evaluator eval, StackFrame frame)
+        {
+            var (strArg, subArg, newArg) = StructureUtils.Split3(frame.args);
+
+            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
+            // if (!subArg.IsString) throw new ArgumentException("second argument must be string!");
+            // if (!newArg.IsString) throw new ArgumentException("third argument must be string!");
+
+            string str = strArg.value as string;
+            string sub = subArg.value as string;
+            string n_w = newArg.value as string;
+            string res = str.Replace(sub, n_w);
+
+            eval.Return(new Atom(AtomType.String, res));
+        }
+
         public static void StartsWith(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
@@ -214,22 +228,6 @@ namespace Bombardo.V2
             string sub = subArg.value as string;
 
             eval.Return(str.Contains(sub) ? Atoms.TRUE : Atoms.FALSE);
-        }
-
-        public static void Replace(Evaluator eval, StackFrame frame)
-        {
-            var (strArg, subArg, newArg) = StructureUtils.Split3(frame.args);
-
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!subArg.IsString) throw new ArgumentException("second argument must be string!");
-            // if (!newArg.IsString) throw new ArgumentException("third argument must be string!");
-
-            string str = strArg.value as string;
-            string sub = subArg.value as string;
-            string n_w = newArg.value as string;
-            string res = str.Replace(sub, n_w);
-
-            eval.Return(new Atom(AtomType.String, res));
         }
 	}
 }
