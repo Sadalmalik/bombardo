@@ -1,0 +1,64 @@
+# Здесь уже обработаны все базовые препроцессинги
+# и мы имеем дела с полной базовой версией языка
+#
+# To implement:
+#
+# Эти директивы идут в начале файла и должны исполняться не как код а обработчиком
+# (preprocess: null)
+# (preprocess: default)
+# (preprocess: (mod prep))
+# (preprocess: (mod prep1 prep2 prep3) .. )
+# (preprocess: (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
+# (preprocess: default (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
+#
+# Эти директивы уже могут быть уже просто вызовами
+# (require "ModuleName")
+# (require "ModuleName" as NewName)
+# (require "ModuleName" import name1 name2 name3 ...)
+# (require "ModuleName" importAll)
+#
+
+
+(define LoadModule (lambda [$path]
+	(define @module (GetModule $path))
+	(if [not (null? @module)]
+		[if [eq? `loading (table.get @module `status)]
+			[error (string.concat "Module '" $path "' is loading! Check recursive requires and preprocessors!"]
+			@module
+		]
+		[LoadModuleFromFile $path]
+	)
+))
+
+(define LoadModuleFromFile (lambda [$path]
+	
+	# 1 создаём новый контейнер модуля
+	# 2 грузим модуль вместе с рекурсивными вызовами TryGetModule
+	# 2.1 исполняем препроцессинг содержимого
+	# 2.2 исполняем само содержимое
+	# 3 после загрузки модуля сохраняем его объект export
+	# 4 убираем модуль из стека и помечаем загруженным
+	# 5 возвращаем его
+	(define @currentPath (table.get $currentModule `path))
+	(fs.lookup $path)
+))
+
+
+
+
+(define FindFile (lambda [$name]
+	(define @currentPath (table.get $currentModule `path))
+	(define $fullPath (if [null?]))
+))
+
+(define RequireModule (lambda $args
+	(define $name (car $args))
+	(set! $args (cdr $args))
+	(if [not (or
+			(string? $name)
+			(symbol? $name))]
+		[error "require expects string or symbol!"])
+	()
+))
+
+

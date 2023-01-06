@@ -84,6 +84,13 @@ namespace Bombardo.V2
 		public bool IsNumber => type == AtomType.Number;
 		public bool IsFunction => type == AtomType.Function;
 		public bool IsNative => type == AtomType.Native;
+
+		public static Atom FromString(string value)
+		{
+			if (string.IsNullOrEmpty(value))
+				return null;
+			return new Atom(AtomType.String, value);
+		}
 		
 		public int ListLength()
 		{

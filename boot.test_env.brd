@@ -1,0 +1,9 @@
+# Тест переменных окружения
+(print)
+(print "Environment variables:")
+(print (null? env.pathToCore) "pathToBase:" env.pathToCore)
+(print (null? env.pathToBase) "pathToBase:" env.pathToBase)
+(print (null? env.pathToBoot) "pathToBoot:" env.pathToBoot)
+(print (null? env.pathToScript) "pathToScript:" env.pathToScript)
+(print (null? env.pathToWorkDirectory) "pathToWorkDirectory:" env.pathToWorkDirectory)
+(print)

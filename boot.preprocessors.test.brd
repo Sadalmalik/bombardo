@@ -1,0 +1,23 @@
+(define testPreprocessor (macros [$prepName $data]
+	(define $prep (eval $prepName))
+	(print $prepName ":" $data "->" ($prep $data))
+))
+
+(print "Test preprocess:")
+(testPreprocessor PreprocessNull null)
+(testPreprocessor PreprocessNull (null))
+(testPreprocessor PreprocessNull (null null))
+(testPreprocessor PreprocessNull (A null B))
+(print)
+(testPreprocessor PreprocessQuoting A)
+(testPreprocessor PreprocessQuoting (`A))
+(testPreprocessor PreprocessQuoting (``B))
+(testPreprocessor PreprocessQuoting (```C))
+(print)
+(testPreprocessor DefaultPreprocess (`null (A . B)))
+(testPreprocessor DefaultPreprocess (print `null (null? `null)))
+(testPreprocessor DefaultPreprocess (print null (null? null)))
+(testPreprocessor DefaultPreprocess (print `(a . b)))
+(print)
+
+(undef testPreprocessor)

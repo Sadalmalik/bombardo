@@ -1,0 +1,50 @@
+# Структуры для оперирования модулями в процессе загрузки
+# Модули грузятся по очереди, ставятся в стек для проверки состояния загрузки, что бы предотвратить цикличные ссылки
+
+(define $modules (table.create))
+(define $modulesStack null)
+(define $currentModule null)
+
+# Создает новый модуль и ставит его в стек
+(define CreateModule (lambda [$name $path]
+	# Смотрю на это и думаю что можно сделать полноценный JSON через специальный макрос!
+	(define @module (table.create
+		`name $name
+		`path $path
+		`status `loading
+		`content [table.create
+			`export (table.create)
+		]
+	))
+	(table.set $modules $path @module)
+	(set! $modulesStack (cons @module $modulesStack))
+	(set! $currentModule @module)
+	@module
+))
+
+# Убирает модуль со стека и ставит ему статус complete
+(define CompleteModule (lambda []
+	(define @module (car $modulesStack))
+	(set! $modulesStack (cdr $modulesStack))
+	(set! $currentModule (car $modulesStack))
+	(table.set @module `status `complete)
+))
+
+# Получает модуль по полному пути
+(define GetModule (lambda [$path]
+	(table.get $modules $path)
+))
+
+
+
+# А еще я вижу, что можно сделать запись функций сразу в таблицы и даже инкапсуляцию на ходу
+# Типа:
+#
+#	(define Container (table.create
+#		`FunctionA (lambda [args] body-a)
+#		`FunctionB (lambda [args] body-b)
+#		`FunctionC (lambda [args] body-c)
+#	))
+#
+# Выглядит не плохо, но для инкапсуляции понадобиться делать или еще вызов функции или блок кода с новым контекстом.
+# В общем это и JSON - уже на потом, когда буду развлекаться с языком.

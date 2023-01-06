@@ -1,60 +1,61 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace Bombardo.V2
 {
 	public static partial class Names
 	{
-		// Legacy?
-
-		public static readonly string FS_LOAD = "load";
-		public static readonly string FS_SAVE = "save";
+		// Generalized stuff
+		public static readonly string FS_LOAD = "load"; // fx.load
+		public static readonly string FS_SAVE = "save"; // fs.save
+		public static readonly string FS_FIND = "find"; // fs.find
+		public static readonly string FS_LOOKUP = "lookup"; // fs.lookup
 
 		// Path operations
 
-		public static readonly string FS_PATH_SUBMODULE = "path";
-		public static readonly string FS_PATH_COMBINE = "combine";              // fsPathCombine
-		public static readonly string FS_PATH_GET_FULL = "getFull";             // fsPathGetFull
-		public static readonly string FS_PATH_GET_EXTENSION = "getExtension";   // fsPathGetExtension
-		public static readonly string FS_PATH_GET_FILENAME = "getFileName";     // fsPathGetFileName
-		public static readonly string FS_PATH_GET_DIRNAME = "getDirectoryName"; // fsPathGetDirectoryName
+		public static readonly string FS_PATH_SUBMODULE     = "path";             // submodule
+		public static readonly string FS_PATH_COMBINE       = "combine";          // fs.path.combine
+		public static readonly string FS_PATH_GET_FULL      = "getFull";          // fs.path.getFull
+		public static readonly string FS_PATH_GET_EXTENSION = "getExtension";     // fs.path.getExtension
+		public static readonly string FS_PATH_GET_FILENAME  = "getFileName";      // fs.path.getFileName
+		public static readonly string FS_PATH_GET_DIRNAME   = "getDirectoryName"; // fs.path.getDirectoryName
 
 		// Directory operations
 
-		public static readonly string FS_DIRECTORY_SUBMODULE = "directory";
-		public static readonly string FS_DIRECTORY_READ = "read";     // fsReadDirectory
-		public static readonly string FS_DIRECTORY_CREATE = "create"; // fsCreateDirectory
-		public static readonly string FS_DIRECTORY_REMOVE = "remove"; // fsRemoveDirectory
+		public static readonly string FS_DIRECTORY_SUBMODULE = "directory"; // submodule
+		public static readonly string FS_DIRECTORY_READ      = "read";      // fs.directory.read
+		public static readonly string FS_DIRECTORY_CREATE    = "create";    // fs.directory.create
+		public static readonly string FS_DIRECTORY_MOVE      = "move";      // fs.directory.move
+		public static readonly string FS_DIRECTORY_DELETE    = "delete";    // fs.directory.delete
 
 		// File operations
 
-		public static readonly string FS_FILE_SUBMODULE = "file";
-		public static readonly string FS_FILE_OPEN = "open";   // fsOpen
-		public static readonly string FS_FILE_FLUSH = "flush"; // fsFlush
-		public static readonly string FS_FILE_CLOSE = "close"; // fsClose
+		public static readonly string FS_FILE_SUBMODULE = "file";   // submodule
+		public static readonly string FS_FILE_OPEN      = "open";   // fs.file.open
+		public static readonly string FS_FILE_FLUSH     = "flush";  // fs.file.flush
+		public static readonly string FS_FILE_CLOSE     = "close";  // fs.file.close
+		public static readonly string FS_FILE_MOVE      = "move";   // fs.file.move
+		public static readonly string FS_FILE_DELETE    = "delete"; // fs.file.delete
 
-		public static readonly string FS_FILE_READ = "read";   // fsRead
-		public static readonly string FS_FILE_WRITE = "write"; // fsWrite
-
-		public static readonly string FS_FILE_READ_LINE = "readLine";   // fsReadline
-		public static readonly string FS_FILE_WRITE_LINE = "writeLine"; // fsWriteLine
-
-		public static readonly string FS_FILE_READ_TEXT = "readText";   // fsReadText
-		public static readonly string FS_FILE_WRITE_TEXT = "writeText"; // fsWriteText
-
-		public static readonly string FS_FILE_READ_LINES = "readLines";   // fsReadLines
-		public static readonly string FS_FILE_WRITE_LINES = "writeLines"; // fsWriteLines
-
-		public static readonly string FS_FILE_APPEND_TEXT = "appendText";   // fsAppendText
-		public static readonly string FS_FILE_APPEND_LINES = "appendLines"; // fsAppendLines
+		public static readonly string FS_FILE_READ         = "read";        // fs.file.read
+		public static readonly string FS_FILE_WRITE        = "write";       // fs.file.write
+		public static readonly string FS_FILE_READ_LINE    = "readLine";    // fs.file.readLine
+		public static readonly string FS_FILE_WRITE_LINE   = "writeLine";   // fs.file.writeLine
+		public static readonly string FS_FILE_READ_TEXT    = "readText";    // fs.file.readText
+		public static readonly string FS_FILE_WRITE_TEXT   = "writeText";   // fs.file.writeText
+		public static readonly string FS_FILE_READ_LINES   = "readLines";   // fs.file.readLines
+		public static readonly string FS_FILE_WRITE_LINES  = "writeLines";  // fs.file.writeLines
+		public static readonly string FS_FILE_APPEND_TEXT  = "appendText";  // fs.file.appendText
+		public static readonly string FS_FILE_APPEND_LINES = "appendLines"; // fs.file.appendLines
 
 		// Predicates
 
-		public static readonly string FS_PRED_EXISTS = "exist?";           // fsExist?
-		public static readonly string FS_PRED_FILE = "isFile?";            // fsIsFile?
-		public static readonly string FS_PRED_DIR = "isDirectory?";        // fsIsDirectory?
-		public static readonly string FS_PRED_EMPTY = "isDirectoryEmpty?"; // fsDirectoryIsEmpty?
+		public static readonly string FS_PRED_EXISTS = "exist?";            // fs.exist?
+		public static readonly string FS_PRED_FILE   = "isFile?";           // fs.isFile?
+		public static readonly string FS_PRED_DIR    = "isDirectory?";      // fs.isDirectory?
+		public static readonly string FS_PRED_EMPTY  = "isDirectoryEmpty?"; // fs.isDirectoryEmpty?
 	}
 
 	public class FileSystemFunctions
@@ -66,6 +67,8 @@ namespace Bombardo.V2
 
 			ctx.DefineFunction(Names.FS_LOAD, Load);
 			ctx.DefineFunction(Names.FS_SAVE, Save);
+			ctx.DefineFunction(Names.FS_FIND, Find);
+			ctx.DefineFunction(Names.FS_LOOKUP, LookUp);
 
 			// Path operations
 
@@ -93,7 +96,7 @@ namespace Bombardo.V2
 			ctx.Define(Names.FS_DIRECTORY_SUBMODULE, dir.self);
 			dir.DefineFunction(Names.FS_DIRECTORY_READ, ReadDirectory);
 			dir.DefineFunction(Names.FS_DIRECTORY_CREATE, CreateDirectory);
-			dir.DefineFunction(Names.FS_DIRECTORY_REMOVE, RemoveDirectory);
+			dir.DefineFunction(Names.FS_DIRECTORY_DELETE, RemoveDirectory);
 
 			// File operations
 
@@ -148,18 +151,18 @@ namespace Bombardo.V2
 
 		private static void Load(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = (Atom) args?.value;
+			var path = (Atom) args?.value;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 
-			string file = (string) path.value;
+			var file = (string) path.value;
 			if (File.Exists(file))
 			{
-				string raw   = File.ReadAllText(file);
-				Atom   nodes = BombardoLang.Parse(raw);
+				var raw   = File.ReadAllText(file);
+				var nodes = BombardoLang.Parse(raw);
 
 				eval.Return(nodes);
 				return;
@@ -170,22 +173,22 @@ namespace Bombardo.V2
 
 		private static void Save(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = (Atom) args?.value;
-			Atom list = (Atom) args?.next?.value;
+			var path = (Atom) args?.value;
+			var list = (Atom) args?.next?.value;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			if (list == null || !list.IsPair)
 				throw new ArgumentException("second argument must be list!");
 
-			FileStream   stream = File.Open((string) path.value, FileMode.Create);
-			StreamWriter output = new StreamWriter(stream);
+			var stream = File.Open((string) path.value, FileMode.Create);
+			var output = new StreamWriter(stream);
 
 			while (list != null)
 			{
-				Atom item = (Atom) list?.value;
+				var item = (Atom) list?.value;
 				output.WriteLine(item != null ? item.Stringify() : "");
 				list = list.next;
 			}
@@ -196,6 +199,44 @@ namespace Bombardo.V2
 
 			eval.Return(null);
 		}
+		
+		private static void Find(Evaluator eval, StackFrame frame)
+		{
+			var args = frame.args;
+
+			var path = (Atom) args?.value;
+
+			if (path == null || !path.IsString)
+				throw new ArgumentException("Path must be string!");
+
+			var file = FSUtils.FindFile(path.value as string);
+			if (!string.IsNullOrEmpty(file))
+			{
+				eval.Return(Atom.FromString(file));
+				return;
+			}
+			
+			eval.Return(null);
+		}
+		
+		private static void LookUp(Evaluator eval, StackFrame frame)
+		{
+			(Atom programPath, Atom currentPath, Atom modulesFolder, Atom module) = StructureUtils.Split4(frame.args);
+
+			var file = FSUtils.LookupModuleFile(
+					programPath?.value as string,   
+					currentPath?.value as string,   
+					modulesFolder?.value as string, 
+					module?.value as string
+				);
+			if (!string.IsNullOrEmpty(file))
+			{
+				eval.Return(Atom.FromString(file));
+				return;
+			}
+			
+			eval.Return(null);
+		}
 
 #endregion
 
@@ -204,12 +245,12 @@ namespace Bombardo.V2
 
 		private static void PathCombile(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			int      i     = 0;
-			string[] parts = new string[args.ListLength()];
+			var i     = 0;
+			var parts = new string[args.ListLength()];
 
-			for (Atom iter = args; iter != null; iter = iter.next)
+			for (var iter = args; iter != null; iter = iter.next)
 			{
 				if (!iter.atom.IsString)
 					throw new ArgumentException("All arguments must be strings!");
@@ -222,21 +263,33 @@ namespace Bombardo.V2
 
 		private static void PathGetFull(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = args?.atom;
+			var (atomPath, atomBase) = StructureUtils.Split2(args);
 
-			if (!path.IsString)
+			if (!atomPath.IsString)
 				throw new ArgumentException("Path must be string!");
 
-			eval.Return(new Atom(AtomType.String, Path.GetFullPath((string) path.value)));
+			string path = atomPath.value as string;
+			string root = atomBase?.value as string;
+			
+			if (string.IsNullOrEmpty(path))
+				throw new ArgumentException("Path unexpectedly is null!");
+			
+			if (!string.IsNullOrEmpty(root))
+				if (!Path.IsPathRooted(path))
+					path = Path.Combine(root, path);
+			
+			path = Path.GetFullPath(path);
+			
+			eval.Return(new Atom(AtomType.String, path));
 		}
 
 		private static void PathGetExtension(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = args?.atom;
+			var path = args?.atom;
 
 			if (!path.IsString)
 				throw new ArgumentException("Path must be string!");
@@ -246,21 +299,21 @@ namespace Bombardo.V2
 
 		private static void PathGetFileName(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = args?.atom;
+			var path = args?.atom;
 
 			if (!path.IsString)
 				throw new ArgumentException("Path must be string!");
 
-			eval.Return(new Atom(AtomType.String, Path.GetFileName((string) path.value)));
+			eval.Return(new Atom(AtomType.String, Path.GetFileNameWithoutExtension((string) path.value)));
 		}
 
 		private static void PathGetDirectoryName(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = args?.atom;
+			var path = args?.atom;
 
 			if (!path.IsString)
 				throw new ArgumentException("Path must be string!");
@@ -275,15 +328,15 @@ namespace Bombardo.V2
 
 		private static void ReadDirectory(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = args?.atom;
+			var path = args?.atom;
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string       directory = (string) path.value;
-			Atom         pattern   = args?.next?.atom;
-			Atom         mode      = args?.next?.next?.atom;
-			SearchOption option    = ArgUtils.GetEnum<SearchOption>(mode, 3);
+			var directory = (string) path.value;
+			var pattern   = args?.next?.atom;
+			var mode      = args?.next?.next?.atom;
+			var option    = ArgUtils.GetEnum<SearchOption>(mode, 3);
 
 			string[] dirs = null;
 			if (pattern == null) dirs = Directory.GetDirectories(directory);
@@ -293,21 +346,21 @@ namespace Bombardo.V2
 			if (pattern == null) files = Directory.GetFiles(directory);
 			else files                 = Directory.GetFiles(directory, (string) pattern.value, option);
 
-			Atom[] elements                                                  = new Atom[dirs.Length + files.Length];
-			for (int i = 0; i < dirs.Length; i++) elements[i]                = new Atom(AtomType.String, dirs[i]);
-			for (int i = 0; i < files.Length; i++) elements[i + dirs.Length] = new Atom(AtomType.String, files[i]);
+			var elements                                                     = new Atom[dirs.Length + files.Length];
+			for (var i = 0; i < dirs.Length; i++) elements[i]                = new Atom(AtomType.String, dirs[i]);
+			for (var i = 0; i < files.Length; i++) elements[i + dirs.Length] = new Atom(AtomType.String, files[i]);
 
 			eval.Return(StructureUtils.List(elements));
 		}
 
 		private static void CreateDirectory(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = (Atom) args?.value;
+			var path = (Atom) args?.value;
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string directoryPath = (string) path.value;
+			var directoryPath = (string) path.value;
 
 			Directory.CreateDirectory(directoryPath);
 
@@ -316,16 +369,16 @@ namespace Bombardo.V2
 
 		private static void RemoveDirectory(Evaluator eval, StackFrame frame)
 		{
-			Atom args = frame.args;
+			var args = frame.args;
 
-			Atom path = (Atom) args?.value;
+			var path = (Atom) args?.value;
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string directoryPath = (string) path.value;
+			var directoryPath = (string) path.value;
 
-			string[] dirs  = Directory.GetDirectories(directoryPath);
-			string[] files = Directory.GetFiles(directoryPath);
-			bool     empty = dirs.Length == 0 && files.Length == 0;
+			var dirs  = Directory.GetDirectories(directoryPath);
+			var files = Directory.GetFiles(directoryPath);
+			var empty = dirs.Length == 0 && files.Length == 0;
 
 			if (empty) Directory.Delete(directoryPath);
 
@@ -343,14 +396,14 @@ namespace Bombardo.V2
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
-			FileAccess access = ArgUtils.GetEnum<FileAccess>(accessType, 1, FileAccess.Read);
-			FileMode   mode   = ArgUtils.GetEnum<FileMode>(modeType, 2, FileMode.Open);
+			var access = ArgUtils.GetEnum(accessType, 1, FileAccess.Read);
+			var mode   = ArgUtils.GetEnum(modeType, 2, FileMode.Open);
 
 			if (access == FileAccess.Read)
 			{
-				StreamReader reader = new StreamReader(File.Open(file, mode, access));
+				var reader = new StreamReader(File.Open(file, mode, access));
 
 				eval.Return(new Atom(AtomType.Native, reader));
 				return;
@@ -358,7 +411,7 @@ namespace Bombardo.V2
 
 			if (access == FileAccess.Write)
 			{
-				StreamWriter writer = new StreamWriter(File.Open(file, mode, access));
+				var writer = new StreamWriter(File.Open(file, mode, access));
 
 				eval.Return(new Atom(AtomType.Native, writer));
 				return;
@@ -369,12 +422,12 @@ namespace Bombardo.V2
 
 		private static void Flush(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = frame.args?.atom;
+			var stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
-			StreamWriter writer = stream.value as StreamWriter;
+			var writer = stream.value as StreamWriter;
 			writer?.Flush();
 
 			eval.Return(null);
@@ -382,15 +435,15 @@ namespace Bombardo.V2
 
 		private static void Close(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = frame.args?.atom;
+			var stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
-			StreamReader reader = stream.value as StreamReader;
+			var reader = stream.value as StreamReader;
 			reader?.Close();
 
-			StreamWriter writer = stream.value as StreamWriter;
+			var writer = stream.value as StreamWriter;
 			writer?.Close();
 
 			eval.Return(null);
@@ -398,12 +451,12 @@ namespace Bombardo.V2
 
 		private static void Read(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = frame.args?.atom;
+			var stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
-			StreamReader reader = stream.value as StreamReader;
+			var reader = stream.value as StreamReader;
 			if (reader == null)
 				throw new ArgumentException("Argument must be stream!");
 
@@ -412,12 +465,12 @@ namespace Bombardo.V2
 
 		private static void ReadLine(Evaluator eval, StackFrame frame)
 		{
-			Atom stream = frame.args?.atom;
+			var stream = frame.args?.atom;
 
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
-			StreamReader reader = stream.value as StreamReader;
+			var reader = stream.value as StreamReader;
 			if (reader == null)
 				throw new ArgumentException("Argument must be stream!");
 
@@ -431,7 +484,7 @@ namespace Bombardo.V2
 			if (stream.type != AtomType.Native)
 				throw new ArgumentException("Argument must be stream!");
 
-			StreamWriter writer = stream?.value as StreamWriter;
+			var writer = stream?.value as StreamWriter;
 			if (writer == null) throw new ArgumentException("Argument must be stream!");
 
 			if (value == null) throw new ArgumentException("Second argument can't be null!");
@@ -491,29 +544,29 @@ namespace Bombardo.V2
 
 		private static void ReadText(Evaluator eval, StackFrame frame)
 		{
-			Atom path = frame.args?.atom;
+			var path = frame.args?.atom;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
-			string text = File.ReadAllText(file, System.Text.Encoding.UTF8);
+			var text = File.ReadAllText(file, Encoding.UTF8);
 
 			eval.Return(new Atom(AtomType.String, text));
 		}
 
 		private static void ReadLines(Evaluator eval, StackFrame frame)
 		{
-			Atom path = frame.args?.atom;
+			var path = frame.args?.atom;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
-			string[] lines = File.ReadAllLines(file, System.Text.Encoding.UTF8);
+			var lines = File.ReadAllLines(file, Encoding.UTF8);
 
-			Atom[] atoms = new Atom[lines.Length];
-			for (int i = 0; i < lines.Length; i++)
+			var atoms = new Atom[lines.Length];
+			for (var i = 0; i < lines.Length; i++)
 				atoms[i] = new Atom(AtomType.String, lines[i]);
 
 			eval.Return(StructureUtils.List(atoms));
@@ -525,13 +578,13 @@ namespace Bombardo.V2
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
 			if (text == null || !text.IsString)
 				throw new ArgumentException("Second argument must be string!");
-			string data = (string) text.value;
+			var data = (string) text.value;
 
-			File.WriteAllText(file, data, System.Text.Encoding.UTF8);
+			File.WriteAllText(file, data, Encoding.UTF8);
 
 			eval.Return(null);
 		}
@@ -542,21 +595,21 @@ namespace Bombardo.V2
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
 			if (list == null || !list.IsPair)
 				throw new ArgumentException("Second argument must be list of strings!");
 
-			List<string> lines = new List<string>();
-			for (Atom iter = list; iter != null; iter = iter.next)
+			var lines = new List<string>();
+			for (var iter = list; iter != null; iter = iter.next)
 			{
-				Atom line = iter.atom;
+				var line = iter.atom;
 				if (line == null || !line.IsString)
 					throw new ArgumentException("Second argument must be list of strings!");
 				lines.Add((string) line.value);
 			}
 
-			File.WriteAllLines(file, lines, System.Text.Encoding.UTF8);
+			File.WriteAllLines(file, lines, Encoding.UTF8);
 
 			eval.Return(null);
 		}
@@ -567,13 +620,13 @@ namespace Bombardo.V2
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
 			if (text == null || !text.IsString)
 				throw new ArgumentException("Second argument must be string!");
-			string data = (string) text.value;
+			var data = (string) text.value;
 
-			File.AppendAllText(file, data, System.Text.Encoding.UTF8);
+			File.AppendAllText(file, data, Encoding.UTF8);
 
 			eval.Return(null);
 		}
@@ -584,21 +637,21 @@ namespace Bombardo.V2
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("First argument must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
 			if (list == null || !list.IsPair)
 				throw new ArgumentException("Second argument must be list of strings!");
 
-			List<string> lines = new List<string>();
-			for (Atom iter = list; iter != null; iter = iter.next)
+			var lines = new List<string>();
+			for (var iter = list; iter != null; iter = iter.next)
 			{
-				Atom line = iter.atom;
+				var line = iter.atom;
 				if (line == null || !line.IsString)
 					throw new ArgumentException("Second argument must be list of strings!");
 				lines.Add((string) line.value);
 			}
 
-			File.AppendAllLines(file, lines, System.Text.Encoding.UTF8);
+			File.AppendAllLines(file, lines, Encoding.UTF8);
 
 			eval.Return(null);
 		}
@@ -610,7 +663,7 @@ namespace Bombardo.V2
 
 		private static void Exists(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) frame.args?.value;
+			var path = (Atom) frame.args?.value;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
@@ -622,7 +675,7 @@ namespace Bombardo.V2
 
 		private static void FilePredicate(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) frame.args?.value;
+			var path = (Atom) frame.args?.value;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
@@ -634,17 +687,17 @@ namespace Bombardo.V2
 				return;
 			}
 
-			FileAttributes attr = File.GetAttributes(file);
+			var attr = File.GetAttributes(file);
 			eval.Return(attr.HasFlag(FileAttributes.Directory) ? Atoms.FALSE : Atoms.TRUE);
 		}
 
 		private static void DirectoryPredicate(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) frame.args?.value;
+			var path = (Atom) frame.args?.value;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string file = (string) path.value;
+			var file = (string) path.value;
 
 			if (!File.Exists(file))
 			{
@@ -652,21 +705,21 @@ namespace Bombardo.V2
 				return;
 			}
 
-			FileAttributes attr = File.GetAttributes(file);
+			var attr = File.GetAttributes(file);
 			eval.Return(attr.HasFlag(FileAttributes.Directory) ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		private static void DirectoryEmptyPredicate(Evaluator eval, StackFrame frame)
 		{
-			Atom path = (Atom) frame.args?.value;
+			var path = (Atom) frame.args?.value;
 
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
-			string directoryPath = (string) path.value;
+			var directoryPath = (string) path.value;
 
-			string[] dirs  = Directory.GetDirectories(directoryPath);
-			string[] files = Directory.GetFiles(directoryPath);
-			bool     empty = dirs.Length == 0 && files.Length == 0;
+			var dirs  = Directory.GetDirectories(directoryPath);
+			var files = Directory.GetFiles(directoryPath);
+			var empty = dirs.Length == 0 && files.Length == 0;
 
 			eval.Return(empty ? Atoms.TRUE : Atoms.FALSE);
 		}

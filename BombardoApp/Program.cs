@@ -1,92 +1,106 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Reflection;
+using Bombardo.V2.Lang;
 
 namespace Bombardo.V2
 {
 	public static class Program
 	{
+		public const string BOOT_NAME = "boot.brd";
+		
+		private static string pathToCore;
+		private static string pathToBase;
+		private static string pathToBoot;
+		private static string pathToScript;
+		private static string pathToWorkDir;
+
+		
 		public static void Main(string[] argsArray)
 		{
-			// Мне тут нужны:
-			// Путь до интерпретатора
-			// Путь до ядра (бут-скрипт)
-			// Путь до исполняемого скрипта
-			
-			string pathToApp     = System.Reflection.Assembly.GetEntryAssembly().Location;
-			string basePath = Path.GetDirectoryName(pathToApp);
-			string pathToBoot = Path.Combine(basePath, "bombardo.boot.brd");
-			string pathToScript = null;
-			string pathToWorkDirectory = Directory.GetCurrentDirectory();
+			InitEnvironment();
+			ParseArguments(argsArray);
+			FindBootScriprt();
 
-			var args = new Queue<string>(argsArray);
-			while (args.Count>0)
-			{
-				var arg = args.Dequeue();
-				if (arg.StartsWith("boot:"))
-				{
-					pathToBoot = Path.GetFullPath(arg.Substring(5));
-					continue;
-				}
-				pathToScript = Path.GetFullPath(arg);
-			}
-			
-			if (args.Count>0)
-				Console.WriteLine($"Too match arguments!\nWill be ignored: {string.Join(" ", args)}");
-			
-			pathToBoot = FSUtils.FindFile(pathToBoot);
-			
-			if (string.IsNullOrEmpty(pathToBoot))
-			{
-				Console.WriteLine($"File not found: {pathToBoot}");
-				return;
-			}
-			
-			var bootScript = File.ReadAllText(pathToBoot);
-			
 			var bootContext = BuildBootContext();
-			bootContext.Define("pathToApp", CreateString(pathToApp));
-			bootContext.Define("basePath", CreateString(basePath));
-			bootContext.Define("pathToBoot", CreateString(pathToBoot));
-			bootContext.Define("pathToScript", CreateString(pathToScript));
-			bootContext.Define("pathToWorkDirectory", CreateString(pathToWorkDirectory));
-			bootContext.@sealed = true;
-			bootContext = new Context(bootContext);
-			
-			var bootProgram = BombardoLang.Parse(bootScript);
 
+			var bootScript  = File.ReadAllText(pathToBoot);
+			var bootProgram = BombardoLang.Parse(bootScript);
+			
 			var  eval       = new Evaluator();
 			Atom bootResult = null;
 			try
 			{
 				bootResult = eval.Evaluate(bootProgram, bootContext, "-eval-block-");
+				Console.WriteLine($"Boot result: {bootResult}");
 			}
 			catch (Exception exc)
 			{
+				Console.WriteLine($"Boot result: Exception!");
 				Console.WriteLine(exc);
 				Console.WriteLine();
 				eval.Stack.Dump();
 			}
-
-			Console.WriteLine($"Boot result: {bootResult}");
 		}
 		
-		private static Atom CreateString(string value)
+		private static void InitEnvironment()
 		{
-			if (string.IsNullOrEmpty(value))
-				return null;
-			return new Atom(AtomType.String, value);
+			// Основные пути
+			pathToCore   = Assembly.GetEntryAssembly().Location;
+			pathToBase   = Path.GetDirectoryName(pathToCore);   // Путь до интерпретатора
+			pathToBoot   = Path.Combine(pathToBase, BOOT_NAME); // Путь до ядра (бут-скрипт)
+			pathToScript = null;                                // Путь до исполняемого скрипта
+		}
+
+		private static void FindBootScriprt()
+		{
+			pathToBoot = FSUtils.FindFile(pathToBoot);
+			if (string.IsNullOrEmpty(pathToBoot))
+			{
+				Console.WriteLine($"File not found: {pathToBoot}");
+				return;
+			}
+			pathToWorkDir = Path.GetDirectoryName(pathToBoot); // Путь до рабочей папки
+		}
+
+		private static void ParseArguments(string[] argsArray)
+		{
+			var args = new Queue<string>(argsArray);
+			while (args.Count > 0)
+			{
+				var arg = args.Dequeue();
+
+				if (arg.StartsWith("boot:"))
+				{
+					pathToBoot = Path.GetFullPath(arg.Substring(5));
+					continue;
+				}
+
+				pathToScript = Path.GetFullPath(arg);
+			}
+
+			if (args.Count > 0)
+				Console.WriteLine($"Too match arguments!\nWill be ignored: {string.Join(" ", args)}");
 		}
 
 		public static Context BuildBootContext()
 		{
-			Context context = new Context();
+			var context = new Context();
 
-			AddSub(context, "console", ConsoleFunctions.Define);
+			AddSub(context, "lang", subContext =>
+			{
+				// Нет особого смысла разрывать эти определения по контекстам
+				ListFunctions.Define(subContext);
+				ListSugarFunctions.Define(subContext);
+				ControlFunctions.Define(subContext);
+				TypePredicateFunctions.Define(subContext);
+				LogicFunctions.Define(subContext);
+			});
+			
 			AddSub(context, "context", ContextFunctions.Define);
+			AddSub(context, "console", ConsoleFunctions.Define);
 			AddSub(context, "debug", DebugFunctions.Define);
-
-			AddSub(context, "lang", DefineLang);
 
 			AddSub(context, "fs", FileSystemFunctions.Define);
 			AddSub(context, "math", MathFunctions.Define);
@@ -94,22 +108,22 @@ namespace Bombardo.V2
 
 			AddSub(context, "table", TableFunctions.Define);
 
-			return context;
-		}
+			AddSub(context, "env", envContext =>
+			{
+				envContext.Define("pathToCore", Atom.FromString(pathToCore));
+				envContext.Define("pathToBase", Atom.FromString(pathToBase));
+				envContext.Define("pathToBoot", Atom.FromString(pathToBoot));
+				envContext.Define("pathToScript", Atom.FromString(pathToScript));
+				envContext.Define("pathToWorkDirectory", Atom.FromString(pathToWorkDir));
+			});
 
-		private static void DefineLang(Context context)
-		{
-			// Нет особого смысла разрывать эти определения по контекстам
-			ListFunctions.Define(context);
-			ListSugarFunctions.Define(context);
-			ControlFunctions.Define(context);
-			TypePredicateFunctions.Define(context);
-			LogicFunctions.Define(context);
+			context.@sealed = true;
+			return new Context(context);
 		}
 
 		private static void AddSub(Context context, string name, Action<Context> Define)
 		{
-			Context builtIn = new Context();
+			var builtIn = new Context();
 			context.Define(name, builtIn.self);
 			Define(builtIn);
 		}

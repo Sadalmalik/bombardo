@@ -1,11 +1,92 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
     <PropertyGroup>
-        <TargetFramework>net461</TargetFramework>
+        <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+        <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+        <ProjectGuid>{E95CBA98-FABE-4A49-BD9F-69F7A63BF573}</ProjectGuid>
+        <OutputType>Library</OutputType>
+        <AppDesignerFolder>Properties</AppDesignerFolder>
+        <RootNamespace>BombardoV2</RootNamespace>
+        <AssemblyName>BombardoV2</AssemblyName>
+        <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
+        <FileAlignment>512</FileAlignment>
     </PropertyGroup>
-
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>full</DebugType>
+        <Optimize>false</Optimize>
+        <OutputPath>bin\Debug\</OutputPath>
+        <DefineConstants>DEBUG;TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+        <PlatformTarget>AnyCPU</PlatformTarget>
+        <DebugType>pdbonly</DebugType>
+        <Optimize>true</Optimize>
+        <OutputPath>bin\Release\</OutputPath>
+        <DefineConstants>TRACE</DefineConstants>
+        <ErrorReport>prompt</ErrorReport>
+        <WarningLevel>4</WarningLevel>
+    </PropertyGroup>
     <ItemGroup>
-      <PackageReference Include="System.ValueTuple" Version="4.5.0" />
+        <Reference Include="System" />
+        <Reference Include="System.Core" />
+        <Reference Include="System.Data" />
+        <Reference Include="System.Xml" />
     </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Bombardo.cs" />
+        <Compile Include="GeneralV2Test.cs" />
+        <Compile Include="Names.cs" />
+        <Compile Include="Core\Atom.cs" />
+        <Compile Include="Core\BombardoException.cs" />
+        <Compile Include="Core\Closure.cs" />
+        <Compile Include="Core\Context.cs" />
+        <Compile Include="Core\Evaluator.cs" />
+        <Compile Include="Core\Function.cs" />
+        <Compile Include="Core\Lexer.cs" />
+        <Compile Include="Core\Parser.cs" />
+        <Compile Include="Core\StackHandler.cs" />
+        <Compile Include="Lang\Atoms.cs" />
+        <Compile Include="Lang\UNumber.cs" />
+        <Compile Include="Lang\BuiltIn\ConsoleFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\ContextFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\ControlFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\DebugFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\FileSystemFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\ListFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\ListSugarFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\LogicFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\MathFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\StringFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\TableFunctions.cs" />
+        <Compile Include="Lang\BuiltIn\TypePredicateFunctions.cs" />
+        <Compile Include="obj\Debug\.NETFramework,Version=v4.7.1.AssemblyAttributes.cs" />
+        <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Utils\ArgUtils.cs" />
+        <Compile Include="Utils\BufferedStream.cs" />
+        <Compile Include="Utils\ContextUtils.cs" />
+        <Compile Include="Utils\FSUtils.cs" />
+        <Compile Include="Utils\NumberParser.cs" />
+        <Compile Include="Utils\StringExtensions.cs" />
+        <Compile Include="Utils\StructureUtils.cs" />
+    </ItemGroup>
+    <ItemGroup>
+        <Compile Include="Properties\AssemblyInfo.cs" />
+    </ItemGroup>
+    <ItemGroup>
+      <Content Include="Documentation.txt" />
+    </ItemGroup>
+    <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+    <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+         Other similar extension points exist, see Microsoft.Common.targets.
+    <Target Name="BeforeBuild">
+    </Target>
+    <Target Name="AfterBuild">
+    </Target>
+    -->
 
 </Project>

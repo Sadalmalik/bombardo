@@ -1,5 +1,4 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // Общие сведения об этой сборке предоставляются следующим набором
@@ -10,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("BombardoApp")]
-[assembly: AssemblyCopyright("Copyright © Kaleb Sadalmalik 2019")]  //  is it correct with GPL?
+[assembly: AssemblyCopyright("Copyright © Kaleb Sadalmalik 2019")] //  is it correct with GPL?
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

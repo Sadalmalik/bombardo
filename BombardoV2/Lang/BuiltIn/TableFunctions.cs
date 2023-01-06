@@ -203,14 +203,10 @@ namespace Bombardo.V2
 		// Как сейчас работает словарь?
 		private static void FillDictionary(Context dict, Atom args)
 		{
-			for (Atom iter = args; iter != null; iter = iter.next)
+			for (Atom iter = args; iter != null && iter.next != null; iter = iter.next.next)
 			{
-				Atom pair = (Atom) iter.value;
-				if (pair == null) continue;
-				if (pair.type != AtomType.Pair)
-					throw new BombardoException("Table values must be pairs (key value)!");
-				Atom key   = (Atom) pair.value;
-				Atom value = (Atom) pair.next.value;
+				Atom key   = (Atom) iter.value;
+				Atom value = (Atom) iter.next.atom.value;
 				if (key.type != AtomType.String && key.type != AtomType.Symbol)
 					throw new BombardoException("Table key must be string or symbol!!!");
 				dict.Add((string) key.value, value);

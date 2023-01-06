@@ -1,0 +1,4 @@
+# просто тест подгрузки файла
+(print)
+(print "Evaluate test file!")
+(print)

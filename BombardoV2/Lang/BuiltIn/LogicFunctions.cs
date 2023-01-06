@@ -1,6 +1,6 @@
 using System;
 
-namespace Bombardo.V2
+namespace Bombardo.V2.Lang
 {
 	public static partial class Names
 	{

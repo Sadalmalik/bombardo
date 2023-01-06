@@ -1,0 +1,260 @@
+﻿
+
+ListFunctions
+
+(cons `A `B) -> (A B)
+(car `(A B)) -> A
+(cdr `(A B)) -> B
+
+car, cdr,
+caar, cadr, cdar, cddr,
+caaar, caadr, cadar, caddr, cdaar, cdadr, cddar, cdddr,
+caaaar, caaadr, caadar, caaddr, cadaar, cadadr, caddar, cadddr,
+cdaaar, cdaadr, cdadar, cdaddr, cddaar, cddadr, cdddar, cddddr,
+
+(get 0 `(A B C D E)) -> A
+(get 4 `(A B C D E)) -> E
+
+(last `(A B C D E)) -> E
+(end `(A B C D E)) -> . (E . null)
+(append `(A B C) ``(D E F)) -> (A B C D E F)
+
+(list `A `B `C) -> (A B C)
+(reverse `(A B C)) -> (C B A)
+
+(set-car! `(A B) X) -> (X B)
+(set-cdr! `(A B) X) -> (A X)
+
+(contains? `(A B C) B) -> #T
+
+(each `(A B C) [lambda ...]) -> Apply Lambda to each element
+
+(map `(1 2 3) [lambda (x) (+ x 100)]) -> (101 102 103)
+
+(filter `(1 2 3 4 5 6) [lambda (x) (== 0 (% x 2))]) -> (2 4 6)
+
+
+
+
+ControlFunctions
+
+(nope anything) -> null
+fully ignoring whole tree
+
+`anything -> (quote anything) -> anything
+return argument as is
+
+(parse "expression") -> expression
+convert text to lisp structure (s-expression)
+
+(eval expression) -> result of expression
+(eval context expression) -> result of expression in context
+Evaluates lisp expression
+
+(evalEach (expression expression expression ...)) -> result of last expression
+(evalEach context (expression expression expression ...)) -> result of last expression in context
+Evaluates list of lisp expressions
+			
+(block (expression expression expression ...)) -> result of last expression
+(block context (expression expression expression ...)) -> result of last expression in context
+Evaluates list of lisp expressions
+
+(if condition then-expression else-expression) -> result of then-expression or else-expression, depends of condition value
+
+(cond
+    ((condition) expression)
+    ((condition) expression) ...)
+-> result of success statement, or null
+			
+(while condition
+    (expression expression expression ...))
+-> evaluates expressions while condition is true, return null
+			
+(until condition
+    (expression expression expression ...))
+-> same as (while (not condition) ...)
+
+(lambda (...) expression ...) -> closure
+equivalent to (syntax (lambda #T #F) (...) expression ...) -> closure
+Creates closure function, which evaluates args, evaluates body and return result as is
+
+(macros (...) expression ...) -> closure
+equivalent to (syntax (macros #F #T) (...) expression ...) -> closure
+Creates closure function, which take args as is, evaluates body and return evaluated result
+
+(syntax (tag #F #F) (...) expression ...) -> closure
+(syntax (tag #T #F) (...) expression ...) -> closure
+(syntax (tag #F #T) (...) expression ...) -> closure
+(syntax (tag #T #T) (...) expression ...) -> closure
+Generally creates closure function
+
+(apply function [arguments]) -> result of (function [arguments])
+Applying function to list of arguments
+
+(error anythin) -> INTERRUPTION
+Interrupts evaluation and sending exception
+
+
+
+
+
+TypePredicateFunctions
+  null?
+  not-null?
+  empty?
+  symbol?
+  pair?
+  list?
+  string?
+  bool?
+  number?
+  proc?
+
+
+
+LogicFunctions
+  q?
+  neq?
+  and
+  or
+  xor
+  imp
+  not
+
+
+ContextFunctions
+  define
+  undef
+  set!
+  toString
+  fromString
+  symbolName
+  makeSymbol
+  getContext
+  getContextParent
+
+ConsoleFunctions
+  print
+  read
+
+DebugFunctions
+  marker
+
+FileSystemFunctions
+  // Basic for lisp
+  (fs.load "file path") -> list
+  (fs.save "file path" (symbol1 symbol2 symbol3 (expression1) (expression2) (expression3)))
+  (fs.find "file path") -> "fixed file path"
+  (fs.lookup programPath currentPath modulesFolder module) -> "founded file path"
+		
+  // Path operations
+  (fs.path.combine "path1" "path2" "path3") -> "path1/path2/path3"
+  (fs.path.getFull "directoryPath.ext") -> "extended/directoryPath.ext"
+  (fs.path.getExtension "directoryPath/file.ext") -> "ext"
+  (fs.path.getFileName "directoryPath/file.ext") -> "file.ext"
+  (fs.path.getDirectoryName "directoryPath/file.ext") -> "directoryPath"
+
+  // Directory operations
+  (fs.directory.read "directoryPath") -> ( "file1" "file2" "file3" ... )
+  (fs.directory.create "directoryPath") -> null
+  (fs.directory.remove "directoryPath") -> null
+
+  // File operations
+  (fs.file.open "filepath" [read] [write] [|create|append]) -> handler
+  (fs.file.flush handler)
+  (fs.file.close handler)
+  (fs.file.read handler) -> char
+  (fs.file.write handler char|string|symbol|number)
+  (fs.file.readLine handler) -> string
+  (fs.file.writeLine handler string)
+  fs.file.readText
+  fs.file.writeText
+  fs.file.readLines
+  fs.file.writeLines
+  fs.file.appendText
+  fs.file.appendLines
+
+  // Predicates
+  (fs.exist? "filepath") -> true|false
+  (fs.isFile? "path") -> true | false
+  (fs.isDirectory? "path") -> true | false
+  (fs.isDirectoryEmpty? "path") -> true | false
+
+
+
+MathFunctions
+
+  //  Constants
+  PI
+  E
+
+  //  Base math
+  + - * / %
+  min, max, abs, sign, ceil, floor
+  trunc, sqrt, pow, exp, ln, log, ld
+  sin, cos, tan, asin, acos, atan, atan2, sinh, cosh, tanh
+  & | ^ << >>
+  < > <= >= != ==
+  
+  //  Type predicates
+  byte?
+  ubyte?
+  sbyte?
+  char?
+  short?
+  ushort?
+  int?
+  uint?
+  long?
+  ulong?
+  float?
+  double?
+
+  //  Type cast
+  byte:
+  ubyte:
+  sbyte:
+  char:
+  short:
+  ushort:
+  int:
+  uint:
+  long:
+  ulong:
+  float:
+  double:
+  
+  //  String parse
+  tryParseNumber
+
+
+StringFunctions
+
+  create
+  len
+  chars
+  get
+
+  concat
+  substr
+  split
+  replace
+
+  startsWith?
+  endsWith?
+  contains?
+
+
+TableFunctions
+
+  table.create
+  table.get
+  table.set
+  table.rem
+  table.clear
+  table.import
+  table.importAll
+  table.each
+
+  table.table?
+

@@ -1,0 +1,168 @@
+# Определим здесь самые фундаментальные прроцессоры,
+# которые преобразуют сырой набор атомов в более валидный набор выражений
+
+
+
+# да, такой изврат, а шо делать если константы пока нигде не определены? :)
+(define valNull [nope])
+(define valTrue (eq? lambda lambda))
+(define valFalse (eq? lambda macros))
+(define symQuote (quote `))
+(define symDot (quote .))
+
+
+
+# Ядро препроцессора - преобразование дерева.
+# По сути это такой map, но не по списку а по дереву.
+# В будущем надо внести в ядро языка - явно полезная фича
+(define RebuildTree (lambda [tree handler]
+	(if [pair? tree]
+		[cons	(RebuildTree (car tree) handler)
+				(RebuildTree (cdr tree) handler)]
+		[if [not-null? tree]
+			(handler tree)]
+	)
+))
+
+# Не помню, для чего это нужно было...
+(define RebuildListTree (lambda [tree nodeHandler]
+	(if [pair? tree]
+		[nodeHandler tree]
+		tree)
+))
+
+
+
+# Препроцессор, преобразующий символ 'null' в настоящий null
+(define PreprocessNullHandler (lambda [symbol]
+	(if [eq? symbol (quote null)]
+		valNull
+		symbol
+	)
+))
+
+(define PreprocessNull (lambda [expression]
+	(RebuildTree expression PreprocessNullHandler)
+))
+
+
+
+# Препроцессор, преобразующий симводы 'true' и 'false' в true и false соответственно
+(define PreprocessBooleanHandler (lambda [symbol]
+	(cond	[(eq? symbol (quote true)) valTrue]	
+			[(eq? symbol (quote false)) valFalse]
+			[valTrue symbol]
+	)
+))
+
+(define PreprocessBoolean (lambda [expression]
+	(RebuildTree expression PreprocessBooleanHandler)
+))
+
+
+
+# Препроцессор, парсящий числа из символов
+(define PreprocessNumbersHandler (lambda [symbol]
+	(define number (tryParseNumber symbol))
+	(if [number? number] number symbol)
+))
+
+(define PreprocessNumbers (lambda [expression]
+	(RebuildTree expression PreprocessNumbersHandler)
+))
+
+
+
+# Препроцессор, преобразующий квотирование в s-expression
+# Пример: `x -> (quote x)
+(define PreprocessQuoting (lambda [expression]
+	(if [pair? expression]
+		[block
+			(define iter valNull)
+			(while [not-null? expression]
+				[define $FIRST (car expression)]
+				[define $SECOND (cdr expression)]
+				(cond	[(and (eq? $FIRST symQuote) (not-null? $SECOND))
+							(set! iter (cons [list (quote quote) (car $SECOND)] iter))
+							(set! expression (cdr $SECOND))
+						]
+						[valTrue
+							(set! iter (cons (PreprocessQuoting $FIRST) iter))
+							(set! expression $SECOND)
+						]
+				)
+			)
+			(reverse iter)
+		]
+		expression
+	)
+))
+
+
+
+# Препроцессор, выделяющий точечные пары из списков
+(define PreprocessDottedPair (lambda [expression]
+	(if [pair? expression]
+		[block
+			(if [eq? (car expression) symDot]
+				[error "Wrong dot . expression!"])
+			(define iter valNull)
+			(while [not-null? expression]
+				[define $I1 (car expression)]
+				[define $I2 (cadr expression)]
+				[define $I3 (caddr expression)]
+				[define $E4 (cdddr expression)]
+				[define $isDot (eq? $I2 symDot)]
+				(cond	[(and $isDot (null? $E4))
+							(set! iter (cons (PreprocessDottedPair $I1) iter))
+							(set! iter (reverse iter))
+							(set-cdr! (end iter) $I3)
+							(set! expression valNull)
+						]
+						[(not $isDot)
+							(set! iter (cons (PreprocessDottedPair $I1) iter))
+							(set! expression (cdr expression))
+							(if (null? expression)
+								(set! iter (reverse iter)))
+						]
+						[valTrue
+							(error "Wrong dot . expression!")
+						]
+				)
+			)
+			iter
+		]
+		expression
+	)
+))
+
+
+
+# Функция для применения множества препроцессоров к выражению
+(define PackApply (lambda [functions expression]
+	(define PackApplyHandler (lambda [function]
+		(set! expression (function expression))
+	))
+	(each functions PackApplyHandler)
+	expression
+))
+
+
+
+# Комбинированный список препроцессоров
+(define $defaultPreprocessors
+	(list
+		PreprocessNull
+		PreprocessBoolean
+		PreprocessNumbers
+		PreprocessQuoting
+		PreprocessDottedPair
+	)
+)
+
+
+
+# Стандартная функция препроцессинга
+(define DefaultPreprocess (lambda [expression]
+	(PackApply $defaultPreprocessors expression)
+))

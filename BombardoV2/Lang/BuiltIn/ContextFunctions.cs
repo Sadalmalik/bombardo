@@ -1,21 +1,17 @@
 using System;
-using System.Collections.Generic;
 
 namespace Bombardo.V2
 {
 	public static partial class Names
 	{
-		public static readonly string LISP_DEFINE = "define";
-		public static readonly string LISP_UNDEFINE = "undef";
-		public static readonly string LISP_SET_FIRST = "set!";
-
-		public static readonly string LISP_TO_STRING = "toString";
-		public static readonly string LISP_FROM_STRING = "fromString";
-
-		public static readonly string LISP_SYMBOL_NAME = "symbolName";
-		public static readonly string LISP_MAKE_SYMBOL = "symbolMake";
-
-		public static readonly string LISP_GET_CONTEXT = "getContext";
+		public static readonly string LISP_DEFINE             = "define";
+		public static readonly string LISP_UN_DEFINE          = "undef";
+		public static readonly string LISP_SET_FIRST          = "set!";
+		public static readonly string LISP_TO_STRING          = "toString";
+		public static readonly string LISP_FROM_STRING        = "fromString";
+		public static readonly string LISP_SYMBOL_NAME        = "symbolName";
+		public static readonly string LISP_MAKE_SYMBOL        = "makeSymbol";
+		public static readonly string LISP_GET_CONTEXT        = "getContext";
 		public static readonly string LISP_GET_CONTEXT_PARENT = "getContextParent";
 	}
 
@@ -23,8 +19,12 @@ namespace Bombardo.V2
 	{
 		public static void Define(Context ctx)
 		{
+			// (define X 15) -> 15
+			// (define Y 25 context) -> 25, Y in context
 			ctx.DefineFunction(Names.LISP_DEFINE, Define, false);
-			ctx.DefineFunction(Names.LISP_UNDEFINE, Undefine, false);
+			
+			
+			ctx.DefineFunction(Names.LISP_UN_DEFINE, Undefine, false);
 			ctx.DefineFunction(Names.LISP_SET_FIRST, SetFirst, false);
 
 			ctx.DefineFunction(Names.LISP_TO_STRING, ToString);
@@ -49,9 +49,9 @@ namespace Bombardo.V2
 
 			if (eval.HaveReturn())
 			{
-				string  name   = (string) sym.value;
-				Atom    result = eval.TakeReturn();
-				Context ctx    = context?.value as Context ?? frame.context.value as Context;
+				var name   = (string) sym.value;
+				var result = eval.TakeReturn();
+				var ctx    = context?.value as Context ?? frame.context.value as Context;
 				if (result?.value is Closure function)
 					function.Name = name;
 				//Console.WriteLine($"DEFINE: '{name}' = '{result}' at -internal-state-{ctx}");
@@ -66,8 +66,8 @@ namespace Bombardo.V2
 
 		private static void Undefine(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom sym  = (Atom) args?.value;
+			var args = frame.args;
+			var sym  = (Atom) args?.value;
 			if (sym.type != AtomType.Symbol)
 				throw new ArgumentException("Undefining name must be symbol!");
 
@@ -79,8 +79,8 @@ namespace Bombardo.V2
 
 		private static void SetFirst(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom sym  = (Atom) args?.value;
+			var args = frame.args;
+			var sym  = (Atom) args?.value;
 			if (sym.type != AtomType.Symbol)
 				throw new ArgumentException("Variable name must be symbol!");
 
@@ -99,32 +99,32 @@ namespace Bombardo.V2
 
 		private static void ToString(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom atom = (Atom) args.value;
+			var args = frame.args;
+			var atom = (Atom) args.value;
 			eval.Return(new Atom(AtomType.String, atom.ToString()));
 		}
 
 		private static void FromString(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom str  = (Atom) args.value;
+			var args = frame.args;
+			var str  = (Atom) args.value;
 			if (!str.IsString) throw new ArgumentException("Argument must be string!");
-			Atom list = BombardoLang.Parse((string) str.value);
+			var list = BombardoLang.Parse((string) str.value);
 			eval.Return(list);
 		}
 
 		private static void SymbolName(Evaluator eval, StackFrame frame)
 		{
-			var  args   = frame.args;
-			Atom symbol = (Atom) args.value;
+			var args   = frame.args;
+			var symbol = (Atom) args.value;
 			if (!symbol.IsSymbol) throw new ArgumentException("Argument must be symbol!");
 			eval.Return(new Atom(AtomType.String, (string) symbol.value));
 		}
 
 		private static void MakeSymbol(Evaluator eval, StackFrame frame)
 		{
-			var  args   = frame.args;
-			Atom symbol = (Atom) args.value;
+			var args   = frame.args;
+			var symbol = (Atom) args.value;
 			if (!symbol.IsString) throw new ArgumentException("Argument must be string!");
 			eval.Return(new Atom(AtomType.Symbol, (string) symbol.value));
 		}

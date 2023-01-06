@@ -6,8 +6,8 @@ namespace Bombardo.V2
 	{
 		//  Constants
 
-		public static readonly string MATH_PI = "#PI";
-		public static readonly string MATH_E = "#E";
+		public static readonly string MATH_PI = "PI";
+		public static readonly string MATH_E = "E";
 
 		//  Base math
 
