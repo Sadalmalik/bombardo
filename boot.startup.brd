@@ -1,0 +1,22 @@
+# Финальная загрузка и запуск скрипта или REPL-цикла
+
+(define Start (lambda []
+	(if [or (null? env.pathToScript)
+			(eq? env.pathToScript env.pathToBoot)]
+		[StartREPL]
+		[StartScript])
+))
+
+(define StartREPL (lambda []
+	(print "StartREPL")
+	(print "No REPL implemented yet!")
+))
+
+(define StartScript (lambda []
+	(print "StartScript")
+	(define $script (fs.path.getFull env.pathToScript))
+	(print $script)
+	(LoadModule $script)
+))
+
+(Start)

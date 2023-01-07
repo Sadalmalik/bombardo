@@ -126,6 +126,7 @@ namespace Bombardo.V2
 			var builtIn = new Context();
 			context.Define(name, builtIn.self);
 			Define(builtIn);
+			builtIn.@sealed = true;
 		}
 	}
 }

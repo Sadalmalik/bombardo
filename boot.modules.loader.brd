@@ -1,0 +1,115 @@
+# Здесь уже обработаны все базовые препроцессинги
+# и мы имеем дела с полной базовой версией языка
+
+
+(define LookUpModule (lambda [$name]
+	(fs.lookup
+		env.pathToCore
+		(GetCurrentModuleFolder)
+		"modules"
+		$name)
+))
+
+(define LoadModule (lambda [$path]
+	(define @module (GetModule $path))
+	(if [not (null? @module)]
+		[block
+			(define $status (table.get @module `status))
+			(if [eq? `loading $status]
+				[error (string.concat "Module '" $path "' is loading! Check recursive requires and preprocessors!")]
+				@module)
+		]
+		[LoadModuleFromFile $path]
+	)
+))
+
+# Эти директивы идут в начале файла и должны исполняться не как код а обработчиком
+# (preprocess: null)
+# (preprocess: default)
+# (preprocess: (mod prep))
+# (preprocess: (mod prep1 prep2 prep3) .. )
+# (preprocess: (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
+# (preprocess: default (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
+(define ParsePreprocessors (lambda [$items]
+	(define preprocessors null)
+	(each $items (lambda [$item]
+		(if [eq? `default $item]
+			[set! preprocessors (cons DefaultPreprocess preprocessors)]
+			[block
+				(define $module_name (car $item))
+				(define $module_preprocessors (cdr $item))
+				(define $path (LookUpModule $module_name))
+				(define @module (LoadModule $path))
+				(each $module_preprocessors (lambda [$name]
+					(define $preprocessor (table.get @module.context.export $name))
+					(set! preprocessors (cons $preprocessor preprocessors))
+				))
+			]
+		)
+	))
+	(reverse preprocessors)
+))
+
+# Эти директивы уже могут быть уже просто вызовами
+# (require "ModuleName")
+# (require "ModuleName" as NewName)
+# (require "ModuleName" import name1 name2 name3 ...)
+# (require "ModuleName" importAll)
+(define RequireModuleDirective (macros $args
+	(define $name (car $args))
+	(set! $args (cdr $args))
+	(if [not (or
+			(string? $name)
+			(symbol? $name))]
+		[error "require expects string or symbol!"]
+		[block
+			(define $context $currentModule.context)
+			(define $path (LookUpModule $module_name))
+			(define @module (LoadModule $path))
+			(cond
+				[(null? $args)
+					(table.set $context $name @module.context.export)
+				]
+				[(eq? `as (car $args))
+					(table.set $context (cadr $args) @module.context.export)
+				]
+				[(eq? `import (car $args))
+					(table.import @module.context.export $context (cdr $args))
+				]
+				[(eq? `importAll (car $args))
+					(table.importAll @module.context.export $context)
+				]
+			)
+			@module.context.export
+		]
+	)
+))
+
+(define LoadModuleFromFile (lambda [$path]
+	# 1 создаём новый контейнер модуля
+	(define @module (CreateModule $path))
+
+	# 2 грузим модуль вместе с рекурсивными вызовами TryGetModule
+	(define $content (fs.load $path))
+	(define $head (car $content))
+	# 2.1 Если есть препроцессоры - применяем
+	(if [eq? `preprocessors: (car $head)]
+		[block
+			(define $preprocessors (ParsePreprocessors (cdr $head)))
+			(set! $content (PackApply $preprocess $content))
+		]
+	)
+
+	# 2.2 добавляем require в качестве исходной команды, доступной везде
+	(table.set @module.context `require RequireModuleDirective)
+
+	# 2.3 исполняем само содержимое в контексте модуля
+	(evalEach @module.context $content)
+
+	# 4 убираем модуль из стека и помечаем загруженным
+	(CompleteModule)
+
+	# 5 возвращаем его
+	@module
+))
+

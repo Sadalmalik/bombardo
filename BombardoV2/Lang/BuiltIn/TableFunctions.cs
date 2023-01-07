@@ -6,14 +6,14 @@ namespace Bombardo.V2
 {
 	public static partial class Names
 	{
-		public static readonly string LISP_TABLE_CREATE = "create";        // "table";
-		public static readonly string LISP_TABLE_GET = "get";              // "tableGet";
-		public static readonly string LISP_TABLE_SET = "set";              // "tableSet";
-		public static readonly string LISP_TABLE_REMOVE = "rem";           // "tableRemove";
-		public static readonly string LISP_TABLE_CLEAR = "clear";          // "tableClear";
-		public static readonly string LISP_TABLE_IMPORT = "import";        // "tableImport";
+		public static readonly string LISP_TABLE_CREATE     = "create";    // "table";
+		public static readonly string LISP_TABLE_GET        = "get";       // "tableGet";
+		public static readonly string LISP_TABLE_SET        = "set";       // "tableSet";
+		public static readonly string LISP_TABLE_REMOVE     = "rem";       // "tableRemove";
+		public static readonly string LISP_TABLE_CLEAR      = "clear";     // "tableClear";
+		public static readonly string LISP_TABLE_IMPORT     = "import";    // "tableImport";
 		public static readonly string LISP_TABLE_IMPORT_ALL = "importAll"; // "tableImportAll";
-		public static readonly string LISP_TABLE_EACH = "each";            // "tableEach";
+		public static readonly string LISP_TABLE_EACH       = "each";      // "tableEach";
 
 		public static readonly string LISP_TABLE_PRED = "table?";
 	}
@@ -38,24 +38,29 @@ namespace Bombardo.V2
 
 		private static void TableCreate(Evaluator eval, StackFrame frame)
 		{
-			var args = frame.args;
-			var dict = new Context();
+			Atom    args   = frame.args;
+			Context parent = args?.atom?.value as Context;
+			Context dict   = new Context(parent);
+			
+			if (parent != null)
+				args = args.next;
+			
 			FillDictionary(dict, args);
 			eval.Return(new Atom(AtomType.Native, dict));
 		}
 
 		private static void TableGet(Evaluator eval, StackFrame frame)
 		{
-			var  args = frame.args;
-			Atom dic  = (Atom) args?.value;
-			Atom key  = (Atom) args?.next?.value;
+			var (dic, key) = StructureUtils.Split2(frame.args);
 
 			Context dictionary = GetDictionary(dic);
 
-			if (key == null || (key.type != AtomType.String && key.type != AtomType.Symbol))
+			if (key == null ||
+			    (key.type != AtomType.String &&
+			     key.type != AtomType.Symbol))
 				throw new BombardoException("Table key must be string or symbol!!!");
 
-			dictionary.TryGetValue((string) key?.value, out var value);
+			dictionary.TryGetValue((string) key.value, out var value);
 
 			eval.Return(value);
 		}
@@ -103,18 +108,18 @@ namespace Bombardo.V2
 		private static void TableImport(Evaluator eval, StackFrame frame)
 		{
 			var (src, dst, names) = StructureUtils.Split3(frame.args);
-			
-			if (names==null && dst.IsPair)
+
+			if (names == null && dst.IsPair)
 			{
 				names = dst;
-				dst = frame.context.atom;
+				dst   = frame.context.atom;
 			}
-			
+
 			var srcCtx = GetDictionary(src);
 			var dstCtx = GetDictionary(dst);
 
 			string[] nameList = StructureUtils.ListToStringArray(names, "TABLE");
-			
+
 			ContextUtils.ImportSymbols(srcCtx, dstCtx, nameList);
 
 			eval.Return(null);
@@ -124,9 +129,9 @@ namespace Bombardo.V2
 		{
 			var (src, dst) = StructureUtils.Split2(frame.args);
 
-			if (dst==null || dst.IsPair)
+			if (dst == null || dst.IsPair)
 				dst = frame.context.atom;
-			
+
 			var srcCtx = GetDictionary(src);
 			var dstCtx = GetDictionary(dst);
 
@@ -152,8 +157,8 @@ namespace Bombardo.V2
 			{
 				case "-eval-sexp-body-":
 					var list = dictionary
-					          .Select(pair => StructureUtils.List(new Atom(AtomType.String, pair.Key), pair.Value))
-					          .ToArray();
+						.Select(pair => StructureUtils.List(new Atom(AtomType.String, pair.Key), pair.Value))
+						.ToArray();
 					frame.temp1 = StructureUtils.List(list);
 					frame.state = new Atom("-built-in-table-each-");
 					break;

@@ -4,15 +4,17 @@
 (define $modules (table.create))
 (define $modulesStack null)
 (define $currentModule null)
+(define $baseModuleFolder (fs.path.getDirectoryName env.pathToScript))
 
 # Создает новый модуль и ставит его в стек
-(define CreateModule (lambda [$name $path]
+(define CreateModule (lambda [$path]
 	# Смотрю на это и думаю что можно сделать полноценный JSON через специальный макрос!
 	(define @module (table.create
-		`name $name
 		`path $path
+		`name (fs.path.getFileName $path)
+		`folder (fs.path.getDirectoryName $path)
 		`status `loading
-		`content [table.create
+		`context [table.create
 			`export (table.create)
 		]
 	))
@@ -33,6 +35,14 @@
 # Получает модуль по полному пути
 (define GetModule (lambda [$path]
 	(table.get $modules $path)
+))
+
+# Получает текущую папку модуля
+(define GetCurrentModuleFolder (lambda []
+	(if [null? $currentModule]
+		$baseModuleFolder
+		[table.get $currentModule `folder]
+	)
 ))
 
 
