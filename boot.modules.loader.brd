@@ -1,6 +1,16 @@
 # Здесь уже обработаны все базовые препроцессинги
 # и мы имеем дела с полной базовой версией языка
 
+(define @builtInModules (table.create
+	`lang		lang
+	`context	context
+	`console	console
+	`debug		debug
+	`fs			fs
+	`math		math
+	`string		string
+	`table		table
+))
 
 (define LookUpModule (lambda [$name]
 	(fs.lookup
@@ -51,36 +61,44 @@
 ))
 
 # Эти директивы уже могут быть уже просто вызовами
-# (require "ModuleName")
-# (require "ModuleName" as NewName)
-# (require "ModuleName" import name1 name2 name3 ...)
-# (require "ModuleName" importAll)
 (define RequireModuleDirective (macros $args
-	(define $name (car $args))
+	(define $module_name (car $args))
 	(set! $args (cdr $args))
 	(if [not (or
-			(string? $name)
-			(symbol? $name))]
+			(string? $module_name)
+			(symbol? $module_name))]
 		[error "require expects string or symbol!"]
 		[block
 			(define $context $currentModule.context)
 			(define $path (LookUpModule $module_name))
-			(define @module (LoadModule $path))
-			(cond
-				[(null? $args)
-					(table.set $context $name @module.context.export)
+			(if [null? $path]
+				[block
+					(define @export (table.get @builtInModules $module_name))
 				]
-				[(eq? `as (car $args))
-					(table.set $context (cadr $args) @module.context.export)
-				]
-				[(eq? `import (car $args))
-					(table.import @module.context.export $context (cdr $args))
-				]
-				[(eq? `importAll (car $args))
-					(table.importAll @module.context.export $context)
+				[block
+					(define @module (LoadModule $path))
+					(define @export @module.context.export)
 				]
 			)
-			@module.context.export
+			(cond
+				[(null? $args)
+					# (require "ModuleName")
+					(table.set $context $module_name @export)
+				]
+				[(eq? `as (car $args))
+					# (require "ModuleName" as NewName)
+					(table.set $context (cadr $args) @export)
+				]
+				[(eq? `import (car $args))
+					# (require "ModuleName" import name1 name2 name3 ...)
+					(table.import @export $context (cdr $args))
+				]
+				[(eq? `importAll (car $args))
+					# (require "ModuleName" importAll)
+					(table.importAll @export $context)
+				]
+			)
+			@export
 		]
 	)
 ))
@@ -93,7 +111,7 @@
 	(define $content (fs.load $path))
 	(define $head (car $content))
 	# 2.1 Если есть препроцессоры - применяем
-	(if [eq? `preprocessors: (car $head)]
+	(if [eq? `preprocess: (car $head)]
 		[block
 			(define $preprocessors (ParsePreprocessors (cdr $head)))
 			(set! $content (PackApply $preprocess $content))

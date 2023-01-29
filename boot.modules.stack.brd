@@ -28,7 +28,10 @@
 (define CompleteModule (lambda []
 	(define @module (car $modulesStack))
 	(set! $modulesStack (cdr $modulesStack))
-	(set! $currentModule (car $modulesStack))
+	(if [null? $modulesStack]
+		(set! $currentModule null)
+		(set! $currentModule (car $modulesStack))
+	)
 	(table.set @module `status `complete)
 ))
 

@@ -86,7 +86,6 @@ namespace Bombardo.V2
 			_haveReturn = false;
 			Stack.CreateFrame(startState ?? "-eval-", atom, current_context);
 
-			Console.WriteLine("Start evaluation");
 			while (Stack.stack.Count > 0)
 			{
 				if (ErrorMessage != null)

@@ -46,7 +46,7 @@ namespace Bombardo.V2
 				args = args.next;
 			
 			FillDictionary(dict, args);
-			eval.Return(new Atom(AtomType.Native, dict));
+			eval.Return(dict.self);
 		}
 
 		private static void TableGet(Evaluator eval, StackFrame frame)
@@ -58,7 +58,8 @@ namespace Bombardo.V2
 			if (key == null ||
 			    (key.type != AtomType.String &&
 			     key.type != AtomType.Symbol))
-				throw new BombardoException("Table key must be string or symbol!!!");
+				throw new BombardoException(
+					$"Table key must be string or symbol!!! A Key: {key}, {key?.type}, {key == null}, {frame.args}");
 
 			dictionary.TryGetValue((string) key.value, out var value);
 
@@ -86,7 +87,7 @@ namespace Bombardo.V2
 			Context dictionary = GetDictionary(dic);
 
 			if (key.type != AtomType.String && key.type != AtomType.Symbol)
-				throw new BombardoException("Table key must be string or symbol!!!");
+				throw new BombardoException($"Table key must be string or symbol!!! B Key: {key}");
 
 			dictionary.Remove((string) key.value);
 
@@ -208,13 +209,15 @@ namespace Bombardo.V2
 		// Как сейчас работает словарь?
 		private static void FillDictionary(Context dict, Atom args)
 		{
-			for (Atom iter = args; iter != null && iter.next != null; iter = iter.next.next)
+			for (Atom iter = args;
+			     iter != null && iter.next != null;
+			     iter = iter.next.next)
 			{
-				Atom key   = (Atom) iter.value;
-				Atom value = (Atom) iter.next.atom.value;
+				Atom key   = iter.atom;
+				Atom value = iter.next.atom;
 				if (key.type != AtomType.String && key.type != AtomType.Symbol)
-					throw new BombardoException("Table key must be string or symbol!!!");
-				dict.Add((string) key.value, value);
+					throw new BombardoException($"Table key must be string or symbol!!! C Key: {key}");
+				dict.Define((string) key.value, value);
 			}
 		}
 

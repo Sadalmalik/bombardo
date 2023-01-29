@@ -9,14 +9,14 @@ namespace Bombardo.V2
 	public static class Program
 	{
 		public const string BOOT_NAME = "boot.brd";
-		
+
 		private static string pathToCore;
 		private static string pathToBase;
 		private static string pathToBoot;
 		private static string pathToScript;
 		private static string pathToWorkDir;
 
-		
+
 		public static void Main(string[] argsArray)
 		{
 			InitEnvironment();
@@ -27,13 +27,15 @@ namespace Bombardo.V2
 
 			var bootScript  = File.ReadAllText(pathToBoot);
 			var bootProgram = BombardoLang.Parse(bootScript);
-			
+
 			var  eval       = new Evaluator();
 			Atom bootResult = null;
 			try
 			{
 				bootResult = eval.Evaluate(bootProgram, bootContext, "-eval-block-");
-				Console.WriteLine($"Boot result: {bootResult}");
+
+				if (bootResult != null)
+					Console.WriteLine(bootResult.ToString());
 			}
 			catch (Exception exc)
 			{
@@ -43,7 +45,7 @@ namespace Bombardo.V2
 				eval.Stack.Dump();
 			}
 		}
-		
+
 		private static void InitEnvironment()
 		{
 			// Основные пути
@@ -61,6 +63,7 @@ namespace Bombardo.V2
 				Console.WriteLine($"File not found: {pathToBoot}");
 				return;
 			}
+
 			pathToWorkDir = Path.GetDirectoryName(pathToBoot); // Путь до рабочей папки
 		}
 
@@ -97,7 +100,7 @@ namespace Bombardo.V2
 				TypePredicateFunctions.Define(subContext);
 				LogicFunctions.Define(subContext);
 			});
-			
+
 			AddSub(context, "context", ContextFunctions.Define);
 			AddSub(context, "console", ConsoleFunctions.Define);
 			AddSub(context, "debug", DebugFunctions.Define);

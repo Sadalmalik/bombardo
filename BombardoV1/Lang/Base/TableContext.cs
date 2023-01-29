@@ -30,7 +30,7 @@ namespace Bombardo.V1
                 Atom key = (Atom)pair.value;
                 Atom value = (Atom)pair.next.value;
                 if (key.type != AtomType.String && key.type != AtomType.Symbol)
-                    throw new BombardoException("Table key must be string or symbol!!!");
+                    throw new BombardoException($"Table key must be string or symbol!!! D Key: {key}");
                 dict.Add((string)key.value, value);
             }
         }
@@ -57,7 +57,7 @@ namespace Bombardo.V1
             Context dictionary = GetDictionary(dic);
 
             if (key==null || (key.type != AtomType.String && key.type != AtomType.Symbol))
-                throw new BombardoException("Table key must be string or symbol!!!");
+                throw new BombardoException($"Table key must be string or symbol!!! E Key: {key}");
 
             Atom value = null;
             dictionary.TryGetValue((string)key?.value, out value);
@@ -84,7 +84,7 @@ namespace Bombardo.V1
             Context dictionary = GetDictionary(dic);
 
             if (key.type != AtomType.String && key.type != AtomType.Symbol)
-                throw new BombardoException("Table key must be string or symbol!!!");
+                throw new BombardoException($"Table key must be string or symbol!!! F Key: {key}");
 
             dictionary.Remove((string)key.value);
 

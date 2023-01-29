@@ -13,9 +13,7 @@
 ))
 
 (define StartScript (lambda []
-	(print "StartScript")
 	(define $script (fs.path.getFull env.pathToScript))
-	(print $script)
 	(LoadModule $script)
 ))
 
