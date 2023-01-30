@@ -104,19 +104,23 @@
 ))
 
 (define LoadModuleFromFile (lambda [$path]
+	(print "[TEST] LoadModuleFromFile" $path)
 	# 1 создаём новый контейнер модуля
 	(define @module (CreateModule $path))
 
 	# 2 грузим модуль вместе с рекурсивными вызовами TryGetModule
 	(define $content (fs.load $path))
 	(define $head (car $content))
+
 	# 2.1 Если есть препроцессоры - применяем
 	(if [eq? `preprocess: (car $head)]
 		[block
 			(define $preprocessors (ParsePreprocessors (cdr $head)))
-			(set! $content (PackApply $preprocess $content))
+			(set! $content (PackApply $preprocessors (cdr $content)))
 		]
+		[define $preprocessors (cons DefaultPreprocess null)]
 	)
+	(set! $content (PackApply $preprocessors $content))
 
 	# 2.2 добавляем require в качестве исходной команды, доступной везде
 	(table.set @module.context `require RequireModuleDirective)

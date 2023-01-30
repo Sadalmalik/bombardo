@@ -1,0 +1,6 @@
+(require lang importAll)
+(require table)
+
+(table.set export
+	`value 157
+)

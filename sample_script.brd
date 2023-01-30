@@ -1,3 +1,5 @@
+(preprocess: default)
 (require console)
+(require "export_test.brd" as test)
 
-(console.print "Evaluate sample script!")
+(console.print "Evaluate sample script! " test.value)
