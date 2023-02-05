@@ -28,6 +28,7 @@
 (feval/cc (findFile "boot.preprocessors.brd"))
 #(feval/cc (findFile "boot.preprocessors.test.brd"))
 (feval/cc (findFile "boot.modules.stack.brd") DefaultPreprocess)
+(feval/cc (findFile "boot.modules.buildin.brd") DefaultPreprocess)
 (feval/cc (findFile "boot.modules.loader.brd") DefaultPreprocess)
 (feval/cc (findFile "boot.startup.brd") DefaultPreprocess)
 (print)

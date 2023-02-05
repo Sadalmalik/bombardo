@@ -31,6 +31,14 @@
 		tree)
 ))
 
+# Функция для применения множества препроцессоров к выражению
+(define PackApply (lambda [functions expression]
+	(define PackApplyHandler (lambda [function]
+		(set! expression (function expression))
+	))
+	(each functions PackApplyHandler)
+	expression
+))
 
 
 # Препроцессор, преобразующий символ 'null' в настоящий null
@@ -48,15 +56,15 @@
 
 
 # Препроцессор, преобразующий симводы 'true' и 'false' в true и false соответственно
-(define PreprocessBooleanHandler (lambda [symbol]
+(define PreprocessBoolHandler (lambda [symbol]
 	(cond	[(eq? symbol (quote true)) valTrue]	
 			[(eq? symbol (quote false)) valFalse]
 			[valTrue symbol]
 	)
 ))
 
-(define PreprocessBoolean (lambda [expression]
-	(RebuildTree expression PreprocessBooleanHandler)
+(define PreprocessBool (lambda [expression]
+	(RebuildTree expression PreprocessBoolHandler)
 ))
 
 
@@ -138,22 +146,11 @@
 
 
 
-# Функция для применения множества препроцессоров к выражению
-(define PackApply (lambda [functions expression]
-	(define PackApplyHandler (lambda [function]
-		(set! expression (function expression))
-	))
-	(each functions PackApplyHandler)
-	expression
-))
-
-
-
 # Комбинированный список препроцессоров
 (define $defaultPreprocessors
 	(list
 		PreprocessNull
-		PreprocessBoolean
+		PreprocessBool
 		PreprocessNumbers
 		PreprocessQuoting
 		PreprocessDottedPair

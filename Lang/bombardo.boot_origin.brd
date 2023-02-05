@@ -36,15 +36,15 @@
 	(RebuildTree expression PreprocessNullHandler)
 ))
 
-(define PreprocessBooleanHandler (lambda [symbol]
+(define PreprocessBoolHandler (lambda [symbol]
 	(cond	[(eq? symbol (quote true)) valTrue]	
 			[(eq? symbol (quote false)) valFalse]
 			[valTrue symbol]
 	)
 ))
 
-(define PreprocessBoolean (lambda [expression]
-	(RebuildTree expression PreprocessBooleanHandler)
+(define PreprocessBool (lambda [expression]
+	(RebuildTree expression PreprocessBoolHandler)
 ))
 
 (define PreprocessNumbersHandler (lambda [symbol]
@@ -130,7 +130,7 @@
 (define $defaultPreprocessors
 	(list
 		PreprocessNull
-		PreprocessBoolean
+		PreprocessBool
 		PreprocessNumbers
 		PreprocessQuoting
 		PreprocessDottedPair

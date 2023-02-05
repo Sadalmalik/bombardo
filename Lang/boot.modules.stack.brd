@@ -10,8 +10,8 @@
 (define CreateModule (lambda [$path]
 	# Смотрю на это и думаю что можно сделать полноценный JSON через специальный макрос!
 	(define @module (table.create
-		`path $path
 		`name (fs.path.getFileName $path)
+		`path $path
 		`folder (fs.path.getDirectoryName $path)
 		`status `loading
 		`context [table.create
@@ -21,6 +21,20 @@
 	(table.set $modules $path @module)
 	(set! $modulesStack (cons @module $modulesStack))
 	(set! $currentModule @module)
+	@module
+))
+
+(define AddModule (lambda [$name $export]
+	(define @module (table.create
+		`name $name
+		`path null
+		`folder null
+		`status `complete
+		`context [table.create
+			`export $export
+		]
+	))
+	(table.set $modules $name @module)
 	@module
 ))
 

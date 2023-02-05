@@ -1,16 +1,6 @@
 # Здесь уже обработаны все базовые препроцессинги
 # и мы имеем дела с полной базовой версией языка
 
-(define @builtInModules (table.create
-	`lang		lang
-	`context	context
-	`console	console
-	`debug		debug
-	`fs			fs
-	`math		math
-	`string		string
-	`table		table
-))
 
 (define LookUpModule (lambda [$name]
 	(fs.lookup
@@ -72,14 +62,13 @@
 			(define $context $currentModule.context)
 			(define $path (LookUpModule $module_name))
 			(if [null? $path]
-				[block
-					(define @export (table.get @builtInModules $module_name))
-				]
-				[block
-					(define @module (LoadModule $path))
-					(define @export @module.context.export)
-				]
+				[define @module (GetModule $module_name)]
+				[define @module (LoadModule $path)]
 			)
+			(if [null? @module]
+				(error module (string.concat "Module " $module_name " not found!"))
+			)
+			(define @export @module.context.export)
 			(cond
 				[(null? $args)
 					# (require "ModuleName")

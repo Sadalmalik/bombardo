@@ -1,0 +1,25 @@
+# дефолтные модули для загрузки
+
+(AddModule `lang lang)
+(AddModule `context context)
+(AddModule `console console)
+(AddModule `debug debug)
+(AddModule `fs fs)
+(AddModule `math math)
+(AddModule `string string)
+(AddModule `table table)
+
+(AddModule `preprocessing
+	(table.create
+		`RebuildTree RebuildTree
+		`PackApply PackApply
+
+		`PreprocessNull PreprocessNull
+		`PreprocessBool PreprocessBool
+		`PreprocessNumbers PreprocessNumbers
+		`PreprocessQuoting PreprocessQuoting
+		`PreprocessDottedPair PreprocessDottedPair
+		`PreprocessNull PreprocessNull
+	)
+)
+

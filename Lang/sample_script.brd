@@ -1,7 +1,9 @@
 (preprocess: default)
+
 (require table)
 (require console)
 (require context)
+(require preprocessing)
 (require "export_test.brd" as test)
 
 (console.print "Evaluate sample script! " test.value)
@@ -9,3 +11,12 @@
 (console.print "Test Keys:\n" (table.keys test))
 (console.print "Current Context Keys:\n" (table.keys (context.getContext)))
 (console.print "Context Keys:\n" (table.keys context))
+(console.print "Preprocessing Keys:\n" (table.keys preprocessing))
+
+
+
+
+
+
+
+

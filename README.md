@@ -8,6 +8,7 @@
 
 ### Оглавление
 
+Эти ссылки устарели, в скором времени документация будет переделана.
 * [Обзор языка](Documentation/LANG.OVERVIEW.md)
 * [Документация](Documentation/DOCUMENTATION.md)
 
