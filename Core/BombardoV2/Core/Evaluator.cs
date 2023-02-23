@@ -207,10 +207,10 @@ namespace Bombardo.V2
 			}
 			
 			frame.function = TakeReturn();
-				
+			
 			if (!frame.function.IsFunction)
 			{
-				ErrorMessage = $"Head is not function: {frame.function}";
+				ErrorMessage = $"Head is not function: {frame.function} in {frame.expression}";
 				return;
 			}
 
@@ -264,10 +264,8 @@ namespace Bombardo.V2
 				Call("-eval-", frame.temp1, frame.context);
 				return;
 			}
-			
-			var temp = frame.temp1;
-			frame.temp1 = null;
-			Return(temp);
+
+			Return(TakeReturn());
 		}
 	}
 }

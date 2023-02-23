@@ -1,0 +1,55 @@
+(preprocess: default)
+
+(require table)
+(require string)
+(require console importAll)
+(require context importAll)
+(require lang importAll)
+(require preprocessing)
+(require "test_export.brd" as test)
+
+(print "Evaluate sample script! " test.value)
+(print "Test Keys:\n" (table.keys test))
+(print "Current Context Keys:\n" (table.keys (getContext)))
+(print "Preprocessing Keys:\n" (table.keys preprocessing))
+
+(print)
+
+(require Class import Class)
+
+
+(define Point (Class [$x $y $z]
+	(define self.x $x)
+	(define self.y $y)
+	(define self.z $z)
+	(define self.str (lambda []
+		(string.concat "( " self.x ", " self.y ", " self.z " )")
+	))
+))
+
+(print "Class:" Class)
+(print "Point:" Point)
+
+(define p1 (Point 0 0 0))
+(define p2 (Point 10 15 25))
+(define p3 (Point -53 11 27))
+
+(print "Points:")
+(print p1 "P1:" (p1.str))
+(print p2 "P2:" (p2.str))
+(print p3 "P3:" (p3.str))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

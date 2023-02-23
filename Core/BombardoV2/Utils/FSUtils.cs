@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 
 namespace Bombardo.V2
@@ -47,6 +48,7 @@ namespace Bombardo.V2
 			string programPath,
 			string currentPath,
 			string modulesFolder,
+			string moduleRoot,
 			string module)
 		{
 			string path;
@@ -67,7 +69,7 @@ namespace Bombardo.V2
 				    CheckFile(out path, programPath, modulesFolder, moduleFile))
 					return path;
 
-				string index = Path.Combine(module, "/module.brd");
+				string index = Path.Combine(module, moduleRoot);
 				if (CheckFile(out path, currentPath, index) ||
 				    CheckFile(out path, currentPath, modulesFolder, index) ||
 				    CheckFile(out path, programPath, index) ||

@@ -4,9 +4,10 @@
 
 (define LookUpModule (lambda [$name]
 	(fs.lookup
-		env.pathToCore
+		bootPath
 		(GetCurrentModuleFolder)
 		"modules"
+		"module.brd"
 		$name)
 ))
 
@@ -66,7 +67,7 @@
 				[define @module (LoadModule $path)]
 			)
 			(if [null? @module]
-				(error module (string.concat "Module " $module_name " not found!"))
+				(error (string.concat "Module '" $module_name "' not found!"))
 			)
 			(define @export @module.context.export)
 			(cond
@@ -93,7 +94,6 @@
 ))
 
 (define LoadModuleFromFile (lambda [$path]
-	(print "[TEST] LoadModuleFromFile" $path)
 	# 1 создаём новый контейнер модуля
 	(define @module (CreateModule $path))
 

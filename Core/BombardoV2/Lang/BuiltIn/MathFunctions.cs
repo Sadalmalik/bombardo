@@ -771,20 +771,18 @@ namespace Bombardo.V2
 		private static void Parse(Evaluator eval, StackFrame frame)
 		{
 			Atom atom = (Atom) frame.args?.value;
-			
-			if (atom.type != AtomType.Symbol && atom.type != AtomType.String)
-				throw new ArgumentException("Argument must be symbol or string!");
 
-			int type = 0;
-			object value = null;
-			if (NumberParser.TryParseValue(atom.value as string, ref type, ref value))
+			if (atom.type == AtomType.Symbol || atom.type == AtomType.String)
 			{
-				eval.Return(new Atom(type, value));
+				int    type  = 0;
+				object value = null;
+				if (NumberParser.TryParseValue(atom.value as string, ref type, ref value))
+				{
+					eval.Return(new Atom(type, value));
+					return;
+				}
 			}
-			else
-			{
-				eval.Return(null);
-			}
+			eval.Return(null);
 		}
 
 #endregion

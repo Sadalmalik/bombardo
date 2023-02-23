@@ -2,6 +2,8 @@
 # но в модулях их нужно будет импортировать,
 # специально что бы была возможность переопределять язык в пространстве скриптов
 
+
+
 # Инициируем контексты для работы и импортируем базовые элементы для работы
 (context.define $CTX$ (context.getContext))
 (table.importAll context $CTX$)
@@ -9,10 +11,13 @@
 (table.importAll math $CTX$)
 (table.importAll lang $CTX$)
 
+
+
 # Подгрузка частей загрузчика
+(define bootPath (fs.path.getDirectoryName env.pathToBoot))
 (define findFile (lambda [name]
 	# Поиск файлов в одной папке со скриптом
-	(fs.path.combine env.pathToWorkDirectory name)
+	(fs.path.combine bootPath name)
 ))
 (define feval/cc (lambda [$path $preprocess]
 	# Подгрузка и исполнение
@@ -21,6 +26,8 @@
 		[set! $content ($preprocess $content)])
 	(evalEach $CTX$ $content)
 ))
+
+
 
 # Исполнение частей загрузчика
 #(feval/cc (findFile "boot.test.brd"))

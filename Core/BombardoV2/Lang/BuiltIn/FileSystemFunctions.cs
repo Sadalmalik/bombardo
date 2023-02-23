@@ -8,9 +8,9 @@ namespace Bombardo.V2
 	public static partial class Names
 	{
 		// Generalized stuff
-		public static readonly string FS_LOAD = "load"; // fx.load
-		public static readonly string FS_SAVE = "save"; // fs.save
-		public static readonly string FS_FIND = "find"; // fs.find
+		public static readonly string FS_LOAD   = "load";   // fx.load
+		public static readonly string FS_SAVE   = "save";   // fs.save
+		public static readonly string FS_FIND   = "find";   // fs.find
 		public static readonly string FS_LOOKUP = "lookup"; // fs.lookup
 
 		// Path operations
@@ -199,7 +199,7 @@ namespace Bombardo.V2
 
 			eval.Return(null);
 		}
-		
+
 		private static void Find(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
@@ -215,26 +215,28 @@ namespace Bombardo.V2
 				eval.Return(Atom.FromString(file));
 				return;
 			}
-			
+
 			eval.Return(null);
 		}
-		
+
 		private static void LookUp(Evaluator eval, StackFrame frame)
 		{
-			(Atom programPath, Atom currentPath, Atom modulesFolder, Atom module) = StructureUtils.Split4(frame.args);
+			(Atom programPath, Atom currentPath, Atom modulesFolder, Atom module, Atom moduleRoot) =
+				StructureUtils.Split5(frame.args);
 
 			var file = FSUtils.LookupModuleFile(
-					programPath?.value as string,   
-					currentPath?.value as string,   
-					modulesFolder?.value as string, 
-					module?.value as string
-				);
+				programPath?.value as string,
+				currentPath?.value as string,
+				modulesFolder?.value as string,
+				module?.value as string,
+				moduleRoot?.value as string
+			);
 			if (!string.IsNullOrEmpty(file))
 			{
 				eval.Return(Atom.FromString(file));
 				return;
 			}
-			
+
 			eval.Return(null);
 		}
 
@@ -272,16 +274,16 @@ namespace Bombardo.V2
 
 			string path = atomPath.value as string;
 			string root = atomBase?.value as string;
-			
+
 			if (string.IsNullOrEmpty(path))
 				throw new ArgumentException("Path unexpectedly is null!");
-			
+
 			if (!string.IsNullOrEmpty(root))
 				if (!Path.IsPathRooted(path))
 					path = Path.Combine(root, path);
-			
+
 			path = Path.GetFullPath(path);
-			
+
 			eval.Return(new Atom(AtomType.String, path));
 		}
 
