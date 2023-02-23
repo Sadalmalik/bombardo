@@ -1,6 +1,3 @@
-(require lang importAll)
-(require table)
+(require context importAll)
 
-(table.set export
-	`value 157
-)
+(define export.value 157)

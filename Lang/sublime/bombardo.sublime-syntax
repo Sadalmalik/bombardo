@@ -1,0 +1,157 @@
+%YAML 1.2
+---
+# See http://www.sublimetext.com/docs/syntax.html
+name: Bombardo
+file_extensions: [brd]
+scope: source.bombardo
+version: 1
+variables:
+  lang_base_brackets: '[\(\)\[\]\{\}]'
+  lang_base_dot: '\.'
+  lang_base_quote: '`'
+  lang_base_comment: '#'
+
+  lang_number_bin: '\b0b[01]{1,64}'
+  lang_number_hex: '\b0x[\da-fA-F]{1,16}'
+  lang_number_dec: '\b-?\d{1,19}'
+  lang_number_float: '^\b\d*(?:\.|\,)?\d+(?:e[+-]?\d+)?'
+
+  lang_code_contexts: |-
+    \b(?x:
+      lang
+    | context
+    | console
+    | debug
+    | fs
+    | math
+    | string
+    | table
+    | env
+    | file
+    | path
+    | directory
+    )\b
+
+  lang_code_definitions: |-
+    \b(?x:
+      lambda
+    | macros
+    | syntax
+    | apply
+    | error
+    )\b
+
+  lang_code_functions: |-
+    \b(?x:
+      preprocess
+    | require
+    | nope
+    | quote
+    | cons
+    | car | cdr
+    | caar | cadr | cdar | cddr
+    | caaar | caadr | cadar | caddr
+    | cdaar | cdadr | cddar | cdddr
+    | caaaar | caaadr | caadar | caaddr
+    | cadaar | cadadr | caddar | cadddr
+    | cdaaar | cdaadr | cdadar | cdaddr
+    | cddaar | cddadr | cdddar | cddddr
+    | get | get | last | end | append | list | reverse
+    | set-car\! | set-cdr\! | contains\?
+    | each | map | filter | parse | eval | evalEach | block
+    | print | read | marker
+    | if | cond | while | until
+    | define | undef | set!
+    | toString | fromString | symbolName | makeSymbol | symbol\?
+    | getContext | getContextParent
+    | load | save | find | lookup | combine | getFull | getExtension | getFileName | getDirectoryName
+    | read | create | remove | open | flush | close | read | write | readLine | writeLine
+    | readText | writeText | readLines | writeLines | appendText | appendLines
+    | exist\? | isFile\? | isDirectory\? | isDirectoryEmpty\?
+    | tryParseNumber
+    | byte\? | ubyte\? | sbyte\? | char\? | short\? | ushort\? | int\? | uint\? | long\? | ulong\? | float\? | double\?
+    | byte\: | ubyte\: | sbyte\: | char\: | short\: | ushort\: | int\: | uint\: | long\: | ulong\: | float\: | double\:
+    | create | len | chars | get | concat | substr | split | replace
+    | startsWith\? | endsWith\? | contains\?
+    | create | get | set | rem | clear | import | importAll | each | table\?
+    )\b
+
+  lang_code_operators: |-
+    \b(?x:
+      min | max | abs | sign | ceil | floor | trunc
+    | sqrt | pow | exp | ln | log | ld
+    | sin | cos | tan | asin | acos | atan | atan2 | sinh | cosh | tanh
+    | \+ | \- | \* | \/ | \% | \& | \ |  | \^ | << | >> | eq\? | neq\?
+    | and | or | xor | imp | not
+    | < | > | <= | >= | \!= | ==
+    )\b
+
+
+contexts:
+  main:
+    # General language structure
+    - match: '{{lang_base_brackets}}'
+      scope: punctuation.separator
+    - match: '{{lang_base_dot}}'
+      scope: punctuation.accessor
+    - match: '{{lang_base_quote}}'
+      scope: punctuation.terminator
+    - match: '{{lang_base_comment}}'
+      scope: comment.line
+      push: line_comment
+
+    # Numbers
+    - match: '{{lang_number_bin}}'
+      scope: constant.numeric.integer.binary.bombardo
+    - match: '{{lang_number_hex}}'
+      scope: constant.numeric.integer.hexadecimal.bombardo
+    - match: '{{lang_number_dec}}'
+      scope: constant.numeric.integer.decimal.bombardo
+    - match: '{{lang_number_float}}'
+      scope: constant.numeric.float.bombardo
+
+    # Strings
+    - match: '"'
+      scope: punctuation.definition.string.begin.example-c
+      push: double_quoted_string
+
+    # Variables
+    - match: '\$[^\[\]\{\}\(\)\s\r\n\t#]+'
+      scope: variable.function
+    - match: '\@[^\[\]\{\}\(\)\s\r\n\t#]+|\bself\b|\bPI\b|\bE\b|\bexport\b'
+      scope: variable.language
+
+    # Keywords
+
+    - match: '{{lang_code_contexts}}'
+      scope: keyword.control
+    - match: '{{lang_code_functions}}'
+      scope: entity.name.function
+    - match: '{{lang_code_definitions}}'
+      scope: entity.name.type
+    - match: '{{lang_code_operators}}'
+      scope: keyword.operator
+
+    - match: eee
+      scope: variable.function
+    - match: fff
+      scope: variable.language
+    - match: ggg
+      scope: punctuation.separator
+    - match: hhh
+      scope: punctuation.accessor
+    - match: iii
+      scope: punctuation.terminator
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.example-c
+    - match: '\\.'
+      scope: constant.character.escape.example-c
+    - match: '"'
+      scope: punctuation.definition.string.end.example-c
+      pop: true
+
+  line_comment:
+    - meta_scope: comment.line.bombardo
+    - match: $
+      pop: true

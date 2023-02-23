@@ -11,6 +11,4 @@
 	(cons lambda (cons $args $body))
 ))
 
-(table.set export
-	`Class Class
-)
+(define export Class)

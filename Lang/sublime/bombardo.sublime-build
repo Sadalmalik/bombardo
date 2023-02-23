@@ -1,0 +1,9 @@
+{
+	"cmd": [
+		"D:/PROGRAMMING/CSharp/BombardoFixed/Lang/bin/BombardoApp.exe",
+		"$file"
+	],
+	"selector": "source.brd",
+	"file_patterns": "*.brd",
+	"encoding": "utf-8"
+}

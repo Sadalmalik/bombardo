@@ -25,12 +25,12 @@
 ))
 
 # Эти директивы идут в начале файла и должны исполняться не как код а обработчиком
-# (preprocess: null)
-# (preprocess: default)
-# (preprocess: (mod prep))
-# (preprocess: (mod prep1 prep2 prep3) .. )
-# (preprocess: (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
-# (preprocess: default (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
+# (preprocess null)
+# (preprocess default)
+# (preprocess (mod prep))
+# (preprocess (mod prep1 prep2 prep3) .. )
+# (preprocess (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
+# (preprocess default (mod1 prep1) (mod2 prep2) (mod3 prep3) .. )
 (define ParsePreprocessors (lambda [$items]
 	(define preprocessors null)
 	(each $items (lambda [$item]
@@ -102,7 +102,7 @@
 	(define $head (car $content))
 
 	# 2.1 Если есть препроцессоры - применяем
-	(if [eq? `preprocess: (car $head)]
+	(if [eq? `preprocess (car $head)]
 		[block
 			(define $preprocessors (ParsePreprocessors (cdr $head)))
 			(set! $content (PackApply $preprocessors (cdr $content)))
