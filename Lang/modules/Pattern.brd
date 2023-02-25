@@ -1,0 +1,41 @@
+(require lang importAll)
+(require context)
+(require table)
+(require string)
+
+(define variable? (lambda (sym)
+	(if [symbol? sym]
+		[string.endsWith? (context.symbolName sym) "?"]
+		false)
+))
+
+(define ExtendFrame (lambda [$frame $key $value]
+	(table.set $frame $key $value)
+))
+
+(define	LookUpFrame (lambda ($frame $key)
+	(table.get $frame $key)
+))
+
+(define Match (lambda ($pat $val $frame)
+	(if (null? $frame)
+		(define $frame (table.create)))
+	(cond	[(eq? $frame `fail) `fail]
+			[(and (pair? $pat) (pair? $val))
+				(Match
+					(car $pat)
+					(car $val)
+					(Match
+						(cdr $pat)
+						(cdr $val)
+						$frame))]
+			[(variable? $pat) (TryExtendFrame $frame $pat $val)]
+			[true (if [eq? $pat $val] $frame `fail)]))
+))
+
+(define TestMatch (lambda []
+
+))
+
+
+(define export.Match Match)

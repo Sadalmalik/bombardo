@@ -1,12 +1,11 @@
-(require console importAll)
-(require context importAll)
 (require lang importAll)
+(require context importAll)
 (require table)
 
 (define Class (macros $sexp
 	(define $args (car $sexp))
 	(define $body (cdr $sexp))
-	(set! $body (cons `(define self (table.create)) $body))
+	(set! $body (cons (list define `self (cons table.create null)) $body))
 	(set-cdr! (end $body) `(self))
 	(cons lambda (cons $args $body))
 ))

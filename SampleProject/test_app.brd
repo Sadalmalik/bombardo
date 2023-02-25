@@ -9,10 +9,6 @@
 (require "test_export.brd" as test)
 
 (print "Evaluate sample script:" test.value)
-(print)
-(print "Test Keys:\n" (table.keys test))
-(print "Current Context Keys:\n" (table.keys (getContext)))
-(print "Preprocessing Keys:\n" (table.keys preprocessing))
 
 (print)
 
@@ -40,4 +36,5 @@
 (print p3 "P3:" (p3.str))
 
 (p1 1 2 3)
+
 

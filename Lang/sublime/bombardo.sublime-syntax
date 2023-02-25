@@ -57,31 +57,51 @@ variables:
     | cdaaar | cdaadr | cdadar | cdaddr
     | cddaar | cddadr | cdddar | cddddr
     | get | get | last | end | append | list | reverse
-    | set-car\! | set-cdr\! | contains\?
     | each | map | filter | parse | eval | evalEach | block
     | print | read | marker
     | if | cond | while | until
-    | define | undef | set!
+    | define | undef
     | toString | fromString | symbolName | makeSymbol | symbol\?
     | getContext | getContextParent
     | load | save | find | lookup | combine | getFull | getExtension | getFileName | getDirectoryName
     | read | create | remove | open | flush | close | read | write | readLine | writeLine
     | readText | writeText | readLines | writeLines | appendText | appendLines
-    | exist\? | isFile\? | isDirectory\? | isDirectoryEmpty\?
     | tryParseNumber
+    | create | len | chars | get | concat | substr | split | replace
+    | create | get | set | rem | clear | import | importAll | each
+    )\b
+
+  lang_code_predicates: |-
+    \b(?x:
+      null\?
+    | not-null\?
+    | empty\?
+    | symbol\?
+    | pair\?
+    | list\?
+    | string\?
+    | bool\?
+    | number\?
+    | proc\?
+    | contains\?
+    | set-car\!
+    | set-cdr\!
+    | set!
+    | exist\? | isFile\? | isDirectory\? | isDirectoryEmpty\?
     | byte\? | ubyte\? | sbyte\? | char\? | short\? | ushort\? | int\? | uint\? | long\? | ulong\? | float\? | double\?
     | byte\: | ubyte\: | sbyte\: | char\: | short\: | ushort\: | int\: | uint\: | long\: | ulong\: | float\: | double\:
-    | create | len | chars | get | concat | substr | split | replace
     | startsWith\? | endsWith\? | contains\?
-    | create | get | set | rem | clear | import | importAll | each | table\?
-    )\b
+    | table\?
+    | eq\?
+    | neq\?
+    )
 
   lang_code_operators: |-
     \b(?x:
       min | max | abs | sign | ceil | floor | trunc
     | sqrt | pow | exp | ln | log | ld
     | sin | cos | tan | asin | acos | atan | atan2 | sinh | cosh | tanh
-    | \+ | \- | \* | \/ | \% | \& | \ |  | \^ | << | >> | eq\? | neq\?
+    | \+ | \- | \* | \/ | \% | \& | \ |  | \^ | << | >>
     | and | or | xor | imp | not
     | < | > | <= | >= | \!= | ==
     )\b
@@ -115,17 +135,13 @@ contexts:
       scope: punctuation.definition.string.begin.example-c
       push: double_quoted_string
 
-    # Variables
-    - match: '\$[^\[\]\{\}\(\)\s\r\n\t#]+'
-      scope: variable.function
-    - match: '\@[^\[\]\{\}\(\)\s\r\n\t#]+|\bself\b|\bPI\b|\bE\b|\bexport\b'
-      scope: variable.language
-
     # Keywords
 
     - match: '{{lang_code_contexts}}'
       scope: keyword.control
     - match: '{{lang_code_functions}}'
+      scope: entity.name.function
+    - match: '{{lang_code_predicates}}'
       scope: entity.name.function
     - match: '{{lang_code_definitions}}'
       scope: entity.name.type
@@ -142,6 +158,12 @@ contexts:
       scope: punctuation.accessor
     - match: iii
       scope: punctuation.terminator
+
+    # Variables
+    - match: '\$[^\[\]\{\}\(\)\s\r\n\t#]+'
+      scope: variable.function
+    - match: '\@[^\[\]\{\}\(\)\s\r\n\t#]+|\bself\b|\bPI\b|\bE\b|\bexport\b|\bnull\b|\bfalse\b|\btrue\b'
+      scope: variable.language
 
   double_quoted_string:
     - meta_scope: string.quoted.double.example-c

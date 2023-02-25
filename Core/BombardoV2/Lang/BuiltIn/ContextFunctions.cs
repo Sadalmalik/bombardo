@@ -52,7 +52,8 @@ namespace Bombardo.V2
 				var name   = (string) sym.value;
 				var result = eval.TakeReturn();
 				var ctx    = context?.value as Context ?? frame.context.value as Context;
-				if (result?.value is Closure function)
+				if (result?.value is Closure function
+				    && (function.Name.Equals("??") || function.Name.Equals("λ")))
 					function.Name = name;
 				//Console.WriteLine($"DEFINE: '{name}' = '{result}' at -internal-state-{ctx}");
 				ContextUtils.Define(ctx, result, name);
