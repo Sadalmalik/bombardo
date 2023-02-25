@@ -1,11 +1,17 @@
 (require lang importAll)
-(require context)
+(require context importAll)
+(require console)
 (require table)
 (require string)
 
+(define @print nope)
+(define SetDebugMode (lambda [$flag]
+	[set! @print (if $flag console.print nope)]
+))
+
 (define variable? (lambda (sym)
 	(if [symbol? sym]
-		[string.endsWith? (context.symbolName sym) "?"]
+		[string.endsWith? (symbolName sym) "?"]
 		false)
 ))
 
@@ -17,25 +23,128 @@
 	(table.get $frame $key)
 ))
 
+(define	TryExtendFrame (lambda ($frame $key $value)
+	(define $found (LookUpFrame $frame $key))
+	(if [null? $found]
+		[ExtendFrame $frame $key $value]
+		[Match $found $value $frame]
+	)
+	$frame
+))
+
 (define Match (lambda ($pat $val $frame)
 	(if (null? $frame)
-		(define $frame (table.create)))
-	(cond	[(eq? $frame `fail) `fail]
+		(set! $frame (table.create `success true)))
+	(cond	[(eq? $frame.success false) $frame]
 			[(and (pair? $pat) (pair? $val))
+				(@print "Match tree: " $pat $val)
 				(Match
 					(car $pat)
 					(car $val)
 					(Match
 						(cdr $pat)
 						(cdr $val)
-						$frame))]
-			[(variable? $pat) (TryExtendFrame $frame $pat $val)]
-			[true (if [eq? $pat $val] $frame `fail)]))
+						$frame))
+			]
+			[(variable? $pat)
+				(@print "Match variable: " $pat $val)
+				(TryExtendFrame $frame $pat $val)
+			]
+			[true
+				(@print "Match constants: " $pat $val)
+				(if [neq? $pat $val]
+					[set! $frame.success false])
+				$frame
+			]
+	)
 ))
 
+(define UnitTest (macros $args
+	(define first (car $args))
+	(define second (cadr $args))
+	(define expected (caddr $args))
+
+	(list block
+		(list console.print (list quote first))
+		(list console.print (list quote second))
+		(list console.print "expect:" (list quote expected))
+		(list define `result (list Match (list quote first) (list quote second)))
+		(list console.print "result:"
+			(list if (list not-null? `result)
+				(list table.pairs `result)
+				null)
+		)
+		(list console.print)
+	)
+))
+
+
 (define TestMatch (lambda []
+	[UnitTest
+		constant
+		constant
+		null]
+
+	[UnitTest
+		question?
+		result
+		((question? . result))]
+		
+	[UnitTest
+		(constant expression)
+		(constant expression)
+		null]
+		
+	[UnitTest
+		(extra expression what? (test where?))
+		(extra expression ultra (test inside))
+		( (what? . ultra) (where? . inside) )]
+		
+	[UnitTest
+		(unconsistent what?)
+		(wrong pattern)
+		fail]
+
+	[UnitTest
+		(+ 45 77)
+		(+ 45 77)
+		null]
+		
+	[UnitTest
+		(+ 45 77)
+		(- 45 77)
+		fail]
+		
+	[UnitTest
+		(+ 45 77)
+		(+ 45 99)
+		fail]
+		
+	[UnitTest
+		(x? a y?)
+		(u a z)
+		( (x? . u) (y? . z) )]
+
+	[UnitTest
+		(x? a x?)
+		(u a z)
+		fail]
+		
+	[UnitTest
+		(x? a (r x?))
+		(u a (r u))
+		( (x? . u) )]
+
+	[UnitTest
+		(x? a (r x?))
+		(u a (r z))
+		fail]
 
 ))
 
 
 (define export.Match Match)
+(define export.TestMatch TestMatch)
+(define export.SetDebugMode SetDebugMode)
+
+

@@ -35,6 +35,16 @@
 (print p2 "P2:" (p2.str))
 (print p3 "P3:" (p3.str))
 
-(p1 1 2 3)
+# (p1 1 2 3)
 
+
+(print)
+(print)
+(print)
+
+
+(print "Test pattern matching:\n")
+(require Pattern)
+#(Pattern.SetDebugMode true)
+(Pattern.TestMatch)
 

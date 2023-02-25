@@ -86,7 +86,7 @@ variables:
     | contains\?
     | set-car\!
     | set-cdr\!
-    | set!
+    | set\!
     | exist\? | isFile\? | isDirectory\? | isDirectoryEmpty\?
     | byte\? | ubyte\? | sbyte\? | char\? | short\? | ushort\? | int\? | uint\? | long\? | ulong\? | float\? | double\?
     | byte\: | ubyte\: | sbyte\: | char\: | short\: | ushort\: | int\: | uint\: | long\: | ulong\: | float\: | double\:
@@ -137,11 +137,11 @@ contexts:
 
     # Keywords
 
+    - match: '{{lang_code_predicates}}'
+      scope: entity.name.function
     - match: '{{lang_code_contexts}}'
       scope: keyword.control
     - match: '{{lang_code_functions}}'
-      scope: entity.name.function
-    - match: '{{lang_code_predicates}}'
       scope: entity.name.function
     - match: '{{lang_code_definitions}}'
       scope: entity.name.type

@@ -16,6 +16,7 @@ namespace Bombardo.V2
 		public static readonly string LISP_TABLE_EACH       = "each";      // "tableEach";
 		public static readonly string LISP_TABLE_KEYS       = "keys";
 		public static readonly string LISP_TABLE_VALUES     = "values";
+		public static readonly string LISP_TABLE_PAIRS      = "pairs";
 
 		public static readonly string LISP_TABLE_PRED = "table?";
 	}
@@ -35,6 +36,7 @@ namespace Bombardo.V2
 			ctx.DefineFunction(Names.LISP_TABLE_EACH, TableEach);
 			ctx.DefineFunction(Names.LISP_TABLE_KEYS, TableKeys);
 			ctx.DefineFunction(Names.LISP_TABLE_VALUES, TableValues);
+			ctx.DefineFunction(Names.LISP_TABLE_PAIRS, TablePairs);
 			ctx.DefineFunction(Names.LISP_TABLE_PRED, TablePred);
 		}
 
@@ -227,6 +229,31 @@ namespace Bombardo.V2
 				Atom item = null;
 				foreach (var value in table.Values)
 					item = new Atom(value, item);
+				item = StructureUtils.Reverse(item);
+				eval.SetReturn(item);
+			}
+		}
+
+		private static void TablePairs(Evaluator eval, StackFrame frame)
+		{
+			var atom  = frame.args.atom;
+			var table = atom.value as Context;
+
+			if (table == null)
+			{
+				eval.SetReturn(null);
+			}
+			else
+			{
+				Atom item = null;
+				foreach (var pair in table)
+				{
+					item = new Atom(
+						new Atom(
+							Atom.FromString(pair.Key),
+							pair.Value),
+						item);
+				}
 				item = StructureUtils.Reverse(item);
 				eval.SetReturn(item);
 			}

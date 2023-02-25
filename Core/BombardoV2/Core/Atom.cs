@@ -118,7 +118,7 @@ namespace Bombardo.V2
 			{
 				case AtomType.Symbol: return (string) value;
 				case AtomType.String: return string.Format("\"{0}\"", value);
-				case AtomType.Bool:   return (bool) value ? "#T" : "#F";
+				case AtomType.Bool:   return (bool) value ? "true" : "false";
 				case AtomType.Number: return value.ToString();
 				case AtomType.Pair:
 				{
