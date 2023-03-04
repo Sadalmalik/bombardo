@@ -2,6 +2,8 @@
 (require context importAll)
 (require table)
 
+# Simple class definition
+# Class have private context (closure) and public context (self)
 (define Class (macros $sexp
 	(define $args (car $sexp))
 	(define $body (cdr $sexp))

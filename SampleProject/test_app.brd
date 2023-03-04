@@ -45,6 +45,15 @@
 
 (print "Test pattern matching:\n")
 (require Pattern)
-#(Pattern.SetDebugMode true)
-(Pattern.TestMatch)
+# (Pattern.SetDebugMode true)
+(Pattern.UnitTests)
 
+(define TEST (lambda [x y z]
+	(print "x:" x)
+	(print "y:" y)
+	(print "z:" z)
+))
+
+(TEST 1 2 3)
+(TEST 1 2)
+(TEST 1)

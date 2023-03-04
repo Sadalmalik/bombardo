@@ -1,28 +1,45 @@
 (require lang importAll)
 (require context importAll)
-(require console)
+(require console importAll)
 (require table)
 (require string)
 
+
+
+# Debug mode
 (define @print nope)
 (define SetDebugMode (lambda [$flag]
-	[set! @print (if $flag console.print nope)]
+	[set! @print (if $flag print nope)]
 ))
 
+
+
+# Check is symbol ends with ?
 (define variable? (lambda (sym)
 	(if [symbol? sym]
 		[string.endsWith? (symbolName sym) "?"]
 		false)
 ))
 
+
+
+# Add value to frame
 (define ExtendFrame (lambda [$frame $key $value]
 	(table.set $frame $key $value)
 ))
 
+
+
+# Get value from frame
 (define	LookUpFrame (lambda ($frame $key)
 	(table.get $frame $key)
 ))
 
+
+
+# Add value to frame, if it not in frame
+# Otherwise call matching with stored value
+# It very usefull for patterns merging
 (define	TryExtendFrame (lambda ($frame $key $value)
 	(define $found (LookUpFrame $frame $key))
 	(if [null? $found]
@@ -32,119 +49,138 @@
 	$frame
 ))
 
+
+
+# Main matching algorythm
+# Checks if pattern matching given structure and returns table with variables values
 (define Match (lambda ($pat $val $frame)
 	(if (null? $frame)
 		(set! $frame (table.create `success true)))
-	(cond	[(eq? $frame.success false) $frame]
-			[(and (pair? $pat) (pair? $val))
-				(@print "Match tree: " $pat $val)
+	(cond
+		[(eq? $frame.success false) $frame]
+		[(and (pair? $pat) (pair? $val))
+			(@print "Match tree: " $pat $val)
+			(Match
+				(car $pat)
+				(car $val)
 				(Match
-					(car $pat)
-					(car $val)
-					(Match
-						(cdr $pat)
-						(cdr $val)
-						$frame))
-			]
-			[(variable? $pat)
-				(@print "Match variable: " $pat $val)
-				(TryExtendFrame $frame $pat $val)
-			]
-			[true
-				(@print "Match constants: " $pat $val)
-				(if [neq? $pat $val]
-					[set! $frame.success false])
-				$frame
-			]
+					(cdr $pat)
+					(cdr $val)
+					$frame))
+		]
+		[(variable? $pat)
+			(@print "Match variable: " $pat $val)
+			(TryExtendFrame $frame $pat $val)
+		]
+		[true
+			(@print "Match constants: " $pat $val)
+			(if [neq? $pat $val]
+				[set! $frame.success false])
+			$frame
+		]
 	)
 ))
 
-(define UnitTest (macros $args
-	(define first (car $args))
-	(define second (cadr $args))
-	(define expected (caddr $args))
 
-	(list block
-		(list console.print (list quote first))
-		(list console.print (list quote second))
-		(list console.print "expect:" (list quote expected))
-		(list define `result (list Match (list quote first) (list quote second)))
-		(list console.print "result:"
-			(list if (list not-null? `result)
-				(list table.pairs `result)
-				null)
+
+# Creates new expression via inserting frame variables into pattern
+(define Instantiate (lambda ($pat $frame)
+	(cond
+		[(pair? $pat)
+			(cons
+				(Instantiate (car $pat) $frame)
+				(Instantiate (cdr $pat) $frame))
+		]
+		[(variable? $pat)
+			(Instantiate (LookUpFrame $frame $pat) $frame)
+		]
+		[true $pat]
+	)
+))
+
+
+
+# Unit tests
+(define UnitTest (lambda [$pattern $expression $expected]
+	(print "pattern:" $pattern)
+	(print "expression:" $expression)
+	(print "expect:" $expected)
+	(define $result (Match $pattern $expression))
+	(print "result:"
+		(if [not-null? $result]
+			[table.pairs $result]
+			null
 		)
-		(list console.print)
 	)
+	(print)
 ))
 
 
-(define TestMatch (lambda []
+(define UnitTests (lambda []
 	[UnitTest
-		constant
-		constant
-		null]
+		`constant
+		`constant
+		`( ( "success" . true ) )]
 
 	[UnitTest
-		question?
-		result
-		((question? . result))]
-		
-	[UnitTest
-		(constant expression)
-		(constant expression)
-		null]
-		
-	[UnitTest
-		(extra expression what? (test where?))
-		(extra expression ultra (test inside))
-		( (what? . ultra) (where? . inside) )]
-		
-	[UnitTest
-		(unconsistent what?)
-		(wrong pattern)
-		fail]
+		`(constant expression)
+		`(constant expression)
+		`( ( "success" . true ) )]
 
 	[UnitTest
-		(+ 45 77)
-		(+ 45 77)
-		null]
+		`question?
+		`result
+		`( ( "success" . true ) ( "question?" . result ) )]
+	
+	[UnitTest
+		`(extra expression what? (test where?))
+		`(extra expression ultra (test inside))
+		`( ( "success" . true ) (what? . ultra) (where? . inside) )]
 		
 	[UnitTest
-		(+ 45 77)
-		(- 45 77)
-		fail]
-		
-	[UnitTest
-		(+ 45 77)
-		(+ 45 99)
-		fail]
-		
-	[UnitTest
-		(x? a y?)
-		(u a z)
-		( (x? . u) (y? . z) )]
+		`(unconsistent what?)
+		`(wrong pattern)
+		`( ( "success" . false ) )]
 
 	[UnitTest
-		(x? a x?)
-		(u a z)
-		fail]
+		`(+ 45 77)
+		`(+ 45 77)
+		`( ( "success" . true ) )]
 		
 	[UnitTest
-		(x? a (r x?))
-		(u a (r u))
-		( (x? . u) )]
+		`(+ 45 77)
+		`(- 45 77)
+		`( ( "success" . false ) )]
+		
+	[UnitTest
+		`(+ 45 77)
+		`(+ 45 99)
+		`( ( "success" . false ) )]
+		
+	[UnitTest
+		`(x? a y?)
+		`(u a z)
+		`( ( "success" . true ) ( "y?" . z ) ( "x?" . u ) )]
 
 	[UnitTest
-		(x? a (r x?))
-		(u a (r z))
-		fail]
+		`(x? a x?)
+		`(u a z)
+		`( ( "success" . false ) )]
+		
+	[UnitTest
+		`(x? a (r x?))
+		`(u a (r u))
+		`( ( "success" . true ) (x? . u) )]
 
+	[UnitTest
+		`(x? a (r x?))
+		`(u a (r z))
+		`( ( "success" . false ) )]
 ))
 
-
-(define export.Match Match)
-(define export.TestMatch TestMatch)
-(define export.SetDebugMode SetDebugMode)
+(define export.SetDebugMode	SetDebugMode)
+(define export.Match		Match)
+(define export.Instantiate	Instantiate)
+(define export.UnitTests	UnitTests)
 
 
