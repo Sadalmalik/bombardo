@@ -1,0 +1,94 @@
+(require lang importAll)
+(require context importAll)
+(require console importAll)
+(require math importAll)
+
+(require table)
+(require string)
+
+(require Class)
+(require Pattern)
+
+
+(define Container (Class [$name]
+	(define self.getName (lambda [] $name))
+
+	(define @container (table.create))
+	(define @id_counter 0)
+	(define NextID (lambda []
+		(define $temp (string.concat "#" @id_counter))
+		(set! @id_counter (+ 1 @id_counter))
+		$temp
+	))
+
+	(define self.container (lambda [] @container))
+
+	(define self.AddFact (lambda [$fact]
+		(table.set @container (NextID) $fact)
+	))
+
+	(define self.UpdateFactByID (lambda [$id $fact]
+		(table.set @container $id $fact)
+	))
+
+	(define self.GetFactByID (lambda [$id]
+		(table.get $id)
+	))
+
+	(define self.RemoveFactByID (lambda [$id]
+		(table.remove $id)
+	))
+
+	(define self.FindFacts (lambda [$pattern]
+		(define $result (table.create))
+
+		(table.each @container (lambda [$key $value]
+			(define $match (Pattern.Match $pattern $value))
+			(if $match.success
+				[table.set $result $key (cons $key (cons $value (cons $match)))]
+			)
+		))
+
+		$result
+	))
+
+	(define self.each (lambda ($callback)
+		(table.each @container $callback)
+	))
+))
+
+
+(define UnitTests (lambda []
+	(define testContainer (Container "TEST"))
+
+	(testContainer.AddFact `(frog isa animal))
+	(testContainer.AddFact `(pigeon isa bird))
+	(testContainer.AddFact `(crown isa bird))
+	(testContainer.AddFact `(hamster isa animal))
+	(testContainer.AddFact `(elephant isa animal))
+	(testContainer.AddFact `(salmon isa fish))
+	(testContainer.AddFact `(dolpnin isa animal))
+	(testContainer.AddFact `(tuna isa fish))
+	(testContainer.AddFact `(sardine isa fish))
+
+	(define TestFind (lambda [$title $pattern]
+		(define $result (testContainer.FindFacts $pattern))
+		(print "Found" $title)
+		(table.each $result (lambda [$key $value]
+			(print "  " $key ":" $value)
+			(print "        Match:")
+			(table.each (caddr $value) (lambda [$k2 $v2]
+				(print "        " $k2 ":" $v2)
+			))
+		))
+	))
+
+	(TestFind "fishes" `(who? isa fish))
+	(TestFind "animals" `(who? isa animal))
+	(TestFind "birds" `(who? isa bird))
+	(TestFind "hanster" `(hamster isa who?))
+))
+
+
+(define export.Container	Container)
+(define export.UnitTests	UnitTests)

@@ -57,3 +57,8 @@
 (TEST 1 2 3)
 (TEST 1 2)
 (TEST 1)
+
+
+(require Associative)
+
+(Associative.UnitTests)

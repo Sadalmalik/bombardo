@@ -180,7 +180,7 @@ namespace Bombardo.V2
 						var pair = frame.temp1.atom;
 						frame.temp1 = frame.temp1.next;
 						var newFrame = eval.CreateFrame(
-							"-eval-sexp-args-",
+							"-eval-sexp-body-",
 							new Atom(func, pair),
 							frame.context);
 						newFrame.function = func;
