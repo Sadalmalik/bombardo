@@ -1,0 +1,43 @@
+(preprocess default)
+
+(require lang importAll)
+(require math importAll)
+(require context importAll)
+(require console importAll)
+(require debug)
+
+(define IsPrime? (lambda [$number]
+	(define $i 2)
+	(define $prime true)
+	#(while [and $prime (< $i $number)]    # Optimized
+	(while [< $i $number]                  # Non-Optimized
+		(if [eq? 0 (% $number $i)]
+			(set! $prime false)
+		)
+		(set! $i (+ $i 1))
+	)
+	$prime
+))
+
+(define Primes (lambda [$limit]
+	(define $number 0)
+	(define $count 0)
+
+	(while [< $number $limit]
+		(define $number (+ $number 1))
+
+		(if [IsPrime? $number]
+			(set! $count (+ $count 1))
+		)
+	)
+
+	$count
+))
+
+(define $x 0)
+(while [< $x 15]
+	(define $x (+ $x 1))
+	(debug.timerStart)
+	(print (Primes 100))
+	(debug.timerEnd)
+)

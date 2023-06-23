@@ -3,6 +3,7 @@
 (require console importAll)
 (require math importAll)
 
+(require fs)
 (require table)
 (require string)
 
@@ -10,13 +11,14 @@
 (require Pattern)
 
 
+# Associative container, based on pattern matching
 (define Container (Class [$name]
 	(define self.getName (lambda [] $name))
 
 	(define @container (table.create))
 	(define @id_counter 0)
 	(define NextID (lambda []
-		(define $temp (string.concat "#" @id_counter))
+		(define $temp (string.concat "/" @id_counter))
 		(set! @id_counter (+ 1 @id_counter))
 		$temp
 	))
@@ -55,6 +57,31 @@
 	(define self.each (lambda ($callback)
 		(table.each @container $callback)
 	))
+
+	(define self.save (lambda [$path]
+		(define $list null)
+		(table.each @container (lambda [$key $val]
+			(set! $list (cons $key $list))
+			(set! $list (cons $val $list))
+		))
+		(fs.save $path (reverse $list))
+	))
+
+	(define self.load (lambda [$path $keepContent]
+		(if [null? $keepContent]
+			(table.clear @container))
+		(define $content (fs.load $path))
+		(define $key null)
+		(each $content (lambda [$item]
+			(if [null? $key]
+				[set! $key $item]
+				[block
+					(table.set @container $key $item)
+					(set! $key null)
+				]
+			)
+		))
+	))
 ))
 
 
@@ -73,7 +100,7 @@
 
 	(define TestFind (lambda [$title $pattern]
 		(define $result (testContainer.FindFacts $pattern))
-		(print "Found" $title)
+		(print "Found" $title ":" $pattern)
 		(table.each $result (lambda [$key $value]
 			(print "  " $key ":" $value)
 			(print "        Match:")
@@ -87,6 +114,15 @@
 	(TestFind "animals" `(who? isa animal))
 	(TestFind "birds" `(who? isa bird))
 	(TestFind "hanster" `(hamster isa who?))
+
+	(define @path "text.assoc")
+
+	(testContainer.save @path)
+	(testContainer.load @path)
+
+	(TestFind "hanster" `(hamster isa who?))
+
+	(fs.file.delete @path)
 ))
 
 

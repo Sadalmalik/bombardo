@@ -62,8 +62,11 @@ namespace Bombardo.V2
 	{
 		public static void Define(Context ctx)
 		{
-			//  (load "filepath") -> list
-			//  (save "filepath" (symbol1 symbol2 symbol3 (expression1) (expression2) (expression3)))
+			// Main Operations
+			//  (fs.load "filepath") -> list
+			//  (fs.save "filepath" (symbol1 symbol2 symbol3 (expression1) (expression2) (expression3)))
+			//  (fs.find "filepath") -> founded path
+			//  (fs.lookup "filepath") -> founded path
 
 			ctx.DefineFunction(Names.FS_LOAD, Load);
 			ctx.DefineFunction(Names.FS_SAVE, Save);
@@ -71,74 +74,80 @@ namespace Bombardo.V2
 			ctx.DefineFunction(Names.FS_LOOKUP, LookUp);
 
 			// Path operations
-
-			//  (path.combine "path1" "path2" "path3") -> "path1/path2/path3"
-			//  (path.getFull "directoryPath.ext") -> "extended/directoryPath.ext"
-			//  (path.getExtension "directoryPath/file.ext") -> "ext"
-			//  (path.getFileName "directoryPath/file.ext") -> "file.ext"
-			//  (path.getDirectoryName "directoryPath/file.ext") -> "directoryPath"
+			//  (fs.path.combine          "path1" "path2" "path3") -> "path1/path2/path3"
+			//  (fs.path.getFull          "directoryPath.ext") -> "extended/directoryPath.ext"
+			//  (fs.path.getExtension     "directoryPath/file.ext") -> "ext"
+			//  (fs.path.getFileName      "directoryPath/file.ext") -> "file.ext"
+			//  (fs.path.getDirectoryName "directoryPath/file.ext") -> "directoryPath"
 
 			var path = new Context();
 			ctx.Define(Names.FS_PATH_SUBMODULE, path.self);
-			path.DefineFunction(Names.FS_PATH_COMBINE, PathCombile);
+			path.DefineFunction(Names.FS_PATH_COMBINE, PathCombine);
 			path.DefineFunction(Names.FS_PATH_GET_FULL, PathGetFull);
 			path.DefineFunction(Names.FS_PATH_GET_EXTENSION, PathGetExtension);
 			path.DefineFunction(Names.FS_PATH_GET_FILENAME, PathGetFileName);
 			path.DefineFunction(Names.FS_PATH_GET_DIRNAME, PathGetDirectoryName);
 
 			// Directory operations
-
-			//  (directory.read "directoryPath") -> ( "file1" "file2" "file3" ... )
-			//  (directory.create "directoryPath") -> null
-			//  (directory.remove "directoryPath") -> null
+			//  (fs.directory.create "directoryPath") -> null
+			//  (fs.directory.read "directoryPath") -> ( "file1" "file2" "file3" ... )
+			//  (fs.directory.move "sourcePath" "destinationPath") -> null
+			//  (fs.directory.delete "directoryPath") -> True|False
 
 			var dir = new Context();
 			ctx.Define(Names.FS_DIRECTORY_SUBMODULE, dir.self);
-			dir.DefineFunction(Names.FS_DIRECTORY_READ, ReadDirectory);
-			dir.DefineFunction(Names.FS_DIRECTORY_CREATE, CreateDirectory);
-			dir.DefineFunction(Names.FS_DIRECTORY_DELETE, RemoveDirectory);
+			dir.DefineFunction(Names.FS_DIRECTORY_READ, DirectoryRead);
+			dir.DefineFunction(Names.FS_DIRECTORY_CREATE, DirectoryCreate);
+			dir.DefineFunction(Names.FS_DIRECTORY_MOVE, DirectoryMove);
+			dir.DefineFunction(Names.FS_DIRECTORY_DELETE, DirectoryDelete);
 
 			// File operations
 
-			//  (fsOpen "filepath" [read] [write] [|create|append]) -> handler
-			//  (fsFlush handler)
-			//  (fsClose handler)
+			//  (fs.file.open "filePath" [read] [write] [|create|append]) -> handler
+			//  (fs.file.flush handler)
+			//  (fs.file.close handler)
+			//  (fs.file.move "sourcePath" "destinationPath")
+			//  (fs.file.delete "filePath")
 
-			//  (fsRead handler) -> char
-			//  (fsReadline handler) -> string
-			//  (fsWrite handler char|string|symbol|number)
+			//  (fs.file.read handler) -> char
+			//  (fs.file.readLine handler) -> string
+			//  (fs.file.write handler char|string|symbol|number)
+			//  (fs.file.writeLine handler char|string|symbol|number)
 
-			//  (fsReadText "filepath") -> string
-			//  (fsReadLines "filepath") -> ( string string string ... )
-			//  (fsWriteText "filepath" string)
-			//  (fsWriteLines "filepath" ( string string string ... ))
-			//  (fsAppendText "filepath" string)
-			//  (fsAppendLines "filepath" ( string string string ... ))
+			//  (fs.file.readText "filepath") -> string
+			//  (fs.file.writeText "filepath") -> ( string string string ... )
+			//  (fs.file.readLines "filepath" string)
+			//  (fs.file.writeLines "filepath" ( string string string ... ))
+			//  (fs.file.appendText "filepath" string)
+			//  (fs.file.appendLines "filepath" ( string string string ... ))
 
 			var file = new Context();
-			ctx.Define(Names.FS_FILE_SUBMODULE, dir.self);
+			ctx.Define(Names.FS_FILE_SUBMODULE, file.self);
 
-			file.DefineFunction(Names.FS_FILE_OPEN, Open);
-			file.DefineFunction(Names.FS_FILE_FLUSH, Flush);
-			file.DefineFunction(Names.FS_FILE_CLOSE, Close);
+			file.DefineFunction(Names.FS_FILE_OPEN, FileOpen);
+			file.DefineFunction(Names.FS_FILE_FLUSH, FileFlush);
+			file.DefineFunction(Names.FS_FILE_CLOSE, FileClose);
+			file.DefineFunction(Names.FS_FILE_MOVE, FileMove);
+			file.DefineFunction(Names.FS_FILE_DELETE, FileDelete);
 
-			file.DefineFunction(Names.FS_FILE_READ, Read);
-			file.DefineFunction(Names.FS_FILE_READ_LINE, ReadLine);
-			file.DefineFunction(Names.FS_FILE_WRITE, Write);
+			file.DefineFunction(Names.FS_FILE_READ, FileRead);
+			file.DefineFunction(Names.FS_FILE_READ_LINE, FileReadLine);
+			file.DefineFunction(Names.FS_FILE_WRITE, FileWrite);
+			file.DefineFunction(Names.FS_FILE_WRITE_LINE, FileWriteLine);
 
-			file.DefineFunction(Names.FS_FILE_READ_TEXT, ReadText);
-			file.DefineFunction(Names.FS_FILE_READ_LINES, ReadLines);
-			file.DefineFunction(Names.FS_FILE_WRITE_TEXT, WriteText);
-			file.DefineFunction(Names.FS_FILE_WRITE_LINES, WriteLines);
-			file.DefineFunction(Names.FS_FILE_APPEND_TEXT, AppendText);
-			file.DefineFunction(Names.FS_FILE_APPEND_LINES, AppendLines);
+			file.DefineFunction(Names.FS_FILE_READ_TEXT, FileReadText);
+			file.DefineFunction(Names.FS_FILE_READ_LINES, FileReadLines);
+			file.DefineFunction(Names.FS_FILE_WRITE_TEXT, FileWriteText);
+			file.DefineFunction(Names.FS_FILE_WRITE_LINES, FileWriteLines);
+			file.DefineFunction(Names.FS_FILE_APPEND_TEXT, FileAppendText);
+			file.DefineFunction(Names.FS_FILE_APPEND_LINES, FileAppendLines);
 
 			// Predicates
 
-			//  (exist? "filepath") -> true|false
-			//  (isFile? "path") -> true | false
-			//  (isDirectory? "path") -> true | false
-			//  (isDirectoryEmpty? "path") -> true | false
+			//  (fs.exist? "filepath") -> true|false
+			//  (fs.isFile? "path") -> true | false
+			//  (fs.isDirectory? "path") -> true | false
+			//  (fs.isDirectoryEmpty? "path") -> true | false
 
 			ctx.DefineFunction(Names.FS_PRED_EXISTS, Exists);
 			ctx.DefineFunction(Names.FS_PRED_FILE, FilePredicate);
@@ -147,7 +156,7 @@ namespace Bombardo.V2
 		}
 
 
-#region Legacy?
+#region Special
 
 		private static void Load(Evaluator eval, StackFrame frame)
 		{
@@ -189,7 +198,8 @@ namespace Bombardo.V2
 			while (list != null)
 			{
 				var item = (Atom) list?.value;
-				output.WriteLine(item != null ? item.Stringify() : "");
+				output.Write(item.Stringify());
+				output.Write(item.IsPair ? "\n" : " ");
 				list = list.next;
 			}
 
@@ -245,7 +255,7 @@ namespace Bombardo.V2
 
 #region Path operations
 
-		private static void PathCombile(Evaluator eval, StackFrame frame)
+		private static void PathCombine(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 
@@ -328,7 +338,7 @@ namespace Bombardo.V2
 
 #region Directory operations
 
-		private static void ReadDirectory(Evaluator eval, StackFrame frame)
+		private static void DirectoryRead(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 
@@ -355,7 +365,7 @@ namespace Bombardo.V2
 			eval.Return(StructureUtils.List(elements));
 		}
 
-		private static void CreateDirectory(Evaluator eval, StackFrame frame)
+		private static void DirectoryCreate(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 
@@ -369,7 +379,23 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void RemoveDirectory(Evaluator eval, StackFrame frame)
+		private static void DirectoryMove(Evaluator eval, StackFrame frame)
+		{
+			var (srcPath, dstPath) = StructureUtils.Split2(frame.args);
+
+			if (srcPath == null || !srcPath.IsString)
+				throw new ArgumentException("Source Path must be string!");
+			if (dstPath == null || !dstPath.IsString)
+				throw new ArgumentException("Destination Path must be string!");
+
+			var src = (string) srcPath.value;
+			var dst = (string) dstPath.value;
+			Directory.Move(src, dst);
+
+			eval.Return(null);
+		}
+
+		private static void DirectoryDelete(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 
@@ -392,7 +418,7 @@ namespace Bombardo.V2
 
 #region File operations
 
-		private static void Open(Evaluator eval, StackFrame frame)
+		private static void FileOpen(Evaluator eval, StackFrame frame)
 		{
 			var (path, accessType, modeType) = StructureUtils.Split3(frame.args);
 
@@ -422,7 +448,7 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void Flush(Evaluator eval, StackFrame frame)
+		private static void FileFlush(Evaluator eval, StackFrame frame)
 		{
 			var stream = frame.args?.atom;
 
@@ -435,7 +461,7 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void Close(Evaluator eval, StackFrame frame)
+		private static void FileClose(Evaluator eval, StackFrame frame)
 		{
 			var stream = frame.args?.atom;
 
@@ -451,7 +477,35 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void Read(Evaluator eval, StackFrame frame)
+		private static void FileMove(Evaluator eval, StackFrame frame)
+		{
+			var (srcPath, dstPath) = StructureUtils.Split2(frame.args);
+
+			if (srcPath == null || !srcPath.IsString)
+				throw new ArgumentException("Source Path must be string!");
+			if (dstPath == null || !dstPath.IsString)
+				throw new ArgumentException("Destination Path must be string!");
+
+			var src = (string) srcPath.value;
+			var dst = (string) dstPath.value;
+			File.Move(src, dst);
+
+			eval.Return(null);
+		}
+
+		private static void FileDelete(Evaluator eval, StackFrame frame)
+		{
+			var path = frame.args.atom;
+			
+			if (path == null || !path.IsString)
+				throw new ArgumentException("Path must be string!");
+			
+			File.Delete((string) path.value);
+			
+			eval.Return(null);
+		}
+
+		private static void FileRead(Evaluator eval, StackFrame frame)
 		{
 			var stream = frame.args?.atom;
 
@@ -465,7 +519,7 @@ namespace Bombardo.V2
 			eval.Return(new Atom(AtomType.Number, reader.Read()));
 		}
 
-		private static void ReadLine(Evaluator eval, StackFrame frame)
+		private static void FileReadLine(Evaluator eval, StackFrame frame)
 		{
 			var stream = frame.args?.atom;
 
@@ -479,18 +533,8 @@ namespace Bombardo.V2
 			eval.Return(new Atom(AtomType.String, reader.ReadLine()));
 		}
 
-		private static void Write(Evaluator eval, StackFrame frame)
+		private static void WriteAtomInternal(StreamWriter writer, Atom value)
 		{
-			var (stream, value) = StructureUtils.Split2(frame.args);
-
-			if (stream.type != AtomType.Native)
-				throw new ArgumentException("Argument must be stream!");
-
-			var writer = stream?.value as StreamWriter;
-			if (writer == null) throw new ArgumentException("Argument must be stream!");
-
-			if (value == null) throw new ArgumentException("Second argument can't be null!");
-
 			switch (value.type)
 			{
 				case AtomType.Number:
@@ -540,11 +584,43 @@ namespace Bombardo.V2
 					writer.Write(value.value);
 					break;
 			}
+		}
+		
+		private static void FileWrite(Evaluator eval, StackFrame frame)
+		{
+			var (stream, value) = StructureUtils.Split2(frame.args);
+
+			if (stream.type != AtomType.Native)
+				throw new ArgumentException("Argument must be stream!");
+
+			var writer = stream?.value as StreamWriter;
+			if (writer == null) throw new ArgumentException("Argument must be stream!");
+
+			if (value == null) throw new ArgumentException("Second argument can't be null!");
+
+			WriteAtomInternal(writer, value);
 
 			eval.Return(null);
 		}
 
-		private static void ReadText(Evaluator eval, StackFrame frame)
+		private static void FileWriteLine(Evaluator eval, StackFrame frame)
+		{
+			var (stream, value) = StructureUtils.Split2(frame.args);
+
+			if (stream.type != AtomType.Native)
+				throw new ArgumentException("Argument must be stream!");
+
+			var writer = stream?.value as StreamWriter;
+			if (writer == null) throw new ArgumentException("Argument must be stream!");
+
+			if (value == null) throw new ArgumentException("Second argument can't be null!");
+			
+			writer.WriteLine(value.Stringify());
+			
+			eval.Return(null);
+		}
+
+		private static void FileReadText(Evaluator eval, StackFrame frame)
 		{
 			var path = frame.args?.atom;
 
@@ -557,7 +633,7 @@ namespace Bombardo.V2
 			eval.Return(new Atom(AtomType.String, text));
 		}
 
-		private static void ReadLines(Evaluator eval, StackFrame frame)
+		private static void FileReadLines(Evaluator eval, StackFrame frame)
 		{
 			var path = frame.args?.atom;
 
@@ -574,7 +650,7 @@ namespace Bombardo.V2
 			eval.Return(StructureUtils.List(atoms));
 		}
 
-		private static void WriteText(Evaluator eval, StackFrame frame)
+		private static void FileWriteText(Evaluator eval, StackFrame frame)
 		{
 			var (path, text) = StructureUtils.Split2(frame.args);
 
@@ -591,7 +667,7 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void WriteLines(Evaluator eval, StackFrame frame)
+		private static void FileWriteLines(Evaluator eval, StackFrame frame)
 		{
 			var (path, list) = StructureUtils.Split2(frame.args);
 
@@ -616,7 +692,7 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void AppendText(Evaluator eval, StackFrame frame)
+		private static void FileAppendText(Evaluator eval, StackFrame frame)
 		{
 			var (path, text) = StructureUtils.Split2(frame.args);
 
@@ -633,7 +709,7 @@ namespace Bombardo.V2
 			eval.Return(null);
 		}
 
-		private static void AppendLines(Evaluator eval, StackFrame frame)
+		private static void FileAppendLines(Evaluator eval, StackFrame frame)
 		{
 			var (path, list) = StructureUtils.Split2(frame.args);
 

@@ -5,3 +5,28 @@
 (require table)
 (require string)
 
+#   (require Behaviour)
+#   (Behaviour.create NAME
+#       (seq
+#       	(sel action1 action2)
+#           check1
+#       	(sel actionB actionX)
+#           check2
+#           check3
+#           action_final
+#       )
+#   )
+#   
+#   (Behaviour.evaluate NAME) ?
+#   
+
+
+(define bt_create (syntax
+	[BehaviourTreeBuilder false false] $args
+
+	
+))
+
+(define Node (class []
+	(define )
+))

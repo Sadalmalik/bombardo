@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace Bombardo.V2
 {
@@ -119,6 +120,36 @@ namespace Bombardo.V2
             return parent != null ?
                 $"{parent}->Table:{base.GetHashCode()}" :
                 $"Table:{base.GetHashCode()}";
+        }
+
+        public string Dump()
+        {
+            var sb = new StringBuilder();
+            InternalDump(sb, 0, 2);
+            return sb.ToString();
+        }
+        
+        private void InternalDump(StringBuilder sb, int indentSize, int indentStep)
+        {
+            parent?.InternalDump(sb, indentSize, indentStep);
+            var indent = new string(' ', indentSize);
+            foreach (var pair in this)
+            {
+                if (pair.Value == null)
+                {
+                    sb.AppendLine($"{indent}{pair.Key}: {pair.Value}");
+                    return;
+                }
+                if (pair.Value.IsNative && pair.Value.value is Context ctx)
+                {
+                    sb.AppendLine($"{indent}{pair.Key}:");
+                    ctx.InternalDump(sb, indentSize + indentStep, indentStep);
+                }
+                else
+                {
+                    sb.AppendLine($"{indent}{pair.Key}: {pair.Value}");
+                }
+            }
         }
     }
 }
