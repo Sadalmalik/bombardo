@@ -166,10 +166,10 @@ namespace Bombardo.V2
             Atom head, tail;
             head = tail = new Atom();
             tail.value = new Atom(AtomType.String, list[0]);
-            for (int i=1;i<list.Length;i++)
+            for (int i = 1; i < list.Length; i++)
             {
                 tail = tail.next = new Atom();
-                tail.value = new Atom(AtomType.String, list[0]);
+                tail.value = new Atom(AtomType.String, list[i]);
             }
 
             eval.Return(head);
