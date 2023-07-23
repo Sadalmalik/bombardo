@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Bombardo.V2
 {
@@ -10,10 +11,11 @@ namespace Bombardo.V2
         public static readonly string TEXT_GETCHARS = "chars";
         public static readonly string TEXT_GETCHAR = "get";
 
-        public static readonly string TEXT_CONCAT = "concat";
-        public static readonly string TEXT_SUBSTR = "substr";
-        public static readonly string TEXT_SPLIT = "split";
+        public static readonly string TEXT_CONCAT  = "concat";
+        public static readonly string TEXT_SUBSTR  = "substr";
+        public static readonly string TEXT_SPLIT   = "split";
         public static readonly string TEXT_REPLACE = "replace";
+        public static readonly string TEXT_REG_MATCH = "regex-match";
 
         public static readonly string TEXT_STARTSWITH = "startsWith?";
         public static readonly string TEXT_ENDSWITH = "endsWith?";
@@ -48,13 +50,14 @@ namespace Bombardo.V2
             ctx.DefineFunction(Names.TEXT_SUBSTR, Substr);
             ctx.DefineFunction(Names.TEXT_SPLIT, Split);
             ctx.DefineFunction(Names.TEXT_REPLACE, Replace);
-
+            ctx.DefineFunction(Names.TEXT_REG_MATCH, Match);
+            
             ctx.DefineFunction(Names.TEXT_STARTSWITH, StartsWith);
             ctx.DefineFunction(Names.TEXT_ENDSWITH, EndsWith);
             ctx.DefineFunction(Names.TEXT_CONTAINS, Contains);
         }
 
-        public static void Create(Evaluator eval, StackFrame frame)
+        private static void Create(Evaluator eval, StackFrame frame)
         {
             Atom list = (Atom)frame.args?.value;
 
@@ -73,7 +76,7 @@ namespace Bombardo.V2
             eval.Return(new Atom(AtomType.String, sb.ToString()));
         }
 
-        public static void GetChars(Evaluator eval, StackFrame frame)
+        private static void GetChars(Evaluator eval, StackFrame frame)
         {
             Atom strArg = (Atom)frame.args?.value;
 
@@ -94,7 +97,7 @@ namespace Bombardo.V2
             eval.Return(list);
         }
 
-        public static void GetChar(Evaluator eval, StackFrame frame)
+        private static void GetChar(Evaluator eval, StackFrame frame)
         {
             var (strArg, num) = StructureUtils.Split2(frame.args);
 
@@ -108,7 +111,7 @@ namespace Bombardo.V2
             eval.Return(new Atom(AtomType.Number, res));
         }
 
-        public static void Length(Evaluator eval, StackFrame frame)
+        private static void Length(Evaluator eval, StackFrame frame)
         {
             Atom atom = (Atom)frame.args?.value;
 
@@ -119,7 +122,7 @@ namespace Bombardo.V2
             eval.Return(new Atom(AtomType.Number, res));
         }
 
-        public static void Concat(Evaluator eval, StackFrame frame)
+        private static void Concat(Evaluator eval, StackFrame frame)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -138,7 +141,7 @@ namespace Bombardo.V2
             eval.Return(new Atom(AtomType.String, sb.ToString()));
         }
 
-        public static void Substr(Evaluator eval, StackFrame frame)
+        private static void Substr(Evaluator eval, StackFrame frame)
         {
             var (strArg, starts, length) = StructureUtils.Split3(frame.args);
 
@@ -152,7 +155,7 @@ namespace Bombardo.V2
             eval.Return(new Atom(AtomType.String, res));
         }
 
-        public static void Split(Evaluator eval, StackFrame frame)
+        private static void Split(Evaluator eval, StackFrame frame)
         {
             var (strArg, splits) = StructureUtils.Split2(frame.args);
 
@@ -175,7 +178,7 @@ namespace Bombardo.V2
             eval.Return(head);
         }
 
-        public static void Replace(Evaluator eval, StackFrame frame)
+        private static void Replace(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg, newArg) = StructureUtils.Split3(frame.args);
 
@@ -191,7 +194,21 @@ namespace Bombardo.V2
             eval.Return(new Atom(AtomType.String, res));
         }
 
-        public static void StartsWith(Evaluator eval, StackFrame frame)
+        private static void Match(Evaluator eval, StackFrame frame)
+        {
+            var (pattern, text) = StructureUtils.Split2(frame.args);
+
+            if (!pattern.IsString)
+                throw new Exception("Pattern must be string!");
+            if (!text.IsString)
+                throw new Exception("Text must be string!");
+
+            var result = Regex.Match(pattern.value as String, text.value as String);
+            
+            eval.Return(new Atom(AtomType.Bool, result.Success));
+        }
+        
+        private static void StartsWith(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
 
@@ -204,7 +221,7 @@ namespace Bombardo.V2
             eval.Return(str.StartsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
         }
 
-        public static void EndsWith(Evaluator eval, StackFrame frame)
+        private static void EndsWith(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
 
@@ -217,7 +234,7 @@ namespace Bombardo.V2
             eval.Return(str.EndsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
         }
 
-        public static void Contains(Evaluator eval, StackFrame frame)
+        private static void Contains(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
 

@@ -18,6 +18,7 @@ namespace Bombardo.V2
 		public static readonly string FS_PATH_SUBMODULE     = "path";             // submodule
 		public static readonly string FS_PATH_COMBINE       = "combine";          // fs.path.combine
 		public static readonly string FS_PATH_GET_FULL      = "getFull";          // fs.path.getFull
+		public static readonly string FS_PATH_GET_RELATIVE  = "getRelative";      // fs.path.getFull
 		public static readonly string FS_PATH_GET_EXTENSION = "getExtension";     // fs.path.getExtension
 		public static readonly string FS_PATH_GET_FILENAME  = "getFileName";      // fs.path.getFileName
 		public static readonly string FS_PATH_GET_DIRNAME   = "getDirectoryName"; // fs.path.getDirectoryName
@@ -84,6 +85,7 @@ namespace Bombardo.V2
 			ctx.Define(Names.FS_PATH_SUBMODULE, path.self);
 			path.DefineFunction(Names.FS_PATH_COMBINE, PathCombine);
 			path.DefineFunction(Names.FS_PATH_GET_FULL, PathGetFull);
+			path.DefineFunction(Names.FS_PATH_GET_RELATIVE, PathGetRelative);
 			path.DefineFunction(Names.FS_PATH_GET_EXTENSION, PathGetExtension);
 			path.DefineFunction(Names.FS_PATH_GET_FILENAME, PathGetFileName);
 			path.DefineFunction(Names.FS_PATH_GET_DIRNAME, PathGetDirectoryName);
@@ -275,9 +277,7 @@ namespace Bombardo.V2
 
 		private static void PathGetFull(Evaluator eval, StackFrame frame)
 		{
-			var args = frame.args;
-
-			var (atomPath, atomBase) = StructureUtils.Split2(args);
+			var (atomPath, atomBase) = StructureUtils.Split2(frame.args);
 
 			if (!atomPath.IsString)
 				throw new ArgumentException("Path must be string!");
@@ -295,6 +295,22 @@ namespace Bombardo.V2
 			path = Path.GetFullPath(path);
 
 			eval.Return(new Atom(AtomType.String, path));
+		}
+
+		private static void PathGetRelative(Evaluator eval, StackFrame frame)
+		{
+			var (basePath, relatedPath) = StructureUtils.Split2(frame.args);
+			
+			if (!basePath.IsString)
+				throw new ArgumentException("Base Path must be string!");
+			if (!relatedPath.IsString)
+				throw new ArgumentException("Related Path must be string!");
+			
+			Uri bPath = new Uri((string) basePath.value);
+			Uri rPath = new Uri((string) relatedPath.value);
+			var newPath =bPath.MakeRelativeUri(rPath).ToString();
+			
+			eval.Return(new Atom(AtomType.String, newPath));
 		}
 
 		private static void PathGetExtension(Evaluator eval, StackFrame frame)
@@ -340,14 +356,12 @@ namespace Bombardo.V2
 
 		private static void DirectoryRead(Evaluator eval, StackFrame frame)
 		{
-			var args = frame.args;
+			var (path, pattern, mode) = StructureUtils.Split3(frame.args);
 
-			var path = args?.atom;
 			if (path == null || !path.IsString)
 				throw new ArgumentException("Path must be string!");
 			var directory = (string) path.value;
-			var pattern   = args?.next?.atom;
-			var mode      = args?.next?.next?.atom;
+			
 			var option    = ArgUtils.GetEnum<SearchOption>(mode, 3);
 
 			string[] dirs = null;
