@@ -1,5 +1,3 @@
-using System;
-
 namespace Bombardo.Core
 {
 	public class Closure : Function
@@ -14,7 +12,7 @@ namespace Bombardo.Core
 			context_ = context;
 			args_    = args;
 			body_    = body;
-			tag.value = closureTag;
+			tag      = Atom.CreateSymbol(closureTag);
 		}
 
 		public override void Apply(Evaluator eval, StackFrame frame)

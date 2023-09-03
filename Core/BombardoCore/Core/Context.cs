@@ -6,26 +6,25 @@ namespace Bombardo.Core
 {
     public class Context : Dictionary<string, Atom>
     {
-        public Atom self;
+        public Atom    self;
         public Context parent;
-        public bool @sealed;
+        public bool    @sealed;
 
         public Context(Context parent = null)
         {
-            this.parent = parent;
+            this.parent  = parent;
             this.@sealed = false;
-            self = new Atom(AtomType.Native, this);
+            this.self    = Atom.CreateNative(this);
         }
-        
-		public Atom DefineFunction(string name,
-			Action<Evaluator, StackFrame> rawFunction,
-			bool evalArgs = true, bool evalResult = false)
-		{
-		    var funct = new Function(name, Atoms.BUILT_IN, rawFunction, evalArgs, evalResult);
-		    var atom = new Atom(AtomType.Function, funct);
-			this.Add(name, atom);
-			return atom;
-		}
+
+        public Atom DefineFunction(string name,
+            Action<Evaluator, StackFrame> rawFunction,
+            bool                          evalArgs = true, bool evalResult = false)
+        {
+            var func = new Function(name, Atoms.BUILT_IN, rawFunction, evalArgs, evalResult);
+            Add(name, func.self);
+            return func.self;
+        }
 
         public Atom Define(string symbol, Atom value)
         {
@@ -33,15 +32,15 @@ namespace Bombardo.Core
                 throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
             return this[symbol] = value;
         }
-        
+
         public Atom Undefine(string symbol)
         {
             if (@sealed)
                 throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
-                
+
             if (Remove(symbol))
                 return Atoms.TRUE;
-            
+
             return Atoms.FALSE;
         }
 
@@ -49,15 +48,18 @@ namespace Bombardo.Core
         {
             if (ContainsKey(symbol))
             {
-                if (@sealed) throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!", symbol));
+                if (@sealed)
+                    throw new ArgumentException(string.Format("Context is sealed! Symbol '{0}' can't be changed!",
+                        symbol));
                 return this[symbol] = value;
             }
             else if (parent != null)
                 return parent.Set(symbol, value);
+
             throw new ArgumentException(string.Format("Symbol '{0}' not defined in current context!", symbol));
         }
 
-        public Atom Get(string symbol, bool noException=false)
+        public Atom Get(string symbol, bool noException = false)
         {
             if (ContainsKey(symbol))
                 return this[symbol];
@@ -77,39 +79,42 @@ namespace Bombardo.Core
             {
                 if (keys.IsSymbol)
                 {
-                    Define((string)keys.value, values);
+                    Define(keys.@string, values);
                     break;
                 }
-                if (values!=null && !values.IsPair)
-                {   //  Skip invalid stuff
+
+                if (values != null && !values.IsPair)
+                {
+                    //  Skip invalid stuff
                     values = null;
                 }
-                Atom key = (Atom)keys.value;
+
+                Atom key = keys.Atom;
                 if (key != null)
                 {
-                    if (!key.IsSymbol) throw new ArgumentException(string.Format("Argument name '{0}' must be symbol!", key.ToString()));
-                    
-                    Atom value = (Atom)values?.value;
+                    if (!key.IsSymbol)
+                        throw new ArgumentException(
+                            string.Format("Argument name '{0}' must be symbol!", key.ToString()));
 
-                    Define((string)key.value, value);
+                    Define(key.@string, values?.Atom);
                 }
-                keys = keys.next;
-                if (values != null)
-                    values = values.next;
+
+                keys   = keys.Next;
+                values = values?.Next;
             }
         }
-        
+
         public void ImportSymbols(Context source, params string[] symbols)
         {
-            if (source==null)
+            if (source == null)
                 return;
             foreach (var symbol in symbols)
                 Define(symbol, source.Get(symbol));
         }
-        
+
         public void ImportAllSymbols(Context source)
         {
-            if (source==null)
+            if (source == null)
                 return;
             foreach (var pair in source)
                 Define(pair.Key, pair.Value);
@@ -117,9 +122,7 @@ namespace Bombardo.Core
 
         public override string ToString()
         {
-            return parent != null ?
-                $"{parent}->Table:{base.GetHashCode()}" :
-                $"Table:{base.GetHashCode()}";
+            return parent != null ? $"{parent}->Table:{base.GetHashCode()}" : $"Table:{base.GetHashCode()}";
         }
 
         public string Dump()
@@ -128,19 +131,22 @@ namespace Bombardo.Core
             InternalDump(sb, 0, 2);
             return sb.ToString();
         }
-        
+
         private void InternalDump(StringBuilder sb, int indentSize, int indentStep)
         {
             parent?.InternalDump(sb, indentSize, indentStep);
             var indent = new string(' ', indentSize);
             foreach (var pair in this)
             {
-                if (pair.Value == null)
+                var key  = pair.Key;
+                var atom = pair.Value;
+                if (atom == null)
                 {
-                    sb.AppendLine($"{indent}{pair.Key}: {pair.Value}");
+                    sb.AppendLine($"{indent}{key}: null");
                     return;
                 }
-                if (pair.Value.IsNative && pair.Value.value is Context ctx)
+
+                if (pair.Value.IsNative && atom.@object is Context ctx)
                 {
                     sb.AppendLine($"{indent}{pair.Key}:");
                     ctx.InternalDump(sb, indentSize + indentStep, indentStep);

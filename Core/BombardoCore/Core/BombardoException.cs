@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Bombardo.Core
 {
@@ -14,7 +12,7 @@ namespace Bombardo.Core
         {
         }
 
-        public BombardoException(string methodName, Exception intern) : base(string.Format("<{0}> {1}", methodName, intern.Message), intern)
+        public BombardoException(string methodName, Exception intern) : base($"<{methodName}> {intern.Message}", intern)
         {
         }
     }

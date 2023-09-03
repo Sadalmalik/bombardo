@@ -33,7 +33,7 @@ namespace Bombardo.Core
 				list = StructureUtils.BuildListContainer(list, node);
 			}
 
-			return list?.atom;
+			return list?.Atom;
 		}
 
 		private static void SkipSeparator(List<Token> tokens, ref int offset)
@@ -56,7 +56,7 @@ namespace Bombardo.Core
 					{
 						StringBuilder lastTokens = new StringBuilder("Last tokens:\n");
 						for (int i = -20; i < 0; i++) lastTokens.AppendFormat(" {0}", tokens[offset + i].value);
-						throw new ArgumentException("Incorrect ( ) [ ] { } order!\n" + lastTokens.ToString());
+						throw new ArgumentException("Incorrect ( ) [ ] { } order!\n" + lastTokens);
 					}
 
 					offset++;
@@ -70,10 +70,10 @@ namespace Bombardo.Core
 					while (tokens[offset].value != ending)
 					{
 						if (!first)
-							node = node.next = new Atom(AtomType.Pair);
+							node = node.pair.next = new Atom(AtomType.Pair);
 						Atom subnode = ReadNode(tokens, ref offset);
-						node.value = subnode;
-						first      = false;
+						node.pair.atom = subnode;
+						first     = false;
 					}
 				}
 					break;
@@ -81,14 +81,14 @@ namespace Bombardo.Core
 				case TokenType.Symbol:
 				{
 					atom.type  = AtomType.Symbol;
-					atom.value = token.value;
+					atom.@string = token.value;
 				}
 					break;
 
 				case TokenType.String:
 				{
-					atom.type  = AtomType.String;
-					atom.value = token.value;
+					atom.type    = AtomType.String;
+					atom.@string = token.value;
 				}
 					break;
 

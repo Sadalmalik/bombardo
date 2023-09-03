@@ -97,7 +97,7 @@ namespace Bombardo.Core
 				
 				Function func;
 				StackFrame frame = Stack.TopFrame;
-				switch (frame.state.value)
+				switch (frame.state.@string)
 				{
 					case "-eval-":	            State_Eval(frame);           continue;
 					case "-eval-each-":         State_EvalEach(frame);       continue;
@@ -113,13 +113,13 @@ namespace Bombardo.Core
 				//  Либо это стейты функции и тогда её надо вызывать
 				if (frame.function != null)
 				{
-					func = (Function) frame.function.value;
+					func = frame.function.function;
 					func.Apply(this, frame);
 					continue;
 				}
 
 				//	Либо если нет функции - то это ошибка интерпретации
-				SetError($"Wrong evaluation state: {frame.state.value}");
+				SetError($"Wrong evaluation state: {frame.state.@string}");
 			}
 
 			if (HaveReturn())
@@ -144,11 +144,11 @@ namespace Bombardo.Core
 			
 			if (frame.expression.IsSymbol)
 			{
-				var name = (string)frame.expression.value;
+				var  name = frame.expression.@string;
 				Atom value;
 				try
 				{
-					value = ContextUtils.Get((Context)frame.context.value, name);
+					value = ContextUtils.Get((Context) frame.context.@object, name);
 				}
 				catch (BombardoException bex)
 				{
@@ -171,13 +171,13 @@ namespace Bombardo.Core
 			
 			if (frame.expression != null)
 			{
-				var subExpression = frame.expression.atom;
-				frame.expression = frame.expression.next;
+				var subExpression = frame.expression.Atom;
+				frame.expression = frame.expression.Next;
 				Call("-eval-", subExpression, frame.context);
 				return;
 			}
 			
-			Return(frame.temp1.atom);
+			Return(frame.temp1.Atom);
 		}
 
 		private void State_EvalBlock(StackFrame frame)
@@ -189,8 +189,8 @@ namespace Bombardo.Core
 			
 			if (frame.expression != null)
 			{
-				var subExpression = frame.expression.atom;
-				frame.expression = frame.expression.next;
+				var subExpression = frame.expression.Atom;
+				frame.expression = frame.expression.Next;
 				Call("-eval-", subExpression, frame.context);
 				return;
 			}
@@ -202,7 +202,7 @@ namespace Bombardo.Core
 		{
 			if (!HaveReturn())
 			{
-				Call("-eval-", frame.expression.atom, frame.context);
+				Call("-eval-", frame.expression.Atom, frame.context);
 				return;
 			}
 			
@@ -221,14 +221,14 @@ namespace Bombardo.Core
 		{
 			if (!HaveReturn())
 			{
-				var func = (Function)frame.function.value;
-				if (func.EvalArgs && frame.expression.next != null)
+				var func = frame.function.function;
+				if (func.EvalArgs && frame.expression.Next != null)
 				{
-					Call("-eval-each-", frame.expression.next, frame.context);
+					Call("-eval-each-", frame.expression.Next, frame.context);
 					return;
 				}
 				
-				frame.args = frame.expression.next;
+				frame.args = frame.expression.Next;
 				frame.SetState("-eval-sexp-body-");
 				return;
 			}
@@ -239,7 +239,7 @@ namespace Bombardo.Core
 
 		private void State_EvalSExpBody(StackFrame frame)
 		{
-			var func = (Function)frame.function.value;
+			var func = frame.function.function;
 			
 			if (!HaveReturn())
 			{

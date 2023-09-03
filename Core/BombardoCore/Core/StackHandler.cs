@@ -17,14 +17,14 @@ namespace Bombardo.Core
 		private Atom _temp2;
 		private Atom _temp3;
 
-		public Atom state { get => _state.atom; set => _state.value = value; }
-		public Atom expression { get => _expression.atom; set => _expression.value = value; }
-		public Atom context { get => _context.atom; set => _context.value = value; }
-		public Atom function { get => _function.atom; set => _function.value = value; }
-		public Atom args { get => _args.atom; set => _args.value = value; }
-		public Atom temp1 { get => _temp1.atom; set => _temp1.value = value; }
-		public Atom temp2 { get => _temp2.atom; set => _temp2.value = value; }
-		public Atom temp3 { get => _temp3.atom; set => _temp3.value = value; }
+		public Atom state      { get => _state.pair.atom;      set => _state.pair.atom = value; }
+		public Atom expression { get => _expression.pair.atom; set => _expression.pair.atom = value; }
+		public Atom context    { get => _context.pair.atom;    set => _context.pair.atom = value; }
+		public Atom function   { get => _function.pair.atom;   set => _function.pair.atom = value; }
+		public Atom args       { get => _args.pair.atom;       set => _args.pair.atom = value; }
+		public Atom temp1      { get => _temp1.pair.atom;      set => _temp1.pair.atom = value; }
+		public Atom temp2      { get => _temp2.pair.atom;      set => _temp2.pair.atom = value; }
+		public Atom temp3      { get => _temp3.pair.atom;      set => _temp3.pair.atom = value; }
 
 		public StackFrame(Atom newContent)
 		{
@@ -34,14 +34,14 @@ namespace Bombardo.Core
 		
 		public void SetState(string state)
 		{
-			_state.value = new Atom(state);
+			_state.pair.atom = Atom.CreateSymbol(state);
 		}
 
 		private void EnsureLength(int len)
 		{
 			var iter = content;
 			while (len-- > 0)
-				iter = iter.next ?? (iter.next = new Atom());
+				iter = iter.pair.next ?? (iter.pair.next = new Atom(AtomType.Pair));
 		}
 
 		private void LinkElements()
@@ -49,14 +49,14 @@ namespace Bombardo.Core
 			EnsureLength(8);
 
 			var iter = content;
-			(_state, iter)      = (iter, iter.next);
-			(_expression, iter) = (iter, iter.next);
-			(_context, iter)    = (iter, iter.next);
-			(_function, iter)   = (iter, iter.next);
-			(_args, iter)       = (iter, iter.next);
-			(_temp1, iter)       = (iter, iter.next);
-			(_temp2, iter)       = (iter, iter.next);
-			(_temp3, iter)       = (iter, iter.next);
+			(_state, iter)      = (iter, iter.Next);
+			(_expression, iter) = (iter, iter.Next);
+			(_context, iter)    = (iter, iter.Next);
+			(_function, iter)   = (iter, iter.Next);
+			(_args, iter)       = (iter, iter.Next);
+			(_temp1, iter)      = (iter, iter.Next);
+			(_temp2, iter)      = (iter, iter.Next);
+			(_temp3, iter)      = (iter, iter.Next);
 		}
 	}
 
@@ -83,8 +83,8 @@ namespace Bombardo.Core
 			{
 				var subStack = new Stack<StackFrame>();
 				var iter     = newContent;
-				while (iter.next != null)
-					subStack.Push(new StackFrame(iter.atom));
+				while (iter.Next != null)
+					subStack.Push(new StackFrame(iter.Atom));
 				// Reverse stack
 				while (subStack.Count > 0)
 					stack.Push(subStack.Pop());
@@ -94,36 +94,36 @@ namespace Bombardo.Core
 		public void RemoveFrame()
 		{
 			stack.Pop();
-			content = content.next;
+			content = content.Next;
 		}
 
 		public StackFrame CreateFrame()
 		{
 			var frame = new StackFrame(null);
 			stack.Push(frame);
-			content = new Atom(frame.content, content);
+			content = Atom.CreatePair(frame.content, content);
 			return frame;
 		}
 
 		public StackFrame CreateFrame(string state, Atom expression, Context context)
 		{
 			var frame = new StackFrame(null);
-			frame.state      = new Atom(state);
+			frame.state      = Atom.CreateSymbol(state);
 			frame.expression = expression;
 			frame.context    = context.self;
 			stack.Push(frame);
-			content = new Atom(frame.content, content);
+			content = Atom.CreatePair(frame.content, content);
 			return frame;
 		}
 
 		public StackFrame CreateFrame(string state, Atom expression, Atom context)
 		{
 			var frame = new StackFrame(null);
-			frame.state      = new Atom(state);
+			frame.state      = Atom.CreateSymbol(state);
 			frame.expression = expression;
 			frame.context    = context;
 			stack.Push(frame);
-			content = new Atom(frame.content, content);
+			content = Atom.CreatePair(frame.content, content);
 			return frame;
 		}
 
@@ -132,13 +132,13 @@ namespace Bombardo.Core
 			if (_dump == null)
 				_dump = new StringBuilder();
 			_dump.AppendLine("Stack:");
+			
 			var iter = content;
 			while (iter != null && limit-->0)
 			{
-				_dump.AppendFormat("  {0}\n", iter.atom);
-				iter = iter.next;
+				_dump.AppendFormat("  {0}\n", iter.pair.atom);
+				iter = iter.pair.next;
 			}
-
 			Console.WriteLine(_dump.ToString());
 			_dump.Clear();
 		}

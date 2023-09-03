@@ -1,3 +1,5 @@
+// ReSharper disable IdentifierTypo
+
 namespace Bombardo.Core
 {
 	public static partial class Names

@@ -1,4 +1,3 @@
-using System;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -12,13 +11,17 @@ namespace Bombardo.Core
         [FieldOffset(0)] public int @type;
 
         [FieldOffset(sizeof(int))] public AtomPair   @pair;
-        [FieldOffset(sizeof(int))] public string     @symbol;
         [FieldOffset(sizeof(int))] public string     @string;
         [FieldOffset(sizeof(int))] public bool       @bool;
         [FieldOffset(sizeof(int))] public AtomNumber @number;
         [FieldOffset(sizeof(int))] public Function   @function;
         [FieldOffset(sizeof(int))] public object     @object;
 
+        public Atom Atom => @pair.atom;
+        
+        public Atom Next => @pair.next;
+        
+        
         public bool IsEmpty    => type == AtomType.Pair && pair.IsEmpty;
         public bool IsPair     => type == AtomType.Pair;
         public bool IsSymbol   => type == AtomType.Symbol;
@@ -46,7 +49,7 @@ namespace Bombardo.Core
         public static Atom CreateSymbol(string symbol)
         {
             var atom = new Atom(AtomType.Symbol);
-            atom.symbol = symbol;
+            atom.@string = symbol;
             return atom;
         }
 
@@ -110,7 +113,7 @@ namespace Bombardo.Core
             switch (type)
             {
                 case AtomType.Symbol: return @string;
-                case AtomType.String: return string.Format("\"{0}\"", @string);
+                case AtomType.String: return $"\"{@string}\"";
                 case AtomType.Bool:   return @bool ? "true" : "false";
                 case AtomType.Number: return @number.ToString();
                 case AtomType.Pair:
