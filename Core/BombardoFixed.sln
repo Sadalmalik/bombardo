@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoV1", "BombardoV1\BombardoV1.csproj", "{6EB2C2A7-D4E5-4BF3-AFD1-46213F065502}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoV2", "BombardoV2\BombardoV2.csproj", "{E95CBA98-FABE-4A49-BD9F-69F7A63BF573}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoCore", "BombardoCore\BombardoCore.csproj", "{E95CBA98-FABE-4A49-BD9F-69F7A63BF573}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BombardoApp", "BombardoApp\BombardoApp.csproj", "{317AF129-4512-4833-B588-91D334119358}"
 EndProject
@@ -12,10 +10,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6EB2C2A7-D4E5-4BF3-AFD1-46213F065502}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EB2C2A7-D4E5-4BF3-AFD1-46213F065502}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EB2C2A7-D4E5-4BF3-AFD1-46213F065502}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EB2C2A7-D4E5-4BF3-AFD1-46213F065502}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E95CBA98-FABE-4A49-BD9F-69F7A63BF573}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E95CBA98-FABE-4A49-BD9F-69F7A63BF573}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E95CBA98-FABE-4A49-BD9F-69F7A63BF573}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Bombardo.V2.Lang;
+using Bombardo.Core.Lang;
 
-namespace Bombardo.V2
+namespace Bombardo.Core
 {
 	public static class Program
 	{
