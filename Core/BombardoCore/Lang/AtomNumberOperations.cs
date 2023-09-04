@@ -6,10 +6,26 @@ namespace Bombardo.Core
 {
     internal class AtomNumberOperations
     {
-        public static bool   useCSUpTypeOperations = false;
-        public static bool   raiseNotANumber       = true;
-        public static float  floatTolerance        = 0.000001f;
-        public static double doubleTolerance       = 0.000000000001f;
+        public static bool    useCSUpTypeOperations = false;
+        public static bool    raiseNotANumber       = true;
+        public static float   floatTolerance        = 0.000001f;
+        public static double  doubleTolerance       = 0.000000000001;
+        public static decimal decimalTolerance      = 0.000000000000000000000001m;
+
+        public static bool Compare(float a, float b)
+        {
+            return Math.Abs(a - b) < floatTolerance;
+        }
+
+        public static bool Compare(double a, double b)
+        {
+            return Math.Abs(a - b) < doubleTolerance;
+        }
+
+        public static bool Compare(decimal a, decimal b)
+        {
+            return Math.Abs(a - b) < decimalTolerance;
+        }
 
         public static int MaxNumberType(AtomNumber a, AtomNumber b)
         {
@@ -745,9 +761,9 @@ namespace Bombardo.Core
                 case AtomNumberType.SINT32:  return a.ToSInt()    == b.ToSInt();
                 case AtomNumberType.UINT64:  return a.ToULong()   == b.ToULong();
                 case AtomNumberType.SINT64:  return a.ToSLong()   == b.ToSLong();
-                case AtomNumberType.SINGLE:  return Math.Abs(a.ToSingle() - b.ToSingle()) < floatTolerance;
-                case AtomNumberType.DOUBLE:  return Math.Abs(a.ToDouble() - b.ToDouble()) < doubleTolerance;
-                case AtomNumberType.DECIMAL: return a.ToDecimal() == b.ToDecimal();
+                case AtomNumberType.SINGLE:  return Compare(a.ToSingle(), b.ToSingle());
+                case AtomNumberType.DOUBLE:  return Compare(a.ToDouble(), b.ToDouble());
+                case AtomNumberType.DECIMAL: return Compare(a.ToDecimal(), b.ToDecimal());
             }
             // @formatter:on
             throw new InvalidOperationException("Can't apply operator == to a not-numbers!");
@@ -860,9 +876,9 @@ namespace Bombardo.Core
                 case AtomNumberType.SINT32:  return a.ToSInt()    != b.ToSInt();
                 case AtomNumberType.UINT64:  return a.ToULong()   != b.ToULong();
                 case AtomNumberType.SINT64:  return a.ToSLong()   != b.ToSLong();
-                case AtomNumberType.SINGLE:  return Math.Abs(a.ToSingle() - b.ToSingle()) > floatTolerance;
-                case AtomNumberType.DOUBLE:  return Math.Abs(a.ToDouble() - b.ToDouble()) > doubleTolerance;
-                case AtomNumberType.DECIMAL: return a.ToDecimal() != b.ToDecimal();
+                case AtomNumberType.SINGLE:  return !Compare(a.ToSingle(), b.ToSingle());
+                case AtomNumberType.DOUBLE:  return !Compare(a.ToDouble(), b.ToDouble());
+                case AtomNumberType.DECIMAL: return !Compare(a.ToDecimal(), b.ToDecimal());
             }
             // @formatter:on
             throw new InvalidOperationException("Can't apply operator == to a not-numbers!");

@@ -68,7 +68,7 @@ namespace Bombardo.Core
         private static void Undefine(Evaluator eval, StackFrame frame)
         {
             var args = frame.args;
-            var sym  = args?.Atom;
+            var sym  = args?.Head;
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Undefining name must be symbol!");
 
@@ -81,7 +81,7 @@ namespace Bombardo.Core
         private static void SetFirst(Evaluator eval, StackFrame frame)
         {
             var args = frame.args;
-            var sym  = args?.Atom;
+            var sym  = args?.Head;
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Variable name must be symbol!");
 
@@ -94,21 +94,21 @@ namespace Bombardo.Core
                 return;
             }
 
-            eval.CreateFrame("-eval-", args.next?.atom, frame.context);
+            eval.CreateFrame("-eval-", args.Next?.Head, frame.context);
             frame.state = Atoms.INTERNAL_STATE;
         }
 
         private static void ToString(Evaluator eval, StackFrame frame)
         {
             var args = frame.args;
-            var atom = args.Atom;
+            var atom = args.Head;
             eval.Return(Atom.CreateString(atom.ToString()));
         }
 
         private static void FromString(Evaluator eval, StackFrame frame)
         {
             var args = frame.args;
-            var str  = args.Atom;
+            var str  = args.Head;
             if (!str.IsString) throw new ArgumentException("Argument must be string!");
             var list = BombardoLang.Parse((string) str.@string);
             eval.Return(list);
@@ -117,7 +117,7 @@ namespace Bombardo.Core
         private static void SymbolName(Evaluator eval, StackFrame frame)
         {
             var args   = frame.args;
-            var symbol = args.Atom;
+            var symbol = args.Head;
             if (!symbol.IsSymbol) throw new ArgumentException("Argument must be symbol!");
             eval.Return(Atom.CreateString(symbol.@string));
         }
@@ -125,7 +125,7 @@ namespace Bombardo.Core
         private static void MakeSymbol(Evaluator eval, StackFrame frame)
         {
             var args   = frame.args;
-            var symbol = args.Atom;
+            var symbol = args.Head;
             if (!symbol.IsString) throw new ArgumentException("Argument must be string!");
             eval.Return(Atom.CreateSymbol(symbol.@string));
         }
@@ -138,7 +138,7 @@ namespace Bombardo.Core
         private static void GetContextParent(Evaluator eval, StackFrame frame)
         {
             var args    = frame.args;
-            var ctx     = args?.Atom;
+            var ctx     = args?.Head;
             var context = frame.context.@object as Context;
             if (ctx != null && ctx.IsNative)
                 if (ctx.@object is Context other)

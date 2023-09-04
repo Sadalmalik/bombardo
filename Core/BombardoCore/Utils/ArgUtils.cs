@@ -19,17 +19,11 @@ namespace Bombardo.Core
 
 		public static T GetEnum<T>(Atom argument, int idx, T tenum = default) where T : struct, Enum
 		{
-			if (argument != null)
-			{
-				if (argument.type != AtomType.Symbol &&
-				    !Enum.TryParse((string) argument.value, out tenum))
-					throw new ArgumentException(string.Format(
-							                            "{1} argument must be one of symbols: {2}!",
-							                            GetNumber(idx), string.Join(", ", Enum.GetValues(typeof(T)))
-						                            ));
-			}
-
-			return tenum;
+			if (argument == null) return tenum;
+			if (argument.type == AtomType.Symbol || Enum.TryParse(argument.@string, out tenum)) return tenum;
+			var number = GetNumber(idx);
+			var values = string.Join(", ", Enum.GetValues(typeof(T)));
+			throw new ArgumentException($"{number} argument must be one of symbols: {values}!");
 		}
 	}
 }

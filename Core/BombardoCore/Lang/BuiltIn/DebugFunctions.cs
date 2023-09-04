@@ -25,8 +25,8 @@ namespace Bombardo.Core
 
 		private static void Marker(Evaluator eval, StackFrame frame)
 		{
-			var tag = frame.args?.atom?.value;
-			Console.WriteLine(tag == null ? "<Marker reached>" : $"<Marker reached: {frame.args.atom}>");
+			var tag = frame.args?.Head;
+			Console.WriteLine(tag == null ? "<Marker reached>" : $"<Marker reached: {tag.Stringify()}>");
 			eval.Return(null);
 		}
 

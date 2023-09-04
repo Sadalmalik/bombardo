@@ -4,7 +4,7 @@ using System.Runtime.InteropServices;
 namespace Bombardo.Core
 {
     [StructLayout(LayoutKind.Explicit)]
-    public struct AtomNumber
+    public struct AtomNumber : IEquatable<AtomNumber>
     {
         [FieldOffset(0)]           public int     type;
         [FieldOffset(sizeof(int))] public byte    val_uint8;
@@ -309,6 +309,24 @@ namespace Bombardo.Core
             }
 
             throw TypeMismatch(type, AtomNumberType.DECIMAL);
+        }
+
+        public bool Equals(AtomNumber other)
+        {
+            return AtomNumberOperations.Eq(this, other);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is AtomNumber other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (type * 397) ^ val_sint64.GetHashCode();
+            }
         }
     }
 }

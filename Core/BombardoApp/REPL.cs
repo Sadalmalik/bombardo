@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using Bombardo.Core;
 
 namespace Bombardo.V1
 {
@@ -13,6 +14,7 @@ namespace Bombardo.V1
         {
             Console.WriteLine("Basic BombardoV1 lang");
             Console.WriteLine("07.2018 by Kaleb Sadalmalik");
+            
             ShowWelcome(null, null);
 
             loop_ = true;

@@ -89,14 +89,14 @@ namespace Bombardo.Core
                     values = null;
                 }
 
-                Atom key = keys.Atom;
+                Atom key = keys.Head;
                 if (key != null)
                 {
                     if (!key.IsSymbol)
                         throw new ArgumentException(
                             string.Format("Argument name '{0}' must be symbol!", key.ToString()));
 
-                    Define(key.@string, values?.Atom);
+                    Define(key.@string, values?.Head);
                 }
 
                 keys   = keys.Next;

@@ -39,8 +39,8 @@ namespace Bombardo.Core.Lang
 		{
 			var args = frame.args;
 			//  Особый механизм - сравнение всего
-			for (Atom iter = args; iter != null && iter.next != null; iter = iter.next)
-				if (!StructureUtils.Compare((Atom) iter.value, (Atom) iter.next.value))
+			for (Atom iter = args; iter != null && iter.Next != null; iter = iter.Next)
+				if (!StructureUtils.Compare(iter.Head, iter.Next.Head))
 				{
 					eval.Return(Atoms.FALSE);
 					return;
@@ -53,8 +53,8 @@ namespace Bombardo.Core.Lang
 		{
 			var args = frame.args;
 			//  Особый механизм - сравнение всего
-			for (Atom iter = args; iter != null && iter.next != null; iter = iter.next)
-				if (StructureUtils.Compare((Atom) iter.value, (Atom) iter.next.value))
+			for (Atom iter = args; iter != null && iter.Next != null; iter = iter.Next)
+				if (StructureUtils.Compare((Atom) iter.Head, (Atom) iter.Next.Head))
 				{
 					eval.Return(Atoms.FALSE);
 					return;
@@ -69,8 +69,8 @@ namespace Bombardo.Core.Lang
 
 		private static bool AllBoolean(Atom args)
 		{
-			for (Atom iter = args; iter != null; iter = iter.next)
-				if (((Atom) iter.value).type != AtomType.Bool)
+			for (Atom iter = args; iter != null; iter = iter.Next)
+				if (iter.Head.type != AtomType.Bool)
 					return false;
 			return true;
 		}
@@ -85,49 +85,49 @@ namespace Bombardo.Core.Lang
 		{
 			var args = frame.args;
 			CheckAllBoolean(args);
-			bool res = (bool) ((Atom) args.value).value;
-			for (Atom iter = args.next; iter != null; iter = iter.next)
-				res &= (bool) ((Atom) iter.value).value;
-			eval.Return(new Atom(AtomType.Bool, res));
+			bool res = args.Head.@bool;
+			for (Atom iter = args.Next; iter != null; iter = iter.Next)
+				res &= iter.Head.@bool;
+			eval.Return(res ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		public static void Or(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 			CheckAllBoolean(args);
-			bool res = (bool) ((Atom) args.value).value;
-			for (Atom iter = args.next; iter != null; iter = iter.next)
-				res |= (bool) ((Atom) iter.value).value;
-			eval.Return(new Atom(AtomType.Bool, res));
+			bool res = args.Head.@bool;
+			for (Atom iter = args.Next; iter != null; iter = iter.Next)
+				res |= iter.Head.@bool;
+			eval.Return(res ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		public static void Xor(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 			CheckAllBoolean(args);
-			bool res = (bool) ((Atom) args.value).value;
-			for (Atom iter = args.next; iter != null; iter = iter.next)
-				res ^= (bool) ((Atom) iter.value).value;
-			eval.Return(new Atom(AtomType.Bool, res));
+			bool res = args.Head.@bool;
+			for (Atom iter = args.Next; iter != null; iter = iter.Next)
+				res ^= iter.Head.@bool;
+			eval.Return(res ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		public static void Imp(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 			CheckAllBoolean(args);
-			bool res = (bool) ((Atom) args.value).value;
-			for (Atom iter = args.next; iter != null; iter = iter.next)
-				res = !res | (bool) ((Atom) iter.value).value;
-			eval.Return(new Atom(AtomType.Bool, res));
+			bool res = args.Head.@bool;
+			for (Atom iter = args.Next; iter != null; iter = iter.Next)
+				res = !res | iter.Head.@bool;
+			eval.Return(res ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 		public static void Not(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
 			CheckAllBoolean(args);
-			if (args.next != null)
+			if (args.Next != null)
 				throw new ArgumentException("Too many arguments!");
-			eval.Return(new Atom(AtomType.Bool, !(bool) ((Atom) args.value).value));
+			eval.Return(args.Head.@bool ? Atoms.TRUE : Atoms.FALSE);
 		}
 
 #endregion Boolean operations

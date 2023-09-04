@@ -97,19 +97,19 @@ namespace Bombardo.Core
 
 		private static void Quote(Evaluator eval, StackFrame frame)
 		{
-			eval.Return(frame.args.atom);
+			eval.Return(frame.args.Head);
 		}
 
 		private static void Parse(Evaluator eval, StackFrame frame)
 		{
-			var text = frame.args?.atom;
+			var text = frame.args?.Head;
 
 			if (text.type != AtomType.String)
 				throw new ArgumentException("Argument must be string!");
 
 			try
 			{
-				var list = BombardoLang.Parse((string) text.value);
+				var list = BombardoLang.Parse(text.@string);
 
 				eval.Return(list);
 			}
@@ -125,8 +125,8 @@ namespace Bombardo.Core
 			if (!eval.HaveReturn())
 			{
 				var (expression, ctxAtom) = StructureUtils.Split2(frame.args);
-				var ctx = ctxAtom?.value as Context ?? frame.context.value as Context;
-				eval.CreateFrame("-eval-", expression, ctx);
+				var ctx = ctxAtom?.@object as Context ?? frame.context.@object as Context;
+				eval.CreateFrame("-eval-", expression, ctx.self);
 				return;
 			}
 
@@ -137,7 +137,7 @@ namespace Bombardo.Core
 		{
 			if (!eval.HaveReturn())
 			{
-				var expression = frame.args?.atom;
+				var expression = frame.args?.Head;
 				if (expression is null)
 				{
 					eval.SetReturn(null);
@@ -145,11 +145,11 @@ namespace Bombardo.Core
 					return;
 				}
 
-				if (expression.value is Context ctx)
-					expression = frame.args?.next?.atom;
+				if (expression.@object is Context ctx)
+					expression = frame.args?.Next?.Head;
 				else
-					ctx = frame.context.value as Context;
-				eval.CreateFrame("-eval-block-", expression, ctx);
+					ctx = frame.context.@object as Context;
+				eval.CreateFrame("-eval-block-", expression, ctx.self);
 				return;
 			}
 
@@ -168,24 +168,25 @@ namespace Bombardo.Core
 					return;
 				}
 
-				if (expression.value is Context ctx)
-					expression = expression.next;
+				if (expression.@object is Context ctx)
+					expression = expression.Next;
 				else
-					ctx = frame.context.value as Context;
-				eval.CreateFrame("-eval-block-", expression, ctx);
+					ctx = frame.context.@object as Context;
+				eval.CreateFrame("-eval-block-", expression, ctx.self);
 				return;
 			}
 
 			eval.CloseFrame();
 		}
+		
 
 		private static void Cond(Evaluator eval, StackFrame frame)
 		{
-			switch (frame.state.value)
+			switch (frame.state.@string)
 			{
 				case "-eval-sexp-body-":
 					frame.temp1 = frame.args;
-					frame.state = new Atom("-built-in-cond-head-");
+					frame.state = Atoms.STATE_COND_HEAD;
 					break;
 				case "-built-in-cond-head-":
 					if (eval.HaveReturn())
@@ -193,27 +194,27 @@ namespace Bombardo.Core
 						var condition = eval.TakeReturn();
 						if (!condition.IsBool)
 							throw new ArgumentException($"Condition must return boolean atom, but found: {condition}!");
-						if ((bool) condition.value)
+						if (condition.@bool)
 						{
-							frame.state = new Atom("-built-in-cond-body-");
+							frame.state = Atoms.STATE_COND_BODY;
 							break;
 						}
 					}
 
 					if (frame.temp1 != null)
 					{
-						frame.temp2 = frame.temp1.atom;
-						frame.temp1 = frame.temp1.next;
+						frame.temp2 = frame.temp1.Head;
+						frame.temp1 = frame.temp1.Next;
 
 						if (!frame.temp2.IsPair)
 							throw new ArgumentException($"Condition element must be list, but found: {frame.temp2}!");
 
-						eval.CreateFrame("-eval-", frame.temp2.atom, frame.context);
+						eval.CreateFrame("-eval-", frame.temp2.Head, frame.context);
 					}
 					else
 					{
 						//  Ни одно из условий не выполнилось
-						frame.state = new Atom("-eval-sexp-body-");
+						frame.state = Atoms.STATE_EVAL_SEXP_BODY;
 						eval.Return(Atoms.FALSE);
 					}
 
@@ -222,7 +223,7 @@ namespace Bombardo.Core
 					if (eval.HaveReturn())
 						eval.CloseFrame();
 					else
-						eval.CreateFrame("-eval-block-", frame.temp2.next, frame.context);
+						eval.CreateFrame("-eval-block-", frame.temp2.Next, frame.context);
 
 					break;
 			}
@@ -230,13 +231,14 @@ namespace Bombardo.Core
 
 		private static void If(Evaluator eval, StackFrame frame)
 		{
-			switch (frame.state.value)
+			switch (frame.state.@string)
 			{
 				case "-eval-sexp-body-":
 				{
 					//  (cond BlockA BlockB)
 					(frame.temp1, frame.temp2, frame.temp3) = StructureUtils.Split3(frame.args);
-					frame.state                             = new Atom("-built-in-if-cond-");
+
+					frame.state = Atoms.STATE_IF_COND;
 				}
 					break;
 				case "-built-in-if-cond-":
@@ -246,7 +248,7 @@ namespace Bombardo.Core
 						var condition = eval.TakeReturn();
 						if (!condition.IsBool)
 							throw new ArgumentException($"Condition must return boolean atom, but found: {condition}!");
-						frame.state = new Atom((bool) condition.value ? "-built-in-if-then-" : "-built-in-if-else-");
+						frame.state = condition.@bool ? Atoms.STATE_IF_THEN : Atoms.STATE_IF_ELSE;
 					}
 					else
 					{
@@ -269,7 +271,7 @@ namespace Bombardo.Core
 				}
 					break;
 				case "-built-in-if-else-":
-					frame.state = new Atom("-eval-sexp-body-");
+					frame.state = Atoms.STATE_EVAL_SEXP_BODY;
 
 					if (eval.HaveReturn())
 					{
@@ -288,12 +290,13 @@ namespace Bombardo.Core
 
 		private static void While(Evaluator eval, StackFrame frame)
 		{
-			switch (frame.state.value)
+			switch (frame.state.@string)
 			{
 				case "-eval-sexp-body-":
 					//  (Cond Body)
-					(frame.temp1, frame.temp2) = (frame.args.atom, frame.args.next);
-					frame.state                = new Atom("-built-in-while-cond-");
+					(frame.temp1, frame.temp2) = (frame.args.Head, frame.args.Next);
+					
+					frame.state = Atoms.STATE_WHILE_COND;
 					break;
 				case "-built-in-while-cond-":
 					if (eval.HaveReturn())
@@ -301,13 +304,13 @@ namespace Bombardo.Core
 						var condition = eval.TakeReturn();
 						if (!condition.IsBool)
 							throw new ArgumentException($"Condition must return boolean atom, but found: {condition}!");
-						if ((bool) condition.value)
+						if (condition.@bool)
 						{
-							frame.state = new Atom("-built-in-while-body-");
+							frame.state = Atoms.STATE_WHILE_BODY;
 						}
 						else
 						{
-							frame.state = new Atom("-eval-sexp-body-");
+							frame.state = Atoms.STATE_EVAL_SEXP_BODY;
 							eval.Return(frame.temp3);
 						}
 					}
@@ -321,7 +324,7 @@ namespace Bombardo.Core
 					if (eval.HaveReturn())
 					{
 						frame.temp3 = eval.TakeReturn();
-						frame.state = new Atom("-built-in-while-cond-");
+						frame.state = Atoms.STATE_WHILE_COND;
 					}
 					else
 					{
@@ -334,12 +337,13 @@ namespace Bombardo.Core
 
 		private static void Until(Evaluator eval, StackFrame frame)
 		{
-			switch (frame.state.value)
+			switch (frame.state.@string)
 			{
 				case "-eval-sexp-body-":
 					//  (Cond Body)
-					(frame.temp1, frame.temp2) = (frame.args.atom, frame.args.next);
-					frame.state                = new Atom("-built-in-while-cond-");
+					(frame.temp1, frame.temp2) = (frame.args.Head, frame.args.Next);
+					
+					frame.state = Atoms.STATE_WHILE_COND;
 					break;
 				case "-built-in-while-cond-":
 					if (eval.HaveReturn())
@@ -347,13 +351,13 @@ namespace Bombardo.Core
 						var condition = eval.TakeReturn();
 						if (!condition.IsBool)
 							throw new ArgumentException($"Condition must return boolean atom, but found: {condition}!");
-						if (!(bool) condition.value)
+						if (!condition.@bool)
 						{
-							frame.state = new Atom("-built-in-while-body-");
+							frame.state = Atoms.STATE_WHILE_BODY;
 						}
 						else
 						{
-							frame.state = new Atom("-eval-sexp-body-");
+							frame.state = Atoms.STATE_EVAL_SEXP_BODY;
 							eval.Return(frame.temp3);
 						}
 					}
@@ -367,7 +371,7 @@ namespace Bombardo.Core
 					if (eval.HaveReturn())
 					{
 						frame.temp3 = eval.TakeReturn();
-						frame.state = new Atom("-built-in-while-cond-");
+						frame.state = Atoms.STATE_WHILE_COND;
 					}
 					else
 					{
@@ -381,52 +385,58 @@ namespace Bombardo.Core
 		private static void Lambda(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
-			var vars = StructureUtils.CloneTree((Atom) args?.value);
-			var body = StructureUtils.CloneTree(args?.next);
+			var vars = StructureUtils.CloneTree(args?.Head);
+			var body = StructureUtils.CloneTree(args?.Next);
 
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.value as Context;
-			var closure = new Closure(ctx, vars, body, "lambda");
-			closure.EvalArgs   = true;
-			closure.EvalResult = false;
+			var ctx     = frame.context.@object as Context;
+			var closure = new Closure(ctx, vars, body, "lambda")
+			{
+				EvalArgs   = true,
+				EvalResult = false
+			};
 
-			eval.Return(new Atom(AtomType.Function, closure));
+			eval.Return(Atom.CreateFunction(closure));
 		}
 
 		private static void Macros(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
-			var vars = StructureUtils.CloneTree((Atom) args?.value);
-			var body = StructureUtils.CloneTree(args?.next);
+			var vars = StructureUtils.CloneTree(args?.Head);
+			var body = StructureUtils.CloneTree(args?.Next);
 
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.value as Context;
-			var closure = new Closure(ctx, vars, body, "macros");
-			closure.EvalArgs   = false;
-			closure.EvalResult = true;
+			var ctx     = frame.context.@object as Context;
+			var closure = new Closure(ctx, vars, body, "macros")
+			{
+				EvalArgs   = false,
+				EvalResult = true
+			};
 
-			eval.Return(new Atom(AtomType.Function, closure));
+			eval.Return(Atom.CreateFunction(closure));
 		}
 
 		private static void Preprocessor(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
-			var vars = StructureUtils.CloneTree((Atom) args?.value);
-			var body = StructureUtils.CloneTree(args?.next);
+			var vars = StructureUtils.CloneTree(args?.Head);
+			var body = StructureUtils.CloneTree(args?.Next);
 
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.value as Context;
-			var closure = new Closure(ctx, vars, body, "preprocessor");
-			closure.EvalArgs   = false;
-			closure.EvalResult = false;
+			var ctx     = frame.context.@object as Context;
+			var closure = new Closure(ctx, vars, body, "preprocessor")
+			{
+				EvalArgs   = false,
+				EvalResult = false
+			};
 
-			eval.Return(new Atom(AtomType.Function, closure));
+			eval.Return(Atom.CreateFunction(closure));
 		}
 
 		private static void Syntax(Evaluator eval, StackFrame frame)
@@ -434,7 +444,7 @@ namespace Bombardo.Core
 			var args = frame.args;
 
 			//  [tag before after]
-			var (tag, before, after) = StructureUtils.Split3(args.atom);
+			var (tag, before, after) = StructureUtils.Split3(args.Head);
 
 			if (!tag.IsSymbol && !tag.IsString)
 				throw new ArgumentException("Tag must be string or symbol!");
@@ -443,18 +453,21 @@ namespace Bombardo.Core
 			if (!after.IsBool)
 				throw new ArgumentException("Eval result flag must be boolean!");
 
-			var vars = StructureUtils.CloneTree(args?.next?.atom);
-			var body = StructureUtils.CloneTree(args?.next?.next);
+			args = args?.Next;
+			var vars = StructureUtils.CloneTree(args?.Head);
+			var body = StructureUtils.CloneTree(args?.Next);
 
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.value as Context;
-			var closure = new Closure(ctx, vars, body, (string) tag.value);
-			closure.EvalArgs   = (bool) before.value;
-			closure.EvalResult = (bool) after.value;
+			var ctx     = frame.context.@object as Context;
+			var closure = new Closure(ctx, vars, body, tag.@string)
+			{
+				EvalArgs   = before.@bool,
+				EvalResult = after.@bool
+			};
 
-			eval.Return(new Atom(AtomType.Function, closure));
+			eval.Return(Atom.CreateFunction(closure));
 		}
 
 		private static void Apply(Evaluator eval, StackFrame frame)
@@ -462,13 +475,13 @@ namespace Bombardo.Core
 			if (eval.HaveReturn())
 			{
 				var args = frame.args;
-				var func = args.atom;
-				var rest = StructureUtils.CloneList(args.next.atom);
+				var func = args.Head;
+				var rest = StructureUtils.CloneList(args.Next.Head);
 
-				var proc = func?.value as Function;
-				if (proc == null) throw new ArgumentException("First argument must be procedure!");
+				if (!func.IsFunction)
+					throw new ArgumentException("First argument must be procedure!");
 
-				eval.CreateFrame("-eval-", new Atom(func, rest), frame.context);
+				eval.CreateFrame("-eval-", Atom.CreatePair(func, rest), frame.context);
 				return;
 			}
 
@@ -480,7 +493,7 @@ namespace Bombardo.Core
 		//     Atom expression = (Atom)args?.value;
 		//     Atom head = Evaluator.Evaluate((Atom)expression?.value, context);
 		//     Closure macros = (Closure)head?.value;
-		//     Atom macroArgs = Atom.CloneTree(expression?.next);
+		//     Atom macroArgs = Atom.CloneTree(expression?.Next);
 		//
 		//     if (macros == null)
 		//         throw new ArgumentException("Macros is null!");
@@ -493,16 +506,16 @@ namespace Bombardo.Core
 		private static void Error(Evaluator eval, StackFrame frame)
 		{
 			var args = frame.args;
-			var tag  = (Atom) args?.value;
-			if (args.next == null)
+			var tag  =  args?.Head;
+			if (args.Next == null)
 			{
 				if (tag.type != AtomType.String &&
 				    tag.type != AtomType.Symbol)
 					throw new ArgumentException("Tag must be string or symbol!");
-				throw new BombardoException((string) tag.value);
+				throw new BombardoException(tag.@string);
 			}
 
-			var text = (Atom) args?.next?.value;
+			var text =  args?.Next?.Head;
 
 			if (tag.type != AtomType.String &&
 			    tag.type != AtomType.Symbol)
@@ -511,7 +524,7 @@ namespace Bombardo.Core
 			if (text.type != AtomType.String)
 				throw new ArgumentException("Text must be string!");
 
-			throw new BombardoException($"<{tag.value}> {text.value}");
+			throw new BombardoException($"<{tag.@string}> {text.@string}");
 		}
 	}
 }

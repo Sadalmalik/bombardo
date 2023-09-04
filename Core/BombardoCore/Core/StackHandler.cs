@@ -28,7 +28,7 @@ namespace Bombardo.Core
 
 		public StackFrame(Atom newContent)
 		{
-			content = newContent ?? new Atom();
+			content = newContent ?? Atoms.EMPTY;
 			LinkElements();
 		}
 		
@@ -84,7 +84,7 @@ namespace Bombardo.Core
 				var subStack = new Stack<StackFrame>();
 				var iter     = newContent;
 				while (iter.Next != null)
-					subStack.Push(new StackFrame(iter.Atom));
+					subStack.Push(new StackFrame(iter.Head));
 				// Reverse stack
 				while (subStack.Count > 0)
 					stack.Push(subStack.Pop());
@@ -105,21 +105,10 @@ namespace Bombardo.Core
 			return frame;
 		}
 
-		public StackFrame CreateFrame(string state, Atom expression, Context context)
+		public StackFrame CreateFrame(Atom state, Atom expression, Atom context)
 		{
 			var frame = new StackFrame(null);
-			frame.state      = Atom.CreateSymbol(state);
-			frame.expression = expression;
-			frame.context    = context.self;
-			stack.Push(frame);
-			content = Atom.CreatePair(frame.content, content);
-			return frame;
-		}
-
-		public StackFrame CreateFrame(string state, Atom expression, Atom context)
-		{
-			var frame = new StackFrame(null);
-			frame.state      = Atom.CreateSymbol(state);
+			frame.state      = state;
 			frame.expression = expression;
 			frame.context    = context;
 			stack.Push(frame);

@@ -17,7 +17,7 @@ namespace Bombardo.Core
         [FieldOffset(sizeof(int))] public Function   @function;
         [FieldOffset(sizeof(int))] public object     @object;
 
-        public Atom Atom => @pair.atom;
+        public Atom Head => @pair.atom;
         
         public Atom Next => @pair.next;
         
@@ -67,10 +67,10 @@ namespace Bombardo.Core
             return atom;
         }
 
-        public static Atom CreateNumber(bool boolean)
+        public static Atom CreateNumber(AtomNumber number)
         {
-            var atom = new Atom(AtomType.Bool);
-            atom.@bool = boolean;
+            var atom = new Atom(AtomType.Number);
+            atom.@number = number;
             return atom;
         }
 

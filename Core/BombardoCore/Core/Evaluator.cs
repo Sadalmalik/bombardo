@@ -41,12 +41,7 @@ namespace Bombardo.Core
 			return temp;
 		}
 		
-		public StackFrame CreateFrame(string state, Atom expression, Context context)
-		{
-			return Stack.CreateFrame(state, expression, context);
-		}
-		
-		public StackFrame CreateFrame(string state, Atom expression, Atom context)
+		public StackFrame CreateFrame(Atom state, Atom expression, Atom context)
 		{
 			return Stack.CreateFrame(state, expression, context);
 		}
@@ -56,12 +51,12 @@ namespace Bombardo.Core
 			Stack.RemoveFrame();
 		}
 		
-		public void Call(string state, Atom expression, Context context)
+		public void Call(Atom state, Atom expression, Context context)
 		{
-			Stack.CreateFrame(state, expression, context);
+			Stack.CreateFrame(state, expression, context.self);
 		}
 		
-		public void Call(string state, Atom expression, Atom context)
+		public void Call(Atom state, Atom expression, Atom context)
 		{
 			Stack.CreateFrame(state, expression, context);
 		}
@@ -84,7 +79,7 @@ namespace Bombardo.Core
 		{
 			_retValue = null;
 			_haveReturn = false;
-			Stack.CreateFrame(startState ?? "-eval-", atom, current_context);
+			Stack.CreateFrame(startState ?? "-eval-", atom, current_context.self);
 
 			while (Stack.stack.Count > 0)
 			{
@@ -171,13 +166,13 @@ namespace Bombardo.Core
 			
 			if (frame.expression != null)
 			{
-				var subExpression = frame.expression.Atom;
+				var subExpression = frame.expression.Head;
 				frame.expression = frame.expression.Next;
 				Call("-eval-", subExpression, frame.context);
 				return;
 			}
 			
-			Return(frame.temp1.Atom);
+			Return(frame.temp1.Head);
 		}
 
 		private void State_EvalBlock(StackFrame frame)
@@ -189,7 +184,7 @@ namespace Bombardo.Core
 			
 			if (frame.expression != null)
 			{
-				var subExpression = frame.expression.Atom;
+				var subExpression = frame.expression.Head;
 				frame.expression = frame.expression.Next;
 				Call("-eval-", subExpression, frame.context);
 				return;
@@ -202,7 +197,7 @@ namespace Bombardo.Core
 		{
 			if (!HaveReturn())
 			{
-				Call("-eval-", frame.expression.Atom, frame.context);
+				Call("-eval-", frame.expression.Head, frame.context);
 				return;
 			}
 			

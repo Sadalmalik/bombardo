@@ -60,7 +60,7 @@ namespace Bombardo.Core
 			{
 				if (value != null && value.type == AtomType.Function)
 				{
-					var proc = value.value as Function;
+					var proc = value.function;
 					if (proc != null && (proc.Name == "??" || proc.Name == "λ"))
 						proc.Name = path[index];
 				}
@@ -72,7 +72,7 @@ namespace Bombardo.Core
 			Context next = null;
 			if (dict == null ||
 			    !dict.IsNative ||
-			    (next = dict.value as Context) == null)
+			    (next = dict.@object as Context) == null)
 			{
 				throw new BombardoException(
 					string.Format(
@@ -95,7 +95,7 @@ namespace Bombardo.Core
 			Context next = null;
 			if (dict == null ||
 			    !dict.IsNative ||
-			    (next = dict.value as Context) == null)
+			    (next = dict.@object as Context) == null)
 			{
 				throw new BombardoException(
 					string.Format(
@@ -113,7 +113,7 @@ namespace Bombardo.Core
 			{
 				if (value != null && value.type == AtomType.Function)
 				{
-					var proc = value.value as Function;
+					var proc = value.@object as Function;
 					if (proc != null && (proc.Name == "??" || proc.Name == "λ"))
 						proc.Name = path[index];
 				}
@@ -126,7 +126,7 @@ namespace Bombardo.Core
 				Context next = null;
 				if (dict == null ||
 				    !dict.IsNative ||
-				    (next = dict.value as Context) == null)
+				    (next = dict.@object as Context) == null)
 				{
 					throw new BombardoException(
 						string.Format(
@@ -151,7 +151,7 @@ namespace Bombardo.Core
 				Context next = null;
 				if (dict == null ||
 				    !dict.IsNative ||
-				    (next = dict.value as Context) == null)
+				    (next = dict.@object as Context) == null)
 				{
 					throw new BombardoException(
 						string.Format(

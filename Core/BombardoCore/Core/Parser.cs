@@ -33,7 +33,7 @@ namespace Bombardo.Core
 				list = StructureUtils.BuildListContainer(list, node);
 			}
 
-			return list?.Atom;
+			return list?.Head;
 		}
 
 		private static void SkipSeparator(List<Token> tokens, ref int offset)

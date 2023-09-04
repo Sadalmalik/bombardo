@@ -4,28 +4,28 @@ using System.Text.RegularExpressions;
 
 namespace Bombardo.Core
 {
-	public static partial class Names
-	{
-        public static readonly string TEXT_CREATE = "create";
-        public static readonly string TEXT_LENGTH = "len";
+    public static partial class Names
+    {
+        public static readonly string TEXT_CREATE   = "create";
+        public static readonly string TEXT_LENGTH   = "len";
         public static readonly string TEXT_GETCHARS = "chars";
-        public static readonly string TEXT_GETCHAR = "get";
+        public static readonly string TEXT_GETCHAR  = "get";
 
-        public static readonly string TEXT_CONCAT  = "concat";
-        public static readonly string TEXT_SUBSTR  = "substr";
-        public static readonly string TEXT_SPLIT   = "split";
-        public static readonly string TEXT_REPLACE = "replace";
+        public static readonly string TEXT_CONCAT    = "concat";
+        public static readonly string TEXT_SUBSTR    = "substr";
+        public static readonly string TEXT_SPLIT     = "split";
+        public static readonly string TEXT_REPLACE   = "replace";
         public static readonly string TEXT_REG_MATCH = "regex-match";
 
         public static readonly string TEXT_STARTSWITH = "startsWith?";
-        public static readonly string TEXT_ENDSWITH = "endsWith?";
-        public static readonly string TEXT_CONTAINS = "contains?";
-	}
-	
-	public class StringFunctions
-	{
-		public static void Define(Context ctx)
-		{
+        public static readonly string TEXT_ENDSWITH   = "endsWith?";
+        public static readonly string TEXT_CONTAINS   = "contains?";
+    }
+
+    public class StringFunctions
+    {
+        public static void Define(Context ctx)
+        {
             //  num is char
             //  (str-create (num num num)) -> num
             //  (str-length string) -> length
@@ -51,7 +51,7 @@ namespace Bombardo.Core
             ctx.DefineFunction(Names.TEXT_SPLIT, Split);
             ctx.DefineFunction(Names.TEXT_REPLACE, Replace);
             ctx.DefineFunction(Names.TEXT_REG_MATCH, Match);
-            
+
             ctx.DefineFunction(Names.TEXT_STARTSWITH, StartsWith);
             ctx.DefineFunction(Names.TEXT_ENDSWITH, EndsWith);
             ctx.DefineFunction(Names.TEXT_CONTAINS, Contains);
@@ -59,121 +59,134 @@ namespace Bombardo.Core
 
         private static void Create(Evaluator eval, StackFrame frame)
         {
-            Atom list = (Atom)frame.args?.value;
+            Atom list = frame.args?.Head;
 
-            if(!list.IsPair) throw new ArgumentException("Argument must be list!");
+            if (!list.IsPair)
+                throw new ArgumentException("Argument must be list!");
 
             StringBuilder sb = new StringBuilder();
-            for (Atom iter = list; iter != null; iter = iter.next)
+            for (Atom iter = list; iter != null; iter = iter.Next)
             {
-                Atom ch = iter.value as Atom;
+                Atom ch = iter.Head;
 
-                if(!ch.IsNumber) throw new ArgumentException("List must contains only numbers!");
+                if (!ch.IsNumber)
+                    throw new ArgumentException("List must contains only numbers!");
 
-                sb.Append(Convert.ToChar(ch.value));
+                sb.Append(ch.number.ToChar());
             }
 
-            eval.Return(new Atom(AtomType.String, sb.ToString()));
+            eval.Return(Atom.CreateString(sb.ToString()));
         }
 
         private static void GetChars(Evaluator eval, StackFrame frame)
         {
-            Atom strArg = (Atom)frame.args?.value;
+            Atom str = frame.args?.Head;
 
-            // if (!str.IsString) throw new ArgumentException("Argument must be string!");
-            
-            string str = strArg.value as string;
-            char[] chars = str.ToCharArray();
+            if (!str.IsString)
+                throw new ArgumentException("Argument must be string!");
+
+            char[] chars = str.@string.ToCharArray();
 
             Atom list = null, tail = null;
             for (int i = 0; i < chars.Length; i++)
             {
                 if (tail == null)
-                    tail = list = new Atom();
-                else tail = tail.next = new Atom();
-                tail.value = new Atom(AtomType.Number, chars[i]);
+                    tail  = list           = Atom.CreatePair(null, null);
+                else tail = tail.pair.next = Atom.CreatePair(null, null);
+                tail.pair.atom = Atom.CreateNumber(new AtomNumber
+                {
+                    type     = AtomNumberType._CHAR_,
+                    val_char = chars[i]
+                });
             }
-            
+
             eval.Return(list);
         }
 
         private static void GetChar(Evaluator eval, StackFrame frame)
         {
-            var (strArg, num) = StructureUtils.Split2(frame.args);
+            var (str, num) = StructureUtils.Split2(frame.args);
 
-            // if (!str.IsString) throw new ArgumentException("Argument must be string!");
-            // if (!num.IsNumber) throw new ArgumentException("Argument must be number!");
+            if (!str.IsString)
+                throw new ArgumentException("Argument must be string!");
+            if (!num.IsNumber)
+                throw new ArgumentException("Argument must be number!");
 
-            string str = strArg.value as string;
-            int index = Convert.ToInt32(num.value);
-            char res = str[index];
-            
-            eval.Return(new Atom(AtomType.Number, res));
+            int index = num.number.ToSInt();
+            eval.Return(Atom.CreateNumber(new AtomNumber
+            {
+                type     = AtomNumberType._CHAR_,
+                val_char = str.@string[index]
+            }));
         }
 
         private static void Length(Evaluator eval, StackFrame frame)
         {
-            Atom atom = (Atom)frame.args?.value;
+            Atom str = frame.args?.Head;
 
-            // if (!atom.IsString) throw new ArgumentException("Argument must be string!");
-            string str = atom.value as string;
-            int res = str.Length;
+            if (!str.IsString)
+                throw new ArgumentException("Argument must be string!");
 
-            eval.Return(new Atom(AtomType.Number, res));
+            eval.Return(Atom.CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.SINT32,
+                val_sint32 = str.@string.Length
+            }));
         }
 
         private static void Concat(Evaluator eval, StackFrame frame)
         {
             StringBuilder sb = new StringBuilder();
 
-            for(Atom iter=frame.args; iter != null; iter = iter.next)
+            for (Atom iter = frame.args; iter != null; iter = iter.Next)
             {
-                Atom atom = (Atom)iter.value;
+                Atom atom = iter.Head;
                 if (atom == null)
-                    sb.Append("null");
-                else if (atom.type == AtomType.String ||
+                    continue;
+                if (atom.type == AtomType.String ||
                     atom.type == AtomType.Symbol)
-                    sb.Append(atom.value);
+                    sb.Append(atom.@string);
                 else
                     sb.Append(atom.Stringify(true));
             }
 
-            eval.Return(new Atom(AtomType.String, sb.ToString()));
+            eval.Return(Atom.CreateString(sb.ToString()));
         }
 
         private static void Substr(Evaluator eval, StackFrame frame)
         {
             var (strArg, starts, length) = StructureUtils.Split3(frame.args);
 
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!starts.IsNumber) throw new ArgumentException("second argument must be string!");
-            // if (!length.IsNumber) throw new ArgumentException("third argument must be string!");
-            
-            string str = strArg.value as string;
-            string res = str.Substring((int)starts.value, (int)length.value);
+            if (!strArg.IsString)
+                throw new ArgumentException("first argument must be string!");
+            if (!starts.IsNumber)
+                throw new ArgumentException("second argument must be string!");
+            if (!length.IsNumber)
+                throw new ArgumentException("third argument must be string!");
 
-            eval.Return(new Atom(AtomType.String, res));
+            string str = strArg.@string;
+            string res = str.Substring(starts.number.ToSInt(), length.number.ToSInt());
+
+            eval.Return(Atom.CreateString(res));
         }
 
         private static void Split(Evaluator eval, StackFrame frame)
         {
             var (strArg, splits) = StructureUtils.Split2(frame.args);
 
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!splits.IsString) throw new ArgumentException("second argument must be string!");
+            if (!strArg.IsString)
+                throw new ArgumentException("first argument must be string!");
+            if (!splits.IsString)
+                throw new ArgumentException("second argument must be string!");
 
-            string str = strArg.value as string;
-            string spl = splits.value as string;
-            string[] list = str.Split(new string[] { spl }, StringSplitOptions.RemoveEmptyEntries);
+            string   str  = strArg.@string;
+            string   spl  = splits.@string;
+            string[] list = str.Split(new[] {spl}, StringSplitOptions.RemoveEmptyEntries);
 
             Atom head, tail;
-            head = tail = new Atom();
-            tail.value = new Atom(AtomType.String, list[0]);
+            head = tail = Atom.CreatePair(Atom.CreateString(list[0]), null);
             for (int i = 1; i < list.Length; i++)
-            {
-                tail = tail.next = new Atom();
-                tail.value = new Atom(AtomType.String, list[i]);
-            }
+                tail = tail.pair.next = Atom.CreatePair(Atom.CreateString(list[i]), null);
 
             eval.Return(head);
         }
@@ -182,16 +195,19 @@ namespace Bombardo.Core
         {
             var (strArg, subArg, newArg) = StructureUtils.Split3(frame.args);
 
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!subArg.IsString) throw new ArgumentException("second argument must be string!");
-            // if (!newArg.IsString) throw new ArgumentException("third argument must be string!");
+            if (!strArg.IsString)
+                throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString)
+                throw new ArgumentException("second argument must be string!");
+            if (!newArg.IsString)
+                throw new ArgumentException("third argument must be string!");
 
-            string str = strArg.value as string;
-            string sub = subArg.value as string;
-            string n_w = newArg.value as string;
-            string res = str.Replace(sub, n_w);
+            string res =
+                strArg.@string.Replace(
+                    subArg.@string,
+                    newArg.@string);
 
-            eval.Return(new Atom(AtomType.String, res));
+            eval.Return(Atom.CreateString(res));
         }
 
         private static void Match(Evaluator eval, StackFrame frame)
@@ -203,48 +219,51 @@ namespace Bombardo.Core
             if (!text.IsString)
                 throw new Exception("Text must be string!");
 
-            var result = Regex.Match(pattern.value as String, text.value as String);
-            
-            eval.Return(new Atom(AtomType.Bool, result.Success));
+            var result = Regex.Match(pattern.@string, text.@string);
+
+            eval.Return(result.Success ? Atoms.TRUE : Atoms.FALSE)
         }
-        
+
         private static void StartsWith(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
 
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!subArg.IsString) throw new ArgumentException("first argument must be string!");
+            if (!strArg.IsString)
+                throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString)
+                throw new ArgumentException("first argument must be string!");
 
-            string str = strArg.value as string;
-            string sub = subArg.value as string;
+            bool result = strArg.@string.StartsWith(subArg.@string);
 
-            eval.Return(str.StartsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
+            eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
         }
 
         private static void EndsWith(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
 
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!subArg.IsString) throw new ArgumentException("first argument must be string!");
+            if (!strArg.IsString)
+                throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString)
+                throw new ArgumentException("first argument must be string!");
 
-            string str = strArg.value as string;
-            string sub = subArg.value as string;
+            bool result = strArg.@string.EndsWith(subArg.@string);
 
-            eval.Return(str.EndsWith(sub) ? Atoms.TRUE : Atoms.FALSE);
+            eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
         }
 
         private static void Contains(Evaluator eval, StackFrame frame)
         {
             var (strArg, subArg) = StructureUtils.Split2(frame.args);
 
-            // if (!strArg.IsString) throw new ArgumentException("first argument must be string!");
-            // if (!subArg.IsString) throw new ArgumentException("second argument must be string!");
+            if (!strArg.IsString)
+                throw new ArgumentException("first argument must be string!");
+            if (!subArg.IsString)
+                throw new ArgumentException("second argument must be string!");
 
-            string str = strArg.value as string;
-            string sub = subArg.value as string;
+            bool result = strArg.@string.Contains(subArg.@string);
 
-            eval.Return(str.Contains(sub) ? Atoms.TRUE : Atoms.FALSE);
+            eval.Return(result ? Atoms.TRUE : Atoms.FALSE);
         }
-	}
+    }
 }
