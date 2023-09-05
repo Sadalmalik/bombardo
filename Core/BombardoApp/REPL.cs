@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*
+
+using System;
 using System.Collections.Generic;
 using System.IO;
 using Bombardo.Core;
@@ -96,11 +98,11 @@ namespace Bombardo.V1
             Console.WriteLine(@"
 
                             (@),,;;,,(@)
-         *-----*               /||||\               *-----*
+         *-----*               /||||\               +-----*
         /     / \    <*>      [ /||\ ]      <*>    / \     \
        /     /   \    |      [  -/\__ ]      |    /   \     \
-      /     /     *===*\    [_- -__  - ]    /*===*     \     \
-           /     /    \*===[ ___ --  __-]===*/    \     \
+      /     /     +===+\    [_- -__  - ]    /+===+     \     \
+           /     /    \+===[ ___ --  __-]===+/    \     \
           /     /     /     [    __    ]     \     \     \
          /     /     /     [ --  ][   --]     \     \     \
                     /      [ _ -]  [ __ ]      \
@@ -186,3 +188,5 @@ namespace Bombardo.V1
         }
     }
 }
+
+//*/

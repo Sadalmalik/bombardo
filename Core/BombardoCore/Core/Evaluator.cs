@@ -79,7 +79,8 @@ namespace Bombardo.Core
 		{
 			_retValue = null;
 			_haveReturn = false;
-			Stack.CreateFrame(startState ?? "-eval-", atom, current_context.self);
+			Atom initialState = string.IsNullOrEmpty(startState) ? Atoms.STATE_EVAL : Atom.CreateString(startState);
+			Stack.CreateFrame(initialState, atom, current_context.self);
 
 			while (Stack.stack.Count > 0)
 			{
@@ -133,7 +134,7 @@ namespace Bombardo.Core
 			
 			if (frame.expression.IsPair)
 			{
-				frame.SetState("-eval-sexp-head-");
+				frame.SetState(Atoms.STATE_EVAL_SEXP_HEAD);
 				return;
 			}
 			
@@ -168,7 +169,7 @@ namespace Bombardo.Core
 			{
 				var subExpression = frame.expression.Head;
 				frame.expression = frame.expression.Next;
-				Call("-eval-", subExpression, frame.context);
+				Call(Atoms.STATE_EVAL, subExpression, frame.context);
 				return;
 			}
 			
@@ -186,7 +187,7 @@ namespace Bombardo.Core
 			{
 				var subExpression = frame.expression.Head;
 				frame.expression = frame.expression.Next;
-				Call("-eval-", subExpression, frame.context);
+				Call(Atoms.STATE_EVAL, subExpression, frame.context);
 				return;
 			}
 			
@@ -197,7 +198,7 @@ namespace Bombardo.Core
 		{
 			if (!HaveReturn())
 			{
-				Call("-eval-", frame.expression.Head, frame.context);
+				Call(Atoms.STATE_EVAL, frame.expression.Head, frame.context);
 				return;
 			}
 			
@@ -208,8 +209,8 @@ namespace Bombardo.Core
 				ErrorMessage = $"Head is not function: {frame.function} in {frame.expression}";
 				return;
 			}
-
-			frame.SetState("-eval-sexp-args-");
+			
+			frame.SetState(Atoms.STATE_EVAL_SEXP_ARGS);
 		}
 
 		private void State_EvalSExpArgs(StackFrame frame)
@@ -219,17 +220,17 @@ namespace Bombardo.Core
 				var func = frame.function.function;
 				if (func.EvalArgs && frame.expression.Next != null)
 				{
-					Call("-eval-each-", frame.expression.Next, frame.context);
+					Call(Atoms.STATE_EVAL_EACH, frame.expression.Next, frame.context);
 					return;
 				}
 				
 				frame.args = frame.expression.Next;
-				frame.SetState("-eval-sexp-body-");
+				frame.SetState(Atoms.STATE_EVAL_SEXP_BODY);
 				return;
 			}
 
 			frame.args = TakeReturn();
-			frame.SetState("-eval-sexp-body-");
+			frame.SetState(Atoms.STATE_EVAL_SEXP_BODY);
 		}
 
 		private void State_EvalSExpBody(StackFrame frame)
@@ -244,7 +245,7 @@ namespace Bombardo.Core
 			
 			if (func.EvalResult)
 			{
-				frame.SetState("-eval-sexp-result-");
+				frame.SetState(Atoms.STATE_EVAL_SEXP_RESULT);
 				frame.temp1 = TakeReturn();
 				return;
 			}
@@ -256,7 +257,7 @@ namespace Bombardo.Core
 		{
 			if (!HaveReturn())
 			{
-				Call("-eval-", frame.temp1, frame.context);
+				Call(Atoms.STATE_EVAL, frame.temp1, frame.context);
 				return;
 			}
 

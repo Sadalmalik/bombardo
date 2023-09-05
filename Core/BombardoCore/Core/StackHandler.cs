@@ -32,9 +32,9 @@ namespace Bombardo.Core
 			LinkElements();
 		}
 		
-		public void SetState(string state)
+		public void SetState(Atom state)
 		{
-			_state.pair.atom = Atom.CreateSymbol(state);
+			_state.pair.atom = state;
 		}
 
 		private void EnsureLength(int len)

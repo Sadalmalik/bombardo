@@ -300,9 +300,9 @@ namespace Bombardo.Core
                             frame.temp1 = frame.temp1.Next;
 
                         var subExpression = Atom.CreatePair(frame.temp1.Head, null);
-
+                        
                         var newFrame = eval.CreateFrame(
-                            "-eval-sexp-body-",
+                            Atoms.STATE_EVAL_SEXP_BODY,
                             StructureUtils.List(proc, frame.temp1.Head),
                             frame.context);
                         newFrame.function = proc;
@@ -348,7 +348,7 @@ namespace Bombardo.Core
                         var subExpression = Atom.CreatePair(frame.temp1.Head, null);
                         frame.temp1 = frame.temp1.Next;
                         var newFrame = eval.CreateFrame(
-                            "-eval-sexp-args-",
+                            Atoms.STATE_EVAL_SEXP_ARGS,
                             Atom.CreatePair(proc, subExpression),
                             frame.context);
                         newFrame.function = proc;
@@ -403,7 +403,7 @@ namespace Bombardo.Core
                         subExpression = Atom.CreatePair(subExpression, null);
                         frame.temp1   = frame.temp1.Next;
                         var newFrame = eval.CreateFrame(
-                            "-eval-sexp-args-",
+                            Atoms.STATE_EVAL_SEXP_ARGS,
                             Atom.CreatePair(proc, subExpression),
                             frame.context);
                         newFrame.function = proc;

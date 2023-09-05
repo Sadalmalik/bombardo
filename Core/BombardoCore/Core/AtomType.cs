@@ -9,7 +9,8 @@
         public const int Bool      = 3;
         public const int Number    = 4;
         public const int Function  = 5;
-        public const int Native    = 6;
+        public const int Context   = 6;
+        public const int Native    = 7;
 
         public static string ToString(int type)
         {
@@ -21,6 +22,7 @@
                 case Bool:     return "Bool";
                 case Number:   return "Number";
                 case Function: return "Function";
+                case Context:  return "Context";
                 case Native:   return "Native";
                 default:       return "Undefined";
             }

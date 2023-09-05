@@ -19,7 +19,7 @@ namespace Bombardo.Core
 		{
 			Context innerContext = new Context(context_);
 			innerContext.SetArgs(args_, frame.args);
-			eval.CreateFrame("-eval-block-", body_, innerContext.self);
+			eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, body_, innerContext.self);
 		}
 	}
 }

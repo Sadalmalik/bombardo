@@ -126,7 +126,7 @@ namespace Bombardo.Core
 			{
 				var (expression, ctxAtom) = StructureUtils.Split2(frame.args);
 				var ctx = ctxAtom?.@object as Context ?? frame.context.@object as Context;
-				eval.CreateFrame("-eval-", expression, ctx.self);
+				eval.CreateFrame(Atoms.STATE_EVAL, expression, ctx.self);
 				return;
 			}
 
@@ -149,7 +149,8 @@ namespace Bombardo.Core
 					expression = frame.args?.Next?.Head;
 				else
 					ctx = frame.context.@object as Context;
-				eval.CreateFrame("-eval-block-", expression, ctx.self);
+						
+				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx.self);
 				return;
 			}
 
@@ -172,7 +173,7 @@ namespace Bombardo.Core
 					expression = expression.Next;
 				else
 					ctx = frame.context.@object as Context;
-				eval.CreateFrame("-eval-block-", expression, ctx.self);
+				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx.self);
 				return;
 			}
 
@@ -209,7 +210,7 @@ namespace Bombardo.Core
 						if (!frame.temp2.IsPair)
 							throw new ArgumentException($"Condition element must be list, but found: {frame.temp2}!");
 
-						eval.CreateFrame("-eval-", frame.temp2.Head, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL, frame.temp2.Head, frame.context);
 					}
 					else
 					{
@@ -223,7 +224,7 @@ namespace Bombardo.Core
 					if (eval.HaveReturn())
 						eval.CloseFrame();
 					else
-						eval.CreateFrame("-eval-block-", frame.temp2.Next, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, frame.temp2.Next, frame.context);
 
 					break;
 			}
@@ -252,7 +253,7 @@ namespace Bombardo.Core
 					}
 					else
 					{
-						eval.CreateFrame("-eval-", frame.temp1, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL, frame.temp1, frame.context);
 					}
 				}
 					break;
@@ -267,7 +268,7 @@ namespace Bombardo.Core
 						break;
 					}
 
-					eval.CreateFrame("-eval-", frame.temp2, frame.context);
+					eval.CreateFrame(Atoms.STATE_EVAL, frame.temp2, frame.context);
 				}
 					break;
 				case "-built-in-if-else-":
@@ -282,7 +283,7 @@ namespace Bombardo.Core
 					if (frame.temp3 == null)
 						eval.Return(null);
 					else
-						eval.CreateFrame("-eval-", frame.temp3, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL, frame.temp3, frame.context);
 
 					break;
 			}
@@ -316,7 +317,7 @@ namespace Bombardo.Core
 					}
 					else
 					{
-						eval.CreateFrame("-eval-", frame.temp1, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL, frame.temp1, frame.context);
 					}
 
 					break;
@@ -328,7 +329,7 @@ namespace Bombardo.Core
 					}
 					else
 					{
-						eval.CreateFrame("-eval-block-", frame.temp2, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, frame.temp2, frame.context);
 					}
 
 					break;
@@ -363,7 +364,7 @@ namespace Bombardo.Core
 					}
 					else
 					{
-						eval.CreateFrame("-eval-", frame.temp1, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL, frame.temp1, frame.context);
 					}
 
 					break;
@@ -375,7 +376,7 @@ namespace Bombardo.Core
 					}
 					else
 					{
-						eval.CreateFrame("-eval-block-", frame.temp2, frame.context);
+						eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, frame.temp2, frame.context);
 					}
 
 					break;
@@ -481,7 +482,7 @@ namespace Bombardo.Core
 				if (!func.IsFunction)
 					throw new ArgumentException("First argument must be procedure!");
 
-				eval.CreateFrame("-eval-", Atom.CreatePair(func, rest), frame.context);
+				eval.CreateFrame(Atoms.STATE_EVAL, Atom.CreatePair(func, rest), frame.context);
 				return;
 			}
 

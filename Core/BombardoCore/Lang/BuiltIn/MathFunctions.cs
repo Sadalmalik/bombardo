@@ -107,8 +107,8 @@ namespace Bombardo.Core
         {
             //  Constants
 
-            ctx.Define(Names.MATH_PI, new Atom(AtomType.Number, Math.PI));
-            ctx.Define(Names.MATH_E, new Atom(AtomType.Number, Math.E));
+            ctx.Define(Names.MATH_PI, Atom.CreateNumber(Math.PI));
+            ctx.Define(Names.MATH_E, Atom.CreateNumber(Math.E));
 
             //  Base math
 
@@ -634,11 +634,6 @@ namespace Bombardo.Core
 
 
 #region Types Predicates
-
-        private static bool CheckNumberType(Atom atom, int type)
-        {
-            return atom.type == AtomType.Number && AtomNumberOperations.NumberType(atom.value) == type;
-        }
 
         private static void PredUByte(Evaluator eval, StackFrame frame)
         {

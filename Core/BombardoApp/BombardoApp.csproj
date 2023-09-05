@@ -64,8 +64,7 @@
     -->
     <Target Name="AfterBuild">
         <Copy SourceFiles="D:\PROGRAMMING\CSharp\BombardoFixed\Core\BombardoApp\bin\Debug\BombardoApp.exe" DestinationFolder="D:\PROGRAMMING\CSharp\BombardoFixed\Lang\bin" />
-        <Copy SourceFiles="D:\PROGRAMMING\CSharp\BombardoFixed\Core\BombardoApp\bin\Debug\BombardoV1.dll" DestinationFolder="D:\PROGRAMMING\CSharp\BombardoFixed\Lang\bin" />
-        <Copy SourceFiles="D:\PROGRAMMING\CSharp\BombardoFixed\Core\BombardoApp\bin\Debug\BombardoV2.dll" DestinationFolder="D:\PROGRAMMING\CSharp\BombardoFixed\Lang\bin" />
+        <Copy SourceFiles="D:\PROGRAMMING\CSharp\BombardoFixed\Core\BombardoApp\bin\Debug\BombardoCore.dll" DestinationFolder="D:\PROGRAMMING\CSharp\BombardoFixed\Lang\bin" />
     </Target>
 
 </Project>

@@ -60,8 +60,8 @@ namespace Bombardo.Core
                 eval.Return(result);
                 return;
             }
-
-            eval.CreateFrame("-eval-", value, frame.context);
+            
+            eval.CreateFrame(Atoms.STATE_EVAL, value, frame.context);
             frame.state = Atoms.INTERNAL_STATE;
         }
 
@@ -94,7 +94,7 @@ namespace Bombardo.Core
                 return;
             }
 
-            eval.CreateFrame("-eval-", args.Next?.Head, frame.context);
+            eval.CreateFrame(Atoms.STATE_EVAL, args.Next?.Head, frame.context);
             frame.state = Atoms.INTERNAL_STATE;
         }
 

@@ -15,13 +15,14 @@ namespace Bombardo.Core
         [FieldOffset(sizeof(int))] public bool       @bool;
         [FieldOffset(sizeof(int))] public AtomNumber @number;
         [FieldOffset(sizeof(int))] public Function   @function;
+        [FieldOffset(sizeof(int))] public Context    @context;
         [FieldOffset(sizeof(int))] public object     @object;
 
         public Atom Head => @pair.atom;
-        
+
         public Atom Next => @pair.next;
-        
-        
+
+
         public bool IsEmpty    => type == AtomType.Pair && pair.IsEmpty;
         public bool IsPair     => type == AtomType.Pair;
         public bool IsSymbol   => type == AtomType.Symbol;
@@ -29,6 +30,7 @@ namespace Bombardo.Core
         public bool IsBool     => type == AtomType.Bool;
         public bool IsNumber   => type == AtomType.Number;
         public bool IsFunction => type == AtomType.Function;
+        public bool IsContext  => type == AtomType.Context;
         public bool IsNative   => type == AtomType.Native;
 
         public Atom(int type)
@@ -73,11 +75,54 @@ namespace Bombardo.Core
             atom.@number = number;
             return atom;
         }
+        
+        public static Atom CreateNumber(char value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType._CHAR_,
+                val_char = value
+            });
+        }
+        
+        public static Atom CreateNumber(int value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.SINT32,
+                val_sint32 = value
+            });
+        }
+        
+        public static Atom CreateNumber(float value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.SINGLE,
+                val_single = value
+            });
+        }
+        
+        public static Atom CreateNumber(double value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.DOUBLE,
+                val_double = value
+            });
+        }
 
         public static Atom CreateFunction(Function function)
         {
             var atom = new Atom(AtomType.Function);
             atom.@function = function;
+            return atom;
+        }
+
+        public static Atom CreateContext(Context context)
+        {
+            var atom = new Atom(AtomType.Context);
+            atom.@context = context;
             return atom;
         }
 
@@ -121,7 +166,7 @@ namespace Bombardo.Core
                     if (@pair.atom == null &&
                         @pair.next == null)
                         return Atom.EMPTY_PAIR;
-                    
+
                     StringBuilder sb = new StringBuilder();
                     if (!wrapped) sb.Append("( ");
 

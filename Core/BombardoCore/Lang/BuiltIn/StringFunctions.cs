@@ -93,11 +93,7 @@ namespace Bombardo.Core
                 if (tail == null)
                     tail  = list           = Atom.CreatePair(null, null);
                 else tail = tail.pair.next = Atom.CreatePair(null, null);
-                tail.pair.atom = Atom.CreateNumber(new AtomNumber
-                {
-                    type     = AtomNumberType._CHAR_,
-                    val_char = chars[i]
-                });
+                tail.pair.atom = Atom.CreateNumber(chars[i]);
             }
 
             eval.Return(list);
@@ -113,11 +109,7 @@ namespace Bombardo.Core
                 throw new ArgumentException("Argument must be number!");
 
             int index = num.number.ToSInt();
-            eval.Return(Atom.CreateNumber(new AtomNumber
-            {
-                type     = AtomNumberType._CHAR_,
-                val_char = str.@string[index]
-            }));
+            eval.Return(Atom.CreateNumber(str.@string[index]));
         }
 
         private static void Length(Evaluator eval, StackFrame frame)
@@ -127,11 +119,7 @@ namespace Bombardo.Core
             if (!str.IsString)
                 throw new ArgumentException("Argument must be string!");
 
-            eval.Return(Atom.CreateNumber(new AtomNumber
-            {
-                type       = AtomNumberType.SINT32,
-                val_sint32 = str.@string.Length
-            }));
+            eval.Return(Atom.CreateNumber(str.@string.Length));
         }
 
         private static void Concat(Evaluator eval, StackFrame frame)
@@ -221,7 +209,7 @@ namespace Bombardo.Core
 
             var result = Regex.Match(pattern.@string, text.@string);
 
-            eval.Return(result.Success ? Atoms.TRUE : Atoms.FALSE)
+            eval.Return(result.Success ? Atoms.TRUE : Atoms.FALSE);
         }
 
         private static void StartsWith(Evaluator eval, StackFrame frame)
