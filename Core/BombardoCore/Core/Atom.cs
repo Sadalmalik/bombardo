@@ -35,7 +35,7 @@ namespace Bombardo.Core
 
         public Atom(int type)
         {
-            @type      = type;
+            this.@type = type;
             @pair.atom = null;
             @pair.next = null;
         }
@@ -75,16 +75,16 @@ namespace Bombardo.Core
             atom.@number = number;
             return atom;
         }
-        
+
         public static Atom CreateNumber(char value)
         {
             return CreateNumber(new AtomNumber
             {
-                type       = AtomNumberType._CHAR_,
+                type     = AtomNumberType._CHAR_,
                 val_char = value
             });
         }
-        
+
         public static Atom CreateNumber(int value)
         {
             return CreateNumber(new AtomNumber
@@ -93,7 +93,7 @@ namespace Bombardo.Core
                 val_sint32 = value
             });
         }
-        
+
         public static Atom CreateNumber(float value)
         {
             return CreateNumber(new AtomNumber
@@ -102,7 +102,7 @@ namespace Bombardo.Core
                 val_single = value
             });
         }
-        
+
         public static Atom CreateNumber(double value)
         {
             return CreateNumber(new AtomNumber

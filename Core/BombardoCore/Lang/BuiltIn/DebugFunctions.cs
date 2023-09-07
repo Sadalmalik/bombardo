@@ -9,7 +9,7 @@ namespace Bombardo.Core
 		public static readonly string LISP_TIMER_END   = "timerEnd";
 	}
 
-	public class DebugFunctions
+	public static class DebugFunctions
 	{
 		public static DateTime mark;
 		

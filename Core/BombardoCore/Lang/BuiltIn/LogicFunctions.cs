@@ -14,7 +14,7 @@ namespace Bombardo.Core.Lang
 		public static readonly string LOGIC_NOT = "not";
 	}
 
-	public class LogicFunctions
+	public static class LogicFunctions
 	{
 		public static void Define(Context ctx)
 		{

@@ -13,8 +13,8 @@ namespace Bombardo.Core
         public Context(Context parent = null)
         {
             this.parent  = parent;
+            this.self    = Atom.CreateContext(this);
             this.@sealed = false;
-            this.self    = Atom.CreateNative(this);
         }
 
         public Atom DefineFunction(string name,

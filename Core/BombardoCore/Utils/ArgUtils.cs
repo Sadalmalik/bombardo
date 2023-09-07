@@ -20,7 +20,7 @@ namespace Bombardo.Core
 		public static T GetEnum<T>(Atom argument, int idx, T tenum = default) where T : struct, Enum
 		{
 			if (argument == null) return tenum;
-			if (argument.type == AtomType.Symbol || Enum.TryParse(argument.@string, out tenum)) return tenum;
+			if (argument.type == AtomType.Symbol && Enum.TryParse(argument.@string, out tenum)) return tenum;
 			var number = GetNumber(idx);
 			var values = string.Join(", ", Enum.GetValues(typeof(T)));
 			throw new ArgumentException($"{number} argument must be one of symbols: {values}!");

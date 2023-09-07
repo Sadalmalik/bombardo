@@ -22,7 +22,7 @@ namespace Bombardo.Core
         public static readonly string TEXT_CONTAINS   = "contains?";
     }
 
-    public class StringFunctions
+    public static class StringFunctions
     {
         public static void Define(Context ctx)
         {

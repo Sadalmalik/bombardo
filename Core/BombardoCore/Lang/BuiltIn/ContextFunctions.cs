@@ -15,7 +15,7 @@ namespace Bombardo.Core
         public static readonly string LISP_GET_CONTEXT_PARENT = "getContextParent";
     }
 
-    public class ContextFunctions
+    public static class ContextFunctions
     {
         public static void Define(Context ctx)
         {
@@ -51,7 +51,7 @@ namespace Bombardo.Core
             {
                 var name   = sym.@string;
                 var result = eval.TakeReturn();
-                var ctx    = context?.@object as Context ?? frame.context.@object as Context;
+                var ctx    = context.IsContext ? context.context : frame.context.context;
                 if (result?.function is Closure function
                     && (function.Name.Equals("??") || function.Name.Equals("λ")))
                     function.Name = name;
@@ -60,20 +60,21 @@ namespace Bombardo.Core
                 eval.Return(result);
                 return;
             }
-            
+
             eval.CreateFrame(Atoms.STATE_EVAL, value, frame.context);
             frame.state = Atoms.INTERNAL_STATE;
         }
 
         private static void Undefine(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            var sym  = args?.Head;
+            var (sym, context) = StructureUtils.Split2(frame.args);
+
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Undefining name must be symbol!");
+            var ctx = context.IsContext ? context.context : frame.context.context;
 
-            var ctx    = frame.context.@object as Context;
             var result = ContextUtils.Undefine(ctx, sym.@string);
+
             eval.Return(result);
         }
 
@@ -85,23 +86,22 @@ namespace Bombardo.Core
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Variable name must be symbol!");
 
-            if (eval.HaveReturn())
+            if (!eval.HaveReturn())
             {
-                var result = eval.TakeReturn();
-                var ctx    = frame.context.@object as Context;
-                ContextUtils.Set(ctx, result, (string) sym.@string);
-                eval.Return(result);
+                eval.CreateFrame(Atoms.STATE_EVAL, args.Next?.Head, frame.context);
+                frame.state = Atoms.INTERNAL_STATE;
                 return;
             }
 
-            eval.CreateFrame(Atoms.STATE_EVAL, args.Next?.Head, frame.context);
-            frame.state = Atoms.INTERNAL_STATE;
+            var result = eval.TakeReturn();
+            var ctx    = frame.context.@context;
+            ContextUtils.Set(ctx, result, sym.@string);
+            eval.Return(result);
         }
 
         private static void ToString(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            var atom = args.Head;
+            var atom = frame.args.Head;
             eval.Return(Atom.CreateString(atom.ToString()));
         }
 
@@ -139,7 +139,7 @@ namespace Bombardo.Core
         {
             var args    = frame.args;
             var ctx     = args?.Head;
-            var context = frame.context.@object as Context;
+            var context = frame.context.@context;
             if (ctx != null && ctx.IsNative)
                 if (ctx.@object is Context other)
                     context = other;

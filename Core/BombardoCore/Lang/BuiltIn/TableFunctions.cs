@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Diagnostics;
 using System.Linq;
 
@@ -21,7 +22,7 @@ namespace Bombardo.Core
         public static readonly string LISP_TABLE_PRED = "table?";
     }
 
-    public class TableFunctions
+    public static class TableFunctions
     {
         public static void Define(Context ctx)
         {
@@ -44,22 +45,21 @@ namespace Bombardo.Core
 
         private static void TableCreate(Evaluator eval, StackFrame frame)
         {
-            Atom    args   = frame.args;
-            Context parent = args?.Head?.@object as Context;
-            Context dict   = new Context(parent);
+            Atom    parent        = frame.args.Head;
+            Context parentContext = parent.IsContext ? parent.@context : null;
+            Context table          = new Context(parentContext);
 
-            if (parent != null)
-                args = args.Next;
-
-            FillDictionary(dict, args);
-            eval.Return(dict.self);
+            FillDictionary(table, parentContext != null ? frame.args.Next : frame.args);
+            eval.Return(table.self);
         }
 
         private static void TableGet(Evaluator eval, StackFrame frame)
         {
             var (dict, key) = StructureUtils.Split2(frame.args);
 
-            Context dictionary = GetDictionary(dict);
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
             if (key == null ||
                 (key.type != AtomType.String &&
@@ -67,7 +67,7 @@ namespace Bombardo.Core
                 throw new BombardoException(
                     $"Table key must be string or symbol!!! A Key: {key}, {key?.type}, {key == null}, {frame.args}");
 
-            dictionary.TryGetValue(key.@string, out var value);
+            table.TryGetValue(key.@string, out var value);
 
             eval.Return(value);
         }
@@ -76,9 +76,11 @@ namespace Bombardo.Core
         {
             var (dict, list) = StructureUtils.Split1Next(frame.args);
 
-            Context dictionary = GetDictionary(dict);
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
-            FillDictionary(dictionary, list);
+            FillDictionary(table, list);
 
             eval.Return(null);
         }
@@ -87,23 +89,27 @@ namespace Bombardo.Core
         {
             var (dict, key) = StructureUtils.Split2(frame.args);
 
-            Context dictionary = GetDictionary(dict);
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
             if (key.type != AtomType.String && key.type != AtomType.Symbol)
                 throw new BombardoException($"Table key must be string or symbol!!! B Key: {key}");
 
-            dictionary.Remove(key.@string);
+            table.Remove(key.@string);
 
             eval.Return(null);
         }
 
         private static void TableClear(Evaluator eval, StackFrame frame)
         {
-            Atom dict  = frame.args.Head;
+            Atom dict = frame.args.Head;
 
-            Context dictionary = GetDictionary(dict);
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
-            dictionary.Clear();
+            table.Clear();
 
             eval.Return(null);
         }
@@ -118,8 +124,12 @@ namespace Bombardo.Core
                 dst   = frame.context;
             }
 
-            var srcCtx = GetDictionary(src);
-            var dstCtx = GetDictionary(dst);
+            if (!src.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context srcCtx = src.@context;
+            if (!dst.IsContext)
+                throw new BombardoException("Second argument must be table!");
+            Context dstCtx = dst.@context;
 
             string[] nameList = StructureUtils.ListToStringArray(names, "TABLE");
 
@@ -135,8 +145,12 @@ namespace Bombardo.Core
             if (dst == null)
                 dst = frame.context;
 
-            var srcCtx = GetDictionary(src);
-            var dstCtx = GetDictionary(dst);
+            if (!src.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context srcCtx = src.@context;
+            if (!dst.IsContext)
+                throw new BombardoException("Second argument must be table!");
+            Context dstCtx = dst.@context;
 
             ContextUtils.ImportAllSymbols(srcCtx, dstCtx);
 
@@ -148,18 +162,18 @@ namespace Bombardo.Core
         {
             var args = frame.args;
             var (dict, func) = StructureUtils.Split2(args);
-            Context  dictionary = GetDictionary(dict);
-            Function proc       = func.function;
-
-            if (dictionary == null)
-                throw new ArgumentException("First argument must be table!");
-            if (proc == null)
+            
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context  table = dict.@context;
+            
+            if (!func.IsFunction)
                 throw new ArgumentException("Second argument must be procedure!");
 
             switch (frame.state.@string)
             {
                 case "-eval-sexp-body-":
-                    var list = dictionary
+                    var list = table
                         .Select(pair => StructureUtils.List(Atom.CreateString(pair.Key), pair.Value))
                         .ToArray();
                     frame.temp1 = StructureUtils.List(list);
@@ -194,8 +208,10 @@ namespace Bombardo.Core
 
         private static void TableKeys(Evaluator eval, StackFrame frame)
         {
-            var atom  = frame.args.Head;
-            var table = atom.@object as Context;
+            var dict  = frame.args.Head;
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
             if (table == null)
             {
@@ -213,8 +229,10 @@ namespace Bombardo.Core
 
         private static void TableValues(Evaluator eval, StackFrame frame)
         {
-            var atom  = frame.args.Head;
-            var table = atom.@object as Context;
+            var dict = frame.args.Head;
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
             if (table == null)
             {
@@ -232,8 +250,10 @@ namespace Bombardo.Core
 
         private static void TablePairs(Evaluator eval, StackFrame frame)
         {
-            var atom  = frame.args.Head;
-            var table = atom.@object as Context;
+            var dict = frame.args.Head;
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
 
             if (table == null)
             {
@@ -259,14 +279,8 @@ namespace Bombardo.Core
 
         private static void TablePred(Evaluator eval, StackFrame frame)
         {
-            var atom   = frame.args.Head;
-            var result = atom != null && atom.type == AtomType.Native;
-            if (!result) eval.SetReturn(Atoms.FALSE);
-            else
-            {
-                var table = atom.@object as Context;
-                eval.Return(table != null ? Atoms.TRUE : Atoms.FALSE);
-            }
+            var dict = frame.args.Head;
+            eval.Return(dict.IsContext ? Atoms.TRUE : Atoms.FALSE);
         }
 
 #endregion
@@ -286,13 +300,6 @@ namespace Bombardo.Core
                     throw new BombardoException($"Table key must be string or symbol!!! C Key: {key}");
                 dict.Define(key.@string, value);
             }
-        }
-
-        private static Context GetDictionary(Atom atom)
-        {
-            if (atom == null) return null;
-            if (atom.type != AtomType.Native) return null;
-            return atom.@object as Context;
         }
 
 #endregion

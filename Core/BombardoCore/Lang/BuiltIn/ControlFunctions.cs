@@ -125,7 +125,7 @@ namespace Bombardo.Core
 			if (!eval.HaveReturn())
 			{
 				var (expression, ctxAtom) = StructureUtils.Split2(frame.args);
-				var ctx = ctxAtom?.@object as Context ?? frame.context.@object as Context;
+				var ctx = ctxAtom.IsContext ? ctxAtom.context : frame.context.context;
 				eval.CreateFrame(Atoms.STATE_EVAL, expression, ctx.self);
 				return;
 			}
@@ -137,7 +137,7 @@ namespace Bombardo.Core
 		{
 			if (!eval.HaveReturn())
 			{
-				var expression = frame.args?.Head;
+				var expression = frame.args.Head;
 				if (expression is null)
 				{
 					eval.SetReturn(null);
@@ -145,12 +145,14 @@ namespace Bombardo.Core
 					return;
 				}
 
-				if (expression.@object is Context ctx)
-					expression = frame.args?.Next?.Head;
-				else
-					ctx = frame.context.@object as Context;
-						
-				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx.self);
+				var ctx = frame.context;
+				if (expression.IsContext)
+				{
+					ctx        = expression;
+					expression = frame.args.Next.Head;
+				}
+				
+				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx);
 				return;
 			}
 
@@ -161,7 +163,7 @@ namespace Bombardo.Core
 		{
 			if (!eval.HaveReturn())
 			{
-				var expression = frame.args;
+				var expression = frame.args.Head;
 				if (expression is null)
 				{
 					eval.SetReturn(null);
@@ -169,11 +171,14 @@ namespace Bombardo.Core
 					return;
 				}
 
-				if (expression.@object is Context ctx)
-					expression = expression.Next;
-				else
-					ctx = frame.context.@object as Context;
-				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx.self);
+				var ctx = frame.context;
+				if (expression.IsContext)
+				{
+					ctx        = expression;
+					expression = frame.args.Next.Head;
+				}
+				
+				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx);
 				return;
 			}
 
@@ -392,7 +397,7 @@ namespace Bombardo.Core
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.@object as Context;
+			var ctx     = frame.context.context;
 			var closure = new Closure(ctx, vars, body, "lambda")
 			{
 				EvalArgs   = true,
@@ -411,7 +416,7 @@ namespace Bombardo.Core
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.@object as Context;
+			var ctx = frame.context.context;
 			var closure = new Closure(ctx, vars, body, "macros")
 			{
 				EvalArgs   = false,
@@ -430,7 +435,7 @@ namespace Bombardo.Core
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.@object as Context;
+			var ctx     = frame.context.context;
 			var closure = new Closure(ctx, vars, body, "preprocessor")
 			{
 				EvalArgs   = false,
@@ -461,7 +466,7 @@ namespace Bombardo.Core
 			if (vars.type != AtomType.Pair && vars.type != AtomType.Symbol)
 				throw new ArgumentException("Args must be list or symbol!");
 
-			var ctx     = frame.context.@object as Context;
+			var ctx     = frame.context.context;
 			var closure = new Closure(ctx, vars, body, tag.@string)
 			{
 				EvalArgs   = before.@bool,
