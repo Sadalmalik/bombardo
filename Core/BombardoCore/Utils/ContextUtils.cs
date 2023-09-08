@@ -1,3 +1,6 @@
+using System;
+using System.Runtime.CompilerServices;
+
 namespace Bombardo.Core
 {
     public class ContextUtils
@@ -148,6 +151,21 @@ namespace Bombardo.Core
             {
                 into.Define(pair.Key, pair.Value);
             }
+        }
+        
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        public static Context GetContext(Atom context, StackFrame frame)
+        {
+            var ctx = frame.context.context;
+            if (context != null)
+            {
+                if (!context.IsContext)
+                    throw new ArgumentException("Definition context must be context!");
+                ctx = context.context;
+            }
+
+            return ctx;
         }
     }
 }

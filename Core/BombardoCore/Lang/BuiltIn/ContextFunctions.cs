@@ -41,43 +41,32 @@ namespace Bombardo.Core
             ctx.Define(Names.EMPTY_SYMBOL, Atoms.EMPTY);
         }
 
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        private static Context GetContext(Atom context, StackFrame frame)
-        {
-            var ctx = frame.context.context;
-            if (context != null)
-            {
-                if (!context.IsContext)
-                    throw new ArgumentException("Definition context must be context!");
-                ctx = context.context;
-            }
-
-            return ctx;
-        }
-
         private static void Define(Evaluator eval, StackFrame frame)
         {
-            var (sym, value, context) = StructureUtils.Split3(frame.args);
+            var sym  = frame.args.Head;
+            var args = frame.args.Next;
 
             if (sym.type != AtomType.Symbol)
                 throw new ArgumentException("Definition name must be symbol!");
 
-            if (eval.HaveReturn())
+            if (!eval.HaveReturn())
             {
-                var name   = sym.@string;
-                var result = eval.TakeReturn();
-                var ctx    = GetContext(context, frame);
-                if (result?.function is Closure function
-                    && (function.Name.Equals("??") || function.Name.Equals("λ")))
-                    function.Name = name;
-                //Console.WriteLine($"DEFINE: '{name}' = '{result}' at -internal-state-{ctx}");
-                ContextUtils.Define(ctx, result, name);
-                eval.Return(result);
+                eval.CreateFrame(Atoms.STATE_EVAL_EACH, args, frame.context);
+                frame.state = Atoms.INTERNAL_STATE;
                 return;
             }
 
-            eval.CreateFrame(Atoms.STATE_EVAL, value, frame.context);
-            frame.state = Atoms.INTERNAL_STATE;
+            var evaluatedArgs = eval.TakeReturn();
+            var (value, context) = StructureUtils.Split2(evaluatedArgs);
+
+            var name = sym.@string;
+            var ctx  = ContextUtils.GetContext(context, frame);
+            if (value?.function is Closure function
+                && (function.Name.Equals("??") || function.Name.Equals("λ")))
+                function.Name = name;
+
+            ContextUtils.Define(ctx, value, name);
+            eval.Return(value);
         }
 
         private static void Undefine(Evaluator eval, StackFrame frame)
@@ -86,7 +75,7 @@ namespace Bombardo.Core
 
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Undefining name must be symbol!");
-            var ctx = GetContext(context, frame);
+            var ctx = ContextUtils.GetContext(context, frame);
 
             var result = ContextUtils.Undefine(ctx, sym.@string);
 
@@ -112,7 +101,7 @@ namespace Bombardo.Core
             var evaluatedArgs = eval.TakeReturn();
             var (value, context) = StructureUtils.Split2(evaluatedArgs);
 
-            var ctx = GetContext(context, frame);
+            var ctx = ContextUtils.GetContext(context, frame);
             ContextUtils.Set(ctx, value, sym.@string);
             eval.Return(value);
         }

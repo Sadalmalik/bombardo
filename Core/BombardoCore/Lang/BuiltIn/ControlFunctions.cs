@@ -125,7 +125,7 @@ namespace Bombardo.Core
 			if (!eval.HaveReturn())
 			{
 				var (expression, ctxAtom) = StructureUtils.Split2(frame.args);
-				var ctx = ctxAtom.IsContext ? ctxAtom.context : frame.context.context;
+				var ctx = ContextUtils.GetContext(ctxAtom, frame);
 				eval.CreateFrame(Atoms.STATE_EVAL, expression, ctx.self);
 				return;
 			}
@@ -152,7 +152,7 @@ namespace Bombardo.Core
 					expression = frame.args.Next.Head;
 				}
 				
-				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx);
+				eval.CreateFrame(Atoms.STATE_EVAL_EACH, expression, ctx);
 				return;
 			}
 
@@ -164,20 +164,15 @@ namespace Bombardo.Core
 			if (!eval.HaveReturn())
 			{
 				var expression = frame.args.Head;
-				if (expression is null)
-				{
-					eval.SetReturn(null);
-					eval.CloseFrame();
-					return;
-				}
-
+				
 				var ctx = frame.context;
-				if (expression.IsContext)
+				if (expression!=null &&
+				    expression.IsContext)
 				{
 					ctx        = expression;
-					expression = frame.args.Next.Head;
+					expression = expression.Next;
 				}
-				
+
 				eval.CreateFrame(Atoms.STATE_EVAL_BLOCK, expression, ctx);
 				return;
 			}

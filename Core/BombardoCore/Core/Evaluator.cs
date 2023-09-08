@@ -93,6 +93,7 @@ namespace Bombardo.Core
 				}
 				
 				StackFrame frame = Stack.TopFrame;
+				//Console.WriteLine($"Frame expression: {frame}");
 				switch (frame.state.@string)
 				{
 					case "-eval-":	            State_Eval(frame);           continue;
@@ -187,7 +188,7 @@ namespace Bombardo.Core
 			{
 				var subExpression = frame.expression.Head;
 				frame.expression = frame.expression.Next;
-				Call(Atoms.STATE_EVAL, subExpression, frame.context);
+				Call(Atoms.STATE_EVAL_BLOCK, subExpression, frame.context);
 				return;
 			}
 			
