@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace Bombardo.Core
 {
-    [StructLayout(LayoutKind.Explicit)]
+    [StructLayout(LayoutKind.Explicit, Size = sizeof(decimal))]
     public struct AtomNumber : IEquatable<AtomNumber>
     {
         [FieldOffset(0)]           public int     type;
@@ -27,17 +27,17 @@ namespace Bombardo.Core
                 case AtomNumberType.UINT_8:
                     return val_uint8.ToString();
                 case AtomNumberType.SINT_8:
-                    return val_uint8.ToString();
+                    return val_sint8.ToString();
                 case AtomNumberType.UINT16:
                     return val_uint16.ToString();
                 case AtomNumberType.SINT16:
-                    return val_uint16.ToString();
+                    return val_sint16.ToString();
                 case AtomNumberType._CHAR_:
                     return $"'{val_char}'";
                 case AtomNumberType.UINT32:
                     return val_uint32.ToString();
                 case AtomNumberType.SINT32:
-                    return val_uint32.ToString();
+                    return val_sint32.ToString();
                 case AtomNumberType.UINT64:
                     return val_uint64.ToString();
                 case AtomNumberType.SINT64:

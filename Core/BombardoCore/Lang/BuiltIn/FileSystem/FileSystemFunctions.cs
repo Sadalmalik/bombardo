@@ -7,17 +7,14 @@ namespace Bombardo.Core
 {
     public static partial class Names
     {
-        // File operations
-        public static readonly string FS_FILE_READ         = "read";        // fs.file.read
-        public static readonly string FS_FILE_WRITE        = "write";       // fs.file.write
-        public static readonly string FS_FILE_READ_LINE    = "readLine";    // fs.file.readLine
-        public static readonly string FS_FILE_WRITE_LINE   = "writeLine";   // fs.file.writeLine
-        public static readonly string FS_FILE_READ_TEXT    = "readText";    // fs.file.readText
-        public static readonly string FS_FILE_WRITE_TEXT   = "writeText";   // fs.file.writeText
-        public static readonly string FS_FILE_READ_LINES   = "readLines";   // fs.file.readLines
-        public static readonly string FS_FILE_WRITE_LINES  = "writeLines";  // fs.file.writeLines
-        public static readonly string FS_FILE_APPEND_TEXT  = "appendText";  // fs.file.appendText
-        public static readonly string FS_FILE_APPEND_LINES = "appendLines"; // fs.file.appendLines
+        // Submodules
+        public static readonly string FS_SUBMODULE_PATH      = "path";      // submodule
+        public static readonly string FS_SUBMODULE_DIRECTORY = "directory"; // submodule
+        public static readonly string FS_SUBMODULE_FILE      = "file";      // submodule
+
+        // File Submodules
+        public static readonly string FS_FILE_SUBMODULE_TEXT = "text"; // fs.file.text
+        public static readonly string FS_FILE_SUBMODULE_BIN  = "bin";  // fs.file.bin
     }
 
     public static class FileSystemFunctions
@@ -26,56 +23,34 @@ namespace Bombardo.Core
         {
             // General functions
             FSGeneral.Define(ctx);
-            
+
             // Path functions
             var path = new Context();
-            ctx.Define(Names.FS_SUBMODULE_PATH, path.self);
             FSPath.Define(path);
+            ctx.Define(Names.FS_SUBMODULE_PATH, path.self);
 
-            // Directory operations
-
+            // Directory functions
             var directory = new Context();
-            ctx.Define(Names.FS_SUBMODULE_DIRECTORY, directory.self);
             FSDirectory.Define(directory);
+            ctx.Define(Names.FS_SUBMODULE_DIRECTORY, directory.self);
 
-            // File operations
-
-
-            //  (fs.file.read handler) -> char
-            //  (fs.file.readLine handler) -> string
-            //  (fs.file.write handler char|string|symbol|number)
-            //  (fs.file.writeLine handler char|string|symbol|number)
-
-            //  (fs.file.readText "filepath") -> string
-            //  (fs.file.writeText "filepath") -> ( string string string ... )
-            //  (fs.file.readLines "filepath" string)
-            //  (fs.file.writeLines "filepath" ( string string string ... ))
-            //  (fs.file.appendText "filepath" string)
-            //  (fs.file.appendLines "filepath" ( string string string ... ))
-
+            // File functions
             var file = new Context();
+            FSFile.Define(file);
+            {
+                var text = new Context();
+                FSFileText.Define(text);
+                file.Define(Names.FS_FILE_SUBMODULE_TEXT, text.self);
+
+                var bin = new Context();
+                FSFileBinary.Define(bin);
+                file.Define(Names.FS_FILE_SUBMODULE_BIN, bin.self);
+            }
             ctx.Define(Names.FS_SUBMODULE_FILE, file.self);
-
-
-            file.DefineFunction(Names.FS_FILE_READ, FileRead);
-            file.DefineFunction(Names.FS_FILE_READ_LINE, FileReadLine);
-            file.DefineFunction(Names.FS_FILE_WRITE, FileWrite);
-            file.DefineFunction(Names.FS_FILE_WRITE_LINE, FileWriteLine);
-
-            file.DefineFunction(Names.FS_FILE_READ_TEXT, FileReadText);
-            file.DefineFunction(Names.FS_FILE_READ_LINES, FileReadLines);
-            file.DefineFunction(Names.FS_FILE_WRITE_TEXT, FileWriteText);
-            file.DefineFunction(Names.FS_FILE_WRITE_LINES, FileWriteLines);
-            file.DefineFunction(Names.FS_FILE_APPEND_TEXT, FileAppendText);
-            file.DefineFunction(Names.FS_FILE_APPEND_LINES, FileAppendLines);
-            // Predicates
-
         }
 
 
-
 #region File operations
-
 
         private static void FileRead(Evaluator eval, StackFrame frame)
         {
@@ -255,7 +230,5 @@ namespace Bombardo.Core
         }
 
 #endregion
-
-
     }
 }

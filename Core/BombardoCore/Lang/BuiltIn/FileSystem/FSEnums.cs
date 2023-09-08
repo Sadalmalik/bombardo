@@ -2,6 +2,12 @@
 
 namespace Bombardo.Core
 {
+    public enum FSMode
+    {
+        text,
+        bin
+    }
+    
     public enum FSEncoding
     {
         acii, utf7, utf8, utf32

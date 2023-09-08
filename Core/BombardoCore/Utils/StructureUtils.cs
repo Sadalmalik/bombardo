@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Bombardo.Core
 {
@@ -158,6 +159,7 @@ namespace Bombardo.Core
                 callback(iter.Head, iter.Next.Head);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Atom Split1(Atom value)
         {
             Atom iter = value;
@@ -166,6 +168,7 @@ namespace Bombardo.Core
             return (a_1);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom) Split1Next(Atom value)
         {
             Atom iter = value;
@@ -174,6 +177,7 @@ namespace Bombardo.Core
             return (a_1, iter);
         }
         
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom) Split2(Atom value)
         {
             Atom iter = value;
@@ -183,6 +187,7 @@ namespace Bombardo.Core
             return (a_1, a_2);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom, Atom) Split2Next(Atom value)
         {
             Atom iter = value;
@@ -192,6 +197,7 @@ namespace Bombardo.Core
             return (a_1, a_2, iter);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom, Atom) Split3(Atom value)
         {
             Atom iter = value;
@@ -202,6 +208,7 @@ namespace Bombardo.Core
             return (a_1, a_2, a_3);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom, Atom, Atom) Split4(Atom value)
         {
             Atom iter = value;
@@ -213,6 +220,7 @@ namespace Bombardo.Core
             return (a_1, a_2, a_3, a_4);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom, Atom, Atom, Atom) Split5(Atom value)
         {
             Atom iter = value;
@@ -225,6 +233,7 @@ namespace Bombardo.Core
             return (a_1, a_2, a_3, a_4, a_5);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom, Atom, Atom, Atom, Atom) Split6(Atom value)
         {
             Atom iter = value;
@@ -238,6 +247,7 @@ namespace Bombardo.Core
             return (a_1, a_2, a_3, a_4, a_5, a_6);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom, Atom, Atom, Atom, Atom, Atom) Split7(Atom value)
         {
             Atom iter = value;

@@ -16,12 +16,6 @@ namespace Bombardo.Core
         public static readonly string FS_FILE_DELETE = "delete"; // fs.file.delete
     }
 
-    public enum FSMode
-    {
-        text,
-        bin
-    }
-
     public static class FSFile
     {
         public static void Define(Context file)
@@ -138,19 +132,19 @@ namespace Bombardo.Core
             if (stream.type != AtomType.Native)
                 throw new ArgumentException("Argument must be Stream!");
 
-            if (stream.@object is StreamWriter streamWriter)
+            switch (stream.@object)
             {
-                streamWriter.Flush();
-                eval.Return(null);
-                return;
+                case StreamWriter streamWriter:
+                    streamWriter.Flush();
+                    break;
+                case BinaryWriter binaryWriter:
+                    binaryWriter.Flush();
+                    break;
+                default:
+                    throw new ArgumentException("Argument must be Stream Writer!");
             }
-            if (stream.@object is BinaryWriter binaryWriter)
-            {
-                binaryWriter.Flush();
-                eval.Return(null);
-                return;
-            }
-            throw new ArgumentException("Argument must be Stream Writer!");
+            
+            eval.Return(null);
         }
 
         private static void FileClose(Evaluator eval, StackFrame frame)
@@ -160,11 +154,23 @@ namespace Bombardo.Core
             if (stream.type != AtomType.Native)
                 throw new ArgumentException("Argument must be stream!");
 
-            var reader = stream.@object as StreamReader;
-            reader?.Close();
-
-            var writer = stream.@object as StreamWriter;
-            writer?.Close();
+            switch (stream.@object)
+            {
+                case StreamWriter streamWriter:
+                    streamWriter.Close();
+                    break;
+                case BinaryWriter binaryWriter:
+                    binaryWriter.Close();
+                    break;
+                case StreamReader streamReader:
+                    streamReader.Close();
+                    break;
+                case BinaryReader binaryReader:
+                    binaryReader.Close();
+                    break;
+                default:
+                    throw new ArgumentException("Argument must be Stream!");
+            }
 
             eval.Return(null);
         }

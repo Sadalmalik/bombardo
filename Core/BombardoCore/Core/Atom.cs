@@ -1,37 +1,103 @@
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Bombardo.Core
 {
-    [StructLayout(LayoutKind.Explicit)]
+    public struct AtomPair
+    {
+        public Atom atom;
+        public Atom next;
+
+        public bool IsEmpty => atom == null && next == null;
+    }
+
+    //[StructLayout(LayoutKind.Explicit, Pack = 1)]
     public class Atom
     {
         public static readonly string EMPTY_PAIR = "()";
 
-        [FieldOffset(0)] public int @type;
+        //[FieldOffset(0)]
+        public int @type;
 
-        [FieldOffset(sizeof(int))] public AtomPair   @pair;
-        [FieldOffset(sizeof(int))] public string     @string;
-        [FieldOffset(sizeof(int))] public bool       @bool;
-        [FieldOffset(sizeof(int))] public AtomNumber @number;
-        [FieldOffset(sizeof(int))] public Function   @function;
-        [FieldOffset(sizeof(int))] public Context    @context;
-        [FieldOffset(sizeof(int))] public object     @object;
+        //[FieldOffset(sizeof(int))]
+        public AtomPair   @pair;
+        public string     @string;
+        public bool       @bool;
+        public AtomNumber @number;
+        public Function   @function;
+        public Context    @context;
+        public object     @object;
 
-        public Atom Head => @pair.atom;
+        public Atom Head
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => @pair.atom;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => @pair.atom = value;
+        }
 
-        public Atom Next => @pair.next;
+        public Atom Next
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => @pair.next;
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            set => @pair.next = value;
+        }
 
+        public bool IsEmpty
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Pair && pair.IsEmpty;
+        }
 
-        public bool IsEmpty    => type == AtomType.Pair && pair.IsEmpty;
-        public bool IsPair     => type == AtomType.Pair;
-        public bool IsSymbol   => type == AtomType.Symbol;
-        public bool IsString   => type == AtomType.String;
-        public bool IsBool     => type == AtomType.Bool;
-        public bool IsNumber   => type == AtomType.Number;
-        public bool IsFunction => type == AtomType.Function;
-        public bool IsContext  => type == AtomType.Context;
-        public bool IsNative   => type == AtomType.Native;
+        public bool IsPair
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Pair;
+        }
+
+        public bool IsSymbol
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Symbol;
+        }
+
+        public bool IsString
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.String;
+        }
+
+        public bool IsBool
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Bool;
+        }
+
+        public bool IsNumber
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Number;
+        }
+
+        public bool IsFunction
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Function;
+        }
+
+        public bool IsContext
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Context;
+        }
+
+        public bool IsNative
+        {
+            [MethodImpl(MethodImplOptions.AggressiveInlining)]
+            get => type == AtomType.Native;
+        }
 
         public Atom(int type)
         {
@@ -76,6 +142,42 @@ namespace Bombardo.Core
             return atom;
         }
 
+        public static Atom CreateNumber(byte value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type      = AtomNumberType.UINT_8,
+                val_uint8 = value
+            });
+        }
+
+        public static Atom CreateNumber(sbyte value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type      = AtomNumberType.SINT_8,
+                val_sint8 = value
+            });
+        }
+
+        public static Atom CreateNumber(ushort value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.UINT16,
+                val_uint16 = value
+            });
+        }
+
+        public static Atom CreateNumber(short value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.SINT16,
+                val_sint16 = value
+            });
+        }
+
         public static Atom CreateNumber(char value)
         {
             return CreateNumber(new AtomNumber
@@ -85,12 +187,39 @@ namespace Bombardo.Core
             });
         }
 
+        public static Atom CreateNumber(uint value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.UINT32,
+                val_uint32 = value
+            });
+        }
+
         public static Atom CreateNumber(int value)
         {
             return CreateNumber(new AtomNumber
             {
                 type       = AtomNumberType.SINT32,
                 val_sint32 = value
+            });
+        }
+
+        public static Atom CreateNumber(ulong value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.UINT64,
+                val_uint64 = value
+            });
+        }
+
+        public static Atom CreateNumber(long value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type       = AtomNumberType.SINT64,
+                val_sint64 = value
             });
         }
 
@@ -109,6 +238,15 @@ namespace Bombardo.Core
             {
                 type       = AtomNumberType.DOUBLE,
                 val_double = value
+            });
+        }
+
+        public static Atom CreateNumber(decimal value)
+        {
+            return CreateNumber(new AtomNumber
+            {
+                type        = AtomNumberType.DECIMAL,
+                val_decimal = value
             });
         }
 

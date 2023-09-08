@@ -11,11 +11,6 @@ namespace Bombardo.Core
         public static readonly string FS_FIND   = "find";   // fs.find
         public static readonly string FS_LOOKUP = "lookup"; // fs.lookup
 
-        // Submodules
-        public static readonly string FS_SUBMODULE_PATH      = "path";      // submodule
-        public static readonly string FS_SUBMODULE_DIRECTORY = "directory"; // submodule
-        public static readonly string FS_SUBMODULE_FILE      = "file";      // submodule
-
         // Predicates
         public static readonly string FS_PRED_EXISTS = "exist?";            // fs.exist?
         public static readonly string FS_PRED_FILE   = "isFile?";           // fs.isFile?

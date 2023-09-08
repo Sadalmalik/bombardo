@@ -146,10 +146,10 @@ namespace Bombardo.Core
                     return;
                 }
 
-                if (pair.Value.IsNative && atom.@object is Context ctx)
+                if (pair.Value.IsContext)
                 {
                     sb.AppendLine($"{indent}{pair.Key}:");
-                    ctx.InternalDump(sb, indentSize + indentStep, indentStep);
+                    atom.context.InternalDump(sb, indentSize + indentStep, indentStep);
                 }
                 else
                 {

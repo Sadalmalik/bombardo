@@ -144,7 +144,7 @@ namespace Bombardo.Core
 				Atom value;
 				try
 				{
-					value = ContextUtils.Get((Context) frame.context.@object, name);
+					value = ContextUtils.Get(frame.context.context, name);
 				}
 				catch (BombardoException bex)
 				{

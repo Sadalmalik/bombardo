@@ -3,6 +3,7 @@
 # специально что бы была возможность переопределять язык в пространстве скриптов
 
 
+(console.print "A")
 
 # Инициируем контексты для работы и импортируем базовые элементы для работы
 (context.define $CTX$ (context.getContext))
@@ -11,6 +12,7 @@
 (table.importAll math $CTX$)
 (table.importAll lang $CTX$)
 
+(console.print "B")
 
 
 # Подгрузка частей загрузчика
@@ -27,16 +29,18 @@
 	(evalEach $CTX$ $content)
 ))
 
+(console.print "C")
 
 
 # Исполнение частей загрузчика
-#(feval/cc (findFile "boot.test.brd"))
-#(feval/cc (findFile "boot.test_env.brd"))
+(feval/cc (findFile "boot.test.brd"))
+(feval/cc (findFile "boot.test_env.brd"))
 (feval/cc (findFile "boot.preprocessors.brd"))
-#(feval/cc (findFile "boot.preprocessors.test.brd"))
+(feval/cc (findFile "boot.preprocessors.test.brd"))
 (feval/cc (findFile "boot.modules.stack.brd") DefaultPreprocess)
 (feval/cc (findFile "boot.modules.buildin.brd") DefaultPreprocess)
 (feval/cc (findFile "boot.modules.loader.brd") DefaultPreprocess)
 (feval/cc (findFile "boot.startup.brd") DefaultPreprocess)
 (print)
 
+(console.print "D")
