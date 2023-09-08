@@ -1,4 +1,5 @@
 using System;
+using System.Runtime.CompilerServices;
 
 namespace Bombardo.Core
 {
@@ -40,6 +41,20 @@ namespace Bombardo.Core
             ctx.Define(Names.EMPTY_SYMBOL, Atoms.EMPTY);
         }
 
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static Context GetContext(Atom context, StackFrame frame)
+        {
+            var ctx = frame.context.context;
+            if (context != null)
+            {
+                if (!context.IsContext)
+                    throw new ArgumentException("Definition context must be context!");
+                ctx = context.context;
+            }
+
+            return ctx;
+        }
+
         private static void Define(Evaluator eval, StackFrame frame)
         {
             var (sym, value, context) = StructureUtils.Split3(frame.args);
@@ -51,7 +66,7 @@ namespace Bombardo.Core
             {
                 var name   = sym.@string;
                 var result = eval.TakeReturn();
-                var ctx    = context.IsContext ? context.context : frame.context.context;
+                var ctx    = GetContext(context, frame);
                 if (result?.function is Closure function
                     && (function.Name.Equals("??") || function.Name.Equals("λ")))
                     function.Name = name;
@@ -71,7 +86,7 @@ namespace Bombardo.Core
 
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Undefining name must be symbol!");
-            var ctx = context.IsContext ? context.context : frame.context.context;
+            var ctx = GetContext(context, frame);
 
             var result = ContextUtils.Undefine(ctx, sym.@string);
 
@@ -81,22 +96,25 @@ namespace Bombardo.Core
 
         private static void SetFirst(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            var sym  = args?.Head;
+            var sym  = frame.args.Head;
+            var args = frame.args.Next;
+
             if (sym == null || sym.type != AtomType.Symbol)
                 throw new ArgumentException("Variable name must be symbol!");
 
             if (!eval.HaveReturn())
             {
-                eval.CreateFrame(Atoms.STATE_EVAL, args.Next?.Head, frame.context);
+                eval.CreateFrame(Atoms.STATE_EVAL_EACH, args, frame.context);
                 frame.state = Atoms.INTERNAL_STATE;
                 return;
             }
 
-            var result = eval.TakeReturn();
-            var ctx    = frame.context.@context;
-            ContextUtils.Set(ctx, result, sym.@string);
-            eval.Return(result);
+            var evaluatedArgs = eval.TakeReturn();
+            var (value, context) = StructureUtils.Split2(evaluatedArgs);
+
+            var ctx = GetContext(context, frame);
+            ContextUtils.Set(ctx, value, sym.@string);
+            eval.Return(value);
         }
 
         private static void ToString(Evaluator eval, StackFrame frame)
