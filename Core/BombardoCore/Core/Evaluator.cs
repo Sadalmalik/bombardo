@@ -87,11 +87,11 @@ namespace Bombardo.Core
 				if (ErrorMessage != null)
 				{
 					Console.WriteLine($"[ERROR] {ErrorMessage}");
+					Stack.Dump();
 					ErrorMessage = null;
 					return null;
 				}
 				
-				Function func;
 				StackFrame frame = Stack.TopFrame;
 				switch (frame.state.@string)
 				{
@@ -109,7 +109,7 @@ namespace Bombardo.Core
 				//  Либо это стейты функции и тогда её надо вызывать
 				if (frame.function != null)
 				{
-					func = frame.function.function;
+					Function func = frame.function.function;
 					func.Apply(this, frame);
 					continue;
 				}
@@ -203,8 +203,8 @@ namespace Bombardo.Core
 			}
 			
 			frame.function = TakeReturn();
-			
-			if (!frame.function.IsFunction)
+			if (frame.function == null ||
+			    !frame.function.IsFunction)
 			{
 				ErrorMessage = $"Head is not function: {frame.function} in {frame.expression}";
 				return;

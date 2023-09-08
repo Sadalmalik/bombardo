@@ -127,7 +127,7 @@ namespace Bombardo.Core.Lang
 			CheckAllBoolean(args);
 			if (args.Next != null)
 				throw new ArgumentException("Too many arguments!");
-			eval.Return(args.Head.@bool ? Atoms.TRUE : Atoms.FALSE);
+			eval.Return(args.Head.@bool ? Atoms.FALSE : Atoms.TRUE);
 		}
 
 #endregion Boolean operations
