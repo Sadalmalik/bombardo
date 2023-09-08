@@ -18,6 +18,7 @@ namespace Bombardo.Core
 		private Atom _temp2;
 		private Atom _temp3;
 
+        // @formatter:off
 		public Atom state      { get => _state.pair.atom;      set => _state.pair.atom = value; }
 		public Atom expression { get => _expression.pair.atom; set => _expression.pair.atom = value; }
 		public Atom context    { get => _context.pair.atom;    set => _context.pair.atom = value; }
@@ -26,10 +27,11 @@ namespace Bombardo.Core
 		public Atom temp1      { get => _temp1.pair.atom;      set => _temp1.pair.atom = value; }
 		public Atom temp2      { get => _temp2.pair.atom;      set => _temp2.pair.atom = value; }
 		public Atom temp3      { get => _temp3.pair.atom;      set => _temp3.pair.atom = value; }
+        // @formatter:on
 
 		public StackFrame(Atom newContent)
 		{
-			content = newContent ?? Atoms.EMPTY;
+			content = newContent ?? Atom.CreatePair(null, null);
 			LinkElements();
 		}
 
