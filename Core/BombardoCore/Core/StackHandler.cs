@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 
 namespace Bombardo.Core
@@ -30,6 +31,11 @@ namespace Bombardo.Core
 		{
 			content = newContent ?? Atoms.EMPTY;
 			LinkElements();
+		}
+
+		public override string ToString()
+		{
+			return $"Stack frame: {content.Stringify()}";
 		}
 		
 		public void SetState(Atom state)
@@ -125,7 +131,7 @@ namespace Bombardo.Core
 			var iter = content;
 			while (iter != null && limit-->0)
 			{
-				_dump.AppendFormat("  {0}\n", iter.pair.atom);
+				_dump.AppendFormat("  {0}\n", iter.pair.atom.Stringify());
 				iter = iter.pair.next;
 			}
 			Console.WriteLine(_dump.ToString());

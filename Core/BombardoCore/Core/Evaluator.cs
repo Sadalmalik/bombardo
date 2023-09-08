@@ -93,6 +93,10 @@ namespace Bombardo.Core
 				
 				Function func;
 				StackFrame frame = Stack.TopFrame;
+				Console.WriteLine();
+				Console.WriteLine($"Evaluate stack head: {frame}");
+				Stack.Dump();
+				Console.WriteLine();
 				switch (frame.state.@string)
 				{
 					case "-eval-":	            State_Eval(frame);           continue;

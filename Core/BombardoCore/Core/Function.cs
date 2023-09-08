@@ -22,11 +22,11 @@ namespace Bombardo.Core
             EvalResult = evalResult;
         }
 
-        public Function(string name, Atom tag, Action<Evaluator, StackFrame> function, bool evalArgs = true,
-            bool               evalResult = false)
+        public Function(string name, Atom tag, Action<Evaluator, StackFrame> function, bool evalArgs = true, bool evalResult = false)
         {
             Name       = name;
             this.tag   = tag;
+            self       = Atom.CreateFunction(this);
             Perform    = function;
             EvalArgs   = evalArgs;
             EvalResult = evalResult;
