@@ -1,10 +1,14 @@
 # Финальная загрузка и запуск скрипта или REPL-цикла
 
 (define Start (lambda []
-	(if [or (null? env.pathToScript)
-			(eq? env.pathToScript env.pathToBoot)]
-		[StartREPL]
-		[StartScript])
+	(print "Path to script:" env.pathToScript "is null:" (null? env.pathToScript))
+	(cond	[(null? env.pathToScript)
+				(StartREPL)]
+			[(eq? env.pathToScript env.pathToBoot)
+				(StartREPL)]
+			[true
+				(StartScript)]
+	)
 ))
 
 (define StartREPL (lambda []

@@ -4,7 +4,12 @@
 (define $modules (table.create))
 (define $modulesStack null)
 (define $currentModule null)
-(define $baseModuleFolder (fs.path.getDirectoryName env.pathToScript))
+(define $baseModuleFolder 
+	(if [not-null? env.pathToScript]
+		[fs.path.getDirectoryName env.pathToScript]
+		env.pathToBase
+	)
+)
 
 # Создает новый модуль и ставит его в стек
 (define CreateModule (lambda [$path]

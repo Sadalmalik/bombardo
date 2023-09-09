@@ -35,7 +35,7 @@
 ))
 
 (define $x 0)
-(while [< $x 15]
+(while [< $x 50]
 	(define $x (+ $x 1))
 	(debug.timerStart)
 	(print (Primes 100))

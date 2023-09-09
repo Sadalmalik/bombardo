@@ -23,7 +23,7 @@ namespace Bombardo.Core
                            Compare(a.pair.next, b.pair.next);
                 case AtomType.Symbol:
                 case AtomType.String:
-                    return a.@string.Equals(b.@string);
+                    return a.@string == b.@string;
                 case AtomType.Bool:
                     return a.@bool == b.@bool;
                 case AtomType.Number:
