@@ -83,30 +83,30 @@
 
 # Препроцессор, преобразующий квотирование в s-expression
 # Пример: `x -> (quote x)
-(define PreprocessQuoting (lambda [$expression]
-	(if [pair? $expression]
+(define PreprocessQuoting (lambda [expression]
+	(if [pair? expression]
 		[block
-			(define $iter valNull)
-			(while [not-null? $expression]
-				(define $SYM (car $expression))
+			(define iter valNull)
+			(while [not-null? expression]
+				(define $SYM (car expression))
 				(define $isQuote (eq? $SYM symQuote))
-				(define $hasNext (not-null? (cdr $expression)))
+				(define $hasNext (not-null? (cdr expression)))
 				(cond 	[(and $isQuote $hasNext)
-							(set! $iter (cons (list (quote quote) (cadr $expression)) $iter))
-							(set! $expression (cddr $expression))
+							(set! iter (cons (list (quote quote) (cadr expression)) iter))
+							(set! expression (cddr expression))
 						]
 						[(and $isQuote (not $hasNext))
 							(error "Quoting ` can't be last in list!")
 						]
 						[valTrue
-							(set! $iter (cons (PreprocessQuoting $SYM) $iter))
-							(set! $expression (cdr $expression))
+							(set! iter (cons (PreprocessQuoting $SYM) iter))
+							(set! expression (cdr expression))
 						]
 				)
 			)
-			(reverse $iter)
+			(reverse iter)
 		]
-		$expression
+		expression
 	)
 ))
 

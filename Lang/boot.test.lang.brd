@@ -1,0 +1,17 @@
+# тест базовых языковых конструкций
+
+(print "Test cons:")
+(print "  (cons)                  =>                ( )  : " (lang.cons))
+(print "  (cons 1 2)              =>          ( 1 . 2 )  : " (lang.cons (quote 1) (quote 2)))
+(print "  (cons (cons 3 4) 5)     =>  ( ( 3 . 4 ) . 5 )  : " (lang.cons (lang.cons (quote 3) (quote 4) ) (quote 5)))
+(print "  (cons 6 (cons 7 8))     =>        ( 6 7 . 8 )  : " (lang.cons (quote 6) (lang.cons (quote 7) (quote 8))))
+(print)
+
+(print "Test car/cdr operations:")
+(print "  ( car  ((a b) (c d)) )  =>      ( a b )  : " (car  (quote ((a b) (c d)))))
+(print "  ( cdr  ((a b) (c d)) )  =>  ( ( c d ) )  : " (cdr  (quote ((a b) (c d)))))
+(print "  ( caar ((a b) (c d)) )  =>            a  : " (caar (quote ((a b) (c d)))))
+(print "  ( cdar ((a b) (c d)) )  =>        ( b )  : " (cdar (quote ((a b) (c d)))))
+(print "  ( cadr ((a b) (c d)) )  =>      ( c d )  : " (cadr (quote ((a b) (c d)))))
+(print "  ( cddr ((a b) (c d)) )  =>         null  : " (cddr (quote ((a b) (c d)))))
+(print)

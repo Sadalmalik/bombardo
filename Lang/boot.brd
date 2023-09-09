@@ -4,11 +4,6 @@
 
 
 (console.print "A")
-(console.print (lang.cons "1" "2"))
-(console.print (lang.cons (lang.cons "3" "4") "5"))
-(console.print (lang.cons "6" (lang.cons "7" "8")))
-(console.print (lang.cons))
-(console.print "E")
 
 # Инициируем контексты для работы и импортируем базовые элементы для работы
 (context.define $CTX$ (context.getContext))
@@ -39,7 +34,8 @@
 
 # Исполнение частей загрузчика
 (feval/cc (findFile "boot.test.brd"))
-(feval/cc (findFile "boot.test_env.brd"))
+(feval/cc (findFile "boot.test.lang.brd"))
+(feval/cc (findFile "boot.test.env.brd"))
 (feval/cc (findFile "boot.preprocessors.brd"))
 (feval/cc (findFile "boot.preprocessors.test.brd"))
 (feval/cc (findFile "boot.modules.stack.brd") DefaultPreprocess)

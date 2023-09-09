@@ -15,7 +15,7 @@ namespace Bombardo.Core
     //[StructLayout(LayoutKind.Explicit, Pack = 1)]
     public class Atom
     {
-        public static readonly string EMPTY_PAIR = "()";
+        public static readonly string EMPTY_PAIR = "( )";
 
         //[FieldOffset(0)]
         public int @type;
