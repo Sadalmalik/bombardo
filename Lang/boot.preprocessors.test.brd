@@ -13,6 +13,8 @@
 (testPreprocessor PreprocessQuoting (`A))
 (testPreprocessor PreprocessQuoting (``B))
 (testPreprocessor PreprocessQuoting (```C))
+(testPreprocessor PreprocessQuoting (A B `C D `E))
+#(testPreprocessor PreprocessQuoting (`))
 (print)
 (testPreprocessor DefaultPreprocess (`null (A . B)))
 (testPreprocessor DefaultPreprocess (print `null (null? `null)))

@@ -51,11 +51,6 @@ namespace Bombardo.Core
 			Stack.RemoveFrame();
 		}
 		
-		public void Call(Atom state, Atom expression, Context context)
-		{
-			Stack.CreateFrame(state, expression, context.self);
-		}
-		
 		public void Call(Atom state, Atom expression, Atom context)
 		{
 			Stack.CreateFrame(state, expression, context);
@@ -94,6 +89,7 @@ namespace Bombardo.Core
 				
 				StackFrame frame = Stack.TopFrame;
 				//Console.WriteLine($"Frame expression: {frame}");
+				//Stack.Dump(); Console.WriteLine("\n\n");
 				switch (frame.state.@string)
 				{
 					case "-eval-":	            State_Eval(frame);           continue;
@@ -188,7 +184,7 @@ namespace Bombardo.Core
 			{
 				var subExpression = frame.expression.Head;
 				frame.expression = frame.expression.Next;
-				Call(Atoms.STATE_EVAL_BLOCK, subExpression, frame.context);
+				Call(Atoms.STATE_EVAL, subExpression, frame.context);
 				return;
 			}
 			
@@ -207,7 +203,7 @@ namespace Bombardo.Core
 			if (frame.function == null ||
 			    !frame.function.IsFunction)
 			{
-				ErrorMessage = $"Head is not function: {frame.function} in {frame.expression}";
+				ErrorMessage = $"Head is not function: {frame.function} in {frame.expression.Stringify()}";
 				return;
 			}
 			

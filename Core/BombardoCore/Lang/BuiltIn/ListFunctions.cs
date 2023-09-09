@@ -49,7 +49,7 @@ namespace Bombardo.Core
 
         private static void Cons(Evaluator eval, StackFrame frame)
         {
-            eval.Return(Atom.CreatePair(frame.args?.Head, frame.args?.Next));
+            eval.Return(Atom.CreatePair(frame.args?.Head, frame.args?.Next?.Head));
         }
 
         private static void Car(Evaluator eval, StackFrame frame)

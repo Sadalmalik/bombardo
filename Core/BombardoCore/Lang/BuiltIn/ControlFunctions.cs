@@ -138,7 +138,8 @@ namespace Bombardo.Core
 			if (!eval.HaveReturn())
 			{
 				var expression = frame.args.Head;
-				if (expression is null)
+				
+				if (expression == null)
 				{
 					eval.SetReturn(null);
 					eval.CloseFrame();
@@ -163,13 +164,14 @@ namespace Bombardo.Core
 		{
 			if (!eval.HaveReturn())
 			{
-				var expression = frame.args.Head;
+				var expression = frame.args;
 				
-				var ctx = frame.context;
-				if (expression!=null &&
-				    expression.IsContext)
+				var ctx     = frame.context;
+				var context = expression.Head;
+				if (context!=null &&
+				    context.IsContext)
 				{
-					ctx        = expression;
+					ctx        = context;
 					expression = expression.Next;
 				}
 
