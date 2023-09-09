@@ -301,7 +301,8 @@ namespace Bombardo.Core
                 case AtomType.Number: return @number.ToString();
                 case AtomType.Pair:
                 {
-                    if (@pair.atom == null &&
+                    if (!wrapped &&
+                        @pair.atom == null &&
                         @pair.next == null)
                         return Atom.EMPTY_PAIR;
 

@@ -45,11 +45,19 @@ namespace Bombardo.Core
 
         private static void TableCreate(Evaluator eval, StackFrame frame)
         {
-            Atom    parent        = frame.args.Head;
-            Context parentContext = parent.IsContext ? parent.@context : null;
-            Context table          = new Context(parentContext);
+            Atom args   = frame.args;
+            Atom parent = args?.Head;
 
-            FillDictionary(table, parentContext != null ? frame.args.Next : frame.args);
+            Context parentTable = null;
+            if (parent != null && parent.IsContext)
+            {
+                parentTable = parent.@context;
+                args        = args.Next;
+            }
+
+            Context table = new Context(parentTable);
+
+            FillDictionary(table, args);
             eval.Return(table.self);
         }
 
@@ -162,11 +170,11 @@ namespace Bombardo.Core
         {
             var args = frame.args;
             var (dict, func) = StructureUtils.Split2(args);
-            
+
             if (!dict.IsContext)
                 throw new BombardoException("First argument must be table!");
-            Context  table = dict.@context;
-            
+            Context table = dict.@context;
+
             if (!func.IsFunction)
                 throw new ArgumentException("Second argument must be procedure!");
 
@@ -208,7 +216,7 @@ namespace Bombardo.Core
 
         private static void TableKeys(Evaluator eval, StackFrame frame)
         {
-            var dict  = frame.args.Head;
+            var dict = frame.args.Head;
             if (!dict.IsContext)
                 throw new BombardoException("First argument must be table!");
             Context table = dict.@context;
