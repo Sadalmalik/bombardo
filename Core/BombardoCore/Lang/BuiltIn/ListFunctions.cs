@@ -115,8 +115,9 @@ namespace Bombardo.Core
                 return;
             }
 
-            var list = args?.Head;
-            if (!list.IsPair) throw new ArgumentException("Argument must be list!");
+            var list = args.Head;
+            if (!list.IsPair)
+                throw new ArgumentException("Argument must be list!");
             while (
                 list.IsPair &&
                 list.Next != null)
@@ -139,8 +140,9 @@ namespace Bombardo.Core
                 return;
             }
 
-            var list = args?.Head;
-            if (!list.IsPair) throw new ArgumentException("Argument must be list!");
+            var list = args.Head;
+            if (!list.IsPair)
+                throw new ArgumentException("Argument must be list!");
             while (
                 list.IsPair &&
                 list.Next != null)
@@ -223,32 +225,32 @@ namespace Bombardo.Core
 
         private static void SetCar(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            var list = args?.Head;
+            var (list, value) = StructureUtils.Split2(frame.args);
 
-            if (list.type != AtomType.Pair)
+            if (list == null ||
+                list.type != AtomType.Pair)
                 throw new ArgumentException("Argument must be List!");
 
-            if (StructureUtils.Compare(list, Atoms.EMPTY))
-                throw new ArgumentException("Can't modyficate base EMPTY list!");
+            if (ReferenceEquals(list, Atoms.EMPTY))
+                throw new ArgumentException("Can't modify BASE EMPTY list!");
 
-            list.pair.atom = args.Next.Head;
+            list.pair.atom = value;
 
             eval.Return(list.Head);
         }
 
         private static void SetCdr(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            var list = args?.Head;
-
-            if (list.type != AtomType.Pair)
+            var (list, value) = StructureUtils.Split2(frame.args);
+            
+            if (list == null ||
+                list.type != AtomType.Pair)
                 throw new ArgumentException("Argument must be List!");
 
-            if (StructureUtils.Compare(list, Atoms.EMPTY))
-                throw new ArgumentException("Can't modyficate base EMPTY list!");
+            if (ReferenceEquals(list, Atoms.EMPTY))
+                throw new ArgumentException("Can't modify BASE EMPTY list!");
 
-            list.pair.next = args.Next.Head;
+            list.pair.next = value;
 
             eval.Return(list.Next);
         }
