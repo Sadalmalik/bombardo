@@ -14,6 +14,8 @@ namespace Bombardo.Core
         public static readonly string LISP_MAKE_SYMBOL        = "makeSymbol";
         public static readonly string LISP_GET_CONTEXT        = "getContext";
         public static readonly string LISP_GET_CONTEXT_PARENT = "getContextParent";
+        
+        //public static readonly string EMPTY_SYMBOL = "empty";
     }
 
     public static class ContextFunctions
@@ -37,8 +39,8 @@ namespace Bombardo.Core
             ctx.DefineFunction(Names.LISP_GET_CONTEXT, GetContext);
             ctx.DefineFunction(Names.LISP_GET_CONTEXT_PARENT, GetContextParent);
 
-            ctx.Define(Names.NULL_SYMBOL, null);
-            ctx.Define(Names.EMPTY_SYMBOL, Atoms.EMPTY);
+            //ctx.Define(Names.NULL_SYMBOL, null);
+            //ctx.Define(Names.EMPTY_SYMBOL, Atoms.EMPTY);
         }
 
         private static void Define(Evaluator eval, StackFrame frame)
