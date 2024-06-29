@@ -2,6 +2,8 @@ using System;
 
 namespace Bombardo.Core
 {
+    public delegate void BFunction(Evaluator evaluator, StackFrame stackFrame);
+
     public class Function
     {
         public string Name;
@@ -10,9 +12,9 @@ namespace Bombardo.Core
         public bool   EvalArgs;
         public bool   EvalResult;
 
-        public Action<Evaluator, StackFrame> Perform;
+        public BFunction Perform;
 
-        public Function(Action<Evaluator, StackFrame> function, bool evalArgs = true, bool evalResult = false)
+        public Function(BFunction function, bool evalArgs = true, bool evalResult = false)
         {
             Name       = "??";
             tag        = Atoms.BUILT_IN;
@@ -22,7 +24,12 @@ namespace Bombardo.Core
             EvalResult = evalResult;
         }
 
-        public Function(string name, Atom tag, Action<Evaluator, StackFrame> function, bool evalArgs = true, bool evalResult = false)
+        public Function(
+            string    name,
+            Atom      tag,
+            BFunction function,
+            bool      evalArgs   = true,
+            bool      evalResult = false)
         {
             Name       = name;
             this.tag   = tag;

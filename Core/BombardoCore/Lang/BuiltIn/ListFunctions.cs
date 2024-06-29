@@ -242,7 +242,7 @@ namespace Bombardo.Core
         private static void SetCdr(Evaluator eval, StackFrame frame)
         {
             var (list, value) = StructureUtils.Split2(frame.args);
-            
+
             if (list == null ||
                 list.type != AtomType.Pair)
                 throw new ArgumentException("Argument must be List!");
@@ -302,7 +302,7 @@ namespace Bombardo.Core
                             frame.temp1 = frame.temp1.Next;
 
                         var subExpression = Atom.CreatePair(frame.temp1.Head, null);
-                        
+
                         var newFrame = eval.CreateFrame(
                             Atoms.STATE_EVAL_SEXP_BODY,
                             StructureUtils.List(proc, frame.temp1.Head),

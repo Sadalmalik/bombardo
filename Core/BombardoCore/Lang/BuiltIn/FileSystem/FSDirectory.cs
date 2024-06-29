@@ -11,7 +11,7 @@ namespace Bombardo.Core
         public static readonly string FS_DIRECTORY_MOVE   = "move";   // fs.directory.move
         public static readonly string FS_DIRECTORY_DELETE = "delete"; // fs.directory.delete
     }
-    
+
     public static class FSDirectory
     {
         public static void Define(Context directory)
@@ -20,13 +20,13 @@ namespace Bombardo.Core
             //  (fs.directory.read "directoryPath") -> ( "file1" "file2" "file3" ... )
             //  (fs.directory.move "sourcePath" "destinationPath") -> null
             //  (fs.directory.delete "directoryPath") -> True|False
-            
+
             directory.DefineFunction(Names.FS_DIRECTORY_READ, DirectoryRead);
             directory.DefineFunction(Names.FS_DIRECTORY_CREATE, DirectoryCreate);
             directory.DefineFunction(Names.FS_DIRECTORY_MOVE, DirectoryMove);
             directory.DefineFunction(Names.FS_DIRECTORY_DELETE, DirectoryDelete);
         }
-        
+
         private static void DirectoryRead(Evaluator eval, StackFrame frame)
         {
             var (path, pattern, mode) = StructureUtils.Split3(frame.args);

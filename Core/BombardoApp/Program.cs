@@ -16,7 +16,6 @@ namespace Bombardo.Core
         private static string pathToScript;
         private static string pathToWorkDir;
 
-
         public static void Main(string[] argsArray)
         {
             InitEnvironment();
@@ -116,7 +115,8 @@ namespace Bombardo.Core
                 envContext.Define("pathToCore", Atom.CreateString(pathToCore));
                 envContext.Define("pathToBase", Atom.CreateString(pathToBase));
                 envContext.Define("pathToBoot", Atom.CreateString(pathToBoot));
-                envContext.Define("pathToScript", string.IsNullOrEmpty(pathToScript) ? null : Atom.CreateString(pathToScript));
+                envContext.Define("pathToScript",
+                    string.IsNullOrEmpty(pathToScript) ? null : Atom.CreateString(pathToScript));
                 envContext.Define("pathToWorkDirectory", Atom.CreateString(pathToWorkDir));
             });
 

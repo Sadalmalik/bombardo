@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Text;
 
 namespace Bombardo.Core
@@ -19,6 +18,7 @@ namespace Bombardo.Core
         private Atom _temp3;
 
         // @formatter:off
+        // keep as oneliners
         public Atom state      { get => _state.pair.atom;      set => _state.pair.atom = value; }
         public Atom expression { get => _expression.pair.atom; set => _expression.pair.atom = value; }
         public Atom context    { get => _context.pair.atom;    set => _context.pair.atom = value; }

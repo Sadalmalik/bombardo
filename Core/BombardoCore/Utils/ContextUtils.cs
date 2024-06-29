@@ -152,7 +152,7 @@ namespace Bombardo.Core
                 into.Define(pair.Key, pair.Value);
             }
         }
-        
+
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static Context GetContext(Atom context, StackFrame frame)

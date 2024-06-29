@@ -169,7 +169,7 @@ namespace Bombardo.Core
 
             var attr = File.GetAttributes(file);
 
-            var hasDirectoryFlag = ((int) attr & (int) FileAttributes.Directory) != 0;
+            var hasDirectoryFlag = ((int)attr & (int)FileAttributes.Directory) != 0;
             eval.Return(hasDirectoryFlag ? Atoms.FALSE : Atoms.TRUE);
         }
 
@@ -189,7 +189,7 @@ namespace Bombardo.Core
 
             var attr = File.GetAttributes(file);
 
-            var hasDirectoryFlag = ((int) attr & (int) FileAttributes.Directory) != 0;
+            var hasDirectoryFlag = ((int)attr & (int)FileAttributes.Directory) != 0;
             eval.Return(hasDirectoryFlag ? Atoms.TRUE : Atoms.FALSE);
         }
 

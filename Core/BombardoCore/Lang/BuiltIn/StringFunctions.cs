@@ -169,7 +169,7 @@ namespace Bombardo.Core
 
             string   str  = strArg.@string;
             string   spl  = splits.@string;
-            string[] list = str.Split(new[] {spl}, StringSplitOptions.RemoveEmptyEntries);
+            string[] list = str.Split(new[] { spl }, StringSplitOptions.RemoveEmptyEntries);
 
             Atom head, tail;
             head = tail = Atom.CreatePair(Atom.CreateString(list[0]), null);

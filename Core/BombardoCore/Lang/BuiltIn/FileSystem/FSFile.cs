@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 
 namespace Bombardo.Core
 {
@@ -110,18 +109,18 @@ namespace Bombardo.Core
             if (offset != null && !offset.IsSymbol)
                 throw new ArgumentException("Third argument must be symbol!");
             var seekMode = ArgUtils.GetEnum(mode, 3, SeekOrigin.Current);
-            
+
             Stream baseStream = null;
 
             if (stream.@object is StreamWriter streamWriter) baseStream = streamWriter.BaseStream;
             if (stream.@object is BinaryWriter binaryWriter) baseStream = binaryWriter.BaseStream;
             if (stream.@object is StreamReader streamReader) baseStream = streamReader.BaseStream;
             if (stream.@object is BinaryReader binaryReader) baseStream = binaryReader.BaseStream;
-            
+
             if (baseStream == null)
                 throw new ArgumentException("First argument must be Stream!");
             baseStream.Seek(offset.number.ToSInt(), seekMode);
-            
+
             eval.Return(null);
         }
 
@@ -143,7 +142,7 @@ namespace Bombardo.Core
                 default:
                     throw new ArgumentException("Argument must be Stream Writer!");
             }
-            
+
             eval.Return(null);
         }
 

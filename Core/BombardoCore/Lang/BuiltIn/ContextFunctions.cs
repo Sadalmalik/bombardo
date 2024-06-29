@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 
 namespace Bombardo.Core
 {
@@ -14,7 +13,7 @@ namespace Bombardo.Core
         public static readonly string LISP_MAKE_SYMBOL        = "makeSymbol";
         public static readonly string LISP_GET_CONTEXT        = "getContext";
         public static readonly string LISP_GET_CONTEXT_PARENT = "getContextParent";
-        
+
         //public static readonly string EMPTY_SYMBOL = "empty";
     }
 
@@ -119,7 +118,7 @@ namespace Bombardo.Core
             var args = frame.args;
             var str  = args.Head;
             if (!str.IsString) throw new ArgumentException("Argument must be string!");
-            var list = BombardoLang.Parse((string) str.@string);
+            var list = BombardoLang.Parse((string)str.@string);
             eval.Return(list);
         }
 

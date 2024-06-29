@@ -25,7 +25,7 @@ namespace Bombardo.Core
         {
             Init();
 
-            AtomNumber number = new AtomNumber {type = AtomNumberType.NaN};
+            AtomNumber number = new AtomNumber { type = AtomNumberType.NaN };
 
             if (_regBin.Match(symbol).Success)
             {

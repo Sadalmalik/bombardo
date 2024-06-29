@@ -7,10 +7,13 @@ namespace Bombardo.Core
         text,
         bin
     }
-    
+
     public enum FSEncoding
     {
-        acii, utf7, utf8, utf32
+        acii,
+        utf7,
+        utf8,
+        utf32
     }
 
     public static class FSEncodingExtensions

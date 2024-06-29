@@ -36,7 +36,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Sum(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -68,7 +68,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Dis(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -99,7 +99,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Mul(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -130,7 +130,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Div(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -161,7 +161,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Mod(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -197,7 +197,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Min(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -228,7 +228,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Max(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -259,7 +259,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Abs(AtomNumber n)
         {
-            AtomNumber result = new AtomNumber {type = n.type};
+            AtomNumber result = new AtomNumber { type = n.type };
             // @formatter:off
             switch ( result.type )
             {
@@ -286,7 +286,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Sign(AtomNumber n)
         {
-            AtomNumber result = new AtomNumber {type = AtomNumberType.SINT32};
+            AtomNumber result = new AtomNumber { type = AtomNumberType.SINT32 };
             // @formatter:off
             switch ( n.type )
             {
@@ -313,7 +313,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Ceil(AtomNumber n)
         {
-            AtomNumber result = new AtomNumber {type = n.type};
+            AtomNumber result = new AtomNumber { type = n.type };
             // @formatter:off
             switch ( n.type )
             {
@@ -340,7 +340,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Floor(AtomNumber n)
         {
-            AtomNumber result = new AtomNumber {type = n.type};
+            AtomNumber result = new AtomNumber { type = n.type };
             // @formatter:off
             switch ( n.type )
             {
@@ -367,7 +367,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Trunc(AtomNumber n)
         {
-            AtomNumber result = new AtomNumber {type = n.type};
+            AtomNumber result = new AtomNumber { type = n.type };
             // @formatter:off
             switch ( n.type )
             {
@@ -580,7 +580,7 @@ namespace Bombardo.Core
 
         public static AtomNumber And(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -613,7 +613,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Or(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -646,7 +646,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Xor(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -679,7 +679,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Lsh(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)
@@ -712,7 +712,7 @@ namespace Bombardo.Core
 
         public static AtomNumber Rsh(AtomNumber a, AtomNumber b)
         {
-            AtomNumber result = new AtomNumber {type = MaxNumberType(a, b)};
+            AtomNumber result = new AtomNumber { type = MaxNumberType(a, b) };
             // CS type operations upcast
             if (useCSUpTypeOperations &&
                 result.type < AtomNumberType.SINT32)

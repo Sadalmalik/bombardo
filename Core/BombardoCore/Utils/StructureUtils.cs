@@ -167,7 +167,7 @@ namespace Bombardo.Core
             (a_1, iter) = (iter?.Head, iter?.Next);
             return (a_1);
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom) Split1Next(Atom value)
         {
@@ -176,7 +176,7 @@ namespace Bombardo.Core
             (a_1, iter) = (iter?.Head, iter?.Next);
             return (a_1, iter);
         }
-        
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static (Atom, Atom) Split2(Atom value)
         {

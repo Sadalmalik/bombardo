@@ -60,7 +60,7 @@ namespace Bombardo.Core
             {
                 var buffer = new char[size];
                 var readed = reader.Read(buffer, 0, size);
-                if (readed<size)
+                if (readed < size)
                     Array.Resize(ref buffer, readed);
                 var str = new string(buffer);
                 eval.Return(Atom.CreateString(str));
@@ -77,7 +77,7 @@ namespace Bombardo.Core
 
             var line = reader.ReadLine();
             eval.Return(Atom.CreateString(line));
-            
+
             eval.Return(null);
         }
 
@@ -89,17 +89,17 @@ namespace Bombardo.Core
                 !(stream.@object is StreamReader reader))
                 throw new ArgumentException("Argument must be Stream Reader!");
 
-            Atom head=null, tail=null;
+            Atom head = null, tail = null;
             while (!reader.EndOfStream)
             {
                 var line = Atom.CreateString(reader.ReadLine());
-                
+
                 if (head == null)
                     head = tail = Atom.CreatePair(line, null);
                 else
                     tail = tail.Next = Atom.CreatePair(line, tail);
             }
-            
+
             eval.Return(head);
         }
 
@@ -112,7 +112,7 @@ namespace Bombardo.Core
                 throw new ArgumentException("Argument must be Stream Writer!");
 
             writer.Write(value);
-            
+
             eval.Return(null);
         }
 
@@ -123,9 +123,9 @@ namespace Bombardo.Core
             if (!stream.IsNative ||
                 !(stream.@object is StreamWriter writer))
                 throw new ArgumentException("Argument must be Stream Writer!");
-            
+
             writer.WriteLine(value);
-            
+
             eval.Return(null);
         }
 
@@ -137,7 +137,7 @@ namespace Bombardo.Core
                 !(stream.@object is StreamWriter writer))
                 throw new ArgumentException("Argument must be Stream Writer!");
 
-            if (values==null)
+            if (values == null)
                 throw new ArgumentException("Values can not be null!");
 
             for (Atom iter = values; iter != null; iter = iter.Next)
@@ -146,7 +146,7 @@ namespace Bombardo.Core
                 if (element != null)
                     writer.WriteLine(element);
             }
-            
+
             eval.Return(null);
         }
     }

@@ -282,6 +282,7 @@ namespace Bombardo.Core
                     case AtomNumberType.DECIMAL: writer.Write(number.val_decimal); break;
                     // @formatter:on
                 }
+
                 eval.SetReturn(null);
             }
 
@@ -290,7 +291,7 @@ namespace Bombardo.Core
                 writer.Write(value.@string);
                 eval.SetReturn(null);
             }
-            
+
             throw new ArgumentException("Value must be Number or String!");
         }
 
@@ -304,9 +305,9 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToUByte());
-            
+
             eval.SetReturn(null);
         }
 
@@ -320,9 +321,9 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToSByte());
-            
+
             eval.SetReturn(null);
         }
 
@@ -336,9 +337,9 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToUShort());
-            
+
             eval.SetReturn(null);
         }
 
@@ -352,9 +353,9 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToSShort());
-            
+
             eval.SetReturn(null);
         }
 
@@ -368,7 +369,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToUInt());
 
             eval.SetReturn(null);
@@ -384,7 +385,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToSInt());
 
             eval.SetReturn(null);
@@ -400,7 +401,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToULong());
 
             eval.SetReturn(null);
@@ -416,7 +417,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToULong());
 
             eval.SetReturn(null);
@@ -432,7 +433,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToSingle());
 
             eval.SetReturn(null);
@@ -448,7 +449,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToDouble());
 
             eval.SetReturn(null);
@@ -464,7 +465,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsNumber)
                 throw new ArgumentException("Value must be Number!");
-            
+
             writer.Write(value.number.ToDecimal());
 
             eval.SetReturn(null);
@@ -480,7 +481,7 @@ namespace Bombardo.Core
 
             if (value == null || !value.IsString)
                 throw new ArgumentException("Value must be String!");
-            
+
             writer.Write(value.@string);
 
             eval.SetReturn(null);

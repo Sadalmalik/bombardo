@@ -17,9 +17,11 @@ namespace Bombardo.Core
             this.@sealed = false;
         }
 
-        public Atom DefineFunction(string name,
-            Action<Evaluator, StackFrame> rawFunction,
-            bool                          evalArgs = true, bool evalResult = false)
+        public Atom DefineFunction(
+            string    name,
+            BFunction rawFunction,
+            bool      evalArgs   = true,
+            bool      evalResult = false)
         {
             var func = new Function(name, Atoms.BUILT_IN, rawFunction, evalArgs, evalResult);
             Add(name, func.self);

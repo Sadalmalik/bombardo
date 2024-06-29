@@ -13,7 +13,7 @@ namespace Bombardo.Core
         public static readonly string FS_PATH_GET_FILENAME  = "getFileName";      // fs.path.getFileName
         public static readonly string FS_PATH_GET_DIRNAME   = "getDirectoryName"; // fs.path.getDirectoryName
     }
-    
+
     public static class FSPath
     {
         public static void Define(Context path)

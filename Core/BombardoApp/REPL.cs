@@ -9,14 +9,14 @@ namespace Bombardo.V1
 {
     internal class REPL
     {
-        private static bool loop_;
+        private static bool   loop_;
         private static string storage_ = "";
 
         public static void Start()
         {
             Console.WriteLine("Basic BombardoV1 lang");
             Console.WriteLine("07.2018 by Kaleb Sadalmalik");
-            
+
             ShowWelcome(null, null);
 
             loop_ = true;
@@ -70,6 +70,7 @@ namespace Bombardo.V1
                 atoms = Parser.Handle(tokens);
                 return true;
             }
+
             atoms = null;
             return false;
         }
@@ -92,7 +93,7 @@ namespace Bombardo.V1
             Console.WriteLine();
             return null;
         }
-        
+
         private static Atom ShowAbout(Atom args, Context context)
         {
             Console.WriteLine(@"
@@ -134,6 +135,7 @@ namespace Bombardo.V1
             {
                 Console.WriteLine(string.Format("  {0,-32} {1}", pair.Key, pair.Value?.value?.ToString()));
             }
+
             Console.WriteLine();
 
             Console.WriteLine("Work context:");
@@ -141,6 +143,7 @@ namespace Bombardo.V1
             {
                 Console.WriteLine(string.Format("  {0,-32} {1}", pair.Key, pair.Value?.value?.ToString()));
             }
+
             Console.WriteLine();
 
             return null;
@@ -168,9 +171,9 @@ namespace Bombardo.V1
                 return Atom.FALSE;
             }
 
-            string path = FSUtils.FindFile(name);
-            string raw = File.ReadAllText(path);
-            var nodes = BombardoLangClass.Parse(raw);
+            string path  = FSUtils.FindFile(name);
+            string raw   = File.ReadAllText(path);
+            var    nodes = BombardoLangClass.Parse(raw);
 
             foreach (var node in nodes)
             {
