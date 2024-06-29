@@ -39,7 +39,8 @@ namespace Bombardo.Core
             // Ну или надо перепродумывать парсер.
             throw new BombardoException("fs.file.lisp.read not implemented!");
 
-            eval.Return(null);
+            // Пока игнорируем
+            // eval.Return(null);
         }
 
         private static void FileWrite(Evaluator eval, StackFrame frame)
@@ -54,7 +55,8 @@ namespace Bombardo.Core
 
             throw new BombardoException("fs.file.lisp.write not implemented!");
 
-            eval.Return(null);
+            // Пока игнорируем
+            // eval.Return(null);
         }
     }
 }
