@@ -347,14 +347,17 @@ namespace Bombardo.Core
                     {
                         while (skipNull && frame.temp1.Head == null)
                             frame.temp1 = frame.temp1.Next;
+                        
                         var subExpression = Atom.CreatePair(frame.temp1.Head, null);
-                        frame.temp1 = frame.temp1.Next;
+                        
                         var newFrame = eval.CreateFrame(
-                            Atoms.STATE_EVAL_SEXP_ARGS,
+                            Atoms.STATE_EVAL_SEXP_BODY,
                             Atom.CreatePair(proc, subExpression),
                             frame.context);
                         newFrame.function = proc;
                         newFrame.args     = subExpression;
+                        
+                        frame.temp1 = frame.temp1.Next;
                     }
                     else
                     {

@@ -1,0 +1,39 @@
+(require lang importAll)
+(require context importAll)
+(require console importAll)
+(require string importAll)
+
+(define Each (lambda [$tree $handlere]
+	(if [pair? $tree]
+		[block
+			(Each (car $tree) $handlere)
+			(Each (cdr $tree) $handlere)
+		]
+		[if [not-null? $tree]
+			($handlere $tree)]
+	)
+))
+
+(define Map (lambda [$tree $handlere]
+	(if [pair? $tree]
+		[cons
+			(Map (car $tree) $handlere)
+			(Map (cdr $tree) $handlere)
+		]
+		[if [not-null? $tree]
+			($handlere $tree)]
+	)
+))
+
+(define UnitTests (lambda []
+	(Each `(a b (c d) (e f)) print)
+
+	(print (Map `(a b (c d) (e f))
+		(lambda [$entry]
+			(makeSymbol (concat "-" (symbolName $entry) "-"))
+		)
+	))
+))
+
+(define export.Each Each)
+(define export.Map Map)
