@@ -178,6 +178,7 @@
 		`( ( "success" . false ) )]
 ))
 
+(define export.variable?	variable?)
 (define export.SetDebugMode	SetDebugMode)
 (define export.Match		Match)
 (define export.Instantiate	Instantiate)

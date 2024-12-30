@@ -6,13 +6,14 @@ namespace Bombardo.Core
     public static partial class Names
     {
         public static readonly string LISP_TABLE_CREATE     = "create";    // "table";
-        public static readonly string LISP_TABLE_GET        = "get";       // "tableGet";
-        public static readonly string LISP_TABLE_SET        = "set";       // "tableSet";
-        public static readonly string LISP_TABLE_REMOVE     = "rem";       // "tableRemove";
-        public static readonly string LISP_TABLE_CLEAR      = "clear";     // "tableClear";
-        public static readonly string LISP_TABLE_IMPORT     = "import";    // "tableImport";
-        public static readonly string LISP_TABLE_IMPORT_ALL = "importAll"; // "tableImportAll";
-        public static readonly string LISP_TABLE_EACH       = "each";      // "tableEach";
+        public static readonly string LISP_TABLE_GET        = "get";       // "table.get";
+        public static readonly string LISP_TABLE_SET        = "set";       // "table.sset";
+        public static readonly string LISP_TABLE_REMOVE     = "rem";       // "table.remove";
+        public static readonly string LISP_TABLE_COUNT      = "count";     // "table.count";
+        public static readonly string LISP_TABLE_CLEAR      = "clear";     // "table.clear";
+        public static readonly string LISP_TABLE_IMPORT     = "import";    // "table.import";
+        public static readonly string LISP_TABLE_IMPORT_ALL = "importAll"; // "table.importAll";
+        public static readonly string LISP_TABLE_EACH       = "each";      // "table.each";
         public static readonly string LISP_TABLE_KEYS       = "keys";
         public static readonly string LISP_TABLE_VALUES     = "values";
         public static readonly string LISP_TABLE_PAIRS      = "pairs";
@@ -29,6 +30,7 @@ namespace Bombardo.Core
             ctx.DefineFunction(Names.LISP_TABLE_GET, TableGet);
             ctx.DefineFunction(Names.LISP_TABLE_SET, TableSet);
             ctx.DefineFunction(Names.LISP_TABLE_REMOVE, TableRemove);
+            ctx.DefineFunction(Names.LISP_TABLE_COUNT, TableCount);
             ctx.DefineFunction(Names.LISP_TABLE_CLEAR, TableClear);
             ctx.DefineFunction(Names.LISP_TABLE_IMPORT, TableImport);
             ctx.DefineFunction(Names.LISP_TABLE_IMPORT_ALL, TableImportAll);
@@ -105,6 +107,17 @@ namespace Bombardo.Core
             table.Remove(key.@string);
 
             eval.Return(null);
+        }
+
+        private static void TableCount(Evaluator eval, StackFrame frame)
+        {
+            var (dict, key) = StructureUtils.Split2(frame.args);
+
+            if (!dict.IsContext)
+                throw new BombardoException("First argument must be table!");
+            Context table = dict.@context;
+            
+            eval.Return(Atom.CreateNumber(table.Count));
         }
 
         private static void TableClear(Evaluator eval, StackFrame frame)
