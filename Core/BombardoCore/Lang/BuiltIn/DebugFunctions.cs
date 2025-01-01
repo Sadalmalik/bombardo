@@ -5,6 +5,7 @@ namespace Bombardo.Core
     public static partial class Names
     {
         public static readonly string LISP_MARKER      = "marker";
+        public static readonly string LISP_GET_STACK   = "getStack";
         public static readonly string LISP_TIMER_START = "timerStart";
         public static readonly string LISP_TIMER_END   = "timerEnd";
     }
@@ -19,6 +20,7 @@ namespace Bombardo.Core
             //  (marker anything) -> null
 
             ctx.DefineFunction(Names.LISP_MARKER, Marker, false);
+            ctx.DefineFunction(Names.LISP_GET_STACK, GetStack, false);
             ctx.DefineFunction(Names.LISP_TIMER_START, TimerStart, false);
             ctx.DefineFunction(Names.LISP_TIMER_END, TimerEnd, false);
         }
@@ -28,6 +30,11 @@ namespace Bombardo.Core
             var tag = frame.args?.Head;
             Console.WriteLine(tag == null ? "<Marker reached>" : $"<Marker reached: {tag.Stringify()}>");
             eval.Return(null);
+        }
+
+        private static void GetStack(Evaluator eval, StackFrame frame)
+        {
+            eval.Return(StructureUtils.CloneTree(eval.Stack.content));
         }
 
         private static void TimerStart(Evaluator eval, StackFrame frame)

@@ -38,5 +38,7 @@ namespace Bombardo.Core
         public static readonly Atom STATE_ITERATE_MAP  = Atom.CreateSymbol("-built-in-map-");
 
         public static readonly Atom STATE_TABLE_EACH = Atom.CreateSymbol("-built-in-table-each-");
+        
+        public static readonly Atom STATE_LOGIC_OPERATOR = Atom.CreateSymbol("-built-logic-operator-");
     }
 }

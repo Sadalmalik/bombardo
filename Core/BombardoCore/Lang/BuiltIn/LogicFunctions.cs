@@ -21,8 +21,8 @@ namespace Bombardo.Core.Lang
             ctx.DefineFunction(Names.LOGIC_EQ, Eq);
             ctx.DefineFunction(Names.LOGIC_NEQ, Neq);
 
-            ctx.DefineFunction(Names.LOGIC_AND, And);
-            ctx.DefineFunction(Names.LOGIC_OR, Or);
+            ctx.DefineFunction(Names.LOGIC_AND, And, false);
+            ctx.DefineFunction(Names.LOGIC_OR, Or, false);
             ctx.DefineFunction(Names.LOGIC_XOR, Xor);
             ctx.DefineFunction(Names.LOGIC_IMP, Imp);
             ctx.DefineFunction(Names.LOGIC_NOT, Not);
@@ -83,22 +83,60 @@ namespace Bombardo.Core.Lang
 
         public static void And(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            CheckAllBoolean(args);
-            bool res = args.Head.@bool;
-            for (Atom iter = args.Next; iter != null; iter = iter.Next)
-                res &= iter.Head.@bool;
-            eval.Return(res ? Atoms.TRUE : Atoms.FALSE);
+            if (eval.HaveReturn())
+            {
+                var result = eval.TakeReturn();
+                if (!result.IsBool)
+                {
+                    throw new ArgumentException("Not all arguments are booleans!");
+                }
+
+                if (!result.@bool)
+                {
+                    eval.Return(Atoms.FALSE);
+                    return;
+                }
+            }
+
+            if (frame.args != null)
+            {
+                var arg = frame.args.Head;
+                frame.args  = frame.args.Next;
+                frame.state = Atoms.STATE_LOGIC_OPERATOR;
+                eval.Call(Atoms.STATE_EVAL, arg, frame.context);
+                return;
+            }
+
+            eval.Return(Atoms.TRUE);
         }
 
         public static void Or(Evaluator eval, StackFrame frame)
         {
-            var args = frame.args;
-            CheckAllBoolean(args);
-            bool res = args.Head.@bool;
-            for (Atom iter = args.Next; iter != null; iter = iter.Next)
-                res |= iter.Head.@bool;
-            eval.Return(res ? Atoms.TRUE : Atoms.FALSE);
+            if (eval.HaveReturn())
+            {
+                var result = eval.TakeReturn();
+                if (!result.IsBool)
+                {
+                    throw new ArgumentException("Not all arguments are booleans!");
+                }
+
+                if (result.@bool)
+                {
+                    eval.Return(Atoms.TRUE);
+                    return;
+                }
+            }
+
+            if (frame.args != null)
+            {
+                var arg = frame.args.Head;
+                frame.args  = frame.args.Next;
+                frame.state = Atoms.STATE_LOGIC_OPERATOR;
+                eval.Call(Atoms.STATE_EVAL, arg, frame.context);
+                return;
+            }
+
+            eval.Return(Atoms.FALSE);
         }
 
         public static void Xor(Evaluator eval, StackFrame frame)
