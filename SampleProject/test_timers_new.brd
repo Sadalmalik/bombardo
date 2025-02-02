@@ -1,0 +1,21 @@
+(require lang importAll)
+(require context importAll)
+(require console importAll)
+(require debug)
+(require math importAll)
+
+(require intervals importAll)
+
+(print "Du Hust!")
+
+(define $count 1)
+
+(setInterval (lambda []
+	(print "Ha!" $count)
+	(set! $count (+ 1 $count))
+) 125 10)
+
+
+(setInterval (lambda []
+	(print "HOOoooOoo!")
+) 500 4)

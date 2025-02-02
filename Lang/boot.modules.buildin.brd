@@ -8,6 +8,7 @@
 (AddModule `math    math)
 (AddModule `string  string)
 (AddModule `table   table)
+(AddModule `intervals   intervals)
 
 (AddModule `preprocessing
 	(table.create

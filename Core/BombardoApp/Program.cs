@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using System.Threading;
 using Bombardo.Core.Lang;
 
 namespace Bombardo.Core
@@ -35,6 +36,16 @@ namespace Bombardo.Core
 
                 if (bootResult != null)
                     Console.WriteLine(bootResult.ToString());
+
+                if (IntervalsFunctions.IsTicking())
+                {
+                    Console.WriteLine("Waiting for timers completion");
+                    while (IntervalsFunctions.IsTicking())
+                    {
+                        Thread.Sleep(16);
+                    }
+                    Console.WriteLine("Timers completed!");
+                }
             }
             catch (Exception exc)
             {
@@ -119,6 +130,8 @@ namespace Bombardo.Core
                     string.IsNullOrEmpty(pathToScript) ? null : Atom.CreateString(pathToScript));
                 envContext.Define("pathToWorkDirectory", Atom.CreateString(pathToWorkDir));
             });
+            
+            AddSub(context, "intervals", IntervalsFunctions.Define);
 
             context.@sealed = true;
             return new Context(context);
